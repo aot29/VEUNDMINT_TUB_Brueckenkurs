@@ -18,6 +18,8 @@
   var userCredentials = {};
   var isAuthenticated = false;
 
+  var doAsyncCalls = true;
+
   function initJquery(jqueryRef) {
 	  $ = jqueryRef;
   }
@@ -106,7 +108,7 @@
   * @param  {Object} data The data you want to send with the request
   * @return {Object}      The returned (json) data
   */
-  function authAjaxGET (url, data) {
+  function authAjaxGET (url, data, async) {
     //console.log('calling authajax get with url', url);
     var userCredentials = getUserCredentials();
     //console.log('and user credentials is', userCredentials);
@@ -144,8 +146,12 @@
   * @param  {Object} data The data you want to send with the request
   * @return {Object}      The returned (json) data
   */
-  function authAjaxPOST (url, data) {
-    console.log('calling authajax get with url', url, 'data', data);
+  function authAjaxPOST (url, data, async) {
+
+    console.log('calling authajax get with url', url, 'data', data, 'async', async);
+
+    async = typeof async !== 'undefined' ? async : true;
+
     var userCredentials = getUserCredentials();
     //console.log('and user credentials is', userCredentials);
     if (userCredentials === null || typeof userCredentials === "undefined"
@@ -153,18 +159,19 @@
       //console.log('can only make authAjaxGET request if userCredentials are set');
       return Promise.reject('not authenticated');
     }
-    return new Promise(function (resolve, reject) {
-      return $.ajax({
+    return Promise.resolve(
+      $.ajax({
         url: url,
         method: 'POST',
+        async: async,
         data: JSON.stringify(data),
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
         headers: {
           'Authorization': 'JWT ' + userCredentials.token
         }
-      }).done(resolve).fail(reject);
-    });
+      })
+    );
 
 
     // return rp.post({

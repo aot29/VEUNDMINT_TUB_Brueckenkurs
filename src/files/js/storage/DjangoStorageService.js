@@ -17,12 +17,13 @@
   var DjangoStorageService = function (settings) {
     var that = IStorageService.IStorageService();
     djUserData = {};
-    newerTimeStamp = 159292929929290;
+    newerTimeStamp = 2929929290;
 
     that.name = 'DjangoStorageService';
 
-    that.saveUserData = function (data) {
-      return DjangoAuthService.authAjaxPost('http://localhost:8000/user-data/', data);
+    that.saveUserData = function (data, async) {
+      console.log('saving django user data', data);
+      return DjangoAuthService.authAjaxPost('http://localhost:8000/user-data/', data, async);
     }
 
     that.getUserData = function () {
@@ -30,7 +31,8 @@
     }
 
     that.getDataTimestamp = function () {
-      return Promise.resolve(newerTimeStamp);
+      return DjangoAuthService.authAjaxGet('http://localhost:8000/user-data-timestamp/');
+      // return Promise.resolve(newerTimeStamp);
     }
 
     return that;

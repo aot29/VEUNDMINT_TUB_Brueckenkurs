@@ -32,6 +32,8 @@
     alwaysSynchronize : true
   };
 
+  var doAsyncCalls = 'true';
+
   var storageServices = [];
   var storageServicesMap = {};
   var syncStrategies = ['timer', 'onunload']
@@ -45,7 +47,7 @@
   //this variable stores recent, unsynced changes and will be reset on successful
   //sync operation
   var changedData = {};
-  
+
 	init();
 
 	/**
@@ -57,7 +59,7 @@
 	function init( options ) {
 // 		subscribe(LocalStorageService.LocalStorageService());
 // 		subscribe(DjangoStorageService.DjangoStorageService());
-		
+
 // 		DjangoAuthService.authenticate({
 // 			username: 'testrunner',
 // 			password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
@@ -89,50 +91,6 @@
     return updateUserData({scores: updatedScores});
   }
 
-  function latestStorageService () {
-    var latestUserData = {}
-    var evenNewerTimeStamp = 15576239654329;
-    return {
-      saveUserData : function (data) {
-        // console.log('latestStorageService saveUserData called');
-        var result = new Promise(function (resolve, reject) {
-          setTimeout(function() {
-            console.log('after 2 secs');
-            latestUserData = data;
-            resolve(latestUserData);
-          }, 2000);
-        });
-        return result;
-      },
-      getUserData : function () {
-        // console.log('latestStorageService getUserData called');
-        var result = new Promise(function (resolve, reject) {
-          setTimeout(function() {
-            console.log('after 2 secs');
-            latestUserData.timestamp = evenNewerTimeStamp;
-            resolve(latestUserData);
-          }, 2000);
-        });
-        return result;
-      },
-      getDataTimestamp: function () {
-        return Promise.resolve(evenNewerTimeStamp);
-      },
-      name: 'latestStorageService'
-    }
-  }
-
-  /**
-   * This service will never be used for downSync as it can not store as detailed
-   * data as the others. But only for syncUp. That is achieved by returning -1
-   * in getDataTimestamp, so it will never contain the latest data. Refer to the
-   * definition of @syncDown, which will compare timestamps.
-   * @return {[type]} [description]
-   */
-  function scormStorageService () {
-
-  }
-
   //sync on startup
   //on time
   //only the diff should be sent to server (whyever)
@@ -141,77 +99,6 @@
   function subscribe (observable) {
     storageServices.push(observable);
     storageServicesMap[observable.name] = observable;
-  }
-
-  /**
-  * [sync description]
-  * @return {[type]} Muss auf alle faelle promise zurueckgeben
-  */
-  function sync () {
-    var syncedDown = false;
-    //TODO set this to 0
-    var promiseCounter = 1;
-
-    var status = {
-      syncDown: 'error',
-      syncUp: 'error'
-    };
-
-
-    var result = new Promise(function (resolve, reject) {
-      // 1. if page is being loaded
-      if (objCache.scores.length === 0) {
-
-        getAllUserData().then(function (allResults) {
-          if (Array.isArray(allResults) && allResults.length > 0) {
-            allResults.sort(compareTimestamps);
-            objCache = allResults[0].data;
-            console.log('sync set objCache to', allResults[0].data, 'from ', allResults[0].serviceName);
-            syncedDown = true;
-            status.syncDown = 'success';
-            status.syncFrom = allResults[0].serviceName;
-            status.data = objCache;
-          } else {
-            console.log('getAllUserData did not return an array');
-            status.syncDownErrorMessage = 'getAllUserData did not return an array';
-            reject(status);
-          }
-        }).catch(function(error) {
-          status.syncDownErrorMessage = error;
-          reject(status);
-        }).finally(function() {
-          promiseCounter += 1;
-          if (promiseCounter == 2) {
-            resolve(status);
-          }
-        });
-
-        //scorm ?
-
-      } else {
-        // 2. if page was already loaded and we just want to persist the data (which
-        // might also happen if data from one server is more recent than from others)
-        status.data = objCache
-        resolve(status);
-      }
-
-      // 2. if page was already loaded and we just want to persist the data (which
-      // might also happen if data from one server is more recent than from others)
-
-
-
-      //beim seiten laden
-      //sz #1. localstorage ist aelter als server version(en) oder nicht vorhanden
-      //=> neuste serverstorage version -sync-> alle aelteren server storage versionen
-      //=> und localstorage
-      //
-      //sz #2 localstorage ist neuer als server version(en)
-      //=> localstorage -sync-> server storage(s)
-      //
-    });
-
-    return result;
-
   }
 
   /**
@@ -225,14 +112,14 @@
       return Promise.resolve('dataService: synDown called without subscribers, will do nothing.');
     }
 
-    // log.debug('dataService: syncDown is calling getAllDataTimestamps');
+    log.debug('dataService: syncDown is calling getAllDataTimestamps');
     var promise = getAllDataTimestamps().then(function (successAllTimestamps) {
 
       if (Array.isArray(successAllTimestamps) && successAllTimestamps.length > 0) {
         successAllTimestamps.sort(compareTimestamps);
 
-        // log.debug('services returned the timestamps:', successAllTimestamps);
-        // log.debug('latest data was found at the service:', successAllTimestamps[0]);
+        log.debug('services returned the timestamps:', successAllTimestamps);
+        log.debug('latest data was found at the service:', successAllTimestamps[0]);
         var latestTimestampData = successAllTimestamps[0];
         //return the userdata Promise from the service where the latest data was found
         //by comparing the timestamps
@@ -246,8 +133,10 @@
       if (!veHelpers.isEmpty(changedData)) {
         objCache = mergeRecursive(objCache, changedData);
       }
-      // log.debug('latestData retrieved and objCache set to:', latestData);
+      log.debug('latestData retrieved and objCache set to:', latestData);
       return objCache;
+    }, function(error) {
+      return new TypeError(error);
     });
 
     return promise;
@@ -259,6 +148,7 @@
    */
   function syncUp() {
     // log.debug('dataService: syncUp called');
+    console.log('syncUp called');
 
     if (veHelpers.isEmpty(changedData)) {
       // log.info('dataService: syncUp called without local changes');
@@ -276,7 +166,7 @@
 
     var result = new Promise(function (resolve, reject) {
       storageServices.forEach(function (service) {
-        service.saveUserData(changedData).then(function (successData) {
+        service.saveUserData(changedData, doAsyncCalls).then(function (successData) {
           totalResolved += 1;
           status[service.name] = {status: 'success', data: successData}
         }).catch(function (errorData) {
@@ -518,9 +408,14 @@ function mockLocalStorage() {
   localStorage = mock;
 }
 
+function makeSynchronous() {
+  doAsyncCalls = false;
+}
+
 // attach properties to the exports object to define
 // the exported module properties.
 exports.init = init;
+exports.makeSynchronous = makeSynchronous;
 exports.subscribe = subscribe;
 exports.unsubscribe = unsubscribe;
 exports.unsubscribeAll = function () { storageServices = []; storageServicesMap = {}; };
@@ -528,7 +423,6 @@ exports.getSubscribers = function () { return storageServices };
 exports.getAllUserData = getAllUserData;
 exports.getAllDataTimestamps = getAllDataTimestamps;
 exports.getUserData = getUserData;
-exports.sync = sync;
 exports.syncDown = syncDown;
 exports.syncUp = syncUp;
 exports.updateUserData = updateUserData;

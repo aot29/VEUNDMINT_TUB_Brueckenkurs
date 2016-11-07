@@ -62,7 +62,7 @@ $(window).on('beforeunload', function(){
 		apiProfileUrl: 'http://localhost:8000/whoami/',
 		apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
 		defaultLogLevel: 'error',
-		dataServices: [LocalStorageService.LocalStorageService(), DjangoStorageService.DjangoStorageService()],
+		storageServices: [LocalStorageService.LocalStorageService(), DjangoStorageService.DjangoStorageService()],
 		callbackBefore: function () {},
 		callbackAfter: function () {}
 	};
@@ -166,8 +166,19 @@ $(window).on('beforeunload', function(){
 		});
 
 		//register storageServices
-		settings.storageServices.each(function(service) {
-			dataService.subscribe(service);
+		for (var i = 0; i < settings.storageServices.length; i++) {
+			dataService.subscribe(settings.storageServices[i]);
+		}
+
+		//call syncDown once onLoad to get most recent userData
+		dataService.syncDown();
+
+		//hook up data synchronization on unload
+		$(window).on('beforeunload', function(){
+			dataService.makeSynchronous();
+			dataService.syncUp().then(function(data) {
+				console.log(data);
+			});
 		});
 
 		scormBridge.init();
