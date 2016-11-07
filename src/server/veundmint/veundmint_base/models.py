@@ -8,7 +8,7 @@ TESTUSER_PASSWORD = '<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
 
 class DateSensitiveModel(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
-	updated_at = models.DateTimeField(default=timezone.now)
+	updated_at = models.DateTimeField(auto_now=True)
 
 	class Meta:
 		abstract = True
@@ -55,6 +55,8 @@ class Score(DateSensitiveModel):
 class Foo(models.Model):
     siteuxid = models.CharField(max_length=200, default='')
     intest = models.BooleanField(default=False)
+
+
 
 def get_test_user():
 	user, created = get_user_model.objects.get_or_create(username=TESTUSER_USERNAME)

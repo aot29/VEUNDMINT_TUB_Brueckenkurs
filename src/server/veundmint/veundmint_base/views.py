@@ -1,3 +1,5 @@
+from django.utils import timezone
+import calendar
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
@@ -80,3 +82,20 @@ class CheckUsernameView(APIView):
 			response = Response({'username_available': available})
 
 		return response
+
+class DataTimestampView(APIView):
+    """
+    View to get the data timestamp of the saved user data
+    """
+
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def get(self, request, format=None):
+        """
+        Return the timestamp of the latest data as a number
+        """
+        user = self.request.user
+        latestUserScore = Score.objects.filter(user=user).latest('updated_at')
+
+        #we return a slightly throttled timestamp (2 sec) in order to to privilege localstorage
+        return Response(int(timezone.make_naive(latestUserScore.updated_at).timestamp() * 1000 - 2000))

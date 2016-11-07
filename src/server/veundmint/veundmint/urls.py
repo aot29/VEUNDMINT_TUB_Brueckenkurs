@@ -19,7 +19,7 @@ from rest_framework import routers
 from veundmint_base.models import WebsiteAction
 from rest_framework_jwt.views import obtain_jwt_token
 from veundmint_base.views import WebsiteActionViewSet, UserViewSet, ScoreViewSet,\
-ProfileViewSet, CheckUsernameView
+ProfileViewSet, CheckUsernameView, DataTimestampView
 
 router = routers.DefaultRouter()
 router.register(r'server-action', WebsiteActionViewSet)
@@ -32,5 +32,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^checkusername/', CheckUsernameView.as_view())
+    url(r'^checkusername/', CheckUsernameView.as_view()),
+    url(r'^user-data-timestamp/', DataTimestampView.as_view())
 ]
