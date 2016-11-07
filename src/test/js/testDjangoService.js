@@ -29,7 +29,7 @@ describe('DjangoServices', function() {
 		var that = this;
 
 		request('http://localhost:8000', function (error, response, body) {
-		  if (error) {
+			if (error) {
 				skipTests = true;
 			}
 		});
@@ -40,92 +40,92 @@ describe('DjangoServices', function() {
 		if (skipTests) {
 			this.skip();
 		}
-	});	
+	});
 
-describe('DjangoAuthService', function() {
+	describe('DjangoAuthService', function() {
 
-  it('#authenticate - should authenticate users and store token', function() {
-    return DjangoAuthService.authenticate({
-      username: 'testrunner',
-      password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
-    }).then(function(data) {
-      expect(DjangoAuthService.isAuthenticated()).to.equal(true);
-      expect(DjangoAuthService.getToken()).to.not.equal(null);
-    });
-  });
+		it('#authenticate - should authenticate users and store token', function() {
+			return DjangoAuthService.authenticate({
+				username: 'testrunner',
+				password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+			}).then(function(data) {
+				expect(DjangoAuthService.isAuthenticated()).to.equal(true);
+				expect(DjangoAuthService.getToken()).to.not.equal(null);
+			});
+		});
 
 
-  it('#authAjaxGet - should add auth header and make successful request', function() {
-    return DjangoAuthService.authenticate({
-      username: 'testrunner',
-      password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
-    }).should.be.fulfilled.then(function(data) {
-      return DjangoAuthService.authAjaxGet('http://localhost:8000/user-data/').should.be.fulfilled;
-    }).then(function(data) {
-      expect(data).to.have.property('scores');
-    });
-  });
+		it('#authAjaxGet - should add auth header and make successful request', function() {
+			return DjangoAuthService.authenticate({
+				username: 'testrunner',
+				password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+			}).should.be.fulfilled.then(function(data) {
+				return DjangoAuthService.authAjaxGet('http://localhost:8000/user-data/').should.be.fulfilled;
+			}).then(function(data) {
+				expect(data).to.have.property('scores');
+			});
+		});
 
-});
+	});
 
-describe('DjangoStorageService', function() {
+	describe('DjangoStorageService', function() {
 
-  var ds;
-  beforeEach(function() {
+		var ds;
+		beforeEach(function() {
 
-    ds = DjangoStorageService();
-    DjangoAuthService.logout();
+			ds = DjangoStorageService();
+			DjangoAuthService.logout();
 
-  });
+		});
 
-  describe('#saveUserData', function() {
+		describe('#saveUserData', function() {
 
-    it('should reject if not authenticated', function() {
-			console.log(DjangoAuthService.getUserCredentials());
-      return ds.saveUserData().should.be.rejectedWith('not authenticated');
-    });
+			it('should reject if not authenticated', function() {
+				console.log(DjangoAuthService.getUserCredentials());
+				return ds.saveUserData().should.be.rejectedWith('not authenticated');
+			});
 
-    it('should send a request and store if authenticated', function() {
-      return auth().should.be.fulfilled.then(function(data) {
-        return ds.saveUserData({scores:[{id:'12', uxid:'21', rawinput:'testing'}]}).should.be.fulfilled;
-      }).then(function(userData) {
-		  userData.scores.should.contain.an.item.with.property('id', '12');
-		  userData.scores.should.contain.an.item.with.property('rawinput', 'testing');
-      });
-    });
-  });
+			it('should send a request and store if authenticated', function() {
+				return auth().should.be.fulfilled.then(function(data) {
+					return ds.saveUserData({scores:[{id:'12', uxid:'21', rawinput:'testing'}]}).should.be.fulfilled;
+				}).then(function(userData) {
+					userData.scores.should.contain.an.item.with.property('id', '12');
+					userData.scores.should.contain.an.item.with.property('rawinput', 'testing');
+				});
+			});
+		});
 
-  describe('#getDataTimeStamp', function() {
-    it('should get the timestamp of the data', function() {
-      return auth().should.be.fulfilled.then(function(data) {
-        return ds.getDataTimestamp().should.be.fulfilled;
-      });
-    });
-  })
+		describe('#getDataTimeStamp', function() {
+			it('should get the timestamp of the data', function() {
+				return auth().should.be.fulfilled.then(function(data) {
+					return ds.getDataTimestamp().should.be.fulfilled;
+				});
+			});
+		})
 
-  describe('#getUserData', function() {
+		describe('#getUserData', function() {
 
-    it('should reject if not authenticated', function() {
-      return ds.getUserData().should.be.rejectedWith('not authenticated');
-    });
+			it('should reject if not authenticated', function() {
+				return ds.getUserData().should.be.rejectedWith('not authenticated');
+			});
 
-    it('should get user data if authenticated', function() {
-      return auth().should.be.fulfilled.then(function(data) {
-        return ds.getUserData().should.be.fulfilled;
-      }).then(function(userData) {
-        expect(userData).to.have.property('scores');
-      });
-    });
+			it('should get user data if authenticated', function() {
+				return auth().should.be.fulfilled.then(function(data) {
+					return ds.getUserData().should.be.fulfilled;
+				}).then(function(userData) {
+					expect(userData).to.have.property('scores');
+				});
+			});
 
-  })
+		})
 
-});
+	});
 
 });
 
 function auth() {
-  return DjangoAuthService.authenticate({
-    username: 'testrunner',
-    password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
-  });
+	return DjangoAuthService.authenticate({
+		username: 'testrunner',
+		password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+	});
 }
