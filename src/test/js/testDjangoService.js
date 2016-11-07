@@ -16,17 +16,31 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 chai.use(require('chai-things'));
 
+var request = require('request');
+
 describe('DjangoServices', function() {
-
-
 	var $ = {};
+	var skipTests;
 
 	//we fake jquery ajax here, it will use node methods for requests
 	before(function () {
 		$.ajax = require('najax');
 		DjangoAuthService.initJquery($);
+		var that = this;
+
+		request('http://localhost:8000', function (error, response, body) {
+		  if (error) {
+				skipTests = true;
+			}
+		});
+
 	});
 
+	beforeEach(function() {
+		if (skipTests) {
+			this.skip();
+		}
+	});	
 
 describe('DjangoAuthService', function() {
 
