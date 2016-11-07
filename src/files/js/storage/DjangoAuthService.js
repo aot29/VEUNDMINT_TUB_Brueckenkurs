@@ -117,27 +117,18 @@
       //console.log('can only make authAjaxGET request if userCredentials are set');
       return Promise.reject('not authenticated');
     }
-    return new Promise(function (resolve, reject) {
-      return $.ajax({
+
+    return Promise.resolve(
+      $.ajax({
         url: url,
         method: 'GET',
         dataType: 'json',
-  	  contentType: 'application/json; charset=utf-8',
+        contentType: 'application/json; charset=utf-8',
         headers: {
           'Authorization': 'JWT ' + userCredentials.token
         }
-      }).done(resolve).fail(reject);
-    });
-
-
-    //we use jquery instead now
-    // return rp.get({
-    //   uri: url,
-    //   headers: {
-    //     'Authorization': 'JWT ' + userCredentials.token
-    //   },
-    //   json: true
-    // });
+      })
+    );
   }
 
   /**
