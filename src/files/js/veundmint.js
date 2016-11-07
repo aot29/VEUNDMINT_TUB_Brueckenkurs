@@ -62,6 +62,7 @@ $(window).on('beforeunload', function(){
 		apiProfileUrl: 'http://localhost:8000/whoami/',
 		apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
 		defaultLogLevel: 'error',
+		dataServices: [LocalStorageService.LocalStorageService(), DjangoStorageService.DjangoStorageService()],
 		callbackBefore: function () {},
 		callbackAfter: function () {}
 	};
@@ -164,13 +165,18 @@ $(window).on('beforeunload', function(){
 			$('.row-offcanvas').toggleClass('active')
 		});
 
+		//register storageServices
+		settings.storageServices.each(function(service) {
+			dataService.subscribe(service);
+		});
+
 		scormBridge.init();
 		intersite.init();
 		globalreadyHandler("");
 		globalloadHandler("");
 
-			// set up components
-			veundmint.languageChooser($('#languageChooser'));
+		// set up components
+		veundmint.languageChooser($('#languageChooser'));
 
 		//remove logout button on scorm
 		if (scormBridge.isScormEnv()) {
@@ -179,7 +185,7 @@ $(window).on('beforeunload', function(){
 
 		//if we came from the same url in another language, return to the scroll position
 		var oldScrollTop = intersite.getScrollTop();
-		if (oldScrollTop !== 0) {			
+		if (oldScrollTop !== 0) {
 			$('html, body').animate({scrollTop:oldScrollTop}, 1000);
 			intersite.setScrollTop(0);
 		}
