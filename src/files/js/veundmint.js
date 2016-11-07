@@ -16,14 +16,15 @@ $(window).on('beforeunload', function(){
 
    // pushISO(); is now called on the pages by beforeunload
 
-   if (intersite.isActive() == true) {
-     if (intersite.getObj().configuration.CF_USAGE == "1") {
-
-       var timestamp = +new Date();
-       var cm = "OPENSITE: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", SITEUXID:" + SITE_UXID + ", localurl:" + localurl;
-       intersite.sendeFeedback( { statistics: cm }, false ); // synced, otherwise the page with callbacks is gone when the request is completed
-     }
-   }
+  //  if (intersite.isActive() == true) {
+  //    if (intersite.getObj().configuration.CF_USAGE == "1") {
+	 //
+  //      var timestamp = +new Date();
+  //      var cm = "OPENSITE: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", SITEUXID:" + SITE_UXID + ", localurl:" + localurl;
+  //      intersite.sendeFeedback( { statistics: cm }, false ); // synced, otherwise the page with callbacks is gone when the request is completed
+  //    }
+  //  }
+  //TODO ns send feedback to server
 
    window.open(localurl,"_self");
  }
@@ -160,6 +161,12 @@ $(window).on('beforeunload', function(){
 
 		log.setDefaultLevel(settings.defaultLogLevel);
 
+		//TODO ns - remove
+		DjangoAuthService.authenticate({
+			username: 'testrunner',
+			password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+		});
+
 
 		$('[data-toggle="offcanvas"]').click(function () {
 			$('.row-offcanvas').toggleClass('active')
@@ -182,7 +189,8 @@ $(window).on('beforeunload', function(){
 		});
 
 		scormBridge.init();
-		intersite.init();
+		//intersite.init(); is now
+		dataService.init();
 		globalreadyHandler("");
 		globalloadHandler("");
 
@@ -195,11 +203,12 @@ $(window).on('beforeunload', function(){
 		}
 
 		//if we came from the same url in another language, return to the scroll position
-		var oldScrollTop = intersite.getScrollTop();
-		if (oldScrollTop !== 0) {
-			$('html, body').animate({scrollTop:oldScrollTop}, 1000);
-			intersite.setScrollTop(0);
-		}
+		//TODO ns make return to scroll top work again
+		// var oldScrollTop = intersite.getScrollTop();
+		// if (oldScrollTop !== 0) {
+		// 	$('html, body').animate({scrollTop:oldScrollTop}, 1000);
+		// 	intersite.setScrollTop(0);
+		// }
 
 		// footer at bottom of column
 		// don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
@@ -361,7 +370,8 @@ $(window).on('beforeunload', function(){
     $('body').on('change', '#selectLanguage', function() {
 			//store the scroll Top for next site, will be set in veundmint.init()
 			var oldScrollTop = $(document).scrollTop();
-			intersite.setScrollTop(oldScrollTop);
+			//TODO ns - make set scroll top work again
+			//intersite.setScrollTop(oldScrollTop);
 
       var newUrl = url.replace('/' + ownLanguage + '/', '/' + this.value + '/');
       window.location.href = newUrl;

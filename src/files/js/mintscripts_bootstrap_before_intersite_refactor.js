@@ -322,13 +322,12 @@ function toggle_settings() {
 }
 
 function selectColor(c) {
-  //TODO ns - there is no colors selector now
-  // log.debug("Color select: " + c);
-  // if (intersite.isActive() == true) {
-  //   if (intersite.getObj() != null) {
-  //     intersite.getObj().configuration.stylecolor = c;
-  //   }
-  // }
+  log.debug("Color select: " + c);
+  if (intersite.isActive() == true) {
+    if (intersite.getObj() != null) {
+      intersite.getObj().configuration.stylecolor = c;
+    }
+  }
   applyLayout(false);
 }
 
@@ -513,7 +512,7 @@ function handlerChange(id, nocontentcheck) {
   if (FVAR[id].type == 2) {
     if (FVAR[id].smc.length > 0) nocontentcheck = 0;
   }
-
+  
   dataService.updateUserData({scores:[{id:FVAR[id].id, points: FVAR[id].points, uxid:FVAR[id].uxid, rawinput:FVAR[id].rawinput}]});
 
   var formula = 0; // Stellt der Feldinhalt eine Formel dar?
@@ -555,15 +554,14 @@ function handlerChange(id, nocontentcheck) {
       check_group(id, id); // Erzeugt ggf. Meldungen, die zusaetzlich zur Formel angezeigt werden
 
       if (FVAR[id].points == FVAR[id].maxpoints) {
-        //TODO ns - send feedback to server or somewhere else
-        // if ((intersite.isActive() == true) && (FVAR[id].sync == 1)) {
-        //     if (intersite.getObj().configuration.CF_TESTS == "1") {
-        //     var st = "";
-        //     var timestamp = +new Date();
-        //     st = "EXSUCCESS: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", pagename:" + fullName + ", uxid:" + FVAR[id].uxid + ", elementid:" + id + ", input:" + FVAR[id].rawinput + ", message:" + FVAR[id].message;
-        //     intersite.sendeFeedback( { statistics: st }, true);
-        //     }
-        // }
+        if ((intersite.isActive() == true) && (FVAR[id].sync == 1)) {
+            if (intersite.getObj().configuration.CF_TESTS == "1") {
+            var st = "";
+            var timestamp = +new Date();
+            st = "EXSUCCESS: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", pagename:" + fullName + ", uxid:" + FVAR[id].uxid + ", elementid:" + id + ", input:" + FVAR[id].rawinput + ", message:" + FVAR[id].message;
+            intersite.sendeFeedback( { statistics: st }, true);
+            }
+        }
       }
   }
 
@@ -1289,18 +1287,16 @@ function GetResult(uxid)
   // }
   // log.debug('mintscripts_bootstrap: got', result);
   // return result;
-  console.log('refactor: GetResult should return the rawinput of the field', uxid);
-  // TODO ns - should get the score now
-  // if (intersite.isActive() == true) {
-  //   if (intersite.getObj().configuration.CF_LOCAL == "1") {
-  //     var j = 0;
-  //     for (j = 0; j < intersite.getObj().scores.length; j++) {
-  //   if (intersite.getObj().scores[j].uxid == uxid) {
-  //     return intersite.getObj().scores[j].rawinput;
-  //   }
-  //     }
-  //   }
-  // }
+  if (intersite.isActive() == true) {
+    if (intersite.getObj().configuration.CF_LOCAL == "1") {
+      var j = 0;
+      for (j = 0; j < intersite.getObj().scores.length; j++) {
+    if (intersite.getObj().scores[j].uxid == uxid) {
+      return intersite.getObj().scores[j].rawinput;
+    }
+      }
+    }
+  }
   return null;
 }
 
@@ -1316,135 +1312,132 @@ function InitResults(empty)
   var i = 0;
   for (i=1; i<FVAR.length; i++) { FVAR[i].prepare(); }
 
-  console.log('refactor: InitResults was called which should load results from intersite obj');
+  if (intersite.isActive() == true) {
+    if (intersite.getObj().configuration.CF_LOCAL == "0") empty = true; // Benutzer will keine StorageNutzung
+  }
 
-  //TODO ns
-  // if (intersite.isActive() == true) {
-  //   if (intersite.getObj().configuration.CF_LOCAL == "0") empty = true; // Benutzer will keine StorageNutzung
-  // }
-  //
-  // if ((empty==true) || (intersite.isActive()!=true)) {
-  //   for (i = 1; i < FVAR.length; i++) {
-  //     FVAR[i].clear();
-  //   }
-  // }
+  if ((empty==true) || (intersite.isActive()!=true)) {
+    for (i = 1; i < FVAR.length; i++) {
+      FVAR[i].clear();
+    }
+  }
 
-  // if ((intersite.isActive() == true) && (empty==false)) {
-  //   log.trace("Performing MQuestion-result reload");
-  //   var gid = "";
-  //   var v = "";
-  //   for (i=1; i<FVAR.length; i++) {
-  //     var e = document.getElementById(FVAR[i].id);
-  //     if (FVAR[i].sync == 1) {
-  //       v = GetResult(FVAR[i].uxid);
-  //     } else {
-  //   v = null;
-  //     }
-  //
-  //     if (v == null) v = "";
-  //     switch(FVAR[i].type) {
-  //
-  //         case 1: {
-  //       // Eingabefeld mit alphanumerischer Loesung, case-sensitive
-  //               e.value = v;
-  //       FVAR[i].rawinput = v;
-  //               check_group(i,i);
-  //               break;
-  //             }
-  //
-  //             case 2: {
-  //               // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2")
-  //               log.trace("tristate init v = " + v);
-  //               if ((v == "0") || (v == "")) {
-  //                   // nothing selected yet
-  //                   e.cval = "0";
-  //                   e.checked = false;
-  //                   e[getIndeterminatePropName()] = true;
-  //                   FVAR[i].clear();
-  //               }
-  //               if (v == "1") {
-  //                   // yes selected
-  //                   e.cval = "1";
-  //                   e.checked = true;
-  //                   e[getIndeterminatePropName()] = false;
-  //                   check_group(i,i);
-  //               }
-  //               if (v == "2") {
-  //                   // no selected
-  //                   e.cval = "2";
-  //                   e.checked = false;
-  //                   e[getIndeterminatePropName()] = false;
-  //                   check_group(i,i);
-  //               }
-  //               break;
-  //             }
-  //
-  //             case 3: {
-  //               // Eingabefeld mit reeller Loesung, geparset, exakt bis auf OPTION Stellen hinter dem Komma, Mengen moeglich, Mengen moeglich
-  //               e.value = v;
-  //               FVAR[i].rawinput = v;
-  //               check_group(i,i);
-  //               break;
-  //             }
-  //
-  //             case 4: {
-  //               // Eingabefeld mit Funktionsausdruck als Loesung, geparset, approximierter Vergleich an den Stuetzstellen 1,2,...,Anzahl
-  //               if (v.trim() != "") {
-  //                   e.value = v;
-  //                   FVAR[i].rawinput = v;
-  //                   try {
-  //                       // Eingabe konnte geparset werden
-  //                       var ob = FVAR[i].convertinput();
-  //                       FVAR[i].texinput = notationParser_OUT(ob.latex);
-  //                       FVAR[i].parsedinput = ob.mathjs;
-  //                       FVAR[i].valcode = mathJS.compile(ob.mathjs); // mathjs oder parser? mathjs ist mit konstrukten?
-  //                       FVAR[i].valvalid = true;
-  //                   } catch(e) {
-  //                       // Eingabe konnte nicht geparset werden
-  //                       if (FVAR[i].texinput == "") FVAR[i].texinput = "\\text{(Fehlerhafte Eingabe)}";
-  //                       FVAR[i].parsedinput = "0";
-  //                       FVAR[i].valcode = mathJS.compile("0");
-  //                       FVAR[i].valvalid = false;
-  //                   }
-  //               } else {
-  //                FVAR[i].texinput = "\\text{(Keine Eingabe)}";
-  //                FVAR[i].parsedinput = "0";
-  //                FVAR[i].valcode = mathJS.compile("0");
-  //                FVAR[i].valvalid = false;
-  //               }
-  //
-  //
-  //
-  //
-  //
-  //
-  //               check_group(i,i);
-  //               break;
-  //             }
-  //
-  //         case 6: {
-  //               // Eingabefeld mit Intervall als Loesung
-  //               e.value = v;
-  //               FVAR[i].rawinput = v;
-  //               check_group(i,i);
-  //               break;
-  //         }
-  //
-  //         case 7: {
-  //               // Spezialisiertes Eingabefeld
-  //               e.value = v;
-  //               FVAR[i].rawinput = v;
-  //               check_group(i,i);
-  //               break;
-  //         }
-  //     }
-  //   }
-  //
-  //
-  // } else {
-  //   // Keine geladenen Daten oder empty==true, alle Felder werden geleert
-  //   for (i=1; i<FVAR.length; i++) { FVAR[i].clear(); } // kein check_group weil sonst eingefaerbt bzw. checkboxen ausgewertet werden, stringbasierte Felder rufen check selbst bei clear auf
-  // }
+  if ((intersite.isActive() == true) && (empty==false)) {
+    log.trace("Performing MQuestion-result reload");
+    var gid = "";
+    var v = "";
+    for (i=1; i<FVAR.length; i++) {
+      var e = document.getElementById(FVAR[i].id);
+      if (FVAR[i].sync == 1) {
+        v = GetResult(FVAR[i].uxid);
+      } else {
+    v = null;
+      }
+
+      if (v == null) v = "";
+      switch(FVAR[i].type) {
+
+          case 1: {
+        // Eingabefeld mit alphanumerischer Loesung, case-sensitive
+                e.value = v;
+        FVAR[i].rawinput = v;
+                check_group(i,i);
+                break;
+              }
+
+              case 2: {
+                // tristate checkbox: indeterminate, true determinate, false determinate (having intersite values "0", "1", "2")
+                log.trace("tristate init v = " + v);
+                if ((v == "0") || (v == "")) {
+                    // nothing selected yet
+                    e.cval = "0";
+                    e.checked = false;
+                    e[getIndeterminatePropName()] = true;
+                    FVAR[i].clear();
+                }
+                if (v == "1") {
+                    // yes selected
+                    e.cval = "1";
+                    e.checked = true;
+                    e[getIndeterminatePropName()] = false;
+                    check_group(i,i);
+                }
+                if (v == "2") {
+                    // no selected
+                    e.cval = "2";
+                    e.checked = false;
+                    e[getIndeterminatePropName()] = false;
+                    check_group(i,i);
+                }
+                break;
+              }
+
+              case 3: {
+                // Eingabefeld mit reeller Loesung, geparset, exakt bis auf OPTION Stellen hinter dem Komma, Mengen moeglich, Mengen moeglich
+                e.value = v;
+                FVAR[i].rawinput = v;
+                check_group(i,i);
+                break;
+              }
+
+              case 4: {
+                // Eingabefeld mit Funktionsausdruck als Loesung, geparset, approximierter Vergleich an den Stuetzstellen 1,2,...,Anzahl
+                if (v.trim() != "") {
+                    e.value = v;
+                    FVAR[i].rawinput = v;
+                    try {
+                        // Eingabe konnte geparset werden
+                        var ob = FVAR[i].convertinput();
+                        FVAR[i].texinput = notationParser_OUT(ob.latex);
+                        FVAR[i].parsedinput = ob.mathjs;
+                        FVAR[i].valcode = mathJS.compile(ob.mathjs); // mathjs oder parser? mathjs ist mit konstrukten?
+                        FVAR[i].valvalid = true;
+                    } catch(e) {
+                        // Eingabe konnte nicht geparset werden
+                        if (FVAR[i].texinput == "") FVAR[i].texinput = "\\text{(Fehlerhafte Eingabe)}";
+                        FVAR[i].parsedinput = "0";
+                        FVAR[i].valcode = mathJS.compile("0");
+                        FVAR[i].valvalid = false;
+                    }
+                } else {
+                 FVAR[i].texinput = "\\text{(Keine Eingabe)}";
+                 FVAR[i].parsedinput = "0";
+                 FVAR[i].valcode = mathJS.compile("0");
+                 FVAR[i].valvalid = false;
+                }
+
+
+
+
+
+
+                check_group(i,i);
+                break;
+              }
+
+          case 6: {
+                // Eingabefeld mit Intervall als Loesung
+                e.value = v;
+                FVAR[i].rawinput = v;
+                check_group(i,i);
+                break;
+          }
+
+          case 7: {
+                // Spezialisiertes Eingabefeld
+                e.value = v;
+                FVAR[i].rawinput = v;
+                check_group(i,i);
+                break;
+          }
+      }
+    }
+
+
+  } else {
+    // Keine geladenen Daten oder empty==true, alle Felder werden geleert
+    for (i=1; i<FVAR.length; i++) { FVAR[i].clear(); } // kein check_group weil sonst eingefaerbt bzw. checkboxen ausgewertet werden, stringbasierte Felder rufen check selbst bei clear auf
+  }
 
 }
 
@@ -1474,15 +1467,14 @@ function finish_button(name) {
   if (isTest == true) {
       testFinished = true;
 
-      //TODO ns should send statistics
-      // if ((intersite.isActive()==true) && (intersite.getObj().configuration.CF_TESTS=="1")) {
-    	//   // whatever this does, if it's false, the page will reload
-      //     intersite.pushIso(true);
-      //     var timestamp = +new Date();
-      //     var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
-      //     intersite.sendeFeedback({statistics: cm }, true);
-      //     log.trace("Testfinish gesendet");
-      // }
+      if ((intersite.isActive()==true) && (intersite.getObj().configuration.CF_TESTS=="1")) {
+    	  // whatever this does, if it's false, the page will reload
+          intersite.pushIso(true);
+          var timestamp = +new Date();
+          var cm = "TESTFINISH: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", testname:" + name + ", nPoints:" + nPoints + ", maxPoints:" + nMaxPoints + ", ratio:" + (nPoints/nMaxPoints) + ", nMinPoints:" + nMinPoints;
+          intersite.sendeFeedback({statistics: cm }, true);
+          log.trace("Testfinish gesendet");
+      }
 
       if ((doScorm == 1) && (SITE_UXID == "VBKMT_AbgebeTest")) {
         // MatheV4: Gesamtpunktzahl ueber alle ABSCHLUSSTESTS mitteln und Prozentwert an SCORM uebertragen
@@ -1508,7 +1500,7 @@ function reset_button()
  * @return {[type]}        [description]
  */
 function notifyPoints(i, points, state) {
-	//dataService.updateUserData({scores:intersite.getObj().scores});
+	dataService.updateUserData({scores:intersite.getObj().scores});
   log.trace('mintscripts_bootstrap: notify points called with parameters', i, points, state);
   log.trace('mintscripts_bootstrap: you just changed the answer for', FVAR[i]);
   FVAR[i].points = points;
@@ -1516,65 +1508,64 @@ function notifyPoints(i, points, state) {
     nPoints += points;
     nMaxPoints += FVAR[i].maxpoints;
   }
-  //TODO ns - update scores
-  // if ((intersite.isActive() == true) && (FVAR[i].sync == 1)) {
-  //     if ((intersite.getObj().configuration.CF_LOCAL == "1") && (intersite.getObj().configuration.CF_TESTS == "1")) {
-  //         var f = false;
-  //         var j = 0;
-  //
-  //         //add missing fields to FVAR[i]
-  //         // var newScoreObj = {};
-  //         // newScoreObj.points = points;
-  //         // newScoreObj.siteuxid = SITE_UXID;
-  //         // newScoreObj.state = state;
-  //         // newScoreObj.maxpoints = FVAR[i].maxpoints;
-  //         // newScoreObj.siteuxid = SITE_UXID;
-  //         // newScoreObj.section = FVAR[i].section;
-  //         // newScoreObj.id = FVAR[i].id;
-  //         // newScoreObj.uxid = FVAR[i].uxid;
-  //         // newScoreObj.intest = FVAR[i].intest;
-  //         // newScoreObj.rawinput = FVAR[i].rawinput;
-  //         // newScoreObj.value = FVAR[i].value;
-  //         //
-  //         // scores.setSingleScore(FVAR[i].id, newScoreObj);
-  //         //also hier wird ein einzelner score geupdated
-  //         for (j = 0; j<intersite.getObj().scores.length; j++) {
-  //             if (intersite.getObj().scores[j].uxid == FVAR[i].uxid) {
-  //                 f = true;
-  //                 intersite.getObj().scores[j].maxpoints = FVAR[i].maxpoints;
-  //                 intersite.getObj().scores[j].points = points;
-  //                 intersite.getObj().scores[j].siteuxid = SITE_UXID;
-  //                 intersite.getObj().scores[j].section = FVAR[i].section;
-  //                 intersite.getObj().scores[j].id = FVAR[i].id;
-  //                 intersite.getObj().scores[j].uxid = FVAR[i].uxid;
-  //                 intersite.getObj().scores[j].intest = FVAR[i].intest;
-  //                 intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
-  //                 intersite.getObj().scores[j].value = FVAR[i].value;
-  //                 intersite.getObj().scores[j].state = state;
-  //                 log.trace("Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
-  //             }
-  //         }
-  //
-  //         // und hier hinzugefügt
-  //         // das f == false kann vermutlich auch weg weil jetzt immer die gleiche funktion updateScore benutzt wird
-  //         // die einfach setzt
-  //         if (f == false) {
-  //           //scores.setSingleScore(FVAR[i].id, FVAR[i]);
-  //           var k = intersite.getObj().scores.length;
-  //           intersite.getObj().scores[k] = { uxid: FVAR[i].uxid };
-  //           intersite.getObj().scores[k].maxpoints = FVAR[i].maxpoints;
-  //           intersite.getObj().scores[k].points = points;
-  //           intersite.getObj().scores[k].siteuxid = SITE_UXID;
-  //           intersite.getObj().scores[k].section = FVAR[i].section;
-  //           intersite.getObj().scores[k].id = FVAR[i].id;
-  //           intersite.getObj().scores[k].intest = FVAR[i].intest;
-  //           intersite.getObj().scores[k].value = FVAR[i].value;
-  //           intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
-  //           intersite.getObj().scores[k].state = state;
-  //           log.trace("Points for " + FVAR[i].uxid + " ADDED at position " + k);
-  //         }
-  //     }
-  // }
+  if ((intersite.isActive() == true) && (FVAR[i].sync == 1)) {
+      if ((intersite.getObj().configuration.CF_LOCAL == "1") && (intersite.getObj().configuration.CF_TESTS == "1")) {
+          var f = false;
+          var j = 0;
+
+          //add missing fields to FVAR[i]
+          // var newScoreObj = {};
+          // newScoreObj.points = points;
+          // newScoreObj.siteuxid = SITE_UXID;
+          // newScoreObj.state = state;
+          // newScoreObj.maxpoints = FVAR[i].maxpoints;
+          // newScoreObj.siteuxid = SITE_UXID;
+          // newScoreObj.section = FVAR[i].section;
+          // newScoreObj.id = FVAR[i].id;
+          // newScoreObj.uxid = FVAR[i].uxid;
+          // newScoreObj.intest = FVAR[i].intest;
+          // newScoreObj.rawinput = FVAR[i].rawinput;
+          // newScoreObj.value = FVAR[i].value;
+          //
+          // scores.setSingleScore(FVAR[i].id, newScoreObj);
+          //also hier wird ein einzelner score geupdated
+          for (j = 0; j<intersite.getObj().scores.length; j++) {
+              if (intersite.getObj().scores[j].uxid == FVAR[i].uxid) {
+                  f = true;
+                  intersite.getObj().scores[j].maxpoints = FVAR[i].maxpoints;
+                  intersite.getObj().scores[j].points = points;
+                  intersite.getObj().scores[j].siteuxid = SITE_UXID;
+                  intersite.getObj().scores[j].section = FVAR[i].section;
+                  intersite.getObj().scores[j].id = FVAR[i].id;
+                  intersite.getObj().scores[j].uxid = FVAR[i].uxid;
+                  intersite.getObj().scores[j].intest = FVAR[i].intest;
+                  intersite.getObj().scores[j].rawinput = FVAR[i].rawinput;
+                  intersite.getObj().scores[j].value = FVAR[i].value;
+                  intersite.getObj().scores[j].state = state;
+                  log.trace("Points for " + SITE_UXID + "->" + FVAR[i].uxid + " modernized, rawinput = " + intersite.getObj().scores[j].rawinput);
+              }
+          }
+
+          // und hier hinzugefügt
+          // das f == false kann vermutlich auch weg weil jetzt immer die gleiche funktion updateScore benutzt wird
+          // die einfach setzt
+          if (f == false) {
+            //scores.setSingleScore(FVAR[i].id, FVAR[i]);
+            var k = intersite.getObj().scores.length;
+            intersite.getObj().scores[k] = { uxid: FVAR[i].uxid };
+            intersite.getObj().scores[k].maxpoints = FVAR[i].maxpoints;
+            intersite.getObj().scores[k].points = points;
+            intersite.getObj().scores[k].siteuxid = SITE_UXID;
+            intersite.getObj().scores[k].section = FVAR[i].section;
+            intersite.getObj().scores[k].id = FVAR[i].id;
+            intersite.getObj().scores[k].intest = FVAR[i].intest;
+            intersite.getObj().scores[k].value = FVAR[i].value;
+            intersite.getObj().scores[k].rawinput = FVAR[i].rawinput;
+            intersite.getObj().scores[k].state = state;
+            log.trace("Points for " + FVAR[i].uxid + " ADDED at position " + k);
+          }
+      }
+  }
 
   // Feldeigenschaften entsprechend anpassen
   FVAR[i].displayFeedback(state);
@@ -1589,8 +1580,7 @@ function globalunloadHandler() {
       timerActive = false;
   }
 
-  //TODO ns
-  //intersite.pushIso(true); // nur synchrone ajax-calls erlauben, da wir im unload-Handler sind und die callbacks sonst verschwinden bevor Aufruf beantwortet wird
+  intersite.pushIso(true); // nur synchrone ajax-calls erlauben, da wir im unload-Handler sind und die callbacks sonst verschwinden bevor Aufruf beantwortet wird
 
   // VERALTET
   if (scormBridge.isScormEnv())
@@ -1608,16 +1598,15 @@ function globalloadHandler(pulluserstr) {
   // Ab diesem Zeitpunkt steht das DOM komplett zuer verfuegung
   log.debug("globalLoadHandler start, pulluser = " + ((pulluserstr == "") ? ("\"\"") : ("userdata")));
   if (pulluserstr != "") {
-    //TODO ns - setup intersite - is done already in dataService ???
-    // intersite.setup(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von intersite.setup ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
-    // log.debug("intersite.setup in loadhandler fertig");
-    //
-    // if (intersite.isActive() == true) {
-    //   if (variant != intersite.getObj().login.variant) {
-    //     // abort site setup, switch to needed variant tree
-    //     selectVariant(intersite.getObj().login.variant);
-    //   }
-    // }
+    intersite.setup(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von intersite.setup ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
+    log.debug("intersite.setup in loadhandler fertig");
+
+    if (intersite.isActive() == true) {
+      if (variant != intersite.getObj().login.variant) {
+        // abort site setup, switch to needed variant tree
+        selectVariant(intersite.getObj().login.variant);
+      }
+    }
 
     applyLayout(false);
     log.debug("Layout gesetzt in loadhandler");
@@ -1649,16 +1638,14 @@ function globalreadyHandler(pulluserstr) {
         });
   }
   // setup intersite objects
-  // TODO ns - what did that do ?
-  //intersite.setup(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von intersite.setup ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
+  intersite.setup(false, pulluserstr); // kann durch nach dem load stattfindende Aufrufe von intersite.setup ueberschrieben werden, z.B. wenn das intersite-Objekt von einer aufrufenden Seite uebergeben wird
 
-  //TODO ns why would we need login variants?
-  // if (intersite.isActive() == true) {
-  //   if (variant != intersite.getObj().login.variant) {
-  //     // abort site setup, switch to needed variant tree
-  //     selectVariant(intersite.getObj().login.variant);
-  //   }
-  // }
+  if (intersite.isActive() == true) {
+    if (variant != intersite.getObj().login.variant) {
+      // abort site setup, switch to needed variant tree
+      selectVariant(intersite.getObj().login.variant);
+    }
+  }
 
   // setup intersite objects
   log.debug("intersite.setup fertig");
@@ -1919,10 +1906,9 @@ function selectVariant(v) {
   t = window.location.href;
   s = t.replace("/" + ex1 + "/", "/" + ex2 + "/");
 
-  //TODO ns
-  // if (intersite.isActive()) {
-  //     intersite.getObj().login.variant = v;
-  // }
+  if (intersite.isActive()) {
+      intersite.getObj().login.variant = v;
+  }
 
   opensite(s); // same site in different output directory
 }
@@ -1968,29 +1954,28 @@ function rouletteExercise(rid) {
 // ---------------------- Funktionen fuer Seitenverhalten/Frames -------------------------------------------
 
 function styleColors(c) {
-  // TODO ns - style colors still needed?
-  // if (c.length == 6) {
-  //   if (intersite.isActive() == true) {
-  //     if (intersite.getObj() != null) {
-  //       if (typeof intersite.getObj().configuration.stylecolor == "string") {
-  //     if (intersite.getObj().configuration.stylecolor == STYLEGREEN) {
-  //       c = c.substr(0,2) + c.substr(4,2) + c.substr(2,2);
-  //     } else {
-  //       if (intersite.getObj().configuration.stylecolor == STYLERED) {
-  //         c = c.substr(4,2) + c.substr(0,2) + c.substr(2,2);
-  //       } else {
-  //             if (intersite.getObj().configuration.stylecolor == STYLEGREY) {
-  //           c = c.substr(4,2) + c.substr(4,2) + c.substr(4,2);
-  //         }
-  //       }
-  //     }
-  //       } else {
-  //     log.debug("No stylecolor found in configuration");
-  //       }
-  //     }
-  //   }
-  // }
-  // return c;
+  if (c.length == 6) {
+    if (intersite.isActive() == true) {
+      if (intersite.getObj() != null) {
+        if (typeof intersite.getObj().configuration.stylecolor == "string") {
+      if (intersite.getObj().configuration.stylecolor == STYLEGREEN) {
+        c = c.substr(0,2) + c.substr(4,2) + c.substr(2,2);
+      } else {
+        if (intersite.getObj().configuration.stylecolor == STYLERED) {
+          c = c.substr(4,2) + c.substr(0,2) + c.substr(2,2);
+        } else {
+              if (intersite.getObj().configuration.stylecolor == STYLEGREY) {
+            c = c.substr(4,2) + c.substr(4,2) + c.substr(4,2);
+          }
+        }
+      }
+        } else {
+      log.debug("No stylecolor found in configuration");
+        }
+      }
+    }
+  }
+  return c;
 }
 
 /**
@@ -2029,31 +2014,30 @@ function updateToolButtons() {
  * But the title of the page is toggled here (as it is difficult to test for the absence of a class)
  */
 function updateSignupPage() {
-  //TODO ns - outdated - fix when rebuilding login
-	// if( SITE_UXID == "VBKM_MISCSETTINGS" ) {
-	//     if( userdata.isLoggedIn() ) {
-	//     	$( 'body' ).addClass( 'logged_in' )
-	//     	$('#pageTitle_logged_out').hide();
-	//     	$('#pageTitle_logged_in').show();
-	// 		$('#USER_VNAME').attr( 'readonly', true );
-	// 		$('#USER_SNAME').attr( 'readonly', true );
-	// 		$('#USER_EMAIL').attr( 'readonly', true );
-	// 		$('#USER_SGANG').attr( 'readonly', true );
-	// 		$('#USER_UNI').attr( 'readonly', true );
-  //
-	//     } else {
-	//     	$( 'body' ).removeClass( 'logged_in' )
-	//     	$('#pageTitle_logged_in').hide();
-	//     	$('#pageTitle_logged_out').show();
-	//     }
-  //
-	// 	var login = intersite.getObj().login;
-	// 	$('#USER_VNAME').val( login.vname );
-	// 	$('#USER_SNAME').val( login.sname );
-	// 	$('#USER_EMAIL').val( login.email );
-	// 	$('#USER_SGANG').val( login.sgang );
-	// 	$('#USER_UNI').val( login.uni );
-	// }
+	if( SITE_UXID == "VBKM_MISCSETTINGS" ) {
+	    if( userdata.isLoggedIn() ) {
+	    	$( 'body' ).addClass( 'logged_in' )
+	    	$('#pageTitle_logged_out').hide();
+	    	$('#pageTitle_logged_in').show();
+			$('#USER_VNAME').attr( 'readonly', true );
+			$('#USER_SNAME').attr( 'readonly', true );
+			$('#USER_EMAIL').attr( 'readonly', true );
+			$('#USER_SGANG').attr( 'readonly', true );
+			$('#USER_UNI').attr( 'readonly', true );
+
+	    } else {
+	    	$( 'body' ).removeClass( 'logged_in' )
+	    	$('#pageTitle_logged_in').hide();
+	    	$('#pageTitle_logged_out').show();
+	    }
+
+		var login = intersite.getObj().login;
+		$('#USER_VNAME').val( login.vname );
+		$('#USER_SNAME').val( login.sname );
+		$('#USER_EMAIL').val( login.email );
+		$('#USER_SGANG').val( login.sgang );
+		$('#USER_UNI').val( login.uni );
+	}
 }
 
 // first = false -> Seite wurde schonmal mit Layout aufgesetzt, Layout soll nur angepasst werden
@@ -2072,45 +2056,44 @@ function applyLayout(first) {
   }
 
   // change layout parameters according to user settings
-  // TODO ns put this somewhere if still needed
-  // if (false) {
-	//   if (intersite.isActive() === true) {
-	//     SIZES.BASICFONTSIZE = SIZES.STARTFONTSIZE + intersite.getObj().layout.fontadd;
-	//     SIZES.SMALLFONTSIZE = SIZES.BASICFONTSIZE - 2;
-	//     SIZES.BIGFONTSIZE = SIZES.BASICFONTSIZE + 2;
-	//     SIZES.MENUWIDTH = 160 + 10 * intersite.getObj().layout.fontadd;
-	//     SIZES.TOCWIDTH = SIZES.MENUWIDTH - 21;
-	//   }
-  //
-	//   if (intersite.isActive()) {
-	//     if (intersite.getObj().layout.menuactive == false) hideNavigation(false);
-	//   }
-  //
-	//   var d = 10 + SIZES.BASICFONTSIZE;
-	//   $('div.headmiddle').height(d);
-	//   var systyle = "style=\"max-height:" + d + "px;height:" + d + "px\"";
-	//   var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px;max-height:" + (d-2) + "px\"";
-  //
-	//   d = d - 2;
-	//   var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">"+$.i18n("ui-login")+"</div></a>";
-	//   var loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";
-	//   var loginbuttonhint = $.i18n("hint-loginbutton");//"Hier können Sie sich zum Kurs persönlich anmelden, im Moment wird der Kurs anonym bearbeitet.";
-	//   var loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
-	//   if (intersite.isActive()) {
-	//       if (intersite.getObj().login.type >= 2) {
-	//           loginbuttontext = $.i18n( "logout", getNameDescription() ); // "Logout (" + getNameDescription() + ")";
-	//           loginbuttonhint = $.i18n( "hint-logout", intersite.getObj().login.username ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersite.getObj().login.sname + " gespeichert.";
-	//           loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "logout.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
-	//       }
-	//   }
-  // }
-  // var head = loginbuttonhtml;
-  //
-  // if (intersite.isActive()) {
-  //     if ((intersite.getObj().login.type >= 2) && (!scormBridge.isScormEnv())) {
-  //         head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + $.i18n( "msg-myaccount" ) + "</div></a>";
-  //     }
-  // }
+  if (false) {
+	  if (intersite.isActive() === true) {
+	    SIZES.BASICFONTSIZE = SIZES.STARTFONTSIZE + intersite.getObj().layout.fontadd;
+	    SIZES.SMALLFONTSIZE = SIZES.BASICFONTSIZE - 2;
+	    SIZES.BIGFONTSIZE = SIZES.BASICFONTSIZE + 2;
+	    SIZES.MENUWIDTH = 160 + 10 * intersite.getObj().layout.fontadd;
+	    SIZES.TOCWIDTH = SIZES.MENUWIDTH - 21;
+	  }
+
+	  if (intersite.isActive()) {
+	    if (intersite.getObj().layout.menuactive == false) hideNavigation(false);
+	  }
+
+	  var d = 10 + SIZES.BASICFONTSIZE;
+	  $('div.headmiddle').height(d);
+	  var systyle = "style=\"max-height:" + d + "px;height:" + d + "px\"";
+	  var icstyle = "style=\"width:" + (d-2) + "px;height:" + (d-2) + "px;max-height:" + (d-2) + "px\"";
+
+	  d = d - 2;
+	  var head = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">"+$.i18n("ui-login")+"</div></a>";
+	  var loginbuttontext = $.i18n("ui-loginbutton");//"Zum Kurs anmelden";
+	  var loginbuttonhint = $.i18n("hint-loginbutton");//"Hier können Sie sich zum Kurs persönlich anmelden, im Moment wird der Kurs anonym bearbeitet.";
+	  var loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
+	  if (intersite.isActive()) {
+	      if (intersite.getObj().login.type >= 2) {
+	          loginbuttontext = $.i18n( "logout", getNameDescription() ); // "Logout (" + getNameDescription() + ")";
+	          loginbuttonhint = $.i18n( "hint-logout", intersite.getObj().login.username ); //"Der Kurs wird geschlossen und die eingegebenen Daten für Benutzer " + intersite.getObj().login.sname + " gespeichert.";
+	          loginbuttonhtml = "<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "logout.html\" class=\"MINTERLINK\"><div id=\"loginbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + loginbuttontext + "</div></a>";
+	      }
+	  }
+  }
+  var head = loginbuttonhtml;
+
+  if (intersite.isActive()) {
+      if ((intersite.getObj().login.type >= 2) && (!scormBridge.isScormEnv())) {
+          head += "&nbsp;<a style=\"max-height:" + d + "px\" href=\"" + linkPath + "config.html\" class=\"MINTERLINK\"><div id=\"confbutton\" style=\"max-height:" + d + "px;height:" + d + "px;display:inline-block\" class=\"tocminbutton\">" + $.i18n( "msg-myaccount" ) + "</div></a>";
+      }
+  }
 
   if (!scormBridge.isScormEnv()) {
       $('.show_scorm').css("display", "none");
@@ -2266,8 +2249,7 @@ function hideNavigation(animate) {
   $('#footerright').slideUp(speed / 3);
   $('#footer').hide();
   $('#content').css("margin-left","0px");
-  //TODO ns
-  //if (intersite.isActive()) intersite.getObj().layout.menuactive = false;
+  if (intersite.isActive()) intersite.getObj().layout.menuactive = false;
 }
 
 function showNavigation(animate) {
@@ -2281,8 +2263,7 @@ function showNavigation(animate) {
   $('div.toc').animate({width: 'show'}, speed);
   $('tocnavsymb').show();
   $('div.navi').slideDown(speed);
-  //TODO ns
-  //if (intersite.isActive()) intersite.getObj().layout.menuactive = true;
+  if (intersite.isActive()) intersite.getObj().layout.menuactive = true;
 }
 
 function menuClick() {
@@ -2354,135 +2335,133 @@ function shareFacebook() {
 // was array now is obj with questionId keys
 // TODO this function is called too often (> 10 times), should be called once
 function updateLayoutStates() {
-  //TODO ns - put this at work as soon as login is working again
-  // log.debug('ms_bs: updateLayoutStates called');
-  // log.debug(intersite.isActive(), intersite.getObj());
-  // if (intersite.isActive() == true) {
-  //   if (intersite.getObj() != null) {
-  //       // check sites and select layout state accordingly
-  //       $('.xsymb').each(function(i) {
-  //         log.debug('ms_bs: updateLayoutStates each .xsymb', $(this));
-  //           el = $(this);
-  //           ux = "SITE_" + el.attr("uxid");
-  //           var j;
-  //           var found = false;
-  //           for (j = 0; ((j < intersite.getObj().sites.length) && !found); j++) {
-  //               if (intersite.getObj().sites[j].uxid == ux) {
-  //                   found = true;
-  //               }
-  //           }
-  //           if (found) {
-  //               // check exercise points to determine state of the element
-  //               var k;
-  //               var maxpoints = 0;
-  //               var points = 0;
-  //               var sfound = false;
-  //
-  //
-  //
-  //               // no exercises present or all in neutral state: no state
-  //               // at least one exercise in false state: problem
-  //               // all exercises in true state: done
-  //               // otherwise: progress (some exercises done, some in true state, none in false state)
-  //
-  //               alldone = true;
-  //               allneutral = true;
-  //               prob = false;
-  //               for (k = 0; k < intersite.getObj().scores.length; k++) {
-  //                   if (intersite.getObj().scores[k].siteuxid == el.attr("uxid")) {
-  //                       sfound = true;
-  //                       maxpoints += intersite.getObj().scores[k].maxpoints;
-  //                       points += intersite.getObj().scores[k].points;
-  //                       if (intersite.getObj().scores[k].state == SOLUTION_FALSE) {
-  //                           prob = true;
-  //                           alldone = false;
-  //                           allneutral = false;
-  //                       } else {
-  //                           if (intersite.getObj().scores[k].state == SOLUTION_NEUTRAL) {
-  //                               alldone = false;
-  //                           } else {
-  //                               allneutral = false;
-  //                           }
-  //                       }
-  //                   }
-  //               }
-  //
-  //               var msg = "";
-  //               if ((sfound == false) || (allneutral == true) || (maxpoints == 0)) {
-  //                   el.toggleClass("state_progress", false);
-  //                   el.toggleClass("state_done", false);
-  //                   el.toggleClass("state_problem", false);
-  //               } else {
-  //                   d = Math.floor((1.0 * points) / (1.0 * maxpoints) * 100.0);
-  //                   if (prob) {
-  //                       el.toggleClass("state_progress", false);
-  //                       el.toggleClass("state_done", false);
-  //                       el.toggleClass("state_problem", true);
-  //                       msg = MESSAGE_PROBLEM  + " (" + d + "%)";
-  //                   } else {
-  //                       if (alldone) {
-  //                           el.toggleClass("state_progress", false);
-  //                           el.toggleClass("state_done", true);
-  //                           el.toggleClass("state_problem", false);
-  //                           msg = MESSAGE_DONE + " (" + d + "%)";
-  //                       } else {
-  //                           el.toggleClass("state_progress", true);
-  //                           el.toggleClass("state_done", false);
-  //                           el.toggleClass("state_problem", false);
-  //                           msg = MESSAGE_PROGRESS + " (" + d + "%)";;
-  //                       }
-  //                   }
-  //               }
-  //
-  //               if (msg != "") {
-  //                   el.attr("tiptitle", msg);
-  //                   el.qtip({
-  //                       position: { target: 'mouse', adjust: { x: 5, y: 5 } },
-  //                       style: { classes: 'qtip-blue qtip-shadow' },
-  //                       content: { attr: 'tiptitle' },
-  //                       show: { event: "mouseenter" }
-  //                   });
-  //               }
-  //
-  //           } else {
-  //               el.toggleClass("state_progress", false);
-  //               el.toggleClass("state_done", false);
-  //               el.toggleClass("state_problem", false);
-  //           }
-  //
-  //           if (el.attr("uxid") == SITE_UXID) {
-  //               // it's the site the user is currently viewing, activate timer color scheme
-  //               var a;
-  //               var cfound = false;
-  //               for (a = 0; a < timerColors.length; a++) {
-  //                   if (timerColors[a][0] == SITE_UXID) {
-  //                       cfound = true;
-  //                       timerColors[a][1] = el;
-  //                       timerColors[a][2] = el.css("color");
-  //                   }
-  //               }
-  //               if (!cfound) {
-  //                   n = timerColors.length;
-  //                   timerColors[n] = [ SITE_UXID, el, el.css("color") ];
-  //               }
-  //           }
-  //       });
-  //   }
-  // }
+  log.debug('ms_bs: updateLayoutStates called');
+  log.debug(intersite.isActive(), intersite.getObj());
+  if (intersite.isActive() == true) {
+    if (intersite.getObj() != null) {
+        // check sites and select layout state accordingly
+        $('.xsymb').each(function(i) {
+          log.debug('ms_bs: updateLayoutStates each .xsymb', $(this));
+            el = $(this);
+            ux = "SITE_" + el.attr("uxid");
+            var j;
+            var found = false;
+            for (j = 0; ((j < intersite.getObj().sites.length) && !found); j++) {
+                if (intersite.getObj().sites[j].uxid == ux) {
+                    found = true;
+                }
+            }
+            if (found) {
+                // check exercise points to determine state of the element
+                var k;
+                var maxpoints = 0;
+                var points = 0;
+                var sfound = false;
+
+
+
+                // no exercises present or all in neutral state: no state
+                // at least one exercise in false state: problem
+                // all exercises in true state: done
+                // otherwise: progress (some exercises done, some in true state, none in false state)
+
+                alldone = true;
+                allneutral = true;
+                prob = false;
+                for (k = 0; k < intersite.getObj().scores.length; k++) {
+                    if (intersite.getObj().scores[k].siteuxid == el.attr("uxid")) {
+                        sfound = true;
+                        maxpoints += intersite.getObj().scores[k].maxpoints;
+                        points += intersite.getObj().scores[k].points;
+                        if (intersite.getObj().scores[k].state == SOLUTION_FALSE) {
+                            prob = true;
+                            alldone = false;
+                            allneutral = false;
+                        } else {
+                            if (intersite.getObj().scores[k].state == SOLUTION_NEUTRAL) {
+                                alldone = false;
+                            } else {
+                                allneutral = false;
+                            }
+                        }
+                    }
+                }
+
+                var msg = "";
+                if ((sfound == false) || (allneutral == true) || (maxpoints == 0)) {
+                    el.toggleClass("state_progress", false);
+                    el.toggleClass("state_done", false);
+                    el.toggleClass("state_problem", false);
+                } else {
+                    d = Math.floor((1.0 * points) / (1.0 * maxpoints) * 100.0);
+                    if (prob) {
+                        el.toggleClass("state_progress", false);
+                        el.toggleClass("state_done", false);
+                        el.toggleClass("state_problem", true);
+                        msg = MESSAGE_PROBLEM  + " (" + d + "%)";
+                    } else {
+                        if (alldone) {
+                            el.toggleClass("state_progress", false);
+                            el.toggleClass("state_done", true);
+                            el.toggleClass("state_problem", false);
+                            msg = MESSAGE_DONE + " (" + d + "%)";
+                        } else {
+                            el.toggleClass("state_progress", true);
+                            el.toggleClass("state_done", false);
+                            el.toggleClass("state_problem", false);
+                            msg = MESSAGE_PROGRESS + " (" + d + "%)";;
+                        }
+                    }
+                }
+
+                if (msg != "") {
+                    el.attr("tiptitle", msg);
+                    el.qtip({
+                        position: { target: 'mouse', adjust: { x: 5, y: 5 } },
+                        style: { classes: 'qtip-blue qtip-shadow' },
+                        content: { attr: 'tiptitle' },
+                        show: { event: "mouseenter" }
+                    });
+                }
+
+            } else {
+                el.toggleClass("state_progress", false);
+                el.toggleClass("state_done", false);
+                el.toggleClass("state_problem", false);
+            }
+
+            if (el.attr("uxid") == SITE_UXID) {
+                // it's the site the user is currently viewing, activate timer color scheme
+                var a;
+                var cfound = false;
+                for (a = 0; a < timerColors.length; a++) {
+                    if (timerColors[a][0] == SITE_UXID) {
+                        cfound = true;
+                        timerColors[a][1] = el;
+                        timerColors[a][2] = el.css("color");
+                    }
+                }
+                if (!cfound) {
+                    n = timerColors.length;
+                    timerColors[n] = [ SITE_UXID, el, el.css("color") ];
+                }
+            }
+        });
+    }
+  }
 }
 
 function globalTimerHandler() {
-    //TODO ns - this can also be done with dataService intersite obj
-    // var j;
-    // timerIterator++;
-    // if (intersite.isActive()) {
-    //     intersite.getObj().history.globalmillis += timerMillis;
-    //     var k;
-    //     var ux = "SITE_" + SITE_UXID;
-    //     for (k = 0; k < intersite.getObj().sites.length; k++) {
-    //         if (intersite.getObj().sites[k].uxid == ux) {
-    //             intersite.getObj().sites[k].millis += timerMillis;
-    //         }
-    //     }
-    // }
+    var j;
+    timerIterator++;
+    if (intersite.isActive()) {
+        intersite.getObj().history.globalmillis += timerMillis;
+        var k;
+        var ux = "SITE_" + SITE_UXID;
+        for (k = 0; k < intersite.getObj().sites.length; k++) {
+            if (intersite.getObj().sites[k].uxid == ux) {
+                intersite.getObj().sites[k].millis += timerMillis;
+            }
+        }
+    }
 }

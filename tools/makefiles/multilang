@@ -29,7 +29,7 @@ OUTPUT = tu9onlinekurstest
 
 # Language the index.html will point to by default,
 # possible values: de, en
-DEFAULT_LANG = de 
+DEFAULT_LANG = de
 
 # Declare as phony so targets will run even if there's a file by that name
 .PHONY: cleanupBefore convert_with_pdf convert_without_pdf merge fixlinks fixredirects cleanupAfter all movePDF
@@ -107,7 +107,7 @@ convert_with_pdf:
 	$(eval CURRENT_LANG := en)
 	$(convert_cmd)
 	$(pdf_cmd)
-	
+
 
 #
 # Build the English and the German version.

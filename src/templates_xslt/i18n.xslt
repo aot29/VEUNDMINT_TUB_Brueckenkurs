@@ -29,8 +29,9 @@
 	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
 	      });
 
-				// also update special pages html (which is produced by js)
-				intersite.updateSpecials();
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
 
 			});
 
