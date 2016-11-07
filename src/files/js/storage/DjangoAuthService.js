@@ -21,7 +21,7 @@
   var doAsyncCalls = true;
 
   function initJquery(jqueryRef) {
-	  $ = jqueryRef;
+    $ = jqueryRef;
   }
 
   /**
@@ -31,12 +31,12 @@
   */
   function getUserCredentials () {
     if (typeof userCredentials !== "undefined" && userCredentials !== null && !veHelpers.isEmpty(userCredentials)) {
-		isAuthenticated = true;
+      isAuthenticated = true;
       return userCredentials;
     } else {
       var lsUserCred = localStorage.getItem(USER_CREDENTIALS_KEY);
       if (lsUserCred !== null) {
-		isAuthenticated = true;
+        isAuthenticated = true;
         return JSON.parse(lsUserCred);
       }
     }
@@ -44,17 +44,17 @@
     return null;
   }
 
-	/**
-	 * Check if user is authenticated. If yes, userCredentials will also be available
-	 * @return {Boolean} true if yes, false if not.
-	 */
-	function isUserAuthenticated() {
-		var userCredentials = getUserCredentials();
-		if (userCredentials !== null) {
-			isAuthenticated = true;
-		}
-		return isAuthenticated;
-	}
+  /**
+  * Check if user is authenticated. If yes, userCredentials will also be available
+  * @return {Boolean} true if yes, false if not.
+  */
+  function isUserAuthenticated() {
+    var userCredentials = getUserCredentials();
+    if (userCredentials !== null) {
+      isAuthenticated = true;
+    }
+    return isAuthenticated;
+  }
 
   /**
   * Authenticates at the server (settings.apiAuthUrl) with the given user credentials object
@@ -66,36 +66,35 @@
   * @return {Promise}           Returns a promise with the data object
   */
   function authenticate (user_credentials) {
-	 //console.log('calling authenticate with', user_credentials);
-   return new Promise(function(resolve, reject) {
-     return $.ajax({
+    //console.log('calling authenticate with', user_credentials);
+    return Promise.resolve(
+      $.ajax({
         url: 'http://localhost:8000/api-token-auth/',
         method: 'POST',
         data: JSON.stringify(user_credentials),
         dataType: 'json',
-      contentType: 'application/json; charset=utf-8',
+        contentType: 'application/json; charset=utf-8',
         timeout: 3000,
-      }).done(resolve).fail(reject);
-   }).then(function(data) {
+      })).then(function(data) {
       if (typeof data.token !== undefined) {
         isAuthenticated = true;
         delete(user_credentials.password);
         userCredentials = user_credentials;
         userCredentials.token = data.token;
 
-		localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(userCredentials));
+        localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(userCredentials));
         //console.log('isAuthenticated set to true');
       }
       return data;
     }, function(error) {
-      return error;
+      return new TypeError(error);
     });
   }
 
   /**
-   * Logs the user out, by deleting their token and user credentials
-   * @return {Boolean} true if successful logout, false otherwise
-   */
+  * Logs the user out, by deleting their token and user credentials
+  * @return {Boolean} true if successful logout, false otherwise
+  */
   function logout() {
     userCredentials = {};
     localStorage.removeItem(USER_CREDENTIALS_KEY);
