@@ -115,7 +115,7 @@
     if (userCredentials === null || typeof userCredentials === "undefined"
     || typeof userCredentials.token === "undefined" ) {
       //console.log('can only make authAjaxGET request if userCredentials are set');
-      return Promise.reject('not authenticated');
+      return Promise.reject(new TypeError('not authenticated'));
     }
 
     return Promise.resolve(
@@ -148,7 +148,7 @@
     if (userCredentials === null || typeof userCredentials === "undefined"
     || typeof userCredentials.token === "undefined" ) {
       //console.log('can only make authAjaxGET request if userCredentials are set');
-      return Promise.reject('not authenticated');
+      return Promise.reject(new TypeError('not authenticated'));
     }
     return Promise.resolve(
       $.ajax({
