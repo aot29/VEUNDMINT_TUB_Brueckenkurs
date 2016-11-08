@@ -1,5 +1,4 @@
 SOFTWARE_REPOSITORY = git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git
-SOFTWARE_BRANCH = dev_VBKM_content
 SUBMODULE_DIR = content_submodule
 
 #
@@ -7,7 +6,7 @@ SUBMODULE_DIR = content_submodule
 # 
 install: clean
 	# add the software as a submodule
-	git submodule add -b ${SOFTWARE_BRANCH} ${SOFTWARE_REPOSITORY} ${SUBMODULE_DIR}
+	git submodule add -b ${branch} ${SOFTWARE_REPOSITORY} ${SUBMODULE_DIR}
 	
 	# updates the linked submodules
 	git submodule init
@@ -16,7 +15,14 @@ install: clean
 	# install a Python virtual environment and all dependencies	
 	$(MAKE) -f tools/makefiles/devinstall
 
-	ln -sf ${SUBMODULE_DIR}/module_veundmint .
+	# link module_veundmint (default path)
+	ln -sf $(CURDIR)/${SUBMODULE_DIR}/module_veundmint .
+	
+	# link the gulp config file
+	ln -sf $(CURDIR)/${SUBMODULE_DIR}/gulpfile.js .
+
+	# link the Python-options file
+	ln -sf $(CURDIR)/${SUBMODULE_DIR}/Option.py src/plugins/VEUNDMINT/
 
 
 #
@@ -32,7 +38,6 @@ all:
 update:
 	git pull
 	git submodule update --remote
-	
 
 
 #
