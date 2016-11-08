@@ -157,7 +157,6 @@
    * @return {Promise<Object>} A Promise holding the status of the sync process(es)
    */
   function syncUp(data) {
-
     data = typeof data !== "undefined" ? data : changedData;
 
     log.debug('syncUp called data:', data);
@@ -167,7 +166,7 @@
       return Promise.resolve('dataService: syncUp called without local changes, will do nothing.');
     }
 
-    if (veHelpers.isEmpty(data)) {
+    if (veHelpers.isEmpty(storageServices)) {
       return Promise.resolve('dataService: synUp called withot subscribers, will do nothing.');
     }
 
