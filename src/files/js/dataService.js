@@ -134,6 +134,11 @@
         objCache = mergeRecursive(objCache, changedData);
       }
       log.debug('latestData retrieved and objCache set to:', latestData);
+
+      //trigger an asynchronous call to replicate obj cache to other storages
+      //TODO only if they are empty (by timestamp)
+      syncUp(objCache);
+
       return objCache;
     }, function(error) {
       return new TypeError(error);
@@ -144,18 +149,23 @@
 
   /**
    * Synchronizes data from objCache to all registered storageServices
+   * @param  {Object} data If data is set, it will be the data that is synced,
+   * default is changedData, in some cases we might however want to sync e.g.
+   * the whole object cache. We can pass it to sync up as data parameter.
    * @return {Promise<Object>} A Promise holding the status of the sync process(es)
    */
-  function syncUp() {
-    // log.debug('dataService: syncUp called');
-    console.log('syncUp called');
+  function syncUp(data) {
 
-    if (veHelpers.isEmpty(changedData)) {
+    data = typeof data !== "undefined" ? data : changedData;
+
+    log.debug('syncUp called data:', data);
+
+    if (veHelpers.isEmpty(data)) {
       // log.info('dataService: syncUp called without local changes');
       return Promise.resolve('dataService: syncUp called without local changes, will do nothing.');
     }
 
-    if (veHelpers.isEmpty(storageServices)) {
+    if (veHelpers.isEmpty(data)) {
       return Promise.resolve('dataService: synUp called withot subscribers, will do nothing.');
     }
 
@@ -166,7 +176,7 @@
 
     var result = new Promise(function (resolve, reject) {
       storageServices.forEach(function (service) {
-        service.saveUserData(changedData, doAsyncCalls).then(function (successData) {
+        service.saveUserData(data, doAsyncCalls).then(function (successData) {
           totalResolved += 1;
           status[service.name] = {status: 'success', data: successData}
         }).catch(function (errorData) {
