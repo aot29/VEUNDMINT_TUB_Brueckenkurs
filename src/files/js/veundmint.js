@@ -64,8 +64,7 @@ $(window).on('beforeunload', function(){
 		apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
 		defaultLogLevel: 'error',
 		storageServices: [LocalStorageService.LocalStorageService(), DjangoStorageService.DjangoStorageService()],
-		callbackBefore: function () {},
-		callbackAfter: function () {}
+		localStorageKey: signature_main + '_user_data'
 	};
 
 
@@ -391,6 +390,10 @@ $(window).on('beforeunload', function(){
 	 */
 	veundmint.addReadyElementToPage = function () {
 		$('body').append('<div id="veundmint_ready" style="display:none;"></div>')
+	}
+
+	veundmint.settings = function () {
+		return settings;
 	}
 
 	return veundmint;

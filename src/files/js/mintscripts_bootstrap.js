@@ -514,7 +514,24 @@ function handlerChange(id, nocontentcheck) {
     if (FVAR[id].smc.length > 0) nocontentcheck = 0;
   }
 
-  dataService.updateUserData({scores:[{id:FVAR[id].id, points: FVAR[id].points, uxid:FVAR[id].uxid, rawinput:FVAR[id].rawinput}]});
+  dataService.updateUserData(
+    {
+      scores:[
+        {
+          id:FVAR[id].id,
+          points: FVAR[id].points,
+          uxid:FVAR[id].uxid,
+          siteuxid: SITE_UXID,
+          rawinput:FVAR[id].rawinput,
+          maxpoints:FVAR[id].maxpoints,
+          value:FVAR[id].value,
+          state:FVAR[id].state,
+          section:FVAR[id].section,
+          intest:FVAR[id].intest
+        }
+      ]
+    }
+  );
 
   var formula = 0; // Stellt der Feldinhalt eine Formel dar?
   if (FVAR[id].type == 4) formula = 1; // Eingabefeld fuer mathematische Ausdruecke? Rohe Zahlen oder Intervalle werden nicht gehintet

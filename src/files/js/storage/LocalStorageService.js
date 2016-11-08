@@ -17,7 +17,7 @@
   var LocalStorageService = function () {
     var that = IStorageService.IStorageService();
 
-    var storageKey = 'myStorageKey';
+    var storageKey = 'MFR_TUB_user_data';
     that.name = 'LocalStorageService';
 
     that.saveUserData = function(data) {

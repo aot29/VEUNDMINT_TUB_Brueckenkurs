@@ -137,7 +137,9 @@
 
       //trigger an asynchronous call to replicate obj cache to other storages
       //TODO only if they are empty (by timestamp)
-      syncUp(objCache);
+      if (null !== latestData) {
+        syncUp(objCache);
+      }
 
       return objCache;
     }, function(error) {
