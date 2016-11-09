@@ -588,6 +588,10 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
         //     intersite.sendeFeedback( { statistics: st }, true);
         //     }
         // }
+        var st = "";
+        var timestamp = +new Date();
+        st = "EXSUCCESS: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", pagename:" + fullName + ", uxid:" + FVAR[id].uxid + ", elementid:" + id + ", input:" + FVAR[id].rawinput + ", message:" + FVAR[id].message;
+        dataService.sendUserFeedback(st);
       }
     }
 

@@ -27,6 +27,8 @@ class Question(DateSensitiveModel):
 	intest = models.BooleanField(default=False)
 	type = models.PositiveSmallIntegerField()
 
+class UserFeedback(DateSensitiveModel):
+	rawfeedback = models.TextField(blank=True)
 
 class Score(DateSensitiveModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="scores")

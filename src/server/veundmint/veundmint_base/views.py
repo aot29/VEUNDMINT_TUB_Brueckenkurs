@@ -10,14 +10,19 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from veundmint_base.serializers import UserDataSerializer, WebsiteActionSerializer, \
-ScoreSerializer
-from veundmint_base.models import WebsiteAction, Score
+ScoreSerializer, UserFeedbackSerializer
+from veundmint_base.models import WebsiteAction, Score, UserFeedback
 
 
 # ViewSets define the view behavior.
 class WebsiteActionViewSet(viewsets.ModelViewSet):
     queryset = WebsiteAction.objects.all()
     serializer_class = WebsiteActionSerializer
+    permission_classes = (permissions.AllowAny,)
+
+class UserFeedbackViewSet(viewsets.ModelViewSet):
+    queryset = UserFeedback.objects.all()
+    serializer_class = UserFeedbackSerializer
     permission_classes = (permissions.AllowAny,)
 
 class UserViewSet(viewsets.ModelViewSet):

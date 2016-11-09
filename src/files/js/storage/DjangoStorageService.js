@@ -35,6 +35,10 @@
       // return Promise.resolve(newerTimeStamp);
     }
 
+    that.sendUserFeedback = function (data) {
+      return DjangoAuthService.authAjaxPost('http://localhost:8000/user-feedback/', {rawfeedback: JSON.stringify(data)});
+    }
+
     return that;
   }
 

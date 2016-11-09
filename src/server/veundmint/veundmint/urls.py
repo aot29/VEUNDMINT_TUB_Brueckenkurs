@@ -19,12 +19,13 @@ from rest_framework import routers
 from veundmint_base.models import WebsiteAction
 from rest_framework_jwt.views import obtain_jwt_token
 from veundmint_base.views import WebsiteActionViewSet, UserViewSet, ScoreViewSet,\
-ProfileViewSet, CheckUsernameView, DataTimestampView
+ProfileViewSet, CheckUsernameView, DataTimestampView, UserFeedbackViewSet
 
 router = routers.DefaultRouter()
 router.register(r'server-action', WebsiteActionViewSet)
 router.register(r'score', ScoreViewSet, base_name='scores')
 router.register(r'user-data', UserViewSet, base_name='user-data')
+router.register(r'user-feedback', UserFeedbackViewSet)
 
 urlpatterns = [
     #url(r'^', include('veundmint_base.urls')),

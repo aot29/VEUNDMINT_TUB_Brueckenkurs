@@ -304,6 +304,22 @@ function getUserData() {
 }
 
 /**
+ * Send user feedback to all subscribed storageServices. Calls 'sendUserFeedback'
+ * function on all subscribed services.
+ * @param  {Object} data The feedback data to send.
+ * @return {void}
+ */
+function sendUserFeedback(data) {
+  storageServices.forEach(function (service) {
+    //TODO this should actually call the super function as soon as we implement
+    //real inheritance
+    if (typeof service.sendUserFeedback !== "undefined") {
+      service.sendUserFeedback(data);
+    }
+  });
+}
+
+/**
  * Recursively merges two objects (in place). Will insert respective objects from obj2 into
  * obj1 if the specified id is not present in obj1. Will update objects in obj1
  * if id is already present. Contains a switch for matching 'id' (on
@@ -408,7 +424,6 @@ exports.subscribe = subscribe;
 exports.unsubscribe = unsubscribe;
 exports.unsubscribeAll = function () { storageServices = []; storageServicesMap = {}; };
 exports.getSubscribers = function () { return storageServices };
-exports.getAllUserData = getAllUserData;
 exports.getAllDataTimestamps = getAllDataTimestamps;
 exports.getUserData = getUserData;
 exports.syncDown = syncDown;
@@ -420,5 +435,6 @@ exports.emptyChangedData = function () { changedData = {}; };
 exports.getObjCache = getObjCache;
 exports.mergeRecursive = mergeRecursive;
 exports.mockLocalStorage = mockLocalStorage;
+exports.sendUserFeedback = sendUserFeedback;
 
 }));

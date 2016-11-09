@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from veundmint_base.models import WebsiteAction, Score
+from veundmint_base.models import WebsiteAction, Score, UserFeedback
 
 # Serializers define the API representation.
 class WebsiteActionSerializer(serializers.HyperlinkedModelSerializer):
@@ -8,6 +8,10 @@ class WebsiteActionSerializer(serializers.HyperlinkedModelSerializer):
         model = WebsiteAction
         fields = ('action_id', 'created_at', 'browser_type', 'ip_address')
 
+class UserFeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserFeedback
+        fields = ('rawfeedback', )
 
 class ScoreSerializer(serializers.ModelSerializer):
     id = serializers.CharField(required=False, allow_blank=True, max_length=100, source='q_id')
