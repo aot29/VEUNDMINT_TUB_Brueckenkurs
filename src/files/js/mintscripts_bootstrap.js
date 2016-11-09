@@ -2291,7 +2291,7 @@ function showHint(element, hinttext) {
       }
   }
 
-  hinttext = "<div style=\"font-size:" + SIZES.SMALLFONTSIZE + "px;line-height:100%\">" + hinttext + "</div>";
+  hinttext = "<div style=\"font-size: 10px;line-height:100%\">" + hinttext + "</div>";
 
   // Check if qtip is already attached to the element
   if(typeof element.data('qtip') === 'object') {

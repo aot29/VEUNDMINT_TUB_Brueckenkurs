@@ -134,7 +134,7 @@ class Plugin(basePlugin):
 		self._prepareData()
 
 		self.generate_directory()
-		self.generate_css()
+		#self.generate_css()
 
 		self.xidobj = None # used by global xcontent linking
 		self.analyze_html() # analysis done on raw text
@@ -1020,7 +1020,7 @@ class Plugin(basePlugin):
 
 		for vr in ["signature_main", "signature_version", "signature_localization", "do_feedback", "do_export", "reply_mail",
 				   "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
-				   "footer_middle", "footer_right", "mainlogo", "stdmathfont", "variant"]:
+				  "variant"]:
 			s += "var " + vr + " = \"" + getattr(self.options, vr) + "\";\n"
 
 		s += "var feedbackdesc = data_server_description;\n";
