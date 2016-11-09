@@ -325,6 +325,7 @@ function getAllDataTimestamps() {
 * @return {Promise<Object>} A Promise containing the UserData Object
 */
 function getUserData() {
+  log.debug('getUserData objCache is', objCache);
   if (objCache !== null && !veHelpers.isEmpty(objCache)) {
     return Promise.resolve(objCache);
   } else {
