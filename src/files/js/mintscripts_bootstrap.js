@@ -588,10 +588,6 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
         //     intersite.sendeFeedback( { statistics: st }, true);
         //     }
         // }
-        var st = "";
-        var timestamp = +new Date();
-        st = "EXSUCCESS: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", pagename:" + fullName + ", uxid:" + FVAR[id].uxid + ", elementid:" + id + ", input:" + FVAR[id].rawinput + ", message:" + FVAR[id].message;
-        dataService.sendUserFeedback(st);
       }
     }
 
@@ -1562,6 +1558,7 @@ function finish_button(name) {
     //     intersite.sendeFeedback({statistics: cm }, true);
     //     log.trace("Testfinish gesendet");
     // }
+    dataService.sendUserFeedback({statistics: cm});
 
     if ((doScorm == 1) && (SITE_UXID == "VBKMT_AbgebeTest")) {
       // MatheV4: Gesamtpunktzahl ueber alle ABSCHLUSSTESTS mitteln und Prozentwert an SCORM uebertragen
