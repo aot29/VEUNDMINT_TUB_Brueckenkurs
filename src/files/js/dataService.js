@@ -29,7 +29,8 @@
     apiScoresUrl: 'http://localhost:8000/score/',
     defaultLogLevel: 'debug',
     //wether a call to SyncDown should also try to syncUp data if timestamps differ
-    alwaysSynchronize : true
+    alwaysSynchronize : true,
+    USER_DATA_CACHE_KEY: 've_user_data'
   };
 
   var doAsyncCalls = 'true';
@@ -43,27 +44,35 @@
     scores: []
   };
 
-  //stores the changed data, since objCache is always 'synced' but too large
-  //this variable stores recent, unsynced changes and will be reset on successful
-  //sync operation
+  /**
+   * We use a cache for promises, too. By that we can return pending promises, instead
+   * of having to make new calls each time. Example: input A and input B request
+   * the userData in order to set the input value depending on previously entered text.
+   * input A calls getUserData, and input B as well. Instead of issuing two (expensive)
+   * requests, we can just return the promise from the cache, if it is there.
+   * Should not be used by other modules.
+   * @type {Object}
+   */
+  var promiseCache = {};
+
+  /**
+   * Stores the changed data, since objCache is always 'synced' but too large
+   * this variable stores recent, unsynced changes and will be reset on successful
+   * sync operation
+   * @type {Object}
+   */
   var changedData = {};
 
 	init();
 
 	/**
-	* will load existing scores from the passed intersiteObj, as we can see this class
+	* Will load existing scores from the passed intersiteObj, as we can see this class
 	* depends on intersite (by now), this dependency is only because of persistence reasons now
 	* and shall be removed in further iterations
 	* @return {[type]} [description]
 	*/
 	function init( options ) {
-// 		subscribe(LocalStorageService.LocalStorageService());
-// 		subscribe(DjangoStorageService.DjangoStorageService());
 
-// 		DjangoAuthService.authenticate({
-// 			username: 'testrunner',
-// 			password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
-// 		});
 	}
 
   /**
@@ -91,11 +100,13 @@
     return updateUserData({scores: updatedScores});
   }
 
-  //sync on startup
-  //on time
-  //only the diff should be sent to server (whyever)
-  //most recent version should be saved
-
+  /**
+   * Add a storage service to the list of subscribed storageServices. All subscribers
+   * will be called if userData is resolved / updated. Also all subscribers will be called
+   * when feedback is sent.
+   * @param  {[type]} observable [description]
+   * @return {[type]}            [description]
+   */
   function subscribe (observable) {
     storageServices.push(observable);
     storageServicesMap[observable.name] = observable;
@@ -113,7 +124,7 @@
     }
 
     log.debug('dataService: syncDown is calling getAllDataTimestamps');
-    var promise = getAllDataTimestamps().then(function (successAllTimestamps) {
+    var userDataPromise = getAllDataTimestamps().then(function (successAllTimestamps) {
 
       if (Array.isArray(successAllTimestamps) && successAllTimestamps.length > 0) {
         successAllTimestamps.sort(compareTimestamps);
@@ -141,12 +152,17 @@
         syncUp(objCache);
       }
 
+      //empty the promise cache for user data
+      delete promiseCache[defaults.USER_DATA_CACHE_KEY];
       return objCache;
     }, function(error) {
       return new TypeError(error);
     });
 
-    return promise;
+    //put the promise in the cache
+    promiseCache[defaults.USER_DATA_CACHE_KEY] = userDataPromise;
+
+    return userDataPromise;
   }
 
   /**
@@ -194,7 +210,6 @@
     return result;
   }
 
-
   /**
   * Compares two data objects by timestamp for sorting, i.e. finding the latest
   * data. Will sort by data.timestemp descending. So when calling myArray.sort(compareTimestamps)
@@ -218,66 +233,20 @@
     delete storageServicesMap[observable.name];
   }
 
-function getAllUserData() {
-  var returnedPromises = 0;
-  var allUserData = [];
-
-  var result = new Promise(function (resolve, reject) {
-    if (storageServices.length == 0) {
-      reject('no storageServices we could get the data from, register them first' 
-      + ' by calling dataService.subscribe(yourStorageServiceName)');
-    }
-    storageServices.forEach(function (service) {
-      service.getUserData().then(function (successData) {
-        allUserData.push({
-          status: 'success',
-          data: successData,
-          serviceName: service.name
-        });
-      }).catch(function (errorData) {
-        allUserData.push({
-          status: 'error',
-          message: errorData,
-          serviceName: service.name
-        })
-      }).then(function (data) {
-        returnedPromises += 1;
-        if (returnedPromises == storageServices.length) {
-          resolve(allUserData);
-        }
-      });
-    });
-  });
-
-  return result;
-}
-
-
 function getAllDataTimestamps() {
   var returnedPromises = 0;
   var failCount = 0;
   var successCount = 0;
   var allTimestamps = [];
 
-  // var result = new Promise(function (resolve, reject) {
-  //   if (storageServices.length == 0) {
-  //     reject('no storageServices we could get the data from, register them first' 
-  //     + ' by calling dataService.subscribe(yourStorageServiceName)');
-  //   }
   if (storageServices.length == 0) {
     return Promise.reject(new TypeError('no storageServices we could get data from' +
       'register them by calling dataService.subscribe(yourStorageService)'));
   }
-  // return Promise.all(storageServices.map(function(promise) {
-  //   //will call getDataTimestamp and reflect will make rejected promises not reject but resolve
-  //   //with error status
-  //   return promise.getDataTimestamp().reflect();
-  // }));
+
   var result = new Promise(function (resolve, reject) {
     storageServices.forEach(function (service) {
-      // console.log('calling getDataTimestamp at', service.name);
       service.getDataTimestamp().then(function (successData) {
-        // console.log('getDataTimestamp success:', service.name);
         successCount += 1;
         var status = {
           status: 'success',
@@ -285,7 +254,6 @@ function getAllDataTimestamps() {
           serviceName: service.name
         };
         allTimestamps.push(status);
-        // console.log('successCount', successCount);
         return status;
       }, function (errorData) {
         failCount += 1;
@@ -293,18 +261,12 @@ function getAllDataTimestamps() {
           status: 'error',
           message: errorData,
           serviceName: service.name,
-          //a timestamp of 0 is like very old data
-          //TODO what if all error? then we have no data, anyhow localstorage will
-          //not error usually...
           timestamp: 0
         };
         allTimestamps.push(status);
-        // console.log('errorCount', failCount);
         return status;
       }).then(function (data) {
         returnedPromises += 1;
-        // console.log('datadata', data);
-        // console.log('returned promises:', returnedPromises);
         if (returnedPromises == storageServices.length) {
           if (failCount == storageServices.length) {
             //all requests failed
@@ -321,17 +283,23 @@ function getAllDataTimestamps() {
 }
 
 /**
-* Get the current User Data
+* Get the current User Data. Returns a promise that either holds userData directly
+* from objCache if available, else it looks if a promise is pending in promiseCache
+* and returns that if it is. Else it returns the promise of syncdown;
 * @return {Promise<Object>} A Promise containing the UserData Object
 */
 function getUserData() {
   log.debug('getUserData objCache is', objCache);
-  if (objCache !== null && !veHelpers.isEmpty(objCache)) {
+  if (objCache !== null && !veHelpers.isEmpty(objCache) && !veHelpers.isEmpty(objCache.scores)) {
     return Promise.resolve(objCache);
   } else {
-    return syncDown().then(function(data) {
-      return data;
-    });
+    if (veHelpers.isEmpty(promiseCache[defaults.USER_DATA_CACHE_KEY])) {
+      return syncDown().then(function(data) {
+        return data;
+      });
+    } else {
+      return promiseCache[defaults.USER_DATA_CACHE_KEY];
+    }
   }
 }
 
@@ -394,6 +362,10 @@ function getObjCache() {
   return objCache;
 }
 
+/**
+ * Mocks the browsers localstorage. Used in non browser Environments (e.g. node tests)
+ * @return {[type]} [description]
+ */
 function mockLocalStorage() {
   var mock = (function() {
     var storage = {};
@@ -420,12 +392,16 @@ function mockLocalStorage() {
   localStorage = mock;
 }
 
+/**
+ * Make all calls synchronous instead of asynchronous
+ * @return {[type]} [description]
+ */
 function makeSynchronous() {
   doAsyncCalls = false;
 }
 
 // attach properties to the exports object to define
-// the exported module properties.
+// the exported (public) module properties.
 exports.init = init;
 exports.makeSynchronous = makeSynchronous;
 exports.subscribe = subscribe;
