@@ -19,7 +19,7 @@
 # make -f tools/makefiles/multilang
 #
 
-.DEFAULT_GOAL := allTUB
+.DEFAULT_GOAL := all
 
 # Path to source dir, relative to <VEUNDMINT checkout path>
 BASEDIR = src
@@ -40,8 +40,27 @@ DEFAULT_LANG = de
 # Build everything for the bootstrap version
 # Including PDFs
 #
-allTUB: |cleanupBefore convert_with_pdf merge fixRedirects fix fixSpecialPages startGulp movePDF cleanupAfter
+#all: |cleanupBefore convert_with_pdf merge fixRedirects fix fixSpecialPages startGulp movePDF cleanupAfter
+#	echo "ready"
+
+all: | cleanupBefore buildDE fix startGulp movePDF cleanupAfter
 	echo "ready"
+
+
+buildDE: 
+	# set CURRENT_LANG at runtime.
+	$(eval CURRENT_LANG := de)
+	$(convert_cmd)
+	# move German HTML from /html to /html/de
+	mv $(OUTPUT)_${CURRENT_LANG} $(OUTPUT)
+	mv $(OUTPUT)/html $(OUTPUT)/${CURRENT_LANG}
+	mkdir $(OUTPUT)/html
+	mv $(OUTPUT)/${CURRENT_LANG} $(OUTPUT)/html
+	$(deploy_img_cmd)
+	$(fixRedirects_cmd)
+	$(fixLinks_cmd)
+	$(setLocale_cmd)
+	$(fixSpecialPages_cmd)
 
 
 #
@@ -124,28 +143,6 @@ convert_without_pdf:
 	$(convert_cmd)
 #	$(eval CURRENT_LANG := en)
 #	$(convert_cmd)
-
-
-#
-# set CURRENT_LANG at runtime.
-# Build DE language version
-#
-de: cleanup
-	$(eval CURRENT_LANG := de)
-	$(convert_cmd)
-	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
-	$(deploy_img_cmd)
-
-
-#
-# set CURRENT_LANG at runtime.
-# Build EN language version
-#
-en: cleanup
-	$(eval CURRENT_LANG := en)
-	$(convert_cmd)
-	mv $(OUTPUT)_$(CURRENT_LANG) $(OUTPUT)
-	$(deploy_img_cmd)
 
 
 #
@@ -293,7 +290,7 @@ endef
 #
 # Fix the link paths in the HTML files
 #
-fix: fixRedirects
+fix:
 	# Fix paths to common (*.js, *.css ...) external files
 	# Javascript links seem to be inserted in various places with different syntax
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script src=\"\.\./|<script src=\"\.\./\.\./|g" {} \;
@@ -318,9 +315,9 @@ fix: fixRedirects
 	# TODO, set extra Javascript path
 
 	# set CURRENT_LANG to de
-	$(eval CURRENT_LANG := de)
-	$(fixLinks_cmd)
-	$(setLocale_cmd)
+	#$(eval CURRENT_LANG := de)
+	#$(fixLinks_cmd)
+	#$(setLocale_cmd)
 
 	# set CURRENT_LANG to en
 #	$(eval CURRENT_LANG := en)
