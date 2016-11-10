@@ -21,16 +21,17 @@ install: clean
 	# link the gulp config file
 	ln -sf $(CURDIR)/${SUBMODULE_DIR}/gulpfile.js .
 
-	# link the Python-options file
-	ln -sf $(CURDIR)/${SUBMODULE_DIR}/Option.py src/plugins/VEUNDMINT/
-
 
 #
 # Build the course with all languages available.
 #
 all:
+ifeq ($(course),PhysikBK)
+	$(MAKE) -f tools/makefiles/makefile
+else
 	$(MAKE) -f tools/makefiles/multilang
-	
+endif
+
 
 #
 # Updates the source code and the content submodules
