@@ -42,10 +42,10 @@ class test_OptionTest(unittest.TestCase):
 	def testTexTree(self):
 		# Defaults
 		option = Option( self.currentDir, "" )
-		self.assertEqual("tree_tu9onlinekurs_de.tex", option.module, "Unexpected default tree")
+		self.assertEqual("tree_de.tex", option.module, "Unexpected default tree")
 		
 		option = Option( self.currentDir, ["lang=en"] )
-		self.assertEqual("tree_tu9onlinekurs_en.tex", option.module, "Unexpected override for tree")
+		self.assertEqual("tree_en.tex", option.module, "Unexpected override for tree")
 
 
 	def testTest(self):
@@ -57,8 +57,8 @@ class test_OptionTest(unittest.TestCase):
 	def testSourceOutputDirs(self):
 		# Defaults
 		option = Option( self.currentDir, "" )
-		self.assertEqual("module_veundmint", option.source, "Unexpected default for 'source'")
-		self.assertEqual("tu9onlinekurstest", option.output, "Unexpected default for 'output'")
+		self.assertEqual("content_submodule/content", option.source, "Unexpected default for 'source'")
+		self.assertEqual("build", option.output, "Unexpected default for 'output'")
 		
 		# Override
 		option = Option( self.currentDir, ["output=testoutput"] )

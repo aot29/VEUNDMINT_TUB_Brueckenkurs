@@ -56,8 +56,8 @@ class Option(object):
 		self.currentDir = new_settings.BASE_DIR # one level above location of tex2x.py
 		self.converterDir = os.path.join(self.currentDir, "src")
 		self.converterCommonFiles = os.path.join(self.converterDir, "files")
-		self.output = "tu9onlinekurstest" # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
-		self.source = "module_veundmint" # Quellverzeichnis, platziert in Ebene ueber tex2x.py
+		self.output = "build" # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
+		self.source = os.path.join("content_submodule", "content") # Quellverzeichnis, platziert in Ebene ueber tex2x.py
 		self.outtmp = "_tmp" # Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 		self.logFilename = "conversion.log"
 		self.override = override
@@ -66,7 +66,7 @@ class Option(object):
 		# always call setLocale first
 		self.setLocale()
 		# Tree depends on language requested
-		self.module = ( lambda locale: "tree_tu9onlinekurs_en.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "tree_tu9onlinekurs_de.tex" ) (self.locale)
+		self.module = ( lambda locale: "tree_en.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "tree_de.tex" ) (self.locale)
 
 		self.setConversionFlags()
 		self.setTest()
