@@ -102,6 +102,24 @@
   }
 
   /**
+   * Make unauthenticated GET request to url with data
+   * @param  {String} url  The url to send the request to
+   * @param  {Object} data The data you want to send with the request
+   * @return {Object}      The returned (json) data
+   */
+  function ajaxGET (url, data, async) {
+    return Promise.resolve(
+      $.ajax({
+        url: url,
+        method: 'GET',
+        data: data,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8'
+      })
+    );
+  }
+
+  /**
   * Make authenticated GET request to url with data
   * @param  {String} url  The url to send the request to
   * @param  {Object} data The data you want to send with the request
@@ -163,15 +181,15 @@
       })
     );
 
+  }
 
-    // return rp.post({
-    //   url: url,
-    //   body: data,
-    //   headers: {
-    //     'Authorization': 'JWT ' + userCredentials.token
-    //   },
-    //   json: true
-    // });
+  /**
+   * Check django server if username is available
+   * @param  {String} username A username to check
+   * @return {Promise<Boolean>} A promise resolving to true or false
+   */
+  function usernameAvailable(username) {
+    return ajaxGET('http://localhost:8000/checkusername/', {username:username});
   }
 
 
@@ -183,6 +201,6 @@
   exports.authAjaxPost = authAjaxPOST;
   exports.isAuthenticated = isUserAuthenticated;
   exports.getToken = function() {return userCredentials.token || null};
-
+  exports.usernameAvailable = usernameAvailable;
 
 }));

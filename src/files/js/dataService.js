@@ -320,6 +320,24 @@ function sendUserFeedback(data) {
 }
 
 /**
+ * Check at the subscribed storageService if a username is available. Will
+ * consider the service in storageServices with the lowest index, that offers
+ * the 'usernameAvailable' function
+ * @return {Boolean} true if username is available, false if already taken
+ */
+function usernameAvailable(username) {
+  var result = new Promise(function (resolve, reject) {
+    storageServices.forEach(function (service) {
+      if (typeof service.usernameAvailable !== "undefined") {
+        resolve(service.usernameAvailable(username));
+      }
+    });
+    reject(new TypeError('No service found with usernameAvailable function'));
+  })
+  return result;
+}
+
+/**
  * Recursively merges two objects (in place). Will insert respective objects from obj2 into
  * obj1 if the specified id is not present in obj1. Will update objects in obj1
  * if id is already present. Contains a switch for matching 'id' (on
@@ -436,5 +454,6 @@ exports.getObjCache = getObjCache;
 exports.mergeRecursive = mergeRecursive;
 exports.mockLocalStorage = mockLocalStorage;
 exports.sendUserFeedback = sendUserFeedback;
+exports.usernameAvailable = usernameAvailable;
 
 }));

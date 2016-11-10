@@ -39,6 +39,10 @@
       return DjangoAuthService.authAjaxPost('http://localhost:8000/user-feedback/', {rawfeedback: JSON.stringify(data)});
     }
 
+    that.usernameAvailable = function (username) {
+      return DjangoAuthService.usernameAvailable(username);
+    }
+
     return that;
   }
 
