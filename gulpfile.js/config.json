@@ -1,0 +1,141 @@
+  {
+    "root": {
+      "src": "./build",
+      "dest": "./public"
+    },
+
+    "tasks": {
+      "browserSync": {
+        "server": {
+          "baseDir": "public"
+        },
+        "logFileChanges": true,
+        "logConnections": true,
+        "files": [
+          "./public/*.html",
+          "./public/*.htm",
+          "./public/html/**/*.html",
+          "./public/css/*.css",
+          "./public/js/*.js"
+        ],
+        "injectChanges": true,
+        "snippetOptions": {
+            "ignorePaths": ["**/*.htm*", "index.html"]
+        }
+      },
+      "css": {
+        "src": [
+          "./bower_components/qtip2/jquery.qtip.css",
+          "./bower_components/datatables.net-dt/css/jquery.dataTables.css",
+          "./bower_components/bootstrap/dist/css/bootstrap.css",
+          "./build/css/**/*.css",
+          "./src/files/bootstrap/bootstrap-social-gh-pages/bootstrap-social.css",
+          "./src/files/bootstrap/font-awesome-4.6.3/css/font-awesome.css"
+        ],
+        "dest": "css",
+        "autoprefixer": {
+          "browsers": ["last 3 version"]
+        },
+        "extensions": ["sass", "scss", "css"]
+      },
+      "scripts": {
+        "src": [
+          "./bower_components/jquery/dist/jquery.js",
+  		  "./bower_components/bootstrap/dist/js/bootstrap.js",
+          "./bower_components/es5-shim/es5-sham.js",
+          "./bower_components/qtip2/jquery.qtip.js",
+          "./bower_components/knockout/dist/knockout.js",
+          "./bower_components/datatables.net/js/jquery.dataTables.js",
+          "./bower_components/loglevel/dist/loglevel.js",
+          "./build/js/modernizr-custom.js",
+          "./build/js/jquery.i18n.js",
+          "./build/js/jquery.i18n.messagestore.js",
+          "./build/js/veHelpers.js",
+          "./build/js/math.js",
+          "./build/js/mparser.js",
+          "./build/js/dynamiccss.js",
+          "./build/js/newserver.js",
+          "./build/js/exercises.js",
+          "./build/js/dlog.js",
+          "./build/js/userdata.js",
+          "./build/js/SCORM_API_wrapper.js",
+          "./build/js/convinfo.js",
+          "./build/js/CLDRPluralRuleParser.js",
+          "./build/js/scormBridge.js",
+          "./build/js/mintscripts_bootstrap.js",
+          "./build/js/servicescripts.js",
+          "./build/js/newIntersite.js",
+          "./build/js/scores.js",
+          "./build/js/veundmint.js"
+        ],
+        "dest": "js"
+      },
+      "html": {
+        "src": "./",
+        "dest": "./",
+        "htmlmin": {
+          "collapseWhitespace": true
+        },
+        "extensions": ["html", "json"],
+        "excludeFolders": ["layouts", "shared", "macros", "data"],
+        "injectFiles": ["./public/css/app.css", "./public/js/mathjax/MathJax.js", "./public/js/app.js", "./public/js/mathjax-config.html"]
+      },
+      "fonts": {
+        "src": [
+          "./bower_components/bootstrap/fonts/**/",
+          "./node_modules/font-awesome/fonts/*.*",
+          "./build/fonts/**/*",
+          "./src/files/bootstrap/font-awesome-4.6.3/fonts/*"
+        ],
+        "dest": "fonts"
+      },
+      "images": {
+        "src": [
+          "./build/images/**/*"
+        ],
+        "dest": "images"
+      },
+      "pdfs": {
+        "src": [
+          "./build/pdf/*"
+        ],
+        "dest": "pdf"
+      },
+      "inject": {
+        "src": [
+          "./public/js/jquery.js",
+          "./public/js/es5-sham.js",
+          "./public/js/modernizr-custom.js",
+          "./public/js/jquery.qtip.js",
+          "./public/js/knockout.js",
+          "./public/js/jquery.dataTables.js",
+          "./public/js/jquery.i18n.js",
+          "./public/js/jquery.i18n.messagestore.js",
+          "./public/js/bootstrap.js",
+          "./public/js/loglevel.js",
+          "./public/js/helpers.js",
+          "./public/js/math.js",
+          "./public/js/veHelpers.js",
+          "./public/js/dynamiccss.js",
+          "./public/js/newserver.js",
+          "./public/js/convinfo.js",
+          "./public/js/mparser.js",
+          "./public/js/SCORM_API_wrapper.js",
+          "./public/js/scormBridge.js",
+          "./public/js/dlog.js",
+          "./public/js/userdata.js",
+          "./public/js/scores.js",
+          "./public/js/newIntersite.js",
+          "./public/js/exercises.js",
+          "./public/js/mintscripts_bootstrap.js",
+          "./public/js/servicescripts.js",
+          "./public/js/CLDRPluralRuleParser.js",
+          "./public/js/veundmint.js",
+          "./public/css/app.css"
+        ]
+      },
+      "production" : {
+        "rev": true
+      }
+    }
+  }

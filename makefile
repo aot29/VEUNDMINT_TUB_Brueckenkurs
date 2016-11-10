@@ -15,10 +15,6 @@ install: clean
 	# install a Python virtual environment and all dependencies	
 	$(MAKE) -f tools/makefiles/devinstall
 
-	
-	# link the gulp config file
-	ln -sf $(CURDIR)/${SUBMODULE_DIR}/gulpfile.js .
-
 
 #
 # Build the course with all languages available.
