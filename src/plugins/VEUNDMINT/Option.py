@@ -86,7 +86,7 @@ class Option(object):
 		self.testonly = ( lambda override: 1 if 'testonly=1' in override else 0 ) ( override )
 		if self.testonly: print("Building with test tree")
 
-		self.disableLogin = 1	# =1 login buttons will be disabled
+		self.disableLogin = 0	# =1 login buttons will be disabled
 
 		self.scormlogin = 0		# =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
 		self.nosols =  0		# =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
