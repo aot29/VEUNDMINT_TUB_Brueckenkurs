@@ -15,6 +15,30 @@
 
     log.debug('ui.js: loaded');
     //use b in some fashion.
+    //
+    //
+
+    var delay = (function(){
+      var timer = 0;
+      return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+      };
+    })();
+
+
+    /**
+     * Login functionality
+     */
+
+    $('#USER_UNAME').on('keyup', function(event) {
+      delay(function() {
+        console.log('keyup', event.target.value);
+        dataService.usernameAvailable(event.target.value).then(function(data) {
+          console.log(data);
+        });
+      }, 200);
+    });
 
     // attach properties to the exports object to define
     // the exported module properties.
