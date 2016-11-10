@@ -15,7 +15,7 @@
 				<h1 id="pageTitle_logged_in" style="display:none"><span data-toggle="i18n" data-i18n="signup_text04" /></h1>
 				<p><span data-toggle="i18n" data-i18n="signup_text05" /></p>
 
-				<form class="form-horizontal col-sm-6 col-md-8" style="padding-top: 2em;">
+				<form class="form-horizontal col-sm-6 col-md-8" style="padding-top: 2em;" data-toggle="validator" role="form">
 
 					<div class="form-group ">
 						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text06" /></p>
@@ -52,11 +52,8 @@
 					<div class="form-group has-feedback">
 						<label class="control-label col-sm-3" for="USER_UNAME"><span data-toggle="i18n" data-i18n="signup_text14" /></label>
 						<div class="col-sm-9">
-							<div class="input-group">
-								<span class="input-group-addon">@</span>
-								<input type="text" class="form-control" id="USER_UNAME" aria-describedby="USER_UNAME_STATUS" />
-							</div>
-							<span id="USER_UNAME_ICON" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							<input type="text" class="form-control" id="USER_UNAME" aria-describedby="USER_UNAME_STATUS"></input>
+							<span id="USER_UNAME_ICON" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
 							<span id="USER_UNAME_STATUS" class="sr-only">(success)</span>
 						</div>
 					</div>
