@@ -35,7 +35,20 @@
       delay(function() {
         console.log('keyup', event.target.value);
         dataService.usernameAvailable(event.target.value).then(function(data) {
-          console.log(data);
+          var $formParent = $(event.target).parents('.form-group');
+          var $icon = $("#USER_UNAME_ICON");
+          console.log('icon', $icon);
+          if (data.username_available) {
+            $formParent.addClass('has-success');
+            $formParent.removeClass('has-error');
+            $icon.removeClass('glyphicon-remove');
+            $icon.addClass('glyphicon-ok');
+          } else {
+            $formParent.addClass('has-error');
+            $formParent.removeClass('has-success');
+            $icon.removeClass('glyphicon-ok');
+            $icon.addClass('glyphicon-remove');
+          }
         });
       }, 200);
     });

@@ -49,17 +49,18 @@
 					</div>
 
 
-					<div class="form-group logged_out_only">
-						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text13" /></p>
-
-						<label for="USER_UNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text14" /></label>
-						<div class="col-xs-5">
-							<input type="text" class="form-control" id="USER_UNAME"/>
-						</div>
-						<div class="col-xs-1">
-							<span class="glyphicon glyphicon-question-sign" style="padding: 0;" id="checkuserimg" />
+					<div class="form-group has-feedback">
+						<label class="control-label col-sm-3" for="USER_UNAME"><span data-toggle="i18n" data-i18n="signup_text14" /></label>
+						<div class="col-sm-9">
+							<div class="input-group">
+								<span class="input-group-addon">@</span>
+								<input type="text" class="form-control" id="USER_UNAME" aria-describedby="USER_UNAME_STATUS" />
+							</div>
+							<span id="USER_UNAME_ICON" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							<span id="USER_UNAME_STATUS" class="sr-only">(success)</span>
 						</div>
 					</div>
+
 
 
 					<div id="ulreply_p" class="control-label col-xs-6"><span></span></div>
