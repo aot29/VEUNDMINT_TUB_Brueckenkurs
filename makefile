@@ -15,8 +15,6 @@ install: clean
 	# install a Python virtual environment and all dependencies	
 	$(MAKE) -f tools/makefiles/devinstall
 
-	# link module_veundmint (default path)
-	ln -sf $(CURDIR)/${SUBMODULE_DIR}/module_veundmint .
 	
 	# link the gulp config file
 	ln -sf $(CURDIR)/${SUBMODULE_DIR}/gulpfile.js .
