@@ -22,13 +22,12 @@ class SpecialPages( SeleniumTest ):
 
 	def testSpecialPagePresent(self):
 		"""
-		Special pages should be available and have the correct localized title
+		Special pages should be available
 		"""
 		for i18nKey,pageName in self.pageNames.items():
 			url = "%s/html/%s/%s.html" % ( self.start_url, self.lang, pageName )
-			self.driver.get( url )
-			content = self.getElement( 'pageContents' )
-			self.assertTrue( content, "No content found for %s" % url)
+			code = SeleniumTest.getUrlStatusCode( url )
+			self.assertEquals( 200, code, "No content found for %s" % url)
 
 
 	@unittest.skip("Login button needs an ID")

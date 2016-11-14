@@ -2,13 +2,12 @@ import os
 import unittest
 import urllib
 from test.systemtests.SeleniumTest import SeleniumTest
-from test.systemtests.SeleniumTest import getUrlStatusCode
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from settings import BASE_DIR, scorm2004testurl
 
-@unittest.skipIf(getUrlStatusCode(scorm2004testurl) is not 200,
+@unittest.skipIf(SeleniumTest.getUrlStatusCode(scorm2004testurl) is not 200,
 	"Will not run this SCORM test as the scorm2004testwrap.htm is not in the \
 	'/public' directory. Run 'gulp scormTest' first.")
 class ScormTest( SeleniumTest ):
@@ -130,4 +129,4 @@ class ScormTest( SeleniumTest ):
 		"""
 		Test that the scorm test env url is accessible
 		"""
-		self.assertEqual(getUrlStatusCode(scorm2004testurl), 200)
+		self.assertEqual(SeleniumTest.getUrlStatusCode(scorm2004testurl), 200)

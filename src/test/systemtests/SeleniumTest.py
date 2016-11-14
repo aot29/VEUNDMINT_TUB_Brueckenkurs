@@ -176,10 +176,10 @@ class SeleniumTest(unittest.TestCase):
 		WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "pageContents")))
 
 
-def getUrlStatusCode(url):
-	import urllib.request
-	try:
-		r = urllib.request.urlopen(url)
-		return r.getcode()
-	except:
-		return 404
+	def getUrlStatusCode(url):
+		import urllib.request
+		try:
+			r = urllib.request.urlopen(url)
+			return r.getcode()
+		except:
+			return 404

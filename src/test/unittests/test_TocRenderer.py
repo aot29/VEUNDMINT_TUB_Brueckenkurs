@@ -14,7 +14,7 @@ class test_TocRenderer(AbstractRendererTestCase):
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 
-		self.tocRenderer = TocRenderer()
+		self.tocRenderer = TocRenderer( self.options )
 		self.xml = self.tocRenderer.generateXML( self.tc )
 	
 	
