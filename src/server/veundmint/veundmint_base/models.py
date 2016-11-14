@@ -1,7 +1,10 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 TESTUSER_USERNAME = 'testrunner'
 TESTUSER_PASSWORD = '<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
@@ -13,7 +16,19 @@ class DateSensitiveModel(models.Model):
 	class Meta:
 		abstract = True
 
-# Create your models here.
+class CourseProfile(models.Model):
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
+    university = models.CharField(max_length=200)
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        CourseProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
 class WebsiteAction(DateSensitiveModel):
 	action_id = models.CharField(max_length=200)
 	ip_address = models.CharField(max_length=200)

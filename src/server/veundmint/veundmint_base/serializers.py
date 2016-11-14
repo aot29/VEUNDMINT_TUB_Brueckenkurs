@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from veundmint_base.models import WebsiteAction, Score, UserFeedback
+from rest_auth.registration.serializers import RegisterSerializer
+from rest_auth.serializers import UserDetailsSerializer
 
 # Serializers define the API representation.
 class WebsiteActionSerializer(serializers.HyperlinkedModelSerializer):
@@ -18,6 +20,27 @@ class ScoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Score
         fields = ('id', 'siteuxid', 'section', 'maxpoints', 'intest', 'uxid', 'points', 'value', 'rawinput', 'state')
+
+class UserSerializer(UserDetailsSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = UserDetailsSerializer.Meta.fields + ('profile__university',)
+
+
+class RegistrationSerializer(RegisterSerializer):
+    first_name = serializers.CharField(required=False)
+    last_name = serializers.CharField(required=False)
+    university = serializers.CharField(required=False)
+
+    def get_cleaned_data(self):
+        return {
+            'first_name': self.validated_data.get('first_name', ''),
+            'last_name': self.validated_data.get('last_name', ''),
+            'username': self.validated_data.get('username', ''),
+            'password1': self.validated_data.get('password1', ''),
+            'email': self.validated_data.get('email', ''),
+            'university': self.validated_data.get('university', '')
+        }
 
 class UserDataSerializer(serializers.ModelSerializer):
     scores = ScoreSerializer(many=True, required=False)

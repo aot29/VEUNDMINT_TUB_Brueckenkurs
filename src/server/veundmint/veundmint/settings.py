@@ -35,6 +35,11 @@ INSTALLED_APPS = [
     'veundmint_base.apps.VeundmintBaseConfig',
     'rest_framework',
     'corsheaders',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -143,4 +150,14 @@ JWT_AUTH = {
 	'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=100)
 }
 
+# Set to use jwt at django rest auth
+REST_USE_JWT = True
+
 CORS_ORIGIN_ALLOW_ALL = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'veundmint_base.serializers.UserSerializer',
+    'REGISTER_SERIALIZER': 'veundmint_base.serializers.RegistrationSerializer'
+}
