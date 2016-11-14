@@ -14,10 +14,27 @@ chai.use(chaiAsPromised);
 describe('dataService', function() {
 
   var FailService, ls, fs, localStorage;
+
+  var oldUserData = {"active":true,
+  "layout":{"fontadd":0,"menuactive":true},"configuration":{"stylecolor":"0","CF_LOCAL":"1","CF_USAGE":"1","CF_TESTS":"1"},"scores":[{"uxid":"ER1","maxpoints":4,"points":4,"siteuxid":"VBKM01_VariablenTerme","section":1,
+  "id":"QFELD_1.1.3.QF1","intest":false,"value":0,"rawinput":"5","state":1},{"uxid":"ER2","maxpoints":4,"points":4,"siteuxid":"VBKM01_VariablenTerme","section":1,"id":"QFELD_1.1.3.QF2","intest":false,"value":0,"rawinput":"2",
+  "state":1},{"uxid":"ER3","maxpoints":4,"points":4,"siteuxid":"VBKM01_VariablenTerme","section":1,"id":"QFELD_1.1.3.QF3","intest":false,"value":0,"rawinput":"21","state":1},{"uxid":"LSFF1","maxpoints":4,"points":0,
+  "siteuxid":"VBKM01_VariablenTerme","section":1,"id":"QFELD_1.1.3.QF4","intest":false,"value":0,"rawinput":"","state":3},{"uxid":"LSFF2","maxpoints":4,"points":0,"siteuxid":"VBKM01_VariablenTerme","section":1,"id":"QFELD_1.1.3.QF5","intest":false,
+  "value":0,"rawinput":"","state":3},{"uxid":"ERX1","maxpoints":4,"points":0,"siteuxid":"VBKM01_VariablenTerme","section":1,"id":"QFELD_1.1.3.QF6","intest":false,"value":0,"rawinput":"","state":3},{"uxid":"ERX2",
+  "maxpoints":4,"points":0,"siteuxid":"VBKM01_VariablenTerme","section":1,"id":"QFELD_1.1.3.QF7","intest":false,"value":0,"rawinput":"","state":3},{"uxid":"ERX3","maxpoints":4,"points":0,"siteuxid":"VBKM01_VariablenTerme","section":1,
+  "id":"QFELD_1.1.3.QF8","intest":false,"value":0,"rawinput":"","state":3},{"uxid":"ERX11","maxpoints":4,"points":0,"siteuxid":"VBKM01_VariablenTerme","section":1,"id":"QFELD_1.1.3.QF9","intest":false,"value":0,"rawinput":"",
+  "state":3},{"uxid":"ERX12","maxpoints":4,"points":0,"siteuxid":"VBKM01_VariablenTerme","section":1,"id":"QFELD_1.1.3.QF10","intest":false,"value":0,"rawinput":"","state":3},{"uxid":"ERX13","maxpoints":4,"points":0,"siteuxid":"VBKM01_VariablenTerme",
+  "section":1,"id":"QFELD_1.1.3.QF11","intest":false,"value":0,"rawinput":"","state":3}],"sites":[{"uxid":"SITE_VBKM_FIRSTPAGE","millis":14000,"maxpoints":1,"points":1,"id":"","intest":false,"section":""},
+  {"uxid":"SITE_VBKM01_START","millis":3750,"maxpoints":1,"points":1,"id":"","intest":false,"section":""},{"uxid":"SITE_VBKM01_VariablenTerme","millis":13250,"maxpoints":1,"points":1,"id":"","intest":false,"section":""}],
+  "favorites":[{"type":"Tipp","color":"00FF00","text":"Eingangstest probieren","pid":"html/sectionx2.1.0.html","icon":"test01.png"}],"history":{"globalmillis":31000,"commits":[["CHEX:13d0be76bf7aeafffd97da9cf1b2c4956d0aca8a_CID:(MFR-TUB;;10000;;DE-MINT)",
+  1477582854737,1479127976366]]},"login":{"type":0,"vname":"","sname":"","username":"","password":"","email":"","variant":"std","sgang":"","uni":""},"signature":{"main":"MFR-TUB","version":"10000","localization":"DE-MINT"},
+  "startertitle":"3.1 Willkommen","scrollTop":0};
+
+
   beforeEach(function() {
 
     //in the test environment there is no localstorage, we have to mock it
-    dataService.mockLocalStorage();
+    localStorage = dataService.mockLocalStorage();
 
     //reset to init status before each test
     dataService.unsubscribeAll();
@@ -209,5 +226,29 @@ describe('dataService', function() {
       //and syncup should not be called with empty obj cache
     });
   });
+
+  describe('#importUserData', function() {
+    it('should do nothing if no userdata was found', function() {
+      importWithoutUserData = dataService.importUserData();
+      expect(importWithoutUserData).to.have.property('status', 'success');
+      expect(importWithoutUserData).to.have.property('message', 'no obj found for import');
+    });
+    it('should find userdata and import it', function() {
+
+      var keys = ['', 'isobj_MFR-TUB'];
+
+      for (var i = 0; i < keys.length; i++) {
+        localStorage.setItem(keys[i], oldUserData);
+        expect(dataService.importUserData()).to.have.property('status', 'success');
+
+        //was imported
+        expect(dataService.getChangedData()).to.have.deep.property('scores[0].uxid',"ER1");
+        expect(dataService.getChangedData()).to.have.deep.property('scores[0].rawinput',"5");
+
+        //old data was deleted
+        expect(localStorage.getItem(keys[i])).to.equal(null);
+      }
+    });
+  })
 
 });

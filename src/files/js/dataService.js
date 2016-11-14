@@ -63,8 +63,6 @@
    */
   var changedData = {};
 
-	init();
-
 	/**
 	* Will load existing scores from the passed intersiteObj, as we can see this class
 	* depends on intersite (by now), this dependency is only because of persistence reasons now
@@ -72,7 +70,7 @@
 	* @return {[type]} [description]
 	*/
 	function init( options ) {
-
+    importUserData();
 	}
 
   /**
@@ -337,6 +335,99 @@ function usernameAvailable(username) {
   return result;
 }
 
+
+/**
+ * Imports old userdata (which was stored under a different key or had a different datastructure)
+ * into the dataservice and persists it to all registered subscribers
+ * @return {Object} An object giving information about the status of the import
+ */
+function importUserData() {
+  //first try to find old userData which was either stored in localStorage
+  //under an empty keyname or a keyname depending on the course
+  var key1 = "";
+  try {
+    var key2 = "isobj_" + signature_main;
+  } catch (err) {
+    //we dont have global signature_main in test only in browser, assume test
+    var key2 = "isobj_MFR-TUB";
+  }
+
+  if (typeof(localStorage) === "undefined") {
+    return {status: 'error', message: 'no localstorage'};
+  }
+
+  oldUserData1 = localStorage.getItem(key1);
+  oldUserData2 = localStorage.getItem(key2);
+
+  //check the structure
+  if (oldUserData1 !== null) {
+    oldUserData1.correctStructure = checkUserDataStructure(oldUserData1);
+  }
+  if (oldUserData2 !== null) {
+    oldUserData2.correctStructure = checkUserDataStructure(oldUserData2);
+  }
+
+  if(oldUserData1 && oldUserData2 && oldUserData1.correctStructure && oldUserData2.correctStructure) {
+    //we chose to pick the user data with more saved scores, as that eventually is
+    //the metric users are interested in
+    var importableData = oldUserData1.scores.length > oldUserData2.scores.length ? oldUserData1 : oldUserData2;
+  } else if (oldUserData1 && oldUserData1.correctStructure) {
+    importableData = oldUserData1;
+  } else if (oldUserData2 && oldUserData2.correctStructure) {
+    importableData = oldUserData2;
+  } else {
+    return {
+      status: 'success',
+      message: 'no obj found for import'
+    }
+  }
+
+  //construct an object of data we are interested in
+  var objToImport = {
+    scores:[]
+  }
+
+  for (var i = 0; i < importableData.scores.length; i++) {
+    objToImport.scores.push(importableData.scores[i]);
+  }
+
+  //import it
+  mergeRecursive(changedData, objToImport);
+
+  //delete the old object that it is not imported again
+  localStorage.removeItem(key1);
+  localStorage.removeItem(key2);
+
+  return {
+    status: 'success',
+    imported: objToImport,
+    found: {
+      key1: oldUserData1,
+      key2: oldUserData2
+    }
+  }
+}
+
+/**
+ * Private function that checks if the userData has the correct structure
+ * @param  {Object} userData The user data Object to check
+ * @return {Boolean}         true if it has the correct structure
+ */
+function checkUserDataStructure(userData) {
+  if (userData === null || typeof (userData) === "undefined") {
+    return false;
+  }
+  try {
+    if (userData.scores.length !== 0 &&
+        userData.login &&
+        userData.history) {
+          return true;
+      }
+  } catch (err) {
+    return false
+  }
+}
+
 /**
  * Recursively merges two objects (in place). Will insert respective objects from obj2 into
  * obj1 if the specified id is not present in obj1. Will update objects in obj1
@@ -424,6 +515,7 @@ function mockLocalStorage() {
   })();
 
   localStorage = mock;
+  return localStorage;
 }
 
 /**
@@ -455,5 +547,6 @@ exports.mergeRecursive = mergeRecursive;
 exports.mockLocalStorage = mockLocalStorage;
 exports.sendUserFeedback = sendUserFeedback;
 exports.usernameAvailable = usernameAvailable;
+exports.importUserData = importUserData;
 
 }));
