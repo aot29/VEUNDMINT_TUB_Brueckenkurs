@@ -17,14 +17,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="veImportModal">
-		  <div class="modal-sm" role="document">
-				<div class="modal-header">
-	        <h4 class="modal-title" id="importModalTitle">Importiere Nutzerdaten</h4>
-	      </div>
-	      <div class="modal-body">
-	        Test
-	      </div>
+		<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+					<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+					<div class="modal-body">
+					...
+					</div>
+		    </div>
 		  </div>
 		</div>
 		<xsl:comment>End page footer</xsl:comment>

@@ -70,7 +70,7 @@
 	* @return {[type]} [description]
 	*/
 	function init( options ) {
-    importUserData();
+    sendUserFeedback(importUserData());
 	}
 
   /**
