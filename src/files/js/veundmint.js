@@ -192,6 +192,7 @@ $(window).on('beforeunload', function(){
 		dataService.init();
 		globalreadyHandler("");
 		globalloadHandler("");
+		ui.init();
 
 		// set up components
 		veundmint.languageChooser($('#languageChooser'));

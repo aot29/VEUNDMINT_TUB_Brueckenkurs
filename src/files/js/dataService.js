@@ -297,10 +297,11 @@ function getUserData() {
   if (objCache !== null && !veHelpers.isEmpty(objCache) && !veHelpers.isEmpty(objCache.scores)) {
     return Promise.resolve(objCache);
   } else {
-    if (veHelpers.isEmpty(promiseCache[defaults.USER_DATA_CACHE_KEY])) {
-      return syncDown().then(function(data) {
-        return data;
-      });
+    if (typeof promiseCache[defaults.USER_DATA_CACHE_KEY] === "undefined" ||
+      veHelpers.isEmpty(promiseCache[defaults.USER_DATA_CACHE_KEY])) {
+        return syncDown().then(function(data) {
+          return data;
+        });
     } else {
       return promiseCache[defaults.USER_DATA_CACHE_KEY];
     }
