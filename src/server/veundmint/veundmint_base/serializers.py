@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from veundmint_base.models import WebsiteAction, Score, UserFeedback, CourseProfile
 from rest_auth.registration.serializers import RegisterSerializer
-from rest_auth.serializers import UserDetailsSerializer
+from rest_auth.serializers import UserDetailsSerializer, JWTSerializer
 
 # Serializers define the API representation.
 class WebsiteActionSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,24 +23,31 @@ class ScoreSerializer(serializers.ModelSerializer):
 
 class UserSerializer(UserDetailsSerializer):
 
-    profile_university = serializers.CharField(source="profile.university")
+    university = serializers.CharField(source="profile.university")
 
     class Meta:
         model = get_user_model()
-        fields = UserDetailsSerializer.Meta.fields + ('profile_university',)
+        fields = UserDetailsSerializer.Meta.fields + ('university',)
 
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('profile', {})
-        profile_university = profile_data.get('profile_university')
+        university = profile_data.get('university')
 
         instance = super(UserSerializer, self).update(instance, validated_data)
 
         # get and update user profile
-        profile = instance.userprofile
-        if profile_data and profile_university:
-            profile.university = profile_university
+        profile = instance.profile
+        if profile_data and university:
+            profile.university = university
             profile.save()
         return instance
+
+class JWTUserSerializer(JWTSerializer):
+    """
+    Adaptation of JWTSerializer, with added user profile
+    """
+    token = serializers.CharField()
+    user = UserSerializer()
 
 
 class RegistrationSerializer(RegisterSerializer):

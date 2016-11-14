@@ -157,7 +157,12 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'veundmint_base.serializers.UserSerializer'
+}
+
 REST_AUTH_REGISTER_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'veundmint_base.serializers.UserSerializer',
-    'REGISTER_SERIALIZER': 'veundmint_base.serializers.RegistrationSerializer'
+    'REGISTER_SERIALIZER': 'veundmint_base.serializers.RegistrationSerializer',
+    'JWT_SERIALIZER': 'veundmint_base.serializers.JWTSerializer'
 }
