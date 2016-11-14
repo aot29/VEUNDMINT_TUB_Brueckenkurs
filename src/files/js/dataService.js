@@ -70,7 +70,13 @@
 	* @return {[type]} [description]
 	*/
 	function init( options ) {
-    sendUserFeedback({'importUserData': importUserData()});
+
+    var importUserDataResult = importUserData();
+
+    //send feedback / log if data was imported
+    if (importUserDataResult.imported) {
+      sendUserFeedback({'importUserData': importUserDataResult});
+    }
 	}
 
   /**
@@ -362,18 +368,27 @@ function importUserData() {
   //check the structure
   if (oldUserData1 !== null) {
     oldUserData1.correctStructure = checkUserDataStructure(oldUserData1);
+    try {
+      oldUserData1.login.password = "<password_not_shown>";
+    } catch (err) {}
   }
   if (oldUserData2 !== null) {
     oldUserData2.correctStructure = checkUserDataStructure(oldUserData2);
+    try {
+      oldUserData2.login.password = "<password_not_shown>";
+    } catch (err) {}
   }
 
-  if(oldUserData1 && oldUserData2 && oldUserData1.correctStructure && oldUserData2.correctStructure) {
+  log.debug('import', oldUserData1);
+  log.debug('import', oldUserData2);
+
+  if(oldUserData1 !== null && oldUserData2 !== null && oldUserData1.correctStructure && oldUserData2.correctStructure) {
     //we chose to pick the user data with more saved scores, as that eventually is
     //the metric users are interested in
     var importableData = oldUserData1.scores.length > oldUserData2.scores.length ? oldUserData1 : oldUserData2;
-  } else if (oldUserData1 && oldUserData1.correctStructure) {
+  } else if (oldUserData1 !== null && oldUserData1.correctStructure) {
     importableData = oldUserData1;
-  } else if (oldUserData2 && oldUserData2.correctStructure) {
+  } else if (oldUserData2 !== null && oldUserData2.correctStructure) {
     importableData = oldUserData2;
   } else {
     return {
