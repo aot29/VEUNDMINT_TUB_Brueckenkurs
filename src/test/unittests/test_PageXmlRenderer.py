@@ -1,3 +1,10 @@
+'''
+Run with:
+> cd src
+> python3 -m unittest test.unittests.test_PageXmlRenderer.test_PageXmlRenderer
+
+@author: ortiz
+'''
 import unittest
 import os
 from lxml import etree
@@ -14,7 +21,7 @@ class test_PageXmlRenderer(AbstractRendererTestCase):
     
     def setUp(self):
         AbstractRendererTestCase.setUp(self)        
-        page = PageXmlRenderer( self.lang )
+        page = PageXmlRenderer( self.options )
         pageWithQuestions = QuestionDecorator( page )
         self.renderer = RouletteDecorator( pageWithQuestions, self.data, self.i18strings )
         
@@ -32,7 +39,7 @@ class test_PageXmlRenderer(AbstractRendererTestCase):
         #Lang
         self.assertEqual( self.lang, self.xml.xpath('/page/@lang')[0], "Language code is wrong in XML" )
         # found a question in the sample content
-        self.assertEquals( 1, len( self.xml.xpath( '/page/questions' ) ), "Expected a question, but none or more than one found" )
+        self.assertEqual( 1, len( self.xml.xpath( '/page/questions' ) ), "Expected a question, but none or more than one found" )
         # found a roulette exercise in the sample content
         # this is disabled until RouletteDecorator is refactored
         #self.assertEquals( 1, len( self.xml.xpath( '/page/roulettes' ) ), "Expected a roulette exercise, but none or more than one found" )

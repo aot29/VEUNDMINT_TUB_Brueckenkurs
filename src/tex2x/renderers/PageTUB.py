@@ -34,20 +34,22 @@ class PageTUB( AbstractHtmlRenderer ):
 	BASE_TEMPLATE = "page.xslt"
 	""" The template which includes all others """
 	
-	def __init__( self, tplPath, contentRenderer, tocRenderer, disableLogin=0 ):
+	def __init__( self, contentRenderer, tocRenderer, options ):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
-		@param tplPath - String path to the directory holding the xslt templates
-		@param lang - String ISO-639-1 language code ("de" or "en")
 		@param contentRenderer - PageXmlRenderer an AbstractXMLRenderer that builds the page contents, including the questions and roulettes added by the decorators
 		@param tocRenderer - TocRenderer an AbstractXMLRenderer that builds the table of contents
-		@param disableLogin - boolean, whether to disable the login button. false=enabled (default), true = disabled.
+		@param options - Option.py object
 		"""
-		self.tplPath = tplPath
 		self.contentRenderer = contentRenderer
 		self.tocRenderer = tocRenderer
-		self.disableLogin = disableLogin
+		
+		# tplPath - String path to the directory holding the xslt templates
+		self.tplPath = options.converterTemplates
+		
+		# disableLogin - boolean, whether to disable the login button. false=enabled (default), true = disabled.
+		self.disableLogin = options.disableLogin
 
 
 	def generateHTML( self, tc ):

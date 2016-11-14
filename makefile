@@ -21,7 +21,7 @@ install: clean
 #
 all:
 ifeq ($(course),PhysikBK)
-	$(MAKE) -f tools/makefiles/makefile
+	$(MAKE) -f tools/makefiles/makefile OVERRIDE="'description=Onlinebrückenkurs Physik'"
 else
 	$(MAKE) -f tools/makefiles/multilang
 endif

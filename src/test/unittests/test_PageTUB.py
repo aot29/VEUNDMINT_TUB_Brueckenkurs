@@ -1,5 +1,10 @@
+'''
+Run with:
+> cd src
+> python3 -m unittest test.unittests.test_PageTUB.test_PageTUB
 
-
+@author: ortiz
+'''
 import unittest
 import os
 from lxml import etree
@@ -18,9 +23,9 @@ class test_PageTUB(AbstractRendererTestCase):
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 		
-		contentRenderer = PageXmlRenderer( self.lang )
+		contentRenderer = PageXmlRenderer( self.options )
 		tocRenderer = TocRenderer()
-		self.page = PageTUB( self.tplPath, contentRenderer, tocRenderer )
+		self.page = PageTUB( contentRenderer, tocRenderer, self.options )
 		# generate HTML element using the tc mock-up
 		self.page.generateHTML( self.tc )
 
@@ -166,5 +171,7 @@ class test_PageTUB(AbstractRendererTestCase):
 		self.tc.level = SUBSECTION_LEVEL
 		self.assertEquals("../..", self.page.getBasePath( self.tc ))
 		
+if __name__ == '__main__':
+	unittest.main()
 
 		

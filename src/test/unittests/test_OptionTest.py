@@ -17,6 +17,16 @@ class test_OptionTest(unittest.TestCase):
 		'''Path to the "src" dir''' 
 
 
+	def testDescription(self):
+		# Defaults
+		option = Option( self.currentDir, "" )
+		self.assertEqual("Onlinebrückenkurs Mathematik", option.description, "Unexpected default description")
+		
+		# Override
+		option = Option( self.currentDir, ["description=Onlinebrückenkurs Physik","moduleprefix=Onlinebrückenkurs Physik"] )
+		self.assertEqual('Onlinebrückenkurs Physik', option.description, "Unexpected description override")
+		
+
 	def testLocalization(self):
 		# Defaults
 		option = Option( self.currentDir, "" )
@@ -28,7 +38,7 @@ class test_OptionTest(unittest.TestCase):
 		self.assertEqual("en", option.lang, "Unexpected language override")
 		self.assertTrue(option.locale == "en_GB.UTF-8" or option.locale == "en_GB.utf8", "Unexpected locale override")
 
-		
+
 	def testConversionFlags(self):
 		# Defaults
 		option = Option( self.currentDir, "" )
@@ -38,7 +48,7 @@ class test_OptionTest(unittest.TestCase):
 		option = Option( self.currentDir, ["testonly=1"] )
 		self.assertTrue(option.testonly, "Unexpected override for flag 'testonly'")
 
-	
+
 	def testTexTree(self):
 		# Defaults
 		option = Option( self.currentDir, "" )
@@ -92,13 +102,12 @@ class test_OptionTest(unittest.TestCase):
 		option = Option( self.currentDir, "" )
 		self.assertEqual("templates_xslt", option.converterTemplates, "Unexpected default for 'converterTemplates'")
 
-	
+
 	def testPluginOptions(self):
 		# Defaults
 		option = Option( self.currentDir, "" )
 		self.assertTrue("HTML5_MINTMODTEX" in option.pluginPath, "Missing entry 'HTML5_MINTMODTEX' in pluginPath")
 		self.assertTrue("html5_mintmodtex.py" in option.pluginPath["HTML5_MINTMODTEX"], "Unexpected default for 'HTML5_MINTMODTEX' in pluginPath")
-		
 
 
 if __name__ == '__main__':

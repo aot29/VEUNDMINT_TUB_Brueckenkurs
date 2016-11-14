@@ -30,13 +30,13 @@ class PageXmlRenderer(AbstractXmlRenderer):
 	"""
 
 
-	def __init__(self, lang):
+	def __init__(self, options):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
-		@param lang - String ISO-639-1 language code ("de" or "en")
+		@param options - Options.py object
 		"""
-		self.lang = lang
+		self.options = options
 		
 		
 	def generateXML( self, tc ):
@@ -45,15 +45,14 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		
 		@param tc - a TContent object encapsulating page data and content
 		@param basePath - String prefix for all links
-		@param lang - String ISO-639-1 language code ("de" or "en")
 		@return an etree element
 		"""
 		# page is the root element
 		xml = etree.Element( 'page' )
 
 		#self._generateIds( tc )
-		# language
-		xml.set( 'lang', self.lang )
+		#lang - String ISO-639-1 language code ("de" or "en")
+		xml.set( 'lang', self.options.lang )
 		# site ID
 		#xml.set( 'siteId', tc.siteId )
 		# UX ID

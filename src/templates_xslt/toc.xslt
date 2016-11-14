@@ -7,7 +7,7 @@
 			<div id="toc" class="panel-group">
 				<!-- Add TOC title -->
 				<h3>
-					<span data-toggle="i18n" data-i18n="course-title"/>
+					<xsl:value-of select="toc/@description"/>
 				</h3>
 				<xsl:apply-templates select="toc/entries/entry" />
 				<xsl:if test="@isSpecialPage='False' and @isInfoPage='False' and @isTestPage='False'">

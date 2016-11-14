@@ -29,6 +29,10 @@ class TocRenderer( AbstractXmlRenderer ):
 	Generates a table of contents for the selected page (the TContent tc object passed to generateXML)
 	"""	
 	
+	def __init__(self, options):
+		self.options = options
+		
+	
 	def generateXML( self, tc ):
 		"""
 		Create XML for the table of contents
@@ -44,6 +48,9 @@ class TocRenderer( AbstractXmlRenderer ):
 		pageId = tc.myid
 		# add a parameter to the tree: the currently selected page
 		toc.set( 'forPage', str( pageId ) )
+		# course description
+		toc.set( 'description', self.options.description )
+
 		# the TOC entries tree
 		entries = etree.Element( 'entries' )
 

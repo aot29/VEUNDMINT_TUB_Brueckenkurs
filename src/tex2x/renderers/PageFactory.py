@@ -47,16 +47,16 @@ class PageFactory(object):
 			from tex2x.renderers.PageXmlRenderer import PageXmlRenderer, QuestionDecorator, RouletteDecorator 
 
 			# get a basic page renderer
-			xmlRenderer = PageXmlRenderer( self.options.lang )
+			xmlRenderer = PageXmlRenderer( self.options )
 			# decorate with questions and roulette exercises
 			# the order is important, as roulette adds questions
 			xmlRenderer =   RouletteDecorator( 
 									QuestionDecorator( xmlRenderer ), self.data, self.options.strings
 								)
 			# get a table of contents renderer			
-			tocRenderer = TocRenderer()
+			tocRenderer = TocRenderer( self.options )
 			# get a page HTML renderer
-			page = PageTUB( self.options.converterTemplates, xmlRenderer, tocRenderer, self.options.disableLogin )
+			page = PageTUB( xmlRenderer, tocRenderer, self.options )
 			
 		else:
 			raise Exception( 'Only Bootstrap Page renderer is supported in this version' )

@@ -9,11 +9,17 @@ from lxml import etree
 
 import unittest
 from plugins.VEUNDMINT.tcontent import TContent
+from plugins.VEUNDMINT.Option import Option
 from tex2x.renderers.AbstractRenderer import *
 
 from tex2x.Settings import settings
 
-
+class MockOptions(Option):
+	def __init__(self):
+		super().__init__(".", "")
+		self.lang = "en"
+		
+	
 class AbstractRendererTestCase(unittest.TestCase):
     """
     Provides a TContent object to test page and TOC renderers
@@ -25,6 +31,7 @@ class AbstractRendererTestCase(unittest.TestCase):
         self.lang = "en"
         self.data = None
         self.i18strings = dict({"roulette_new": "New exercise"})
+        self.options = MockOptions()
         
         # Setup a tc object for testing
         self.tc = TContent()
