@@ -76,16 +76,7 @@
         contentType: 'application/json; charset=utf-8',
         timeout: 3000,
       })).then(function(data) {
-      if (typeof data.token !== undefined) {
-        isAuthenticated = true;
-        delete(user_credentials.password);
-        userCredentials = user_credentials;
-        userCredentials.token = data.token;
-
-        localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(userCredentials));
-        //console.log('isAuthenticated set to true');
-      }
-      return data;
+        return storeUserCredentials(data);
     }, function(error) {
       return new TypeError(error);
     });
@@ -192,6 +183,33 @@
     return ajaxGET('http://localhost:8000/checkusername/', {username:username});
   }
 
+  function registerUser(userCredentials) {
+    return authAjaxPOST('http://localhost:8000/rest-auth/registration/', userCredentials).then(function (successData) {
+      //if successfully registered
+      return storeUserCredentials(successData);
+    });
+  }
+
+  /**
+   * Store the user credentials in localStorage
+   * @return {[type]} [description]
+   */
+  function storeUserCredentials(userCredentials) {
+    if (typeof userCredentials.token !== undefined) {
+      isAuthenticated = true;
+
+      //never store a password
+      delete(userCredentials.password);
+      //never store the primary key
+      if (userCredentials.user && userCredentials.user.pk) {
+        delete(userCredentials.user.pk);
+      }
+
+      localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(userCredentials));
+    }
+    return userCredentials;
+  }
+
 
   exports.initJquery = initJquery;
   exports.authenticate = authenticate;
@@ -202,5 +220,6 @@
   exports.isAuthenticated = isUserAuthenticated;
   exports.getToken = function() {return userCredentials.token || null};
   exports.usernameAvailable = usernameAvailable;
+  exports.registerUser = registerUser;
 
 }));

@@ -87,7 +87,7 @@ describe('DjangoServices', function() {
 
 			it('should send a request and store if authenticated', function() {
 				return auth().should.be.fulfilled.then(function(data) {
-					return ds.saveUserData({scores:[{id:'12', uxid:'21', rawinput:'testing'}]}).should.be.fulfilled;
+					return ds.saveUserData({scores:[{id:'12', uxid:'21', siteuxid:'test', rawinput:'testing'}]}).should.be.fulfilled;
 				}).then(function(userData) {
 					userData.scores.should.contain.an.item.with.property('id', '12');
 					userData.scores.should.contain.an.item.with.property('rawinput', 'testing');

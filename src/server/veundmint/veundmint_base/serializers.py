@@ -24,21 +24,26 @@ class ScoreSerializer(serializers.ModelSerializer):
 class UserSerializer(UserDetailsSerializer):
 
     university = serializers.CharField(source="profile.university")
+    study = serializers.CharField(source="profile.study")
 
     class Meta:
         model = get_user_model()
-        fields = UserDetailsSerializer.Meta.fields + ('university',)
+        fields = UserDetailsSerializer.Meta.fields + ('university', 'study', )
 
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('profile', {})
         university = profile_data.get('university')
+        study = profile_data.get('study')
 
         instance = super(UserSerializer, self).update(instance, validated_data)
 
         # get and update user profile
         profile = instance.profile
-        if profile_data and university:
-            profile.university = university
+        if profile_data:
+            if university:
+                profile.university = university
+            if study:
+                profile.study = study
             profile.save()
         return instance
 
@@ -54,6 +59,7 @@ class RegistrationSerializer(RegisterSerializer):
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
     university = serializers.CharField(required=False)
+    study = serializers.CharField(required=False)
 
     def get_cleaned_data(self):
         return {
@@ -62,7 +68,8 @@ class RegistrationSerializer(RegisterSerializer):
             'username': self.validated_data.get('username', ''),
             'password1': self.validated_data.get('password1', ''),
             'email': self.validated_data.get('email', ''),
-            'university': self.validated_data.get('university', '')
+            'university': self.validated_data.get('university', ''),
+            'study': self.validated_data.get('study', '')
         }
 
 class UserDataSerializer(serializers.ModelSerializer):

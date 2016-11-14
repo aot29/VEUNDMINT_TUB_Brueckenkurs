@@ -342,6 +342,23 @@ function usernameAvailable(username) {
   return result;
 }
 
+/**
+ * Call registerUser functions at registered storageServices
+ * @param  {Object} userCredentials The user credentials to register
+ * @return {Promise} The result of the register call
+ */
+function registerUser(userCredentials) {
+  var result = new Promise(function (resolve, reject) {
+    storageServices.forEach(function (service) {
+      if (typeof service.registerUser !== "undefined") {
+        resolve(service.registerUser(userCredentials));
+      }
+    });
+    reject(new TypeError('No service found with registerUser function'));
+  })
+  return result;
+}
+
 
 /**
  * Imports old userdata (which was stored under a different key or had a different datastructure)
@@ -564,5 +581,6 @@ exports.mockLocalStorage = mockLocalStorage;
 exports.sendUserFeedback = sendUserFeedback;
 exports.usernameAvailable = usernameAvailable;
 exports.importUserData = importUserData;
+exports.registerUser = registerUser;
 
 }));

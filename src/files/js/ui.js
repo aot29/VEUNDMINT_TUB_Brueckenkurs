@@ -31,17 +31,51 @@
   })();
 
   /**
+   * A function for serializing forms to json in jquery
+   */
+  $.fn.serializeObject = function()
+  {
+      var o = {};
+      var a = this.serializeArray();
+      $.each(a, function() {
+          if (o[this.name] !== undefined) {
+              if (!o[this.name].push) {
+                  o[this.name] = [o[this.name]];
+              }
+              o[this.name].push(this.value || '');
+          } else {
+              o[this.name] = this.value || '';
+          }
+      });
+      return o;
+  };
+
+  /**
    * Initialization logic for the user interface, called in veundmint after all
    * data models and controller logic was initialized. Document is already ready.
+   * All functions here do not return values but change the user interface.
    */
   function init() {
     renderCourseData();
 
+    //clear user register form
+    $('#form-user-register').trigger('reset');
+
     $('#USER_UNAME').on('keyup', function(event) {
       delay(function() {
-        checkUsername();
+        checkUsername(event);
       }, 200);
     });
+
+    $('#newUserButton').on('click', function(event) {
+      var userCredentials = $('#form-user-register').serializeObject();
+      dataService.registerUser(userCredentials).then(function(userData) {
+        console.log('successfully registered', userData);
+      }, function (error) {
+        console.log(error);
+      });
+    });
+
   }
 
 
@@ -105,7 +139,11 @@
     });
   }
 
-  function checkUsername () {
+  /**
+   * Check dataService if username exists
+   * @param  {Event} event The keyup event
+   */
+  function checkUsername (event) {
     dataService.usernameAvailable(event.target.value).then(function(data) {
       var $formParent = $(event.target).parents('.form-group');
       var $icon = $("#USER_UNAME_ICON");
