@@ -147,23 +147,7 @@
    */
   function checkUsername (event) {
     dataService.usernameAvailable(event.target.value).then(function(data) {
-      var $formParent = $(event.target).parents('.form-group');
-      var $icon = $("#USER_UNAME_ICON");
-      if (data.username_available) {
-        $formParent.addClass('has-success');
-        $formParent.removeClass('has-error');
-        $icon.removeClass('glyphicon-remove');
-        $icon.addClass('glyphicon-ok');
-        $('#USER_UNAME_SUCCESS').show();
-        $('#USER_UNAME_ERROR').hide();
-      } else {
-        $formParent.addClass('has-error');
-        $formParent.removeClass('has-success');
-        $icon.removeClass('glyphicon-ok');
-        $icon.addClass('glyphicon-remove');
-        $('#USER_UNAME_SUCCESS').hide();
-        $('#USER_UNAME_ERROR').show();
-      }
+      validateInput($(event.target), data.username_available);
       checkRegisterFormValid(event);
     });
   }
@@ -171,13 +155,19 @@
   function checkPasswordsMatch(event) {
     var $pass1 = $('input[name=password1]'),
         $pass2 = $('input[name=password2]');
-
-      validateInput(event, $pass2, $pass1.val() === $pass2.val());
+      validateInput($pass2, $pass1.val() === $pass2.val());
       checkRegisterFormValid(event);
   }
 
-  function validateInput(event, element, comparator) {
-    var $inputParent = $(event.target).parents('.form-group');
+  /**
+   * Validate a userinput and give feedback by changing input color and icon
+   * @param  {Object} event      The jquery event (mostly input keyup or similar)
+   * @param  {[type]} element    [description]
+   * @param  {[type]} comparator [description]
+   * @return {[type]}            [description]
+   */
+  function validateInput(element, comparator) {
+    var $inputParent = element.parents('.form-group');
     var $inputIcon = $inputParent.find('.glyphicon');
     if (comparator) {
       $inputParent.addClass('has-success');
