@@ -19,7 +19,6 @@ class SpecialPages( SeleniumTest ):
 		self.lang = 'de'
 
 
-
 	def testSpecialPagePresent(self):
 		"""
 		Special pages should be available
