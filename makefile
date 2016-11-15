@@ -21,10 +21,19 @@ install: clean
 #
 all:
 ifeq ($(course),PhysikBK)
-	$(MAKE) -f tools/makefiles/makefile OVERRIDE="'description=Onlinebrückenkurs Physik'"
+	# link to actual physics tex-tree to he name expected by the script
+	ln -sf $(CURDIR)/content_submodule/content/tree_physik_bk.tex $(CURDIR)/content_submodule/content/tree_de.tex
+	# call the makefile, with overrides, skip creating PDF
+	$(MAKE) -f tools/makefiles/makefile OVERRIDE="'description=Onlinebrückenkurs Physik'" nopdf
+	# forward to the first page
+	-rm $(CURDIR)/public/index.html
+	cp $(CURDIR)/src/templates_xslt/html5_redirect_basic.html $(CURDIR)/public/index.html
+	find $(CURDIR)/public -maxdepth 1 -name 'index.html' -type f -exec sed -i "s|\$$url|/html/de/sectionx2.1.0.html|g" {} \;
 else
 	$(MAKE) -f tools/makefiles/multilang
 endif
+	# if everything went well, you can now start a server by doing
+	# npm run gulp watch
 
 
 #

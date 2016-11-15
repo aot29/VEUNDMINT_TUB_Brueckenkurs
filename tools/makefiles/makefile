@@ -364,9 +364,8 @@ cleanupAfter:
 # echo instruction how to proceed otherwise
 #
 startGulp:
-	# Wenn die config.json Datei einen Systaxfehler hat, wird hier die Fehlermeldung unten auch ausgegeben, was in diesem Fall nicht stimmt.
-	# Vielleicht ist es möglich, die config.json Datei vorab zu überprüfen?
-	@type npm >/dev/null 2>&1 && npm run gulp ||echo "npm does not exist. You need to install npm (node package manager) first. Then install project dependencies via 'npm install' and build the online version with 'gulp' or run this make script again after you installed npm and dependencies"
+	# running gulp and copying to /public
+	@type npm >/dev/null 2>&1 && npm run gulp >/dev/null 2>&1 ||echo "npm does not exist. You need to install npm (node package manager) first. Then install project dependencies via 'npm install' and build the online version with 'gulp' or run this make script again after you installed npm and dependencies"
 
 #
 # Copy PDFs to public (move this and possibly other targets to gulp)
