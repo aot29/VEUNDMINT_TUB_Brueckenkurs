@@ -23,9 +23,8 @@ class ScoreSerializer(serializers.ModelSerializer):
         fields = ('id', 'siteuxid', 'section', 'maxpoints', 'intest', 'uxid', 'points', 'value', 'rawinput', 'state')
 
 class UserSerializer(UserDetailsSerializer):
-
-    university = serializers.CharField(source="profile.university")
-    study = serializers.CharField(source="profile.study")
+    university = serializers.CharField(source="profile.university", allow_blank=True)
+    study = serializers.CharField(source="profile.study", allow_blank=True)
 
     class Meta:
         model = get_user_model()
@@ -56,6 +55,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class UserXSerializer(serializers.ModelSerializer):
     university = serializers.CharField(source="profile.university", required=False)
     study = serializers.CharField(source="profile.study", required=False)
+    email = serializers.EmailField(allow_blank=True, max_length=100, required=False)
 
     class Meta:
         model = get_user_model()
@@ -83,7 +83,7 @@ class JWTUserSerializer(JWTSerializer):
     Adaptation of JWTSerializer, with added user profile
     """
     token = serializers.CharField(read_only=True)
-    user = UserXSerializer()
+    user = UserSerializer(required=False)
 
     def update(self, instance, validated_data):
         print ('JWT update')
@@ -103,10 +103,6 @@ class JWTUserSerializer(JWTSerializer):
             profile.save()
         return instance
 
-    def create(self, validated_data):
-        print('JWT create')
-        return JWTSerializer.create(self, validated_data)
-
 class TokenProfileSerializer(TokenSerializer):
     class Meta:
         model = TokenModel
@@ -114,10 +110,11 @@ class TokenProfileSerializer(TokenSerializer):
 
 
 class RegistrationSerializer(RegisterSerializer):
-    first_name = serializers.CharField(required=False)
-    last_name = serializers.CharField(required=False)
-    university = serializers.CharField(required=False)
-    study = serializers.CharField(required=False)
+    email = serializers.EmailField(required=False, allow_blank=True)
+    first_name = serializers.CharField(required=False, allow_blank=True)
+    last_name = serializers.CharField(required=False, allow_blank=True)
+    university = serializers.CharField(required=False, allow_blank=True)
+    study = serializers.CharField(required=False, allow_blank=True)
 
     def get_cleaned_data(self):
         return {
