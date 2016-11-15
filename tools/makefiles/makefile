@@ -84,6 +84,7 @@ nopdf: |cleanupBefore convert_without_pdf merge fixRedirects fix fixSpecialPages
 #
 define convert_cmd
 	# prefixed with "-" to ignore converter errors
+	# now converting, don't worry about converter errors. This can take a while...
 	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=$(CURRENT_LANG) output=$(OUTPUT)_$(CURRENT_LANG) ${OVERRIDE}
 endef
 
@@ -112,6 +113,7 @@ endef
 # @see: https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/pdf
 #
 define pdf_cmd
+	# now building PDFs, this can take a while...
 	cd _tmp/tex && pdflatex -interaction nonstopmode -halt-on-error -file-line-error veundmint_$(CURRENT_LANG).tex >> convert.log
 	cd _tmp/tex && makeindex  -q veundmint_$(CURRENT_LANG)
 	cd _tmp/tex && pdflatex -interaction nonstopmode -halt-on-error -file-line-error veundmint_$(CURRENT_LANG).tex >> convert.log
