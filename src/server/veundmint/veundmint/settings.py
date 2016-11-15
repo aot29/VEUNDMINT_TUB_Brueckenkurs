@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
 ]
 
 SITE_ID = 1
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'veundmint.urls'
@@ -147,7 +149,8 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
 	'JWT_ALLOW_REFRESH': True,
 	'JWT_EXPIRATION_DELTA': datetime.timedelta(days=21),
-	'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=100)
+	'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=100),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'veundmint_base.serializers.jwt_response_payload_handler'
 }
 
 # Set to use jwt at django rest auth
@@ -158,11 +161,18 @@ CORS_ORIGIN_ALLOW_ALL = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'veundmint_base.serializers.UserSerializer'
+    'USER_DETAILS_SERIALIZER': 'veundmint_base.serializers.UserSerializer',
+    'JWT_SERIALIZER': 'veundmint_base.serializers.JWTUserSerializer',
+    'TOKEN_SERIALIZER': 'veundmint_base.serializers.TokenProfileSerializer',
 }
 
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'veundmint_base.serializers.UserSerializer',
     'REGISTER_SERIALIZER': 'veundmint_base.serializers.RegistrationSerializer',
-    'JWT_SERIALIZER': 'veundmint_base.serializers.JWTSerializer'
+    'JWT_SERIALIZER': 'veundmint_base.serializers.JWTUserSerializer',
+    'USER_DETAILS_SERIALIZER': 'veundmint_base.serializers.UserSerializer',
+    'TOKEN_SERIALIZER': 'veundmint_base.serializers.TokenProfileSerializer',
 }
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

@@ -20,7 +20,7 @@ class CourseProfile(models.Model):
 	user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
 	university = models.CharField(max_length=200)
 	study = models.CharField(max_length=200)
-	
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -79,4 +79,4 @@ class Foo(models.Model):
 def get_test_user():
 	user, created = get_user_model.objects.get_or_create(username=TESTUSER_USERNAME)
 	user.set_password(TESTUSER_PASSWORD)
-	user.save
+	user.save()

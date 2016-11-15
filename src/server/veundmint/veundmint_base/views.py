@@ -1,16 +1,28 @@
+import random, string
+
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 
 from rest_framework import viewsets, permissions, authentication, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, GenericAPIView
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
+
+from rest_auth.registration.views import RegisterView
+from rest_auth.utils import jwt_encode
+
+from allauth.account import app_settings as allauth_settings
+from allauth.account.utils import complete_signup
 
 from veundmint_base.serializers import UserDataSerializer, WebsiteActionSerializer, \
-ScoreSerializer, UserFeedbackSerializer
+ScoreSerializer, UserFeedbackSerializer, JWTUserSerializer, UserSerializer, UserXSerializer, \
+JWTUserSerializer
 from veundmint_base.models import WebsiteAction, Score, UserFeedback
 
 

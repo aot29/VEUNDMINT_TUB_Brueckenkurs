@@ -14,12 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import include, url
+from django.conf import settings
+from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic import TemplateView
+
 from rest_framework import routers
-from veundmint_base.models import WebsiteAction
 from rest_framework_jwt.views import obtain_jwt_token
+from rest_auth.registration.views import VerifyEmailView
+
+from veundmint_base.models import WebsiteAction
 from veundmint_base.views import WebsiteActionViewSet, UserViewSet, ScoreViewSet,\
 ProfileViewSet, CheckUsernameView, DataTimestampView, UserFeedbackViewSet
+
 
 router = routers.DefaultRouter()
 router.register(r'server-action', WebsiteActionViewSet)
@@ -38,3 +45,9 @@ urlpatterns = [
     url(r'^checkusername/', CheckUsernameView.as_view()),
     url(r'^user-data-timestamp/', DataTimestampView.as_view())
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
