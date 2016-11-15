@@ -161,10 +161,10 @@ $(window).on('beforeunload', function(){
 		log.setDefaultLevel(settings.defaultLogLevel);
 
 		//TODO ns - remove
-		DjangoAuthService.authenticate({
-			username: 'testrunner',
-			password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
-		});
+		// DjangoAuthService.authenticate({
+		// 	username: 'testrunner',
+		// 	password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+		// });
 
 
 		$('[data-toggle="offcanvas"]').click(function () {

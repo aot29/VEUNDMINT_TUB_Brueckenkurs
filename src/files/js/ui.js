@@ -58,19 +58,21 @@
   function init() {
     renderCourseData();
 
-    //clear user register form
-    $('#form-user-register').trigger('reset');
-
     $('#USER_UNAME').on('keyup', function(event) {
       delay(function() {
         checkUsername(event);
       }, 200);
     });
 
+    $('input[name=password2]').on('keyup', function(event) {
+      checkPasswordsMatch(event);
+    });
+
     $('#newUserButton').on('click', function(event) {
       var userCredentials = $('#form-user-register').serializeObject();
       dataService.registerUser(userCredentials).then(function(userData) {
         console.log('successfully registered', userData);
+        opensite('index.html');
       }, function (error) {
         console.log(error);
       });
@@ -162,7 +164,50 @@
         $('#USER_UNAME_SUCCESS').hide();
         $('#USER_UNAME_ERROR').show();
       }
+      checkRegisterFormValid(event);
     });
+  }
+
+  function checkPasswordsMatch(event) {
+    var $pass1 = $('input[name=password1]'),
+        $pass2 = $('input[name=password2]');
+
+      validateInput(event, $pass2, $pass1.val() === $pass2.val());
+      checkRegisterFormValid(event);
+  }
+
+  function validateInput(event, element, comparator) {
+    var $inputParent = $(event.target).parents('.form-group');
+    var $inputIcon = $inputParent.find('.glyphicon');
+    if (comparator) {
+      $inputParent.addClass('has-success');
+      $inputParent.removeClass('has-error');
+      $inputIcon.removeClass('glyphicon-remove');
+      $inputIcon.addClass('glyphicon-ok');
+    } else {
+      $inputParent.addClass('has-error');
+      $inputParent.removeClass('has-success');
+      $inputIcon.removeClass('glyphicon-ok');
+      $inputIcon.addClass('glyphicon-remove');
+    }
+  }
+
+  /**
+   * Check if register form is valid, that is if username is available,
+   * password1 = password2 and password1 is secure
+   * @param  {[type]} event [description]
+   * @return {[type]}       [description]
+   */
+  function checkRegisterFormValid(event) {
+    var $usernameInput = $('#USER_UNAME').parents('.form-group');
+    var $pass2Input = $('input[name=password2]').parents('.form-group');
+    var $registerButton = $('#newUserButton');
+    var formValid = $usernameInput.hasClass('has-success') && $pass2Input.hasClass('has-success') ;
+    if (formValid) {
+      $registerButton.removeClass('disabled');
+    } else {
+      $registerButton.addClass('disabled');
+    }
   }
 
 
