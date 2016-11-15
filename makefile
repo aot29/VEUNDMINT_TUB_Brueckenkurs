@@ -6,7 +6,7 @@ SUBMODULE_DIR = content_submodule
 # 
 install: clean
 	# add the software as a submodule
-	git submodule add -b ${branch} ${SOFTWARE_REPOSITORY} ${SUBMODULE_DIR}
+	git submodule add -b ${branch} -f ${SOFTWARE_REPOSITORY} ${SUBMODULE_DIR}
 	
 	# updates the linked submodules
 	git submodule init
@@ -14,6 +14,10 @@ install: clean
 
 	# install a Python virtual environment and all dependencies	
 	$(MAKE) -f tools/makefiles/devinstall
+
+	# unstage submodules, as these may be different for other users
+	git reset HEAD content_submodule
+	git reset HEAD .gitmodules
 
 
 #
