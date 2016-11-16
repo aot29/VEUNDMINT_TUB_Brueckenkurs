@@ -43,7 +43,7 @@
     that.registerUser = DjangoAuthService.registerUser;
     that.authenticate = DjangoAuthService.authenticate;
     that.isAuthenticated = DjangoAuthService.isAuthenticated;
-    that.logout = DjangoStorageService.logout;
+    that.logout = DjangoAuthService.logout;
 
     return that;
   }

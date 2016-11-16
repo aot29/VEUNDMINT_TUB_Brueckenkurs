@@ -104,6 +104,17 @@
       }
     });
 
+    //logout on click
+    $('#li-logout > a').on('click', function(event) {
+      event.preventDefault();
+      dataService.logout().then(function(data) {
+        log.debug('successfully logged out');
+      }, function (error) {
+        log.debug('error logging out', error);
+      });
+      opensite('index.html');
+    })
+
   }
 
 
