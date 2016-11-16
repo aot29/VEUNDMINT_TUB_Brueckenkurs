@@ -2079,21 +2079,6 @@ function styleColors(c) {
 }
 
 /**
-* Change the text of the login button:
-* Logged -in or -out?
-*/
-function updateLoginButton() {
-  if( userdata.isLoggedIn() ) {
-    $('#logged_out_buttons').hide();
-    $('#logged_in_buttons').show();
-
-  } else {
-    $('#logged_in_buttons').hide();
-    $('#logged_out_buttons').show();
-  }
-}
-
-/**
 * Change the look of the tool buttons (glossar, data etc.):
 * Logged -in or -out?
 */

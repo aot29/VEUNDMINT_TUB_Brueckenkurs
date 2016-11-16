@@ -324,6 +324,9 @@ function sendUserFeedback(data) {
   });
 }
 
+//TODO the following function should be moved to a authService, as they have nothing
+//todo with data management in the first line
+
 /**
  * Check at the subscribed storageService if a username is available. Will
  * consider the service in storageServices with the lowest index, that offers
@@ -359,6 +362,57 @@ function registerUser(userCredentials) {
   return result;
 }
 
+/**
+ * Call registerUser functions at registered storageServices
+ * @param  {Object} userCredentials The user credentials to register
+ * @return {Promise} The result of the register call
+ */
+function authenticate(userCredentials) {
+  var result = new Promise(function (resolve, reject) {
+    storageServices.forEach(function (service) {
+      if (typeof service.authenticate !== "undefined") {
+        resolve(service.authenticate(userCredentials));
+      }
+    });
+    reject(new TypeError('No service found with authenticate function'));
+  })
+  return result;
+}
+
+/**
+ * Calls registered services isAuthenticated
+ * @return {Promise<Boolean>} resolves to true if user is authenticated
+ */
+function isAuthenticated() {
+  var result = new Promise(function (resolve, reject) {
+    storageServices.forEach(function (service) {
+      if (typeof service.isAuthenticated !== "undefined") {
+        resolve(service.isAuthenticated());
+      }
+    });
+    reject(new TypeError('No service found with isAuthenticated function'));
+  })
+  return result;
+}
+
+/**
+ * Calls registered services logout
+ * @return {Promise<Boolean>} resolves to true if user is authenticated
+ */
+function logout() {
+  var result = new Promise(function (resolve, reject) {
+    storageServices.forEach(function (service) {
+      if (typeof service.logout !== "undefined") {
+        resolve(service.logout());
+      }
+    });
+    reject(new TypeError('No service found with logout function'));
+  });
+  return result;
+}
+
+
+
 
 /**
  * Imports old userdata (which was stored under a different key or had a different datastructure)
@@ -380,8 +434,8 @@ function importUserData() {
     return {status: 'error', message: 'no localstorage'};
   }
 
-  oldUserData1 = localStorage.getItem(key1);
-  oldUserData2 = localStorage.getItem(key2);
+  var oldUserData1 = localStorage.getItem(key1);
+  var oldUserData2 = localStorage.getItem(key2);
 
   //check the structure
   if (oldUserData1 !== null) {
@@ -579,8 +633,12 @@ exports.getObjCache = getObjCache;
 exports.mergeRecursive = mergeRecursive;
 exports.mockLocalStorage = mockLocalStorage;
 exports.sendUserFeedback = sendUserFeedback;
-exports.usernameAvailable = usernameAvailable;
 exports.importUserData = importUserData;
-exports.registerUser = registerUser;
 
+//TODO these functions should be moved to own authserver
+exports.usernameAvailable = usernameAvailable;
+exports.registerUser = registerUser;
+exports.authenticate = authenticate;
+exports.isAuthenticated = isAuthenticated;
+exports.logout = logout;
 }));

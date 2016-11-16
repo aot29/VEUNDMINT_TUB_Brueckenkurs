@@ -68,7 +68,13 @@
       checkPasswordsMatch(event);
     });
 
-    $('#newUserButton').on('click', function(event) {
+
+    /**
+     * AUTHENTICATION FUNCTIONALITY
+     */
+
+    //register a new user
+    $('#btn-register').on('click', function(event) {
       var userCredentials = $('#form-user-register').serializeObject();
       dataService.registerUser(userCredentials).then(function(userData) {
         console.log('successfully registered', userData);
@@ -76,6 +82,26 @@
       }, function (error) {
         console.log(error);
       });
+    });
+
+    //login a user
+    $('#btn-login').on('click', function(event) {
+      var userCredentials = $('#form-user-login').serializeObject();
+      dataService.authenticate(userCredentials).then(function(userData) {
+        console.log('successfully signed in', userData);
+        opensite('index.html');
+      }, function (error) {
+        console.log('error loggin in', error);
+      })
+    });
+
+    //set the body class to logged_in if logged in else set it to logged_out
+    dataService.isAuthenticated().then(function (isAuthenticated) {
+      if (isAuthenticated) {
+        $('body').addClass('logged_in');
+      } else {
+        $('body').addClass('logged_out');
+      }
     });
 
   }

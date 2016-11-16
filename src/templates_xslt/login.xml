@@ -2,27 +2,25 @@
 <div>
 
 	<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->
-	
+
 	<div class="show_noscorm" style="display:none;">
 
 		<i><span data-toggle="i18n" data-i18n="login_text01" /></i>
 
-		<form class="form-horizontal" style="padding-top: 2em;">
+		<form id="form-user-login" class="form-horizontal" style="padding-top: 2em;">
 			<div class="form-group col-sm-6 col-md-8">
-				
 				<label for="OUSER_LOGIN" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="login_text02" /></label>
-				<div class="col-xs-6"><input type="text" class="form-control" id="OUSER_LOGIN" /></div>
-		        
-				<label for="OUSER_PW" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="login_text03" /></label>
-				<div class="col-xs-6"><input type="password" class="form-control" id="OUSER_PW" /></div>
+				<div class="col-xs-6"><input name="username" type="text" class="form-control" id="OUSER_LOGIN" /></div>
 
-				<button class="std-button btn btn-primary btn-lg pull-right" type="button" onclick="intersite.userlogin_click();"><span data-toggle="i18n" data-i18n="login_text04" /></button>
-	        
+				<label for="OUSER_PW" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="login_text03" /></label>
+				<div class="col-xs-6"><input name="password" type="password" class="form-control" id="OUSER_PW" /></div>
+
+				<button id="btn-login" class="std-button btn btn-primary btn-lg pull-right" type="button"><span data-toggle="i18n" data-i18n="login_text04" /></button>
 			</div>
-			
+
 		</form>
 	</div>
-	
+
 	<div class="show_scorm" style="display:none">
 		<b><span data-toggle="i18n" data-i18n="login_text05" /></b>
 	</div>

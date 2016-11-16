@@ -140,6 +140,24 @@
   }
 
   /**
+   * Make unauthenticated POST request to url with data
+   * @param  {String} url  The url to send the request to
+   * @param  {Object} data The data you want to send with the request
+   * @return {Object}      The returned (json) data
+   */
+  function ajaxPOST (url, data, async) {
+    return Promise.resolve(
+      $.ajax({
+        url: url,
+        method: 'POST',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8'
+      })
+    );
+  }
+
+  /**
   * Make authenticated POST request to url with data
   * @param  {String} url  The url to send the request to
   * @param  {Object} data The data you want to send with the request
@@ -184,7 +202,7 @@
   }
 
   function registerUser(userCredentials) {
-    return authAjaxPOST('http://localhost:8000/rest-auth/registration/', userCredentials).then(function (successData) {
+    return ajaxPOST('http://localhost:8000/rest-auth/registration/', userCredentials).then(function (successData) {
       //if successfully registered
       return storeUserCredentials(successData);
     });

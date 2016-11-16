@@ -17,7 +17,7 @@
 						<xsl:if test="$disableLogin=0">
 
 							<!-- Show these when not logged in -->
-							<li class="dropdown" id="logged_out_buttons" style="display: none;">
+							<li class="dropdown logged_out_only" id="logged_out_buttons">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="{@basePath}/{@lang}/login.html" id="loginButton">
@@ -31,7 +31,7 @@
 							</li>
 
 							<!-- Show these when logged in -->
-							<li class="dropdown" id="logged_in_buttons" style="display: none;">
+							<li class="dropdown logged_in_only" id="logged_in_buttons">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li id="li-course-data">
@@ -54,7 +54,7 @@
 
 						</xsl:if>
 						<li>
-							<li><a data-toggle="tooltip" id="pdfbutton" href="{@basePath}/../pdf/veundmint_{@lang}.pdf"><span class="glyphicon 
+							<li><a data-toggle="tooltip" id="pdfbutton" href="{@basePath}/../pdf/veundmint_{@lang}.pdf"><span class="glyphicon
 glyphicon glyphicon-save-file"></span></a></li>
 						</li>
 					</ul>

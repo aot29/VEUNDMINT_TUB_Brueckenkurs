@@ -41,6 +41,9 @@
 
     that.usernameAvailable = DjangoAuthService.usernameAvailable;
     that.registerUser = DjangoAuthService.registerUser;
+    that.authenticate = DjangoAuthService.authenticate;
+    that.isAuthenticated = DjangoAuthService.isAuthenticated;
+    that.logout = DjangoStorageService.logout;
 
     return that;
   }
