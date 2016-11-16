@@ -143,7 +143,7 @@
         return Promise.reject(new TypeError('getAllDataTimestamps did not return an Array.'));
       }
     }).then(function(latestData) {
-      objCache = latestData;
+      objCache = latestData || {};
       //if there were localChanges merge them, so they are not lost
       if (!veHelpers.isEmpty(changedData)) {
         objCache = mergeRecursive(objCache, changedData);

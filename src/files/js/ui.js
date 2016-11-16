@@ -228,7 +228,7 @@
   function checkRegisterFormValid(event) {
     var $usernameInput = $('#USER_UNAME').parents('.form-group');
     var $pass2Input = $('input[name=password2]').parents('.form-group');
-    var $registerButton = $('#newUserButton');
+    var $registerButton = $('#btn-register');
     var formValid = $usernameInput.hasClass('has-success') && $pass2Input.hasClass('has-success') ;
     if (formValid) {
       $registerButton.removeClass('disabled');
