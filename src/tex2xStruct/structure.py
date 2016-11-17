@@ -14,6 +14,8 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    
+    @author Daniel Haase
 """
 
 from . import Option as op
@@ -389,7 +391,6 @@ class Structure(object):
             print("Plugins ausführen\n")
             total_time += time_diff
             schritt += 1
-
 
         if verbose:
             print("Total time: " + str(total_time))

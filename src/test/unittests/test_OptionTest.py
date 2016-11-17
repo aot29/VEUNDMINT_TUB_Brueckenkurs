@@ -14,7 +14,7 @@ class test_OptionTest(unittest.TestCase):
 	
 	def setUp(self):
 		self.currentDir = "."
-		'''Path to the "src" dir''' 
+		'''Path to the "src" dir'''
 
 
 	def testDescription(self):

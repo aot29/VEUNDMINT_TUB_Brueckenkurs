@@ -42,7 +42,8 @@ all:
 # (build yourself first, using make -f tools/makefiles/multilang)
 #
 localhost: 
-	echo "Running unit tests on localhost"
+	#Running unit tests on localhost
+	#Make sure you start the server first by doing: npm run watch
 	$(eval BASE_URL := ${LOCALHOST_URL})
 	echo "Running system tests run on ${BASE_URL}"
 	$(checkServer_cmd)

@@ -14,37 +14,31 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+	@author Alvaro Ortiz
 """
 
-
-"""
-Ältere lxml Versionen könnten noch von folgendem Bug betroffen sein:
-- https://github.com/lxml/lxml/commit/21eb9ec740589c9b265e5c83a76751a6015915b4
-"""
-
-#import html5lib
-#from struct import Structure as st
 from lxml import etree
-import tex2xStruct as struct
 import plugins
 import os
-from tex2xStruct import structure
-
-
+from tex2x.dispatcher.Dispatcher import Dispatcher
 import argparse
+import traceback
 
+try:
+	parser = argparse.ArgumentParser(description='tex2x converter')
+	parser.add_argument("plugin", help="specify the plugin you want to run")
+	parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
+	parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
+	args = parser.parse_args()
 
-parser = argparse.ArgumentParser(description='tex2x converter')
-parser.add_argument("plugin", help="specify the plugin you want to run")
-parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
-parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
+	if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
+	    raise Exception("tex2x must be called in its own directory")
 
-args = parser.parse_args()
-#print(args.override)
-
-# TODO: tex2x should be callable from everywhere, right now directory joins assume we are in src
-if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
-    print("tex2x must be called in its own directory")
-else:
     #create object and start processing
-    structure.Structure().startTex2x(args.verbose, args.plugin, args.override) # this function will terminate the program with sys.exit
+	dispatcher = Dispatcher(args.verbose, args.plugin, args.override) # this function will terminate the program with sys.exit
+	dispatcher.dispatch()
+
+except Exception:
+	# Handle exceptions at the highest level, not in the classes
+	print(traceback.format_exc())
