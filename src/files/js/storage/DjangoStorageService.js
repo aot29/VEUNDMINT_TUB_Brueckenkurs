@@ -46,6 +46,7 @@
     that.isAuthenticated = DjangoAuthService.isAuthenticated;
     that.logout = DjangoAuthService.logout;
     that.getUserCredentials = DjangoAuthService.getUserCredentials;
+    that.changeUserData = DjangoAuthService.changeUserData;
 
     return that;
   }

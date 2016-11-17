@@ -267,8 +267,9 @@
   * @param  {Object} data The json data to fill into the form
   */
   $.fn.populateForm = function (data) {
+    var $form = this;
     $.each(data, function(key, value){
-      var $ctrl = $('[name='+key+']', this);
+      var $ctrl = $('[name='+key+']', $form);
       switch($ctrl.attr("type"))
       {
         case "text" :

@@ -181,11 +181,25 @@
     return ajaxGET('http://localhost:8000/checkusername/', {username:username});
   }
 
+  /**
+   * Register a new user at django server
+   * @param  {Object} userCredentials json object with required fields
+   * @return {Promise<Object>} Resolves with user data, rejects with validation errors
+   */
   function registerUser(userCredentials) {
     return ajaxPOST('http://localhost:8000/rest-auth/registration/', userCredentials).then(function (successData) {
       //if successfully registered
       return storeUserCredentials(successData);
     });
+  }
+
+  /**
+   * Change the userdata of a registered user
+   * @param  {Object} userData the changed user data
+   * @return {Promise<Object>} resolves with the changed user data
+   */
+  function changeUserData(userData) {
+    return authAjaxRequest('http://localhost:8000/rest-auth/user/', userData, true, 'PUT');
   }
 
   /**
@@ -220,5 +234,6 @@
   exports.getToken = function() {return userCredentials.token || null};
   exports.usernameAvailable = usernameAvailable;
   exports.registerUser = registerUser;
+  exports.changeUserData = changeUserData;
 
 }));

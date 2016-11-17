@@ -426,6 +426,20 @@ function logout() {
    return result;
  }
 
+ /**
+  * Calls registered services changeUserData()
+  */
+  function changeUserData() {
+    var result = new Promise(function (resolve, reject) {
+      storageServices.forEach(function (service) {
+        if (typeof service.changeUserData !== "undefined") {
+          resolve(service.changeUserData());
+        }
+      });
+      reject(new TypeError('No service found with changeUserData function'));
+    });
+    return result;
+  }
 
 
 
@@ -657,4 +671,5 @@ exports.authenticate = authenticate;
 exports.isAuthenticated = isAuthenticated;
 exports.logout = logout;
 exports.getUserCredentials = getUserCredentials;
+exports.changeUserData = changeUserData;
 }));
