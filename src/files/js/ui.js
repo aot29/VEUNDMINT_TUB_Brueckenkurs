@@ -66,7 +66,7 @@
     //change user data
     $('#btn-change-user-data').on('click', function(event) {
       var userCredentials = $('#form-user-register').serializeObject();
-      dataService.registerUser(userCredentials).then(function(userData) {
+      dataService.changeUserData(userCredentials).then(function(userData) {
         console.log('successfully changed data to', userData);
       }, function (error) {
         console.log(error);

@@ -429,11 +429,11 @@ function logout() {
  /**
   * Calls registered services changeUserData()
   */
-  function changeUserData() {
+  function changeUserData(changedUserData) {
     var result = new Promise(function (resolve, reject) {
       storageServices.forEach(function (service) {
         if (typeof service.changeUserData !== "undefined") {
-          resolve(service.changeUserData());
+          resolve(service.changeUserData(changedUserData));
         }
       });
       reject(new TypeError('No service found with changeUserData function'));
