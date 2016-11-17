@@ -2130,7 +2130,6 @@ function updateSignupPage() {
 function applyLayout(first) {
 
   updateLayoutStates();
-  updateLoginButton();
   updateToolButtons();
   updateSignupPage();
 
