@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 	<div>
 		<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->
-		<i><span data-toggle="i18n" data-i18n="signup_text01" /></i>
+		<div class="logged_out_only">
+			<i><span data-toggle="i18n" data-i18n="signup_text01" /></i>
+		</div>
 
 		<div class="show_scorm" style="display:none">
 			<b><span data-toggle="i18n" data-i18n="signup_text02" /></b>
@@ -11,9 +13,14 @@
 			<!-- REGISTER NEW ACCOUNT -->
 			<div class="register_new">
 
-				<h1 id="pageTitle_logged_out" style="display:none"><span data-toggle="i18n" data-i18n="signup_text03" /></h1>
-				<h1 id="pageTitle_logged_in" style="display:none"><span data-toggle="i18n" data-i18n="signup_text04" /></h1>
-				<p><span data-toggle="i18n" data-i18n="signup_text05" /></p>
+				<div class="logged_in_only">
+					<h1 id="pageTitle_logged_in"><span data-toggle="i18n" data-i18n="signup_text04" /></h1>
+				</div>
+				<div class="logged_out_only">
+					<h1 id="pageTitle_logged_out" style="display:none"><span data-toggle="i18n" data-i18n="signup_text03" /></h1>
+				</div>
+
+				<p class="logged_out_only"><span data-toggle="i18n" data-i18n="signup_text05" /></p>
 
 				<form id="form-user-register" class="form-horizontal col-sm-6 col-md-8" style="padding-top: 2em;" data-toggle="validator" role="form">
 
@@ -97,9 +104,4 @@
 			<b><span data-toggle="i18n" data-i18n="signup_text17" /></b>
 		</div>
 
-		<div class="show_noscorm" style="display:none">
-			<div class="xreply">
-				<p id="CHECKIS"><span data-toggle="i18n" data-i18n="signup_text18" /></p>
-			</div>
-		</div>
 	</div>
