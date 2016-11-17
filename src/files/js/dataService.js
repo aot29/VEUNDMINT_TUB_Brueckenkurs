@@ -411,6 +411,21 @@ function logout() {
   return result;
 }
 
+/**
+ * Calls registered services getUserCredentials()
+ */
+ function getUserCredentials() {
+   var result = new Promise(function (resolve, reject) {
+     storageServices.forEach(function (service) {
+       if (typeof service.getUserCredentials !== "undefined") {
+         resolve(service.getUserCredentials());
+       }
+     });
+     reject(new TypeError('No service found with getUserCredentials function'));
+   });
+   return result;
+ }
+
 
 
 
@@ -641,4 +656,5 @@ exports.registerUser = registerUser;
 exports.authenticate = authenticate;
 exports.isAuthenticated = isAuthenticated;
 exports.logout = logout;
+exports.getUserCredentials = getUserCredentials;
 }));

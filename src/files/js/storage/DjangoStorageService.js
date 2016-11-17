@@ -39,11 +39,13 @@
       return DjangoAuthService.authAjaxPost('http://localhost:8000/user-feedback/', {rawfeedback: JSON.stringify(data)});
     }
 
+    //TODO to be unneeded when refactoring again the service
     that.usernameAvailable = DjangoAuthService.usernameAvailable;
     that.registerUser = DjangoAuthService.registerUser;
     that.authenticate = DjangoAuthService.authenticate;
     that.isAuthenticated = DjangoAuthService.isAuthenticated;
     that.logout = DjangoAuthService.logout;
+    that.getUserCredentials = DjangoAuthService.getUserCredentials;
 
     return that;
   }

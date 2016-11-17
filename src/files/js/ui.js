@@ -19,42 +19,10 @@
   //
 
   /**
-  * Throttle the execution of functions by only allowing execution every
-  * ms milliseconds
+  * Initialization logic for the user interface, called in veundmint after all
+  * data models and controller logic was initialized. Document is already ready.
+  * All functions here do not return values but change the user interface.
   */
-  var delay = (function(){
-    var timer = 0;
-    return function(callback, ms){
-      clearTimeout (timer);
-      timer = setTimeout(callback, ms);
-    };
-  })();
-
-  /**
-   * A function for serializing forms to json in jquery
-   */
-  $.fn.serializeObject = function()
-  {
-      var o = {};
-      var a = this.serializeArray();
-      $.each(a, function() {
-          if (o[this.name] !== undefined) {
-              if (!o[this.name].push) {
-                  o[this.name] = [o[this.name]];
-              }
-              o[this.name].push(this.value || '');
-          } else {
-              o[this.name] = this.value || '';
-          }
-      });
-      return o;
-  };
-
-  /**
-   * Initialization logic for the user interface, called in veundmint after all
-   * data models and controller logic was initialized. Document is already ready.
-   * All functions here do not return values but change the user interface.
-   */
   function init() {
     renderCourseData();
 
@@ -70,8 +38,8 @@
 
 
     /**
-     * AUTHENTICATION FUNCTIONALITY
-     */
+    * AUTHENTICATION FUNCTIONALITY
+    */
 
     //register a new user
     $('#btn-register').on('click', function(event) {
@@ -95,6 +63,27 @@
       })
     });
 
+    //change user data
+    $('#btn-change-user-data').on('click', function(event) {
+      var userCredentials = $('#form-user-register').serializeObject();
+      dataService.registerUser(userCredentials).then(function(userData) {
+        console.log('successfully changed data to', userData);
+      }, function (error) {
+        console.log(error);
+      });
+    });
+
+    //logout
+    $('#li-logout > a').on('click', function(event) {
+      event.preventDefault();
+      dataService.logout().then(function(data) {
+        log.debug('successfully logged out');
+      }, function (error) {
+        log.debug('error logging out', error);
+      });
+      opensite('index.html');
+    });
+
     //set the body class to logged_in if logged in else set it to logged_out
     dataService.isAuthenticated().then(function (isAuthenticated) {
       if (isAuthenticated) {
@@ -104,16 +93,15 @@
       }
     });
 
-    //logout on click
-    $('#li-logout > a').on('click', function(event) {
-      event.preventDefault();
-      dataService.logout().then(function(data) {
-        log.debug('successfully logged out');
-      }, function (error) {
-        log.debug('error logging out', error);
+    //fill user form if logged in
+    var $form = $('#form-user-register');
+    if ($form.length) {
+      dataService.getUserCredentials().then(function(data) {
+        $form.populateForm(data.user);
+      }, function(error) {
+        log.debug('error populating form with user data');
       });
-      opensite('index.html');
-    })
+    }
 
   }
 
@@ -179,9 +167,9 @@
   }
 
   /**
-   * Check dataService if username exists
-   * @param  {Event} event The keyup event
-   */
+  * Check dataService if username exists
+  * @param  {Event} event The keyup event
+  */
   function checkUsername (event) {
     dataService.usernameAvailable(event.target.value).then(function(data) {
       validateInput($(event.target), data.username_available);
@@ -191,18 +179,18 @@
 
   function checkPasswordsMatch(event) {
     var $pass1 = $('input[name=password1]'),
-        $pass2 = $('input[name=password2]');
-      validateInput($pass2, $pass1.val() === $pass2.val());
-      checkRegisterFormValid(event);
+    $pass2 = $('input[name=password2]');
+    validateInput($pass2, $pass1.val() === $pass2.val());
+    checkRegisterFormValid(event);
   }
 
   /**
-   * Validate a userinput and give feedback by changing input color and icon
-   * @param  {Object} event      The jquery event (mostly input keyup or similar)
-   * @param  {[type]} element    [description]
-   * @param  {[type]} comparator [description]
-   * @return {[type]}            [description]
-   */
+  * Validate a userinput and give feedback by changing input color and icon
+  * @param  {Object} event      The jquery event (mostly input keyup or similar)
+  * @param  {[type]} element    [description]
+  * @param  {[type]} comparator [description]
+  * @return {[type]}            [description]
+  */
   function validateInput(element, comparator) {
     var $inputParent = element.parents('.form-group');
     var $inputIcon = $inputParent.find('.glyphicon');
@@ -218,13 +206,12 @@
       $inputIcon.addClass('glyphicon-remove');
     }
   }
-
   /**
-   * Check if register form is valid, that is if username is available,
-   * password1 = password2 and password1 is secure
-   * @param  {[type]} event [description]
-   * @return {[type]}       [description]
-   */
+  * Check if register form is valid, that is if username is available,
+  * password1 = password2 and password1 is secure
+  * @param  {[type]} event [description]
+  * @return {[type]}       [description]
+  */
   function checkRegisterFormValid(event) {
     var $usernameInput = $('#USER_UNAME').parents('.form-group');
     var $pass2Input = $('input[name=password2]').parents('.form-group');
@@ -238,8 +225,69 @@
   }
 
 
-// attach properties to the exports object to define
-// the exported module properties.
-exports.init = init;
-exports.renderCourseData = renderCourseData;
-}));
+  /**
+  * FUNCTIONS EXTENDING JQUERY FUNCTIONALITY
+  */
+
+  /**
+  * Throttle the execution of functions by only allowing execution every
+  * ms milliseconds
+  */
+  var delay = (function(){
+    var timer = 0;
+    return function(callback, ms){
+      clearTimeout (timer);
+      timer = setTimeout(callback, ms);
+    };
+  })();
+
+  /**
+  * A function for serializing forms to json in jquery
+  */
+  $.fn.serializeObject = function()
+  {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+      if (o[this.name] !== undefined) {
+        if (!o[this.name].push) {
+          o[this.name] = [o[this.name]];
+        }
+        o[this.name].push(this.value || '');
+      } else {
+        o[this.name] = this.value || '';
+      }
+    });
+    return o;
+  };
+
+
+  /**
+  * Populate a form with json data - names in form and json keys must match
+  * @param  {Object} data The json data to fill into the form
+  */
+  $.fn.populateForm = function (data) {
+    $.each(data, function(key, value){
+      var $ctrl = $('[name='+key+']', this);
+      switch($ctrl.attr("type"))
+      {
+        case "text" :
+        case "hidden":
+        $ctrl.val(value);
+        break;
+        case "radio" : case "checkbox":
+        $ctrl.each(function(){
+          if($(this).attr('value') == value) {  $(this).attr("checked",value); } });
+          break;
+          default:
+          $ctrl.val(value);
+        }
+      });
+    }
+
+
+    // attach properties to the exports object to define
+    // the exported module properties.
+    exports.init = init;
+    exports.renderCourseData = renderCourseData;
+  }));

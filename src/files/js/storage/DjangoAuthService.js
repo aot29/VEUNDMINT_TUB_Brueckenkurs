@@ -111,35 +111,6 @@
   }
 
   /**
-  * Make authenticated GET request to url with data
-  * @param  {String} url  The url to send the request to
-  * @param  {Object} data The data you want to send with the request
-  * @return {Object}      The returned (json) data
-  */
-  function authAjaxGET (url, data, async) {
-    //console.log('calling authajax get with url', url);
-    var userCredentials = getUserCredentials();
-    //console.log('and user credentials is', userCredentials);
-    if (userCredentials === null || typeof userCredentials === "undefined"
-    || typeof userCredentials.token === "undefined" ) {
-      //console.log('can only make authAjaxGET request if userCredentials are set');
-      return Promise.reject(new TypeError('not authenticated'));
-    }
-
-    return Promise.resolve(
-      $.ajax({
-        url: url,
-        method: 'GET',
-        dataType: 'json',
-        contentType: 'application/json; charset=utf-8',
-        headers: {
-          'Authorization': 'JWT ' + userCredentials.token
-        }
-      })
-    );
-  }
-
-  /**
    * Make unauthenticated POST request to url with data
    * @param  {String} url  The url to send the request to
    * @param  {Object} data The data you want to send with the request
@@ -157,39 +128,48 @@
     );
   }
 
+  function authAjaxGET (url, data, async) {
+    return authAjaxRequest (url, data, async, 'GET');
+  }
+  function authAjaxPOST (url, data, async) {
+    return authAjaxRequest (url, data, async, 'POST');
+  }
+
   /**
-  * Make authenticated POST request to url with data
+  * Make authenticated request to url with data and method
   * @param  {String} url  The url to send the request to
   * @param  {Object} data The data you want to send with the request
+  * @param  {Object} async Wether request should be async, default true
+  * @param  {Object} method The http method of the request ('GET', 'POST', 'PUT', 'PATCH', 'DELETE');
   * @return {Object}      The returned (json) data
   */
-  function authAjaxPOST (url, data, async) {
+  function authAjaxRequest (url, data, async, method) {
 
-    console.log('calling authajax get with url', url, 'data', data, 'async', async);
+        async = typeof async !== 'undefined' ? async : true;
 
-    async = typeof async !== 'undefined' ? async : true;
+        //make POST requests default method
+        method = typeof method !== 'undefined' ? method : 'POST';
 
-    var userCredentials = getUserCredentials();
-    //console.log('and user credentials is', userCredentials);
-    if (userCredentials === null || typeof userCredentials === "undefined"
-    || typeof userCredentials.token === "undefined" ) {
-      //console.log('can only make authAjaxGET request if userCredentials are set');
-      return Promise.reject(new TypeError('not authenticated'));
-    }
-    return Promise.resolve(
-      $.ajax({
-        url: url,
-        method: 'POST',
-        async: async,
-        data: JSON.stringify(data),
-        dataType: 'json',
-        contentType: 'application/json; charset=utf-8',
-        headers: {
-          'Authorization': 'JWT ' + userCredentials.token
+        var userCredentials = getUserCredentials();
+        //console.log('and user credentials is', userCredentials);
+        if (userCredentials === null || typeof userCredentials === "undefined"
+        || typeof userCredentials.token === "undefined" ) {
+          //console.log('can only make authAjaxGET request if userCredentials are set');
+          return Promise.reject(new TypeError('not authenticated'));
         }
-      })
-    );
-
+        return Promise.resolve(
+          $.ajax({
+            url: url,
+            method: method,
+            async: async,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              'Authorization': 'JWT ' + userCredentials.token
+            }
+          })
+        );
   }
 
   /**
@@ -233,6 +213,7 @@
   exports.authenticate = authenticate;
   exports.logout = logout;
   exports.getUserCredentials = getUserCredentials;
+  exports.authAjaxRequest = authAjaxRequest;
   exports.authAjaxGet = authAjaxGET;
   exports.authAjaxPost = authAjaxPOST;
   exports.isAuthenticated = isUserAuthenticated;
