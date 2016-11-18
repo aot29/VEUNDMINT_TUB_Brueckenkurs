@@ -1324,20 +1324,6 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
         }
       }
     });
-
-
-    // TODO ns - should get the score now
-    // if (intersite.isActive() == true) {
-    //   if (intersite.getObj().configuration.CF_LOCAL == "1") {
-    //     var j = 0;
-    //     for (j = 0; j < intersite.getObj().scores.length; j++) {
-    //   if (intersite.getObj().scores[j].uxid == uxid) {
-    //     return intersite.getObj().scores[j].rawinput;
-    //   }
-    //     }
-    //   }
-    // }
-    // return null;
   }
 
   function loadUserInput() {
@@ -1380,21 +1366,6 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   {
     log.debug("InitResults (empty=" + empty + ", isTest=" + isTest + ") start");
 
-    console.log('refactor: InitResults was called which should load results from intersite obj');
-
-    //TODO ns
-    // if (intersite.isActive() == true) {
-    //   if (intersite.getObj().configuration.CF_LOCAL == "0") empty = true; // Benutzer will keine StorageNutzung
-    // }
-    //
-    // if ((empty==true) || (intersite.isActive()!=true)) {
-    //   for (i = 1; i < FVAR.length; i++) {
-    //     FVAR[i].clear();
-    //   }
-    // }
-
-    // if ((intersite.isActive() == true) && (empty==false)) {
-    //   log.trace("Performing MQuestion-result reload");
       var gid = "";
       var v = "";
     dataService.getUserData().then(function(data) {
@@ -1480,11 +1451,6 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
                 FVAR[i].valcode = mathJS.compile("0");
                 FVAR[i].valvalid = false;
               }
-
-
-
-
-
 
               check_group(i,i);
               break;
