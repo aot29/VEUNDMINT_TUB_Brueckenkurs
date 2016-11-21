@@ -210,8 +210,6 @@
     if (typeof userCredentials.token !== undefined) {
       isAuthenticated = true;
 
-      //never store a password
-      delete(userCredentials.password);
       //never store the primary key
       if (userCredentials.user && userCredentials.user.pk) {
         delete(userCredentials.user.pk);
@@ -231,7 +229,7 @@
   exports.authAjaxGet = authAjaxGET;
   exports.authAjaxPost = authAjaxPOST;
   exports.isAuthenticated = isUserAuthenticated;
-  exports.getToken = function() {return userCredentials.token || null};
+  exports.getToken = function() {return getUserCredentials().token || null};
   exports.usernameAvailable = usernameAvailable;
   exports.registerUser = registerUser;
   exports.changeUserData = changeUserData;
