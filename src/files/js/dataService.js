@@ -605,7 +605,7 @@ function getObjCache() {
 
 /**
  * Mocks the browsers localstorage. Used in non browser Environments (e.g. node tests)
- * @return {[type]} [description]
+ * @return {Object} The localStorage mock
  */
 function mockLocalStorage() {
   var mock = (function() {
@@ -664,7 +664,7 @@ exports.mockLocalStorage = mockLocalStorage;
 exports.sendUserFeedback = sendUserFeedback;
 exports.importUserData = importUserData;
 
-//TODO these functions should be moved to own authserver
+//TODO these functions should be moved to own authservice
 exports.usernameAvailable = usernameAvailable;
 exports.registerUser = registerUser;
 exports.authenticate = authenticate;
