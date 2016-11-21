@@ -15,21 +15,26 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
-	forked from tex2xStruct.structure by Daniel Haase	
+	forked from tex2xStruct.structure written by Daniel Haase	
 	@author Alvaro Ortiz for TU Berlin
 """
 
 import imp
 import os
 import time
-from tex2x.dispatcher.runners import VerboseDecorator, PreprocessorRunner
-from tex2x.dispatcher.HTMLParserRunner import HTMLParserRunner
-from tex2x.dispatcher.ImageListerRunner import ImageListerRunner
-from tex2x.dispatcher.LinkerRunner import LinkerRunner
-from tex2x.dispatcher.PluginRunner import PluginRunner
-from tex2x.dispatcher.TOCRunner import TOCRunner
-from tex2x.dispatcher.TTMRunner import TTMRunner
-from tex2x.dispatcher.XMLLoaderRunner import XMLLoaderRunner
+import json
+from tex2x.Settings import ve_settings as settings
+
+from tex2x.dispatcher.AbstractRunner import VerboseRunner, PreprocessorRunner, PluginRunner
+
+from tex2x.parsers.AbstractParser import VerboseParser
+from tex2x.parsers.TTMParser import TTMParser
+from tex2x.parsers.HTMLParser import HTMLParser
+from tex2x.parsers.MathMLParser import MathMLParser
+from tex2x.parsers.TOCParser import TOCParser
+from tex2x.parsers.ImageParser import ImageParser
+from tex2x.parsers.LinkParser import LinkParser
+
 from . import System as TSystem
 
 
@@ -38,7 +43,7 @@ class Dispatcher(object):
 	SYSTEMFILE = "system.py"
 	CURRDIR = ".."
 	
-	def __init__(self, verbose, pluginName, override):
+	def __init__( self, verbose, pluginName, override ):
 		self.verbose = verbose
 		self.pluginName = pluginName
 		self.override = override
@@ -47,68 +52,64 @@ class Dispatcher(object):
 
 	def dispatch(self):
 		'''
-		The dispatcher calls each element of the conversion pipeline.
+		The dispatcher calls each step of the conversion pipeline.
+		The pipeline is defined in the configfile (default configuration.json)
 		In order:
 		1. Run pre-processing plugins
-		2. Run TTM (convert Tex to XML)
-		3. Load XML files created in previous step
-		4. Parse XML files into a HTML tree
-		5. Create the table of contents (TOC)
-		6. Compile a list of required images
-		7. Correct links
-		8. Start plugin
+		2. Run TTM (convert Tex to XML), load XML file created by TTM
+		3. Parse XML files into a HTML tree
+		4. Create the table of contents (TOC)
+		5. Compile a list of required images
+		6. Correct links
+		7. Output to static HTML files
 		'''
 		if hasattr(self.options, "overrides"):
 			for ov in self.options.overrides:
-				self.sys.message(self.sys.VERBOSEINFO, "tex2x called with override option: " + ov[0] + " -> " + ov[1])
+				print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
 
 		time_start = time.time()
 
 		# Run pre-processing plugins
 		preprocessor = PreprocessorRunner( self.interface['preprocessor_plugins'] )
-		if self.verbose: preprocessor = VerboseDecorator( preprocessor, "Step 1: Preprocessing\n" )
+		if self.verbose: preprocessor = VerboseRunner( preprocessor, "Step 1: Preprocessing\n" )
 		preprocessor.run()
 
-		# Run TTM
-		ttm = TTMRunner( self.options, self.sys )
-		if self.verbose: ttm = VerboseDecorator( ttm, "Step 2: Converting Tex to XML (TTM)\n" )
-		ttm.run()
-
-		# Load XML
-		XMLLoader = XMLLoaderRunner( self.options, self.sys )
-		if self.verbose: XMLLoader = VerboseDecorator( XMLLoader, "Step 3: Loading XML file\n" )
-		self.data['rawxml'] = XMLLoader.run()
-
+		# Run TTM parser, load XML
+		ttm = TTMParser( self.options, self.sys )
+		ttm = MathMLParser( ttm, self.options ) # Add MathML corrections
+		if self.verbose: ttm = VerboseParser( ttm, "Step 2: Converting Tex to XML (TTM)" )
+		self.data['rawxml'] = ttm.parse( settings.sourceTEXStartFile, settings.sourceTEX, settings.ttmFile ) # run TTM parser with default options
+		
 		# Parse HTML
-		HTMLParser = HTMLParserRunner( self.options, self.data['rawxml'] )
-		if self.verbose: HTMLParser = VerboseDecorator( HTMLParser, "Step 4: Parsing to HTML\n" )
-		self.xmltree_raw = HTMLParser.run()
-
+		html = HTMLParser( self.options )
+		if self.verbose: html = VerboseParser( html, "Step 3: Parsing to HTML" )
+		self.xmltree_raw = html.parse( self.data['rawxml'] )
+		
 		# Create TOC
-		toc = TOCRunner( self.options, self.sys, self.xmltree_raw )
-		if self.verbose: toc = VerboseDecorator( toc, "Step 5: Creating the table of contents (TOC)\n" )
-		self.toc, self.content = toc.run()
+		toc = TOCParser( self.options, self.sys )
+		if self.verbose: toc = VerboseParser( toc, "Step 4: Creating the table of contents (TOC)" )
+		self.toc, self.content = toc.parse( self.xmltree_raw )
 
 		# Compile a list of required images
-		imageLister = ImageListerRunner( self.options, self.content )
-		if self.verbose: imageLister = VerboseDecorator( imageLister, "Step 6: Compiling a list of required images\n" )
-		self.requiredImages = imageLister.run()
+		imageParser = ImageParser( self.options )
+		if self.verbose: imageParser = VerboseParser( imageParser, "Step 5: Compiling a list of required images" )
+		self.requiredImages = imageParser.parse( self.content )
 
 		# Correct links
-		linker = LinkerRunner( self.options, self.sys, self.content )
-		if self.verbose: linker = VerboseDecorator( linker, "Step 7: Correcting links\n" )
-		linker.run()
-		
-		# Start plugin
+		linker = LinkParser( self.options, self.sys )
+		if self.verbose: linker = VerboseParser( linker, "Step 6: Correcting links" )
+		linker.parse( self.content )
+				
+		# Start output plugin
 		plugin = PluginRunner( self.data, self.content, self.toc, self.requiredImages, self.interface['output_plugins'] )
-		if self.verbose: plugin = VerboseDecorator( plugin, "Step 8: Correcting links\n" )
+		if self.verbose: plugin = VerboseRunner( plugin, "Step 7: Output to static HTML files" )
 		plugin.run()
 		
 		# Clean up temporary files
 		if self.options.cleanup == 1: self.clean_up();
 
 		duration = time.time() - time_start
-		print("Total duration of conversion: %s\n" % duration )
+		print("Total duration of conversion: %s" % duration )
 		
 		# stop program execution and return proper error level as return value
 		#self.sys.finish_program()

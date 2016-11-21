@@ -30,7 +30,7 @@ class AbstractRunner(object):
 		raise NotImplementedError
 
 
-class VerboseDecorator( AbstractRunner ):
+class VerboseRunner( AbstractRunner ):
 	'''
 	In verbose mode, logs duration information 
 	while running each conversion step.
@@ -73,5 +73,43 @@ class PreprocessorRunner( AbstractRunner ):
 	def run(self):
 		for pp in self.plugins:
 			pp.preprocess()
+
+
+class PluginRunner( AbstractRunner ):
+	'''
+	Run LinkerRunner.
+	Can be decorated with VerboseDecorator to enable performance loging.
+	'''
+	def __init__(self, data, content, tocxml, requiredImages, plugins):
+		'''
+		@param content - a list of [toc_node, content_node] items
+		'''
+		self.data = data
+		self.content = content
+		self.tocxml = tocxml
+		self.requiredImages = requiredImages
+		self.plugins = plugins		
+
+
+	def run(self):
+		"""
+		Loads all plugins are runs them
+		
+		@author Daniel Haase
+		"""
+
+		self.data['content'] = self.content
+		self.data['tocxml'] = self.tocxml
+		self.data['required_images'] = self.requiredImages
+
+		#reset data
+		self.content = None
+		self.tocxml = None
+		self.required_images = None
+
+		#activate pre-processing from plugins
+		for op in self.plugins:
+			op.create_output()
+
 
 	

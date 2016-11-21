@@ -15,35 +15,38 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
+	@author - Daniel Haase for KIT
 	@author Alvaro Ortiz for TU Berlin
 """
 from lxml import html
 from lxml import etree
 import os
-from tex2x.dispatcher.runners import AbstractRunner
+from tex2x.parsers.AbstractParser import AbstractParser
 
-class HTMLParserRunner( AbstractRunner ):
+class HTMLParser( AbstractParser ):
 	'''
-	Run HTML parseer
-	Can be decorated with VerboseDecorator to enable performance loging.
+	Calls lxml.HTMLParser to generate an etree from a string.
+	Can be decorated with VerboseParser to enable performance loging.
+	@see http://lxml.de/api/lxml.etree.HTMLParser-class.html
 	'''
-	def __init__(self, options, rawxml):
+	def __init__(self, options, remove_blank_text = False):
 		'''
 		@param options - Object
 		@param rawxml - String containing XML
+		@param remove_blank_text - discard empty text nodes that are ignorable (i.e. not actual text content)
 		'''
 		self.options = options
-		self.rawxml = rawxml
+		self.remove_blank_text = remove_blank_text
+		self.parser = html.HTMLParser(remove_blank_text = False)
 
 
-	def run(self):
+	def parse(self, rawxml):
 		'''
 		Parse a string containing XML into a HTML5 etree
 		@return: etree - the HTML tree as parsed from the XML string given in the constructor
 		'''
-		parser = html.HTMLParser(remove_blank_text = False)
-		self.rawxml = self.replace_html_entities( self.rawxml )
-		return etree.fromstring( self.rawxml, parser )
+		rawxml = self.replace_html_entities( rawxml )
+		return etree.fromstring( rawxml, self.parser )
 
 
 	def replace_html_entities(self, text):
@@ -60,8 +63,8 @@ class HTMLParserRunner( AbstractRunner ):
 		#text = text.decode()
 
 		#Liste Lesen und verarbeiten
+		fobj = open(os.path.join(self.options.currentDir,"src", "entity_list.txt"), "r")
 		try:
-			fobj = open(os.path.join(self.options.currentDir,"src", "entity_list.txt"), "r")
 			line_list = fobj.readlines()
 			entity_list = list()
 			for line in line_list:

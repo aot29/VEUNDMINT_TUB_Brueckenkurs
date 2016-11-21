@@ -15,30 +15,32 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
+	@author Daniel Haase for KIT
 	@author Alvaro Ortiz for TU Berlin
 """
-from tex2x.dispatcher.runners import AbstractRunner
+from tex2x.parsers.AbstractParser import AbstractParser
 
-class LinkerRunner( AbstractRunner ):
+class LinkParser( AbstractParser ):
 	'''
 	Run LinkerRunner.
 	Can be decorated with VerboseDecorator to enable performance loging.
 	'''
-	def __init__(self, options, sys, content):
+	def __init__(self, options, sys ):
 		'''
 		@param options Object
 		@param sys - "A module exposing a class System" (Daniel Haase) 
-		@param content - a list of [toc_node, content_node] items
 		'''
 		self.options = options
 		self.sys = sys
-		self.content = content
 		
 
-	def run(self):
+	def parse(self, content):
+		"""
+		@param content - a list of [toc_node, content_node] items
+		"""
 		if not hasattr(self.options, "nolinkcorrection"): self.options.nolinkcorrection = 0
 		if self.options.nolinkcorrection == 0:
-			self.correct_path_to_linked_files(self.content)
+			self.correct_path_to_linked_files( content )
 		else:
 			self.sys.message(self.sys.VERBOSEINFO, "tex2x link correction not requested by options")
 

@@ -17,9 +17,6 @@
 
 	@author Alvaro Ortiz
 """
-
-from lxml import etree
-import plugins
 import os
 from tex2x.dispatcher.Dispatcher import Dispatcher
 import argparse
@@ -35,8 +32,8 @@ try:
 	if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
 	    raise Exception("tex2x must be called in its own directory")
 
-    #create object and start processing
-	dispatcher = Dispatcher(args.verbose, args.plugin, args.override) # this function will terminate the program with sys.exit
+    #create dispatcher and start processing
+	dispatcher = Dispatcher(args.verbose, args.plugin, args.override )
 	dispatcher.dispatch()
 
 except Exception:

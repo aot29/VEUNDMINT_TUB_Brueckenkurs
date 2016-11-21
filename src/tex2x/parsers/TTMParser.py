@@ -1,47 +1,94 @@
+"""
+	Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	
+	@author Daniel Haase for KIT 
+	@author Niklas Plessing, Alvaro Ortiz for TU Berlin
+"""
 import os, subprocess, logging, re
 import sys
 from tex2x.Settings import Settings
 from tex2x.Settings import ve_settings as settings
+from tex2x.parsers.AbstractParser import AbstractParser
 
 logger = logging.getLogger(__name__)
 
-class TTMParser(object):
+class TTMParser(AbstractParser):
 	"""
 	Class that can parse texfiles to xml. Relies on the 'ttm' binary.
+	Can be decorated with VerboseParser to enable performance loging.
 	"""
 
-	def __init__(self, sys=None):
+	def __init__(self, options, sys=None, ttmBin=settings.ttmBin):
+		"""
+		@param options Object
+		@param sys - "A module exposing a class System" (Daniel Haase) 
+		@param ttmBin path to TTM binary		
+		"""
 		self.subprocess = None
 		self.settings = settings
+		self.options = options
 		self.sys = sys
+		self.ttmBin = ttmBin
 
-	def parse(self, tex_start=settings.sourceTEXStartFile, ttm_outfile=settings.ttmFile, tex_dir=settings.sourceTEX, ttm_bin=settings.ttmBin):
+
+	def parse(self, sourceTEXStartFile=settings.sourceTEXStartFile, sourceTEX=settings.sourceTEX, ttmFile=settings.ttmFile, dorelease = settings.dorelease ):
 		"""
+		Executes the TTM command and creates a XML-file from Tex sources.
 		Parses files from TeX to ?, uses the converterDir Option which is set to /src
+		WARNING: an external program is being called here, so this could theoretically be a security liability
+		
+		@param sourceTEXStartFile path to source Tex file
+		@param sourceTEX path to search for Tex input files
+		@param ttmFile path to output XML file
 		"""
-		# TODO DH: Why exactly do we need this?
-		self.sys.pushdir()
-		if not os.path.exists(tex_dir):
-			os.makedirs(tex_dir)
+		if hasattr(self.options, 'ttmExecute') and not self.options.ttmExecute:
+			# try to get the XML-file if it exists, otherwise generate it
+			if self.prepareXMLFile( sourceTEXStartFile, ttmFile ): return
 
-		os.chdir(tex_dir)
+		# Check that TTM is executable
+		if not os.access( self.ttmBin, os.X_OK):
+			raise Exception("ttm program file is not marked as executable, aborting")
+
+		# Check that output dir exists
+		if not os.path.exists( self.options.targetpath ):
+			os.makedirs(self.options.targetpath)
+			
+		# TODO DH: Why exactly do we need this?
+		self.sys.pushdir() # AO: when this is removed, then the output plugin starts in the wrong dir
+		if not os.path.exists( sourceTEX ):
+			os.makedirs( sourceTEX )
+
+		os.chdir( sourceTEX )
 
 		try:
-			with open(ttm_outfile, "wb") as outfile, open(tex_start, "rb") as infile:
-				self.subprocess = subprocess.Popen([ttm_bin, '-p', tex_dir], stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
-				#output, err = self.subprocess.communicate()
+			with open( ttmFile, "wb") as outfile, open( sourceTEXStartFile, "rb") as infile:
+				self.subprocess = subprocess.Popen([ self.ttmBin, '-p', sourceTEX ], stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
 
-			self._logResults(self.subprocess, ttm_bin, tex_start)
-			#return output, err
+			self._logResults(self.subprocess, self.ttmBin, sourceTEXStartFile, dorelease )
+		
+			# if TTM worked, load the XML file
+			xml = self.loadXML( ttmFile )
 
-		except BaseException as e:
+		# don't catch exception here, fatal exceptions should be handled at outer level
+		finally:
 			self.sys.popdir()
-			import sys as real_sys
-			self.sys.message(self.sys.FATALERROR, str(e))
+			pass
 
-		self.sys.popdir()
+		return xml
 
-		# TODO what shall be returned here? A string to the output tex file? the content from the parsing process?
 
 	def getParserProcess(self):
 		"""
@@ -50,28 +97,63 @@ class TTMParser(object):
 		"""
 		return self.subprocess
 
+
 	def getParserSys(self):
 		return self.sys
-
-	def _logResults(self, ttm_process, ttm_bin, tex_start):
+	
+	
+	def prepareXMLFile(self, sourceTEXStartFile, ttmFile):
+		"""
+		If options.ttmExecute is False, verify that the XML-file exists, or return false
+		
+		@param sourceTEXStartFile path to source Tex file
+		@param ttmFile path to output XML file
+		"""
+		if (os.path.exists( sourceTEXStartFile ) ):
+			self.sys.copyFile( sourceTEXStartFile, ttmFile, "" )
+			return True
+		else:
+			return False
+		
+		
+	def loadXML(self, ttmFile):
+		"""
+		Load the XML file, do some replacement to fix MathML and entities problems
+		@return: String - the XML as loaded from file
+		"""
+		xmlfile = open( ttmFile, "rb")
+		try:
+			xmltext = xmlfile.read().decode( 'utf8', 'ignore' ) # force utf8 here, otherwise it won't build
+			
+		finally:
+			if xmlfile: xmlfile.close()
+		
+		return xmltext
+		
+		
+	def _logResults( self, subprocess, ttmBin, sourceTEXStartFile, dorelease=0 ):
 		"""
 		Log the output from ttm_process in a human readable form. Is still using the system class. It
 		might be good to use logging.Logger instead(?)
+		@param subprocess - subprocess connecting to TTM input/output/error pipes and error codes
+		@param ttmBin path to TTM binary
+		@param sourceTEXStartFile - path to source Tex file
+		@param dorelease - boolean, log a fatal error of unknown commands found
 		"""
-		if self.sys is not None and ttm_process is not None:
+		if self.sys is not None and subprocess is not None:
 
-			(output, err) = ttm_process.communicate()
+			(output, err) = subprocess.communicate()
 
-			if ttm_process.returncode < 0:
-				self.sys.message(self.sys.FATALERROR, "Call to " + ttm_bin + " for file " + tex_start + " was terminated by a signal (POSIX return code " + ttm_process.returncode + ")")
+			if subprocess.returncode < 0:
+				logger.log( logging.ERROR, "Call to " + self.ttmBin + " for file " + sourceTEXStartFile + " was terminated by a signal (POSIX return code " + ttm_process.returncode + ")")
 			else:
-				if ttm_process.returncode > 0:
-					self.sys.message(self.sys.CLIENTERROR, ttm_bin + " reported an error in file " + tex_start + ", error lines have been written to logfile")
+				if subprocess.returncode > 0:
+					logger.log( logging.ERROR, self.ttmBin + " reported an error in file " + sourceTEXStartFile + ", error lines have been written to logfile")
 					s = output[-512:]
 					s = s.replace("\n",", ")
-					self.sys.message(self.sys.VERBOSEINFO, "Last lines: " + s)
+					logger.log( logging.INFO, "Last lines: " + s)
 				else:
-					self.sys.timestamp(ttm_bin + " finished successfully")
+					logger.log( logging.INFO, self.ttmBin + " finished successfully")
 
 			# process output of ttm
 			anl = 0 # abnormal newlines found by ttm
@@ -79,21 +161,22 @@ class TTMParser(object):
 			ttmlines = err.split("\n")
 			for i in range(len(ttmlines)):
 				logger.debug("(ttm) %s" % ttmlines[i])
-				self.sys.message(self.sys.VERBOSEINFO, "(ttm) " + ttmlines[i])
+				logger.log( logging.INFO, "(ttm) " + ttmlines[i])
 				m = re.search(r"\*\*\*\* Unknown command (.+?), ", ttmlines[i])
 				if m:
-					self.sys.message(self.sys.CLIENTWARN, "ttm does not know LaTeX command " + m.group(1))
+					logger.log( logging.WARN, "ttm does not know LaTeX command " + m.group(1))
 					cm += 1
 				else:
 					if "Abnormal NL, removespace" in ttmlines[i]:
 						anl += 1
 					else:
 						if "Error: Fatal" in ttmlines[i]:
-							self.sys.message(self.sys.FATALERROR, "ttm exit with fatal error: " + ttmlines[i] + ", aborting")
+							logger.log( logging.ERROR, "ttm exit with fatal error: " + ttmlines[i] + ", aborting")
 
 
 			if anl > 0:
-				self.sys.message(self.sys.CLIENTINFO, "ttm found " + str(anl) + " abnormal newlines")
-
-			if (cm > 0) and (settings.dorelease == 1):
-				self.sys.message(self.sys.FATALERROR, "ttm found " + str(cm) + " unknown commands, refusing to continue on release version")
+				logger.log( logging.INFO, "ttm found " + str(anl) + " abnormal newlines")
+				
+			if (cm > 0) and (dorelease == 1):
+				logger.log( logging.ERROR, "ttm found " + str(cm) + " unknown commands, refusing to continue on release version")
+				sys.exit(3)

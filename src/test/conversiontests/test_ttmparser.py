@@ -1,8 +1,14 @@
+"""
+Activate Python venv if necessary, then run with:
+> cd src
+> python3 -m unittest test.conversiontests.test_ttmparser.TTMParserTest
+"""
 import unittest
 import os
 import subprocess
 from tex2x.parsers.TTMParser import TTMParser
 from tex2x.Settings import Settings, ve_settings
+from tex2x.dispatcher.Dispatcher import Dispatcher
 from plugins.VEUNDMINT.Option import Option
 from plugins.VEUNDMINT.system import System
 import mmap
@@ -12,8 +18,11 @@ class TTMParserTest(unittest.TestCase):
 
 	def setUp(self):
 		#print("setting up")
-		self.s = System(Option('',['lang=de']))
-		self.parser = TTMParser(self.s)
+		#self.s = System(Option('',['lang=de']))
+		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
+		self.options = dispatcher.options
+		self.sys = dispatcher.sys
+		self.parser = TTMParser( self.options, self.sys )
 
 		self.tex_test_file = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
 		self.tex_test_output = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
@@ -54,14 +63,14 @@ Ich stehe in der mitte
 		self.assertIsNotNone(ttm_process)
 
 		# parse unknown latex command and make parser exit with code 3
-		TTMParser().settings.dorelease = 1
+		TTMParser( self.options, self.sys )
 		with self.assertRaises(SystemExit) as cm:
-			self.isCorrectConversionTest(r'''\unknownlatexcommand''','')
+			self.isCorrectConversionTest(r'''\unknownlatexcommand''','', dorelease=1)
 
 		self.assertEqual(cm.exception.code, 3)
 
 		# make parser process exit with return code 3
-		new_ttm = TTMParser(self.s)
+		new_ttm = TTMParser(self.options, self.sys)
 		self.testTitle()
 		#new_ttm.parse(tex_start=self.tex_test_file, ttm_outfile=self.tex_test_output, sys=self.s)
 		#subprocess.run(ve_settings.ttmBin)
@@ -70,9 +79,9 @@ Ich stehe in der mitte
 		#out = fake_ttm_process.communicate()
 		fake_ttm_process.returncode = 3
 
-		new_ttm._logResults(ttm_process=fake_ttm_process, ttm_bin=ve_settings.ttmBin, tex_start='test.tex')
+		new_ttm._logResults(subprocess=fake_ttm_process, ttmBin=ve_settings.ttmBin, sourceTEXStartFile='test.tex')
 
-	def isCorrectConversionTest(self, latex_string, html_string):
+	def isCorrectConversionTest(self, latex_string, html_string, dorelease = 0 ):
 		"""Checks for correct tex to html conversion
 
 		Writes latex_string to a .tex file, then runs the parser, which will parse it to html, finally
@@ -90,7 +99,7 @@ Ich stehe in der mitte
 			print(latex_string, file=tex_file)
 
 		# kick off the parser
-		self.parser.parse(tex_start=self.tex_test_file, ttm_outfile=self.tex_test_output)
+		self.parser.parse(sourceTEXStartFile=self.tex_test_file, ttmFile=self.tex_test_output, dorelease=dorelease )
 
 		# check for occurence of the html_string in the generated file
 		with open(self.tex_test_output, 'rb', 0) as file:

@@ -15,36 +15,36 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
+	@author Daniel Haase for KIT
 	@author Alvaro Ortiz for TU Berlin
 """
 from copy import deepcopy
 from lxml import etree
-from tex2x.dispatcher.runners import AbstractRunner
+from tex2x.parsers.AbstractParser import AbstractParser
 
-class TOCRunner( AbstractRunner ):
+class TOCParser( AbstractParser ):
 	'''
 	Run TOC creator.
 	Can be decorated with VerboseDecorator to enable performance loging.
 	'''
-	def __init__(self, options, sys, htmltree):
+	def __init__(self, options, sys ):
 		'''
 		@param options Object
 		@param sys - "A module exposing a class System" (Daniel Haase) 
-		@param htmltree - an etree containing parsed HTML
 		'''
 		self.options = options
 		self.sys = sys
-		self.htmltree = htmltree
 		
 
-	def run(self):
+	def parse(self, htmltree ):
 		'''
 		Create the table of contents (TOC)
+		@param htmltree - an etree containing parsed HTML
 		'''
-		return self.create_toc_and_disect_content()
+		return self.create_toc_and_disect_content( htmltree )
 
 
-	def create_toc_and_disect_content(self):
+	def create_toc_and_disect_content(self, htmltree):
 		"""
 		Extrahiert aus dem XML-Baum die Struktur des Inhaltsverzeichnisses (Inhalts-Struktur-Tags werden in den Optionen definiert)
 		Da sie Struktur extrem flexibel sein soll,
@@ -102,13 +102,13 @@ class TOCRunner( AbstractRunner ):
 		Ein Listenelement besteht wieder aus einer Liste, nach dem Schema: [toc_node, Dateiname]
 		Also analog zu self.content.
 		
-		@author Daniel Haase
+		@param htmltree - an etree containing parsed HTML
 		"""
 
 		#Kopie, um Schreibweise zu verkürzen
 		contentStructure = self.options.ContentStructure
 
-		root = self.htmltree
+		root = htmltree
 		body = root.find("body")
 
 		if body is None:

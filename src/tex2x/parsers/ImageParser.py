@@ -15,43 +15,42 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
+	@author Daniel Haase for KIT
 	@author Alvaro Ortiz for TU Berlin
 """
 import os
-from tex2x.dispatcher.runners import AbstractRunner
+from tex2x.parsers.AbstractParser import AbstractParser
 
-class ImageListerRunner( AbstractRunner ):
+class ImageParser( AbstractParser ):
 	'''
 	Run Images parser.
 	Can be decorated with VerboseDecorator to enable performance loging.
 	'''
-	def __init__(self, options, content):
+	def __init__(self, options ):
 		'''
 		@param options Object
-		@param content - a list of [toc_node, content_node] items
 		'''
 		self.options = options
-		self.content = content
 		
 
-	def run(self):
+	def parse(self, content):
 		'''
-		Compile a list of requred images
+		Compile a list of required images
+		@param content - a list of [toc_node, content_node] items
 		'''
-		return self.get_required_images(self.content)
+		return self.getRequiredImages( content )
 
 
-	def get_required_images(self, content):
+	def getRequiredImages(self, content):
 		"""
-		:param content: zu analysierende content-Liste
-		:returns: image-Liste -- Liste der benötigten Bilddateien im Format [toc_node, Dateiname]
-
 		Ermittelt alle benötigten Bilddateien. Anhand dieser Informationen können Plugins entscheiden, welche
 		Dateien kopiert werden müssen. Zusätzlich kann so die Vollständigkeit der Quelldateien geprüft werden.
 
 		Die Auflistung ist Modulweise, damit z.B. das Scorm-Plugin pro Paket nur die im Modul benötigten
 		Bilddateien zuordnet und kopiert.
 		
+		@param content: zu analysierende content-Liste
+		@returns image-Liste -- Liste der benötigten Bilddateien im Format [toc_node, Dateiname]
 		@author Daniel Haase
 		"""
 
