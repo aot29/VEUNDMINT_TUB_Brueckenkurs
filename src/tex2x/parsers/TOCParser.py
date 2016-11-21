@@ -24,8 +24,8 @@ from tex2x.parsers.AbstractParser import AbstractParser
 
 class TOCParser( AbstractParser ):
 	'''
-	Run TOC creator.
-	Can be decorated with VerboseDecorator to enable performance loging.
+	Run TOC parser.
+	Can be decorated with VerboseParser to enable performance loging.
 	'''
 	def __init__(self, options, sys ):
 		'''
@@ -103,6 +103,7 @@ class TOCParser( AbstractParser ):
 		Also analog zu self.content.
 		
 		@param htmltree - an etree containing parsed HTML
+		@author Daniel Haase for KIT
 		"""
 
 		#Kopie, um Schreibweise zu verkürzen

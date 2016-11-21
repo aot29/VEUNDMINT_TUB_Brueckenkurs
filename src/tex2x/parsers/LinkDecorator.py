@@ -20,29 +20,39 @@
 """
 from tex2x.parsers.AbstractParser import AbstractParser
 
-class LinkParser( AbstractParser ):
+class LinkDecorator( AbstractParser ):
 	'''
-	Run LinkerRunner.
-	Can be decorated with VerboseDecorator to enable performance loging.
+	This class is meant to decorate TOCParser.
+	Add methods to correct where the links in the content point to.
+	Can be decorated with VerboseDecorator to enable performance logging.
 	'''
-	def __init__(self, options, sys ):
+	def __init__(self, parser ):
 		'''
 		@param options Object
 		@param sys - "A module exposing a class System" (Daniel Haase) 
 		'''
-		self.options = options
-		self.sys = sys
+		self.parser = parser
+		self.options = parser.options
+		self.sys = parser.sys
 		
 
-	def parse(self, content):
+	def parse(self, *args, **kwargs):
 		"""
 		@param content - a list of [toc_node, content_node] items
 		"""
+		# call the decorated class' runner
+	
+		tempTOC, tempContent = self.parser.parse(*args, **kwargs)
+		
 		if not hasattr(self.options, "nolinkcorrection"): self.options.nolinkcorrection = 0
+		
 		if self.options.nolinkcorrection == 0:
-			self.correct_path_to_linked_files( content )
+			tempContent = self.correct_path_to_linked_files( tempContent )
+			
 		else:
 			self.sys.message(self.sys.VERBOSEINFO, "tex2x link correction not requested by options")
+		
+		return tempTOC, tempContent
 
 
 	def correct_path_to_linked_files(self, content):
@@ -88,3 +98,5 @@ class LinkParser( AbstractParser ):
 
 				for iframe in div.findall(".//iframe"):
 					iframe.set("src", "../../" + iframe.get("src"))
+					
+		return content

@@ -25,20 +25,20 @@ import time
 import json
 from tex2x.Settings import ve_settings as settings
 
-from tex2x.dispatcher.AbstractRunner import VerboseRunner, PreprocessorRunner, PluginRunner
+from tex2x.dispatcher.AbstractDispatcher import AbstractDispatcher, VerboseDispatcher, PreprocessorDispatcher, PluginDispatcher
 
 from tex2x.parsers.AbstractParser import VerboseParser
 from tex2x.parsers.TTMParser import TTMParser
 from tex2x.parsers.HTMLParser import HTMLParser
-from tex2x.parsers.MathMLParser import MathMLParser
 from tex2x.parsers.TOCParser import TOCParser
-from tex2x.parsers.ImageParser import ImageParser
-from tex2x.parsers.LinkParser import LinkParser
+
+from tex2x.parsers.LinkDecorator import LinkDecorator
+from tex2x.parsers.MathMLDecorator import MathMLDecorator
 
 from . import System as TSystem
 
 
-class Dispatcher(object):
+class Dispatcher(AbstractDispatcher):
 	OPTIONSFILE = "Option.py"
 	SYSTEMFILE = "system.py"
 	CURRDIR = ".."
@@ -70,13 +70,13 @@ class Dispatcher(object):
 		time_start = time.time()
 
 		# Run pre-processing plugins
-		preprocessor = PreprocessorRunner( self.interface['preprocessor_plugins'] )
-		if self.verbose: preprocessor = VerboseRunner( preprocessor, "Step 1: Preprocessing\n" )
-		preprocessor.run()
+		preprocessor = PreprocessorDispatcher( self.interface['preprocessor_plugins'] )
+		if self.verbose: preprocessor = VerboseDispatcher( preprocessor, "Step 1: Preprocessing\n" )
+		preprocessor.dispatch()
 
 		# Run TTM parser, load XML
 		ttm = TTMParser( self.options, self.sys )
-		ttm = MathMLParser( ttm, self.options ) # Add MathML corrections
+		ttm = MathMLDecorator( ttm, self.options ) # Add MathML corrections
 		if self.verbose: ttm = VerboseParser( ttm, "Step 2: Converting Tex to XML (TTM)" )
 		self.data['rawxml'] = ttm.parse( settings.sourceTEXStartFile, settings.sourceTEX, settings.ttmFile ) # run TTM parser with default options
 		
@@ -85,25 +85,27 @@ class Dispatcher(object):
 		if self.verbose: html = VerboseParser( html, "Step 3: Parsing to HTML" )
 		self.xmltree_raw = html.parse( self.data['rawxml'] )
 		
-		# Create TOC
-		toc = TOCParser( self.options, self.sys )
-		if self.verbose: toc = VerboseParser( toc, "Step 4: Creating the table of contents (TOC)" )
-		self.toc, self.content = toc.parse( self.xmltree_raw )
+		# Create TOC and content tree
+		tocParser = TOCParser( self.options, self.sys )
+		tocParser = LinkDecorator( tocParser )
+		if self.verbose: tocParser = VerboseParser( tocParser, "Step 4: Creating the table of contents (TOC) and content tree" )
+		self.toc, self.content = tocParser.parse( self.xmltree_raw )
 
 		# Compile a list of required images
-		imageParser = ImageParser( self.options )
-		if self.verbose: imageParser = VerboseParser( imageParser, "Step 5: Compiling a list of required images" )
-		self.requiredImages = imageParser.parse( self.content )
+		#imageParser = ImageParser( self.options )
+		#if self.verbose: imageParser = VerboseParser( imageParser, "Step 5: Compiling a list of required images" )
+		#self.requiredImages = imageParser.parse( self.content )
+		self.requiredImages = []
 
 		# Correct links
-		linker = LinkParser( self.options, self.sys )
-		if self.verbose: linker = VerboseParser( linker, "Step 6: Correcting links" )
-		linker.parse( self.content )
+		#linker = LinkParser( self.options, self.sys )
+		#if self.verbose: linker = VerboseParser( linker, "Step 6: Correcting links" )
+		#linker.parse( self.content )
 				
 		# Start output plugin
-		plugin = PluginRunner( self.data, self.content, self.toc, self.requiredImages, self.interface['output_plugins'] )
-		if self.verbose: plugin = VerboseRunner( plugin, "Step 7: Output to static HTML files" )
-		plugin.run()
+		plugin = PluginDispatcher( self.data, self.content, self.toc, self.requiredImages, self.interface['output_plugins'] )
+		if self.verbose: plugin = VerboseDispatcher( plugin, "Step 7: Output to static HTML files" )
+		plugin.dispatch()
 		
 		# Clean up temporary files
 		if self.options.cleanup == 1: self.clean_up();

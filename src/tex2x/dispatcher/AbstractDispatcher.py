@@ -19,38 +19,38 @@
 """
 import time
 
-class AbstractRunner(object):
+class AbstractDispatcher(object):
 	'''
 	Template method pattern: 	
 	"Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. 
 	Lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure." 
 	- Gamma, Helm, Johnson, Vlissides (1995) 'Design Patterns: Elements of Reusable Object-Oriented Software'
 	'''
-	def run(self):
+	def dispatch(self):
 		raise NotImplementedError
 
 
-class VerboseRunner( AbstractRunner ):
+class VerboseDispatcher( AbstractDispatcher ):
 	'''
 	In verbose mode, logs duration information 
 	while running each conversion step.
 	Used here as a decorator for AbstractRunner classes
 	'''
-	def __init__(self, runner, msg):
+	def __init__(self, dispatcher, msg):
 		'''
 		@param runner - Runner (object extending AbstractRunner)
 		@param msg - Message to print before executing the runner
 		'''
-		self.runner = runner
+		self.dispatcher = dispatcher
 		self.msg = msg
 		
 	
-	def run(self):
+	def dispatch(self):
 		print( self.msg )
 		time_start = time.time()
 
 		# call the decorated class' runner
-		response = self.runner.run()
+		response = self.dispatcher.dispatch()
 		
 		time_end = time.time()
 		time_diff = time_end - time_start
@@ -59,7 +59,7 @@ class VerboseRunner( AbstractRunner ):
 		return response
 
 
-class PreprocessorRunner( AbstractRunner ):
+class PreprocessorDispatcher( AbstractDispatcher ):
 	'''
 	Run pre-processing plugins.
 	Can be decorated with VerboseDecorator for performance logs.
@@ -69,18 +69,19 @@ class PreprocessorRunner( AbstractRunner ):
 		@param plugins - list of "Preprocessor modules" (Daniel Haase)
 		'''
 		self.plugins = plugins
+		
 	
-	def run(self):
+	def dispatch(self):
 		for pp in self.plugins:
 			pp.preprocess()
 
 
-class PluginRunner( AbstractRunner ):
+class PluginDispatcher( AbstractDispatcher ):
 	'''
 	Run LinkerRunner.
 	Can be decorated with VerboseDecorator to enable performance loging.
 	'''
-	def __init__(self, data, content, tocxml, requiredImages, plugins):
+	def __init__(self, data, content, tocxml, requiredImages=None, plugins=None):
 		'''
 		@param content - a list of [toc_node, content_node] items
 		'''
@@ -91,7 +92,7 @@ class PluginRunner( AbstractRunner ):
 		self.plugins = plugins		
 
 
-	def run(self):
+	def dispatch(self):
 		"""
 		Loads all plugins are runs them
 		
