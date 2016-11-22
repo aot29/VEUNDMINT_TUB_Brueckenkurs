@@ -3,7 +3,7 @@ it is responsible for the document loaded action that was befor in the body onlo
 onload="loadHandler()" onunload="unloadHandler()" */
 
 $(window).on('beforeunload', function(){
-	globalunloadHandler();
+    globalunloadHandler();
  });
 
 
@@ -18,7 +18,7 @@ $(window).on('beforeunload', function(){
 
   //  if (intersite.isActive() == true) {
   //    if (intersite.getObj().configuration.CF_USAGE == "1") {
-	 //
+     //
   //      var timestamp = +new Date();
   //      var cm = "OPENSITE: " + "CID:" + signature_CID + ", user:" + intersite.getObj().login.username + ", timestamp:" + timestamp + ", SITEUXID:" + SITE_UXID + ", localurl:" + localurl;
   //      intersite.sendeFeedback( { statistics: cm }, false ); // synced, otherwise the page with callbacks is gone when the request is completed
@@ -32,202 +32,197 @@ $(window).on('beforeunload', function(){
 //UMD JS Modules Starter template taken from https://gist.github.com/cferdinandi/ece94569aefcffa5f7fa
 
 (function (root, factory) {
-	if ( typeof define === 'function' && define.amd ) {
-		define([], factory(root));
-	} else if ( typeof exports === 'object' ) {
-		module.exports = factory(root);
-	} else {
-		root.veundmint = factory(root);
-	}
+    if ( typeof define === 'function' && define.amd ) {
+        define([], factory(root));
+    } else if ( typeof exports === 'object' ) {
+        module.exports = factory(root);
+    } else {
+        root.veundmint = factory(root);
+    }
 })(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
 
-	'use strict';
+    'use strict';
 
-	//
-	// Variables
-	//
-	var USER_CREDENTIALS_KEY = 'user_credentials';
+    //
+    // Variables
+    //
+    var USER_CREDENTIALS_KEY = 'user_credentials';
 
-	var veundmint = {}; // Object for public APIs
-	var supports = !!document.querySelector && !!root.addEventListener; // Feature test
-	var settings, eventTimeout;
+    var veundmint = {}; // Object for public APIs
+    var supports = !!document.querySelector && !!root.addEventListener; // Feature test
+    var settings, eventTimeout;
 
   var isLoggedIn = false;
 
-	var userCredentials;
+    var userCredentials;
 
-	// Default settings
-	var defaults = {
-		apiUrl: 'http://localhost:8000',
+    // Default settings
+    var defaults = {
+        apiUrl: 'http://localhost:8000',
     apiAuthUrl: 'http://localhost:8000/api-token-auth/',
-		apiProfileUrl: 'http://localhost:8000/whoami/',
-		apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
-		defaultLogLevel: 'error',
-		storageServices: [LocalStorageService.LocalStorageService(), DjangoStorageService.DjangoStorageService(), ScormStorageService],
-		localStorageKey: signature_main + '_user_data'
-	};
+        apiProfileUrl: 'http://localhost:8000/whoami/',
+        apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
+        defaultLogLevel: 'error',
+        storageServices: [LocalStorageService.LocalStorageService(), DjangoStorageService.DjangoStorageService(), ScormStorageService],
+        localStorageKey: signature_main + '_user_data'
+    };
 
 
-	//
-	// Methods
-	//
+    //
+    // Methods
+    //
 
-	/**
-	 * A simple forEach() implementation for Arrays, Objects and NodeLists
-	 * @private
-	 * @param {Array|Object|NodeList} collection Collection of items to iterate
-	 * @param {Function} callback Callback function for each iteration
-	 * @param {Array|Object|NodeList} scope Object/NodeList/Array that forEach is iterating over (aka `this`)
-	 */
-	var forEach = function (collection, callback, scope) {
-		if (Object.prototype.toString.call(collection) === '[object Object]') {
-			for (var prop in collection) {
-				if (Object.prototype.hasOwnProperty.call(collection, prop)) {
-					callback.call(scope, collection[prop], prop, collection);
-				}
-			}
-		} else {
-			for (var i = 0, len = collection.length; i < len; i++) {
-				callback.call(scope, collection[i], i, collection);
-			}
-		}
-	};
+    /**
+     * A simple forEach() implementation for Arrays, Objects and NodeLists
+     * @private
+     * @param {Array|Object|NodeList} collection Collection of items to iterate
+     * @param {Function} callback Callback function for each iteration
+     * @param {Array|Object|NodeList} scope Object/NodeList/Array that forEach is iterating over (aka `this`)
+     */
+    var forEach = function (collection, callback, scope) {
+        if (Object.prototype.toString.call(collection) === '[object Object]') {
+            for (var prop in collection) {
+                if (Object.prototype.hasOwnProperty.call(collection, prop)) {
+                    callback.call(scope, collection[prop], prop, collection);
+                }
+            }
+        } else {
+            for (var i = 0, len = collection.length; i < len; i++) {
+                callback.call(scope, collection[i], i, collection);
+            }
+        }
+    };
 
-	/**
-	 * Merge defaults with user options
-	 * @private
-	 * @param {Object} defaults Default settings
-	 * @param {Object} options User options
-	 * @returns {Object} Merged values of defaults and options
-	 */
-	var extend = function ( defaults, options ) {
-		var extended = {};
-		forEach(defaults, function (value, prop) {
-			extended[prop] = defaults[prop];
-		});
-		forEach(options, function (value, prop) {
-			extended[prop] = options[prop];
-		});
-		return extended;
-	};
+    /**
+     * Merge defaults with user options
+     * @private
+     * @param {Object} defaults Default settings
+     * @param {Object} options User options
+     * @returns {Object} Merged values of defaults and options
+     */
+    var extend = function ( defaults, options ) {
+        var extended = {};
+        forEach(defaults, function (value, prop) {
+            extended[prop] = defaults[prop];
+        });
+        forEach(options, function (value, prop) {
+            extended[prop] = options[prop];
+        });
+        return extended;
+    };
 
-	/**
-	 * Convert data-options attribute into an object of key/value pairs
-	 * @private
-	 * @param {String} options Link-specific options as a data attribute string
-	 * @returns {Object}
-	 */
-	var getDataOptions = function ( options ) {
-		return !options || !(typeof JSON === 'object' && typeof JSON.parse === 'function') ? {} : JSON.parse( options );
-	};
+    /**
+     * Convert data-options attribute into an object of key/value pairs
+     * @private
+     * @param {String} options Link-specific options as a data attribute string
+     * @returns {Object}
+     */
+    var getDataOptions = function ( options ) {
+        return !options || !(typeof JSON === 'object' && typeof JSON.parse === 'function') ? {} : JSON.parse( options );
+    };
 
-	// @todo Do something...
+    // @todo Do something...
 
-	/**
-	 * Destroy the current initialization.
-	 * @public
-	 */
-	veundmint.destroy = function () {
+    /**
+     * Destroy the current initialization.
+     * @public
+     */
+    veundmint.destroy = function () {
 
-		// If plugin isn't already initialized, stop
-		if ( !settings ) return;
-
-
-		// @todo Undo any other init functions...
-
-		// Reset variables
-		settings = null;
-
-	};
-
-	/**
-	 * Initialize Plugin, called on document ready at startpage
-	 * execution order of several commands is critical (by now) DO NOT CHANGE
-	 * unless you know what you are doing
-	 * @param {Object} options User settings
-	 */
-	veundmint.init = function ( options ) {
-
-		// feature test
-		if ( !supports ) return;
-
-		// Destroy any existing initializations
-		veundmint.destroy();
-
-		// Merge user options with defaults
-		settings = extend( defaults, options || {} );
+        // If plugin isn't already initialized, stop
+        if ( !settings ) return;
 
 
-		log.setDefaultLevel(settings.defaultLogLevel);
+        // @todo Undo any other init functions...
 
-		//TODO ns - remove
-		// DjangoAuthService.authenticate({
-		// 	username: 'testrunner',
-		// 	password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
-		// });
+        // Reset variables
+        settings = null;
 
+    };
 
-		$('[data-toggle="offcanvas"]').click(function () {
-			$('.row-offcanvas').toggleClass('active')
-		});
+    /**
+     * Initialize Plugin, called on document ready at startpage
+     * execution order of several commands is critical (by now) DO NOT CHANGE
+     * unless you know what you are doing
+     * @param {Object} options User settings
+     */
+    veundmint.init = function ( options ) {
 
-		//register storageServices
-		for (var i = 0; i < settings.storageServices.length; i++) {
-			dataService.subscribe(settings.storageServices[i]);
-		}
+        // feature test
+        if ( !supports ) return;
 
-		//call syncDown once onLoad to get most recent userData
-		dataService.syncDown();
+        // Destroy any existing initializations
+        veundmint.destroy();
 
-		//hook up data synchronization on unload
-		$(window).on('beforeunload', function(){
-			dataService.makeSynchronous();
-			dataService.syncUp().then(function(data) {
-				console.log(data);
-			});
-		});
-
-		scormBridge.init();
-		//intersite.init(); is now
-		dataService.init();
-		globalreadyHandler("");
-		globalloadHandler("");
-		ui.init();
-
-		// set up components
-		veundmint.languageChooser($('#languageChooser'));
-
-		//remove logout button on scorm
-		if (scormBridge.isScormEnv()) {
-			$('#li-logout').remove();
-		}
-
-		//if we came from the same url in another language, return to the scroll position
-		//TODO ns make return to scroll top work again
-		// var oldScrollTop = intersite.getScrollTop();
-		// if (oldScrollTop !== 0) {
-		// 	$('html, body').animate({scrollTop:oldScrollTop}, 1000);
-		// 	intersite.setScrollTop(0);
-		// }
-
-		// footer at bottom of column
-		// don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
-		$(window).resize( veundmint.positionFooter );
-		veundmint.positionFooter();
-
-		// on the logout page
-		if( requestLogout ) {
-			localStorage.clear();
-		}
-
-		veundmint.addReadyElementToPage();
-
-	};
+        // Merge user options with defaults
+        settings = extend( defaults, options || {} );
 
 
-	//
-	// Public APIs
-	//
+        log.setDefaultLevel(settings.defaultLogLevel);
+
+        scormBridge.init();
+        //intersite.init(); is now
+        dataService.init();
+        
+        //register storageServices
+        for (var i = 0; i < settings.storageServices.length; i++) {
+            dataService.subscribe(settings.storageServices[i]);
+        }        
+        
+        globalreadyHandler("");
+        globalloadHandler("");
+        ui.init();
+
+
+        $('[data-toggle="offcanvas"]').click(function () {
+            $('.row-offcanvas').toggleClass('active')
+        });
+
+        //call syncDown once onLoad to get most recent userData
+        dataService.syncDown();
+
+        //hook up data synchronization on unload
+        $(window).on('beforeunload', function(){
+            dataService.makeSynchronous();
+            dataService.syncUp().then(function(data) {
+                console.log(data);
+            });
+        });
+
+        // set up components
+        veundmint.languageChooser($('#languageChooser'));
+
+        //remove logout button on scorm
+        if (scormBridge.isScormEnv()) {
+            $('#li-logout').remove();
+        }
+
+        //if we came from the same url in another language, return to the scroll position
+        //TODO ns make return to scroll top work again
+        // var oldScrollTop = intersite.getScrollTop();
+        // if (oldScrollTop !== 0) {
+        //  $('html, body').animate({scrollTop:oldScrollTop}, 1000);
+        //  intersite.setScrollTop(0);
+        // }
+
+        // footer at bottom of column
+        // don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
+        $(window).resize( veundmint.positionFooter );
+        veundmint.positionFooter();
+
+        // on the logout page
+        if( requestLogout ) {
+            localStorage.clear();
+        }
+
+        veundmint.addReadyElementToPage();
+
+    };
+
+
+    //
+    // Public APIs
+    //
 
   /**
    * Authenticates at the server (apiAuthUrl) with the given user credentials object
@@ -245,11 +240,11 @@ $(window).on('beforeunload', function(){
       url: settings.apiAuthUrl,
       data: user_credentials,
       success: function (data) {
-				delete(user_credentials.password);
-				$.extend(user_credentials, data);
-				//user credentials will have the form {username: <name>, token: <token>}
-				localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(user_credentials));
-			}
+                delete(user_credentials.password);
+                $.extend(user_credentials, data);
+                //user credentials will have the form {username: <name>, token: <token>}
+                localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(user_credentials));
+            }
     });
     // save answer from server in object
     var auth_result = '';
@@ -262,11 +257,11 @@ $(window).on('beforeunload', function(){
     return auth_result;
   }
 
-	veundmint.getMyUserProfile = function() {
-		veundmint.authAjaxGET(settings.apiProfileUrl, {}, function (data) {
-			log.debug('veundmint: getMyUserProfile', data);
-		});
-	}
+    veundmint.getMyUserProfile = function() {
+        veundmint.authAjaxGET(settings.apiProfileUrl, {}, function (data) {
+            log.debug('veundmint: getMyUserProfile', data);
+        });
+    }
 
   /**
    * Logs the user out from the server (serverLogoutUrl)
@@ -275,7 +270,7 @@ $(window).on('beforeunload', function(){
    */
   veundmint.logout = function (callback) {
     userCredentials = null;
-		localStorage.removeItem(USER_CREDENTIALS_KEY);
+        localStorage.removeItem(USER_CREDENTIALS_KEY);
     if (typeof callback === "function") {
     // Call it, since we have confirmed it is callable​
       callback(logout_result);
@@ -293,57 +288,57 @@ $(window).on('beforeunload', function(){
 
     log.debug('veundmint.sendWebsiteAction called with object', object);
 
-		if (typeof settings.apiWebsiteActionUrl === "undefined") {
-			log.debug('apiWebsiteActionUrl is not set, will not call sendWebsiteAction()');
-			return null;
-		}
+        if (typeof settings.apiWebsiteActionUrl === "undefined") {
+            log.debug('apiWebsiteActionUrl is not set, will not call sendWebsiteAction()');
+            return null;
+        }
 
-		$.ajax({
-			type: "POST",
-			url: settings.apiWebsiteActionUrl,
-			data: object,
-			success: function (data) {
-				log.debug(data);
-			}
-		});
+        $.ajax({
+            type: "POST",
+            url: settings.apiWebsiteActionUrl,
+            data: object,
+            success: function (data) {
+                log.debug(data);
+            }
+        });
   }
 
-	/**
-	 * Get the user credentials from local variable. If not set, get it from local
-	 * Storage and set it and return it
-	 * @return {object or null} the user credentials object or null
-	 */
-	veundmint.getUserCredentials = function () {
-		if (typeof userCredentials !== "undefined" && userCredentials !== null) {
-			return userCredentials;
-		} else {
-			var lsUserCred = localStorage.getItem(USER_CREDENTIALS_KEY);
-			if (lsUserCred !== null) {
-				return JSON.parse(lsUserCred);
-			}
-		}
-		log.debug('can only call getUserCredentials if user is authenticated')
-		return null;
-	}
+    /**
+     * Get the user credentials from local variable. If not set, get it from local
+     * Storage and set it and return it
+     * @return {object or null} the user credentials object or null
+     */
+    veundmint.getUserCredentials = function () {
+        if (typeof userCredentials !== "undefined" && userCredentials !== null) {
+            return userCredentials;
+        } else {
+            var lsUserCred = localStorage.getItem(USER_CREDENTIALS_KEY);
+            if (lsUserCred !== null) {
+                return JSON.parse(lsUserCred);
+            }
+        }
+        log.debug('can only call getUserCredentials if user is authenticated')
+        return null;
+    }
 
-	veundmint.authAjaxGET = function (url, data, onSuccess) {
-		var userCredentials = veundmint.getUserCredentials();
-		if (userCredentials === null || typeof userCredentials === "undefined"
-			|| typeof userCredentials.token === "undefined" ) {
-				log.debug('can only make authAjaxGET request if userCredentials are set');
-				return;
-		}
-		$.ajax({
+    veundmint.authAjaxGET = function (url, data, onSuccess) {
+        var userCredentials = veundmint.getUserCredentials();
+        if (userCredentials === null || typeof userCredentials === "undefined"
+            || typeof userCredentials.token === "undefined" ) {
+                log.debug('can only make authAjaxGET request if userCredentials are set');
+                return;
+        }
+        $.ajax({
       type: "GET",
-			dataType: 'json',
+            dataType: 'json',
       url: url,
       data: data,
       success: onSuccess,
-			headers: {
-				'Authorization': 'JWT ' + userCredentials.token
-			}
+            headers: {
+                'Authorization': 'JWT ' + userCredentials.token
+            }
     });
-	}
+    }
 
   /**
    * sets up element to be a languageChooser
@@ -368,35 +363,35 @@ $(window).on('beforeunload', function(){
     element.replaceWith(htmlString);
 
     $('body').on('change', '#selectLanguage', function() {
-			//store the scroll Top for next site, will be set in veundmint.init()
-			var oldScrollTop = $(document).scrollTop();
-			//TODO ns - make set scroll top work again
-			//intersite.setScrollTop(oldScrollTop);
+            //store the scroll Top for next site, will be set in veundmint.init()
+            var oldScrollTop = $(document).scrollTop();
+            //TODO ns - make set scroll top work again
+            //intersite.setScrollTop(oldScrollTop);
 
       var newUrl = url.replace('/' + ownLanguage + '/', '/' + this.value + '/');
       window.location.href = newUrl;
     });
   }
 
-	veundmint.positionFooter = function () {
-		var docHeight = $(window).height();
-		var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
-		$( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
-	}
+    veundmint.positionFooter = function () {
+        var docHeight = $(window).height();
+        var offsetHeight = $( "#navbarTop" ).height() + $( "#subtoc" ).height() + $( "#footer" ).height() * 2;
+        $( "#pageContents" ).css( "minHeight", docHeight - offsetHeight + "px" );
+    }
 
-	/**
-	 * Adds an element to the body to indicate that veundmint.init() and therefore
-	 * all other init methods are ready. Selenium can then check for that element and
-	 * continue if its available.
-	 */
-	veundmint.addReadyElementToPage = function () {
-		$('body').append('<div id="veundmint_ready" style="display:none;"></div>')
-	}
+    /**
+     * Adds an element to the body to indicate that veundmint.init() and therefore
+     * all other init methods are ready. Selenium can then check for that element and
+     * continue if its available.
+     */
+    veundmint.addReadyElementToPage = function () {
+        $('body').append('<div id="veundmint_ready" style="display:none;"></div>')
+    }
 
-	veundmint.settings = function () {
-		return settings;
-	}
+    veundmint.settings = function () {
+        return settings;
+    }
 
-	return veundmint;
+    return veundmint;
 
 });

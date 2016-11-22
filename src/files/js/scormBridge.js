@@ -166,7 +166,7 @@
    */
   function getJSONData() {
     var storedCompressedData = gracefullyGet('cmi.suspend_data');
-    if (typeof(storedCompressedData) === 'undefined') {
+    if (typeof(storedCompressedData) === 'undefined' || storedCompressedData === "" || storedCompressedData === null) {
         return;
     }
     var decompressed = LZString.decompress(storedCompressedData);

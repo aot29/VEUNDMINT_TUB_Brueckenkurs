@@ -211,8 +211,24 @@
         });
       });
     });
-    return result;
-  }
+    
+// var saveUserDataFunctions = [];
+// storageServices.forEach(function(service) {
+//    saveUserDataFunctions.push(service.saveUserData(data, doAsyncCalls));
+// });
+
+// var result = Promise.all(timestampFunctions).then(function(data) {
+//     console.log('successsssss', data);
+// }).catch(function(error) {
+//     console.log('errrrrrr', error);
+// });
+// var result = Promise.all(saveUserDataFunctions.map(reflect)).then(function(result) {
+//    log.debug('finally', result); 
+// });
+
+  return result;
+}    
+
 
   /**
   * Compares two data objects by timestamp for sorting, i.e. finding the latest
@@ -223,9 +239,9 @@
   * @return {[type]}       [description]
   */
   function compareTimestamps(data1, data2) {
-    data1.timestamp = data1.timestamp || 0;
-    data2.timestamp = data2.timestamp || 0;
-    return data2.timestamp - data1.timestamp;
+    data1.data = data1.data || 0;
+    data2.data = data2.data || 0;
+    return data2.data - data1.data;
   }
 
   function unsubscribe(observable) {
@@ -284,7 +300,7 @@ function getAllDataTimestamps() {
 //   });
 var timestampFunctions = [];
 storageServices.forEach(function(service) {
-   timestampFunctions.push(service.getDataTimestamp());
+   timestampFunctions.push(service.getDataTimestamp);
 });
 
 // var result = Promise.all(timestampFunctions).then(function(data) {
@@ -292,16 +308,18 @@ storageServices.forEach(function(service) {
 // }).catch(function(error) {
 //     console.log('errrrrrr', error);
 // });
-var result = Promise.all(timestampFunctions.map(reflect)).then(function(result) {
-   log.debug('finally', result); 
+var result = Promise.all(storageServices.map(reflect)).then(function(data) {
+   log.debug('finally getTimestamps', data);
+   return data;
 });
 
   return result;
 }
 
-function reflect(promise){
-    return promise.then(function(v){ return {v:v, status: "resolved" }},
-                        function(e){ return {e:e, status: "rejected" }});
+function reflect(service){
+    console.log('reflectig on', service);
+    return service.getDataTimestamp().then(function(data){ return {data:data, status: "resolved", serviceName:service.name }},
+                        function(error){ return {error:error, status: "rejected", serviceName:service.name }});
 }
 
 /**
