@@ -1636,15 +1636,15 @@ function globalunloadHandler() {
   //TODO ns
   //intersite.pushIso(true); // nur synchrone ajax-calls erlauben, da wir im unload-Handler sind und die callbacks sonst verschwinden bevor Aufruf beantwortet wird
 
-  // VERALTET
-  if (scormBridge.isScormEnv())
-  {
-    log.trace("scormBridge.isScormEnv() == true in globalunloadHandler");
-    scormBridge.save();
-
-  } else {
-    log.trace("scormBridge.isScormEnv() == false in globalunloadHandler");
-  }
+//   // VERALTET
+//   if (scormBridge.isScormEnv())
+//   {
+//     log.trace("scormBridge.isScormEnv() == true in globalunloadHandler");
+//     scormBridge.save();
+// 
+//   } else {
+//     log.trace("scormBridge.isScormEnv() == false in globalunloadHandler");
+//   }
 }
 
 function globalloadHandler(pulluserstr) {

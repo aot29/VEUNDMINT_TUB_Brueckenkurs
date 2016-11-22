@@ -63,13 +63,13 @@
    */
   var changedData = {};
 
-	/**
-	* Will load existing scores from the passed intersiteObj, as we can see this class
-	* depends on intersite (by now), this dependency is only because of persistence reasons now
-	* and shall be removed in further iterations
-	* @return {[type]} [description]
-	*/
-	function init( options ) {
+    /**
+    * Will load existing scores from the passed intersiteObj, as we can see this class
+    * depends on intersite (by now), this dependency is only because of persistence reasons now
+    * and shall be removed in further iterations
+    * @return {[type]} [description]
+    */
+    function init( options ) {
 
     var importUserDataResult = importUserData();
 
@@ -77,7 +77,7 @@
     if (importUserDataResult.imported) {
       sendUserFeedback({'importUserData': importUserDataResult});
     }
-	}
+    }
 
   /**
    * Will locally update userData and also the changedData object used for synchronizing
@@ -248,42 +248,60 @@ function getAllDataTimestamps() {
       'register them by calling dataService.subscribe(yourStorageService)'));
   }
 
-  var result = new Promise(function (resolve, reject) {
-    storageServices.forEach(function (service) {
-      service.getDataTimestamp().then(function (successData) {
-        successCount += 1;
-        var status = {
-          status: 'success',
-          timestamp: successData,
-          serviceName: service.name
-        };
-        allTimestamps.push(status);
-        return status;
-      }, function (errorData) {
-        failCount += 1;
-        var status = {
-          status: 'error',
-          message: errorData,
-          serviceName: service.name,
-          timestamp: 0
-        };
-        allTimestamps.push(status);
-        return status;
-      }).then(function (data) {
-        returnedPromises += 1;
-        if (returnedPromises == storageServices.length) {
-          if (failCount == storageServices.length) {
-            //all requests failed
-            reject(new TypeError('Requests to all registered storageServices failed in getAllDataTimestamps'));
-          } else {
-            resolve(allTimestamps);
-          }
-        }
-      });
-    });
-  });
+//   var result = new Promise(function (resolve, reject) {
+//     storageServices.forEach(function (service) {
+//       service.getDataTimestamp().then(function (successData) {
+//         successCount += 1;
+//         var status = {
+//           status: 'success',
+//           timestamp: successData,
+//           serviceName: service.name
+//         };
+//         allTimestamps.push(status);
+//         return status;
+//       }, function (errorData) {
+//         failCount += 1;
+//         var status = {
+//           status: 'error',
+//           message: errorData,
+//           serviceName: service.name,
+//           timestamp: 0
+//         };
+//         allTimestamps.push(status);
+//         return status;
+//       }).then(function (data) {
+//         returnedPromises += 1;
+//         if (returnedPromises == storageServices.length) {
+//           if (failCount == storageServices.length) {
+//             //all requests failed
+//             reject(new TypeError('Requests to all registered storageServices failed in getAllDataTimestamps'));
+//           } else {
+//             resolve(allTimestamps);
+//           }
+//         }
+//       });
+//     });
+//   });
+var timestampFunctions = [];
+storageServices.forEach(function(service) {
+   timestampFunctions.push(service.getDataTimestamp());
+});
+
+// var result = Promise.all(timestampFunctions).then(function(data) {
+//     console.log('successsssss', data);
+// }).catch(function(error) {
+//     console.log('errrrrrr', error);
+// });
+var result = Promise.all(timestampFunctions.map(reflect)).then(function(result) {
+   log.debug('finally', result); 
+});
 
   return result;
+}
+
+function reflect(promise){
+    return promise.then(function(v){ return {v:v, status: "resolved" }},
+                        function(e){ return {e:e, status: "rejected" }});
 }
 
 /**

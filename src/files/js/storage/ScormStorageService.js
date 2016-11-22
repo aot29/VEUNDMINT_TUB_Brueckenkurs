@@ -21,9 +21,15 @@
 
     that.saveUserData = function(data) {
       var result = new Promise(function (resolve, reject) {
-        var success = scormBridge.setJSONData(data);
+          
+        var oldData = scormBridge.getJSONData() || {};
+        newData = veHelpers.mergeRecursive(oldData, data);
+        newData.timestamp = new Date().getTime();          
+          
+        var success = scormBridge.setJSONData(newData);
+        
         if (success) {
-          resolve(data);
+          resolve(newData);
         } else {
           reject(new TypeError('ScormStorageService errored setting user data'));
         }
@@ -49,7 +55,17 @@
      * @return {Promise<int>} The timestamp of the data in a Promise
      */
     that.getDataTimestamp = function() {
-      return Promise.resolve(-1);
+      var scormUserData = scormBridge.getJSONData();
+
+      var result = new Promise(function (resolve, reject) {
+        if (typeof scormUserData !== 'undefined' && scormUserData !== null) {
+          resolve(scormUserData.timestamp);
+        } else {
+          //return very old data timestamp
+          reject(new TypeError('ScormStorageService: Can not get data Timestamp from Scorm Data'));
+        }
+      });
+      return result;
     }
 
     return that;

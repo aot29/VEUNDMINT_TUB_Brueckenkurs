@@ -17,7 +17,7 @@
 						<xsl:if test="$disableLogin=0">
 
 							<!-- Show these when not logged in -->
-							<li class="dropdown logged_out_only" id="logged_out_buttons">
+							<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="{@basePath}/{@lang}/login.html" id="loginButton">
@@ -31,7 +31,7 @@
 							</li>
 
 							<!-- Show these when logged in -->
-							<li class="dropdown logged_in_only" id="logged_in_buttons">
+							<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li id="li-course-data">
@@ -44,7 +44,7 @@
 											<span class="glyphicon glyphicon-list-alt"></span>&nbsp;<span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span>
 										</a>
 									</li>
-									<li id="li-logout">
+									<li id="li-logout show_noscorm">
 										<a href="{@basePath}/{@lang}/logout.html">
 											<span class="glyphicon glyphicon-off"></span>&nbsp;<span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span>
 										</a>
