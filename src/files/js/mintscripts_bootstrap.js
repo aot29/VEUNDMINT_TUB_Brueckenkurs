@@ -1351,11 +1351,13 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   * @return {String}          [description]
   */
   function getUserInputForUxid(uxid, userData) {
-    for (j = 0; j < userData.scores.length; j++) {
-      if (userData.scores[j].uxid == uxid) {
-        console.log('getUserInputForUxid found score', userData.scores[j].rawinput);
-        return userData.scores[j].rawinput;
-      }
+    if(userData && userData.scores && userData.scores.length) {
+        for (j = 0; j < userData.scores.length; j++) {
+        if (userData.scores[j].uxid == uxid) {
+            console.log('getUserInputForUxid found score', userData.scores[j].rawinput);
+            return userData.scores[j].rawinput;
+        }
+        }
     }
     return null;
   }
