@@ -60,5 +60,6 @@
   exports.getDataTimestamp = instance.getDataTimestamp;
   exports.getUserData = instance.getUserData;
   exports.saveUserData = instance.saveUserData;
+  exports.name = instance.name;
 
 }));

@@ -63,7 +63,7 @@ $(window).on('beforeunload', function(){
 		apiProfileUrl: 'http://localhost:8000/whoami/',
 		apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
 		defaultLogLevel: 'error',
-		storageServices: [LocalStorageService.LocalStorageService(), DjangoStorageService.DjangoStorageService()],
+		storageServices: [LocalStorageService.LocalStorageService(), DjangoStorageService.DjangoStorageService(), ScormStorageService],
 		localStorageKey: signature_main + '_user_data'
 	};
 
