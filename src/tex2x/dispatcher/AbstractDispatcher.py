@@ -46,7 +46,6 @@ class VerboseDispatcher( AbstractDispatcher ):
 		
 	
 	def dispatch(self):
-		print( self.msg )
 		time_start = time.time()
 
 		# call the decorated class' runner
@@ -54,7 +53,7 @@ class VerboseDispatcher( AbstractDispatcher ):
 		
 		time_end = time.time()
 		time_diff = time_end - time_start
-		print("Duration: %s\n" % time_diff )
+		print("%s - %s s\n" % (self.msg, time_diff) )
 		
 		return response
 
@@ -95,18 +94,14 @@ class PluginDispatcher( AbstractDispatcher ):
 	def dispatch(self):
 		"""
 		Loads all plugins are runs them
-		
-		@author Daniel Haase
 		"""
 
 		self.data['content'] = self.content
 		self.data['tocxml'] = self.tocxml
-		self.data['required_images'] = self.requiredImages
 
 		#reset data
 		self.content = None
 		self.tocxml = None
-		self.required_images = None
 
 		#activate pre-processing from plugins
 		for op in self.plugins:

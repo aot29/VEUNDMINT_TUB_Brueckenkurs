@@ -26,6 +26,10 @@ class LinkDecorator( AbstractParser ):
 	Add methods to correct where the links in the content point to.
 	Can be decorated with VerboseDecorator to enable performance logging.
 	'''
+	
+	PATH_PREFIX = "../../../"
+	'''Prefix to add to links and image sources'''
+	
 	def __init__(self, parser ):
 		'''
 		@param options Object
@@ -41,17 +45,11 @@ class LinkDecorator( AbstractParser ):
 		@param content - a list of [toc_node, content_node] items
 		"""
 		# call the decorated class' runner
-	
 		tempTOC, tempContent = self.parser.parse(*args, **kwargs)
 		
-		if not hasattr(self.options, "nolinkcorrection"): self.options.nolinkcorrection = 0
-		
-		if self.options.nolinkcorrection == 0:
-			tempContent = self.correct_path_to_linked_files( tempContent )
-			
-		else:
-			self.sys.message(self.sys.VERBOSEINFO, "tex2x link correction not requested by options")
-		
+		tempContent = self.correct_path_to_linked_files( tempContent )
+		tempTOC = self.correct_path_to_linked_files( tempTOC )
+
 		return tempTOC, tempContent
 
 
@@ -72,31 +70,17 @@ class LinkDecorator( AbstractParser ):
 				#Interaktionen behandeln
 				for a in div.findall(".//a"):
 					if not a.get("href") is None and a.get("href")[:a.get("href").find("/")] == "interaktion":
-
-						a.set("href", "../../" + a.get("href"))
+						a.set("href", LinkDecorator.PATH_PREFIX + a.get("href"))
 
 				#Bilder allgemein behandeln
 				for img in div.findall(".//img"):
-
-					#Pfade von Bilddateien könnten unterschiedlich relativiert sein
-					#erstmal werden alle gleich gemacht
-
-					if (img.get("src") != None and img.get("src")[:6] != "../../"):
-						img.set("src", "../../" + img.get("src"))
-
-
-				for flashrahmen in div.findall(".//div[@class='flashrahmen']"):
-					param = flashrahmen.find(".//param[@name='movie']")
-					param.set("value", "../../" + param.get("value"))
-
-					embed = flashrahmen.find(".//embed")
-					embed.set("src", "../../" + embed.get("src"))
+					img.set("src", LinkDecorator.PATH_PREFIX + img.get("src"))
 
 				for videorahmen in div.findall(".//video"):
 					for source_tag in videorahmen.findall(".//source"):
-						source_tag.set("src", "../../" + source_tag.get("src"))
+						source_tag.set("src", LinkDecorator.PATH_PREFIX + source_tag.get("src"))
 
 				for iframe in div.findall(".//iframe"):
-					iframe.set("src", "../../" + iframe.get("src"))
+					iframe.set("src", LinkDecorator.PATH_PREFIX + iframe.get("src"))
 					
 		return content

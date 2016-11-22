@@ -169,7 +169,7 @@ class AbstractHtmlRenderer(object):
 			link = a.get( 'href' )
 			
 			# don't correct links to external resources
-			if link is not None and 'http://' not in link and 'mailto:' not in link:
+			if link is not None and 'http://' not in link and 'https://' not in link and 'mailto:' not in link:
 				a.set( 'href', os.path.join( basePath, link ) )
 
 

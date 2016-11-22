@@ -41,6 +41,13 @@ endif
 
 
 #
+# Build the default course but skip PDF generation
+#
+nopdf:
+	$(MAKE) -f tools/makefiles/multilang nopdf
+
+
+#
 # Updates the source code and the content submodules
 #
 update:

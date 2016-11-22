@@ -11,6 +11,7 @@ import os
 import sys
 import unittest
 from tex2x.dispatcher.Dispatcher import Dispatcher
+from tex2x.dispatcher.AbstractDispatcher import VerboseDispatcher
 class test_Dispatcher(unittest.TestCase):
 	
 	def testCreate(self):
@@ -26,6 +27,7 @@ class test_Dispatcher(unittest.TestCase):
 		Check if a Dispatcher can dispatch at all
 		'''
 		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
+		dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
 		dispatcher.dispatch()
 		self.assertTrue(True)
 	

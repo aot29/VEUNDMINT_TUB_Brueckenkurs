@@ -47,7 +47,6 @@ class VerboseParser( AbstractParser ):
 		
 	
 	def parse(self, *args, **kwargs):
-		print( self.msg + "\n" )
 		time_start = time.time()
 
 		# call the decorated class' runner
@@ -55,6 +54,6 @@ class VerboseParser( AbstractParser ):
 		
 		time_end = time.time()
 		time_diff = time_end - time_start
-		print("Duration: %s\n" % time_diff )
+		print("%s - %s s\n" % ( self.msg, time_diff ) )
 		
 		return response

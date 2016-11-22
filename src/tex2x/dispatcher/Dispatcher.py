@@ -44,6 +44,7 @@ class Dispatcher(AbstractDispatcher):
 	CURRDIR = ".."
 	
 	def __init__( self, verbose, pluginName, override ):
+		self.requiredImages = []
 		self.verbose = verbose
 		self.pluginName = pluginName
 		self.override = override
@@ -53,66 +54,45 @@ class Dispatcher(AbstractDispatcher):
 	def dispatch(self):
 		'''
 		The dispatcher calls each step of the conversion pipeline.
-		The pipeline is defined in the configfile (default configuration.json)
-		In order:
 		1. Run pre-processing plugins
 		2. Run TTM (convert Tex to XML), load XML file created by TTM
 		3. Parse XML files into a HTML tree
-		4. Create the table of contents (TOC)
-		5. Compile a list of required images
-		6. Correct links
-		7. Output to static HTML files
+		4. Create the table of contents (TOC) and content tree, correct links
+		5. Output to static HTML files
 		'''
 		if hasattr(self.options, "overrides"):
-			for ov in self.options.overrides:
-				print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
+			for ov in self.options.overrides: print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
 
-		time_start = time.time()
-
-		# Run pre-processing plugins
+		# 1. Run pre-processing plugins
 		preprocessor = PreprocessorDispatcher( self.interface['preprocessor_plugins'] )
-		if self.verbose: preprocessor = VerboseDispatcher( preprocessor, "Step 1: Preprocessing\n" )
+		if self.verbose: preprocessor = VerboseDispatcher( preprocessor, "Step 1: Preprocessing" )
 		preprocessor.dispatch()
 
-		# Run TTM parser, load XML
+		# 2. Run TTM parser, load XML
 		ttm = TTMParser( self.options, self.sys )
 		ttm = MathMLDecorator( ttm, self.options ) # Add MathML corrections
 		if self.verbose: ttm = VerboseParser( ttm, "Step 2: Converting Tex to XML (TTM)" )
 		self.data['rawxml'] = ttm.parse( settings.sourceTEXStartFile, settings.sourceTEX, settings.ttmFile ) # run TTM parser with default options
 		
-		# Parse HTML
+		# 3. Parse HTML
 		html = HTMLParser( self.options )
 		if self.verbose: html = VerboseParser( html, "Step 3: Parsing to HTML" )
 		self.xmltree_raw = html.parse( self.data['rawxml'] )
 		
-		# Create TOC and content tree
+		# 4. Create TOC and content tree
 		tocParser = TOCParser( self.options, self.sys )
 		tocParser = LinkDecorator( tocParser )
 		if self.verbose: tocParser = VerboseParser( tocParser, "Step 4: Creating the table of contents (TOC) and content tree" )
 		self.toc, self.content = tocParser.parse( self.xmltree_raw )
 
-		# Compile a list of required images
-		#imageParser = ImageParser( self.options )
-		#if self.verbose: imageParser = VerboseParser( imageParser, "Step 5: Compiling a list of required images" )
-		#self.requiredImages = imageParser.parse( self.content )
-		self.requiredImages = []
-
-		# Correct links
-		#linker = LinkParser( self.options, self.sys )
-		#if self.verbose: linker = VerboseParser( linker, "Step 6: Correcting links" )
-		#linker.parse( self.content )
-				
-		# Start output plugin
+		# 5. Start output plugin
 		plugin = PluginDispatcher( self.data, self.content, self.toc, self.requiredImages, self.interface['output_plugins'] )
-		if self.verbose: plugin = VerboseDispatcher( plugin, "Step 7: Output to static HTML files" )
+		if self.verbose: plugin = VerboseDispatcher( plugin, "Step 5: Output to static HTML files" )
 		plugin.dispatch()
 		
 		# Clean up temporary files
 		if self.options.cleanup == 1: self.clean_up();
 
-		duration = time.time() - time_start
-		print("Total duration of conversion: %s" % duration )
-		
 		# stop program execution and return proper error level as return value
 		#self.sys.finish_program()
 		# no way the application runs without errors

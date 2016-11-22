@@ -65,7 +65,7 @@ nopdf: |cleanupBefore convert_without_pdf merge fixRedirects fix fixSpecialPages
 define convert_cmd
 	# prefixed with "-" to ignore converter errors
 	# now converting, don't worry about converter errors. This can take a while...
-	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=$(CURRENT_LANG) output=$(OUTPUT)_$(CURRENT_LANG) ${OVERRIDE}
+	-cd $(BASEDIR) && python3 tex2x.py VEUNDMINT lang=$(CURRENT_LANG) output=$(OUTPUT)_$(CURRENT_LANG) ${OVERRIDE} 
 endef
 
 
@@ -193,10 +193,10 @@ fixRedirects:
 	$(fixRedirects_cmd)
 
 
-# Copy special pages to their definitive location.
+# Move special pages to their definitive location.
 # This should be dealt with in mintmod
 define fixSpecialPages_cmd
-
+	# Remove the single-language special pages	
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/data.html
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/signup.html
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/login.html
@@ -205,6 +205,7 @@ define fixSpecialPages_cmd
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/favorites.html
 	-rm $(OUTPUT)/html/$(CURRENT_LANG)/test.html
 
+	# Move special pages to their definitive location (for the current language)
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCCOURSEDATA;; //-->' -l | xargs -I '{}' cp '{}' data.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->' -l | xargs -I '{}' cp '{}' signup.html
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCLOGIN;; //-->' -l | xargs -I '{}' cp '{}' login.html
@@ -251,22 +252,8 @@ define fixLinks_cmd
 	cd $(OUTPUT) && cp *.html html/$(CURRENT_LANG)
 
 	# fix links to HTML pages
-	#cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./chapter\.html|href=\"\.\./$(CURRENT_LANG)/chapter.html|g" {} \;
-	#cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./\.\./chapter\.html|href=\"\.\./\.\./$(CURRENT_LANG)/chapter.html|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./html|href=\"\.\./$(CURRENT_LANG)|g" {} \;
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|href=\"\.\./\.\./html|href=\"\.\./\.\./$(CURRENT_LANG)|g" {} \;
-
-	# fix paths in Javascript
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var linkPath = \"\.\./\"|var linkPath = \"\.\./$(CURRENT_LANG)/\"|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var linkPath = \"\.\./\.\./\"|var linkPath = \"\.\./\.\./$(CURRENT_LANG)/\"|g" {} \;
-
-	# fix path to font files
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var fontPath = \"\.\./\.\./fonts/\"|var fontPath = \"\.\./\.\./\.\./fonts/\"|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var fontPath = \"\.\./fonts/\"|var fontPath = \"\.\./\.\./fonts/\"|g" {} \;
-
-	# fix path for images in Javascript
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var imagesPath = \"\.\./\.\./images/\"|var imagesPath = \"\.\./\.\./\.\./images/\"|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|var imagesPath = \"\.\./images/\"|var imagesPath = \"\.\./\.\./images/\"|g" {} \;
 
 	# fix link in redirects (-maxdepth 1 is important here)
 	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -maxdepth 1 -name '*.html' -type f -exec sed -i "s|url=html/|url=|g" {} \;
@@ -277,58 +264,19 @@ endef
 
 
 #
-# Set the locale for i18n and MathJax
-#
-define setLocale_cmd
-	# set locale of HTML page (for i18n). The HTML locale is currently set in the HTML template.
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|lang=\"de\"|lang=\"$(CURRENT_LANG)\"|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|lang=\"en\"|lang=\"$(CURRENT_LANG)\"|g" {} \;
-
-	# set the MathJax locale
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|MathJax.js?locale=de|MathJax.js?locale=$(CURENT_LANG)|g" {} \;
-	cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -exec sed -i "s|MathJax.js?locale=en|MathJax.js?locale=$(CURENT_LANG)|g" {} \;
-endef
-
-
-#
 # Fix the link paths in the HTML files
 #
 fix: fixRedirects
-	# Fix paths to common (*.js, *.css ...) external files
-	# Javascript links seem to be inserted in various places with different syntax
-	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script src=\"\.\./|<script src=\"\.\./\.\./|g" {} \;
-	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<script type=\"text/javascript\" src=\"\.\./|<script type=\"text/javascript\" src=\"\.\./\.\./|g" {} \;
-
-	# fix links to stylesheets
-	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|<link rel=\"stylesheet\" type=\"text/css\" href=\"\.\./|<link rel=\"stylesheet\" type=\"text/css\" href=\"\.\./\.\./|g" {} \;
-
-	# fix links to images in HTML
-	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src=\"\.\./\.\./images/|src=\"\.\./\.\./\.\./images/|g" {} \;
-	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src='\.\./\.\./images/|src='\.\./\.\./\.\./images/|g" {} \;
-	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src=\"\.\./images/|src=\"\.\./\.\./images/|g" {} \;
-	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|src='\.\./images/|src=\'\.\./\.\./images/|g" {} \;
-
-        # fix links to images in JSON (for exercise roulettes)
-	cd $(OUTPUT)/html && find . -name '*.json' -type f -exec sed -i "s|images/|\.\./images/|g" {} \;
-
 	# fix links to videos
 	cd $(OUTPUT)/html && find . -name '*.html' -type f -exec sed -i "s|:localmaterial:|\.\./\.\./\.\./images|g" {} \;
 	
-	# Point the home button to the site index
-	# TODO, set extra Javascript path
-
 	# set CURRENT_LANG to de
 	$(eval CURRENT_LANG := de)
 	$(fixLinks_cmd)
-	$(setLocale_cmd)
 
 	# set CURRENT_LANG to en
 	$(eval CURRENT_LANG := en)
 	$(fixLinks_cmd)
-	$(setLocale_cmd)
-
-	# fix redirect to English "contents of the module" page
-	#cd $(OUTPUT)/html/en && sed -i "s|4\.1\.1/modstart\.html|3\.1\.1/modstart\.html|g" chapter.html;
 
 	# replace index.html with src/templates_xslt/html5_choose_language_simple.html to allow for choosing en or de version
 	cp src/templates_xslt/html5_choose_language_simple.html $(OUTPUT)/index.html

@@ -19,6 +19,7 @@
 """
 import os
 from tex2x.dispatcher.Dispatcher import Dispatcher
+from tex2x.dispatcher.AbstractDispatcher import VerboseDispatcher
 import argparse
 import traceback
 
@@ -34,6 +35,7 @@ try:
 
     #create dispatcher and start processing
 	dispatcher = Dispatcher(args.verbose, args.plugin, args.override )
+	if args.verbose: dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
 	dispatcher.dispatch()
 
 except Exception:
