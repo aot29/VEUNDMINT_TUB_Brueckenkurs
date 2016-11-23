@@ -28,10 +28,11 @@
         }
           
         var oldData = scormBridge.getJSONData() || {};
-        newData = veHelpers.mergeRecursive(oldData, data);
+        var newData = veHelpers.mergeRecursive(oldData, data);
         newData.timestamp = new Date().getTime();          
           
         var success = scormBridge.setJSONData(newData);
+        success &= scormBridge.save();
         
         if (success) {
           resolve(newData);
