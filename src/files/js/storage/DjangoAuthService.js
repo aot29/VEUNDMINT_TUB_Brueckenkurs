@@ -34,11 +34,15 @@
       isAuthenticated = true;
       return userCredentials;
     } else {
-      var lsUserCred = localStorage.getItem(USER_CREDENTIALS_KEY);
-      if (lsUserCred !== null) {
-        isAuthenticated = true;
-        return JSON.parse(lsUserCred);
-      }
+        try {
+            var lsUserCred = localStorage.getItem(USER_CREDENTIALS_KEY);
+            if (lsUserCred !== null) {
+                isAuthenticated = true;
+                return JSON.parse(lsUserCred);
+            }
+        } catch (err) {
+          log.error('DjangoAuthService: localStorage is disabled');
+        }
     }
     //log.debug('can only call getUserCredentials if user is authenticated')
     return null;
@@ -88,7 +92,12 @@
   */
   function logout() {
     userCredentials = {};
-    localStorage.removeItem(USER_CREDENTIALS_KEY);
+    try {
+        localStorage.removeItem(USER_CREDENTIALS_KEY);
+    } catch (err) {
+          log.error('DjangoAuthService: localStorage is disabled');
+        }
+    
     isAuthenticated = false;
   }
 
@@ -214,8 +223,11 @@
       if (userCredentials.user && userCredentials.user.pk) {
         delete(userCredentials.user.pk);
       }
-
-      localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(userCredentials));
+      try {
+        localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(userCredentials));
+      } catch (err) {
+          log.error('DjangoAuthService: localStorage is disabled');
+      }
     }
     return userCredentials;
   }

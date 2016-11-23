@@ -75,7 +75,7 @@
     var importUserDataResult = importUserData();
 
     //send feedback / log if data was imported
-    if (importUserDataResult.imported) {
+    if (importUserDataResult && importUserDataResult.imported) {
       sendUserFeedback({'importUserData': importUserDataResult});
     }
     }
@@ -440,6 +440,12 @@ function logout() {
  * @return {Object} An object giving information about the status of the import
  */
 function importUserData() {
+   
+  //as we are only importing from localStorage there is no sense in that  
+  if (!localStorage) {
+        return;
+  }
+    
   //first try to find old userData which was either stored in localStorage
   //under an empty keyname or a keyname depending on the course
   var key1 = "";

@@ -21,6 +21,11 @@
     that.name = 'LocalStorageService';
 
     that.saveUserData = function(data) {
+        
+      if (!localStorage) {
+        return new Promise.reject(new TypeError('LocalStorageService: localStorage is not enabled'));  
+        }  
+        
       var result = new Promise(function (resolve, reject) {
         var oldData = JSON.parse(localStorage.getItem(storageKey)) || {};
         newData = veHelpers.mergeRecursive(oldData, data);
@@ -32,6 +37,11 @@
     }
 
     that.getUserData = function () {
+         
+      if (!localStorage) {
+        return new Promise.reject(new TypeError('LocalStorageService: localStorage is not enabled'));  
+        }       
+        
       var result = new Promise(function (resolve, reject) {
         var data = JSON.parse(localStorage.getItem(storageKey));
         resolve(data);
@@ -40,6 +50,11 @@
     }
 
     that.getDataTimestamp = function() {
+         
+      if (!localStorage) {
+        return new Promise.reject(new TypeError('LocalStorageService: localStorage is not enabled'));  
+        }       
+        
       var data = JSON.parse(localStorage.getItem(storageKey));
 
       var result = new Promise(function (resolve, reject) {
