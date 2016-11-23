@@ -67,22 +67,22 @@
      */
     that.getDataTimestamp = function() {
         
-//       var scormUserData = scormBridge.getJSONData();
-// 
-//       var result = new Promise(function (resolve, reject) {
-//         if (!scormBridge.isScormEnv() || !scormBridge.isCustomAPI) {
-//             reject(new TypeError('No Scorm Env / API found'));
-//         }             
-//           
-//         if (typeof scormUserData !== 'undefined' && scormUserData !== null) {
-//           resolve(scormUserData.timestamp);
-//         } else {
-//           //return very old data timestamp
-//           reject(new TypeError('ScormStorageService: Can not get data Timestamp from Scorm Data'));
-//         }
-//       });
-//       return result;
-        return Promise.resolve(12412575757757);
+      var scormUserData = scormBridge.getJSONData();
+
+      var result = new Promise(function (resolve, reject) {
+        if (!scormBridge.isScormEnv() || !scormBridge.isCustomAPI) {
+            reject(new TypeError('No Scorm Env / API found'));
+        }             
+          
+        if (typeof scormUserData !== 'undefined' && scormUserData !== null) {
+          resolve(scormUserData.timestamp);
+        } else {
+          //return very old data timestamp
+          reject(new TypeError('ScormStorageService: Can not get data Timestamp from Scorm Data'));
+        }
+      });
+      return result;
+      
     }
 
     return that;

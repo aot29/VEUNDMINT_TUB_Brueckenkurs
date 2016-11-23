@@ -30,7 +30,8 @@
     defaultLogLevel: 'debug',
     //wether a call to SyncDown should also try to syncUp data if timestamps differ
     alwaysSynchronize : true,
-    USER_DATA_CACHE_KEY: 've_user_data'
+    USER_DATA_CACHE_KEY: 've_user_data',
+    TIMESTAMPS_CACHE_KEY: 've_timestamps'
   };
 
   var doAsyncCalls = 'true';
@@ -211,20 +212,6 @@
         });
       });
     });
-    
-// var saveUserDataFunctions = [];
-// storageServices.forEach(function(service) {
-//    saveUserDataFunctions.push(service.saveUserData(data, doAsyncCalls));
-// });
-
-// var result = Promise.all(timestampFunctions).then(function(data) {
-//     console.log('successsssss', data);
-// }).catch(function(error) {
-//     console.log('errrrrrr', error);
-// });
-// var result = Promise.all(saveUserDataFunctions.map(reflect)).then(function(result) {
-//    log.debug('finally', result); 
-// });
 
   return result;
 }    
@@ -263,63 +250,31 @@ function getAllDataTimestamps() {
     return Promise.reject(new TypeError('no storageServices we could get data from' +
       'register them by calling dataService.subscribe(yourStorageService)'));
   }
+  
+  if (typeof (promiseCache[defaults.TIMESTAMPS_CACHE_KEY]) !== 'undefined') {
+  
+      result = promiseCache[defaults.TIMESTAMPS_CACHE_KEY];
+      
+    } else {
 
-//   var result = new Promise(function (resolve, reject) {
-//     storageServices.forEach(function (service) {
-//       service.getDataTimestamp().then(function (successData) {
-//         successCount += 1;
-//         var status = {
-//           status: 'success',
-//           timestamp: successData,
-//           serviceName: service.name
-//         };
-//         allTimestamps.push(status);
-//         return status;
-//       }, function (errorData) {
-//         failCount += 1;
-//         var status = {
-//           status: 'error',
-//           message: errorData,
-//           serviceName: service.name,
-//           timestamp: 0
-//         };
-//         allTimestamps.push(status);
-//         return status;
-//       }).then(function (data) {
-//         returnedPromises += 1;
-//         if (returnedPromises == storageServices.length) {
-//           if (failCount == storageServices.length) {
-//             //all requests failed
-//             reject(new TypeError('Requests to all registered storageServices failed in getAllDataTimestamps'));
-//           } else {
-//             resolve(allTimestamps);
-//           }
-//         }
-//       });
-//     });
-//   });
-var timestampFunctions = [];
-storageServices.forEach(function(service) {
-   timestampFunctions.push(service.getDataTimestamp);
-});
+        var result = Promise.all(storageServices.map(reflectGetTimestamp)).then(function(data) {
+            delete promiseCache[defaults.TIMESTAMPS_CACHE_KEY];
+            return data;
+        });
+    }
 
-// var result = Promise.all(timestampFunctions).then(function(data) {
-//     console.log('successsssss', data);
-// }).catch(function(error) {
-//     console.log('errrrrrr', error);
-// });
-var result = Promise.all(storageServices.map(reflect)).then(function(data) {
-   log.debug('finally getTimestamps', data);
-   return data;
-});
-
+  promiseCache[defaults.TIMESTAMPS_CACHE_KEY] = result;  
   return result;
 }
 
-function reflect(service){
+//never reject but set status which is important for Promise.all to function properly
+function reflectGetTimestamp(service){
     console.log('reflectig on', service);
-    return service.getDataTimestamp().then(function(data){ return {data:data, status: "resolved", serviceName:service.name }},
-                        function(error){ return {error:error, status: "rejected", serviceName:service.name }});
+    return service.getDataTimestamp().then(function(data){ 
+        return { data:data, status: "resolved", serviceName:service.name }
+    }, function(error){
+        return { error:error, status: "rejected", serviceName:service.name }
+    });
 }
 
 /**
@@ -604,7 +559,7 @@ function mergeRecursive(obj1, obj2, changedData) {
         //we update the object
         for(var key in obj2) {
           if(obj2.hasOwnProperty(key)) {
-            obj1[i][key] = obj2[key];
+             obj1[i][key] = obj2[key];
           }
         }
         return obj1;
