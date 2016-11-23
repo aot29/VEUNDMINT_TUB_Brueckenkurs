@@ -44,7 +44,7 @@
 											<span class="glyphicon glyphicon-list-alt"></span>&nbsp;<span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span>
 										</a>
 									</li>
-									<li id="li-logout show_noscorm">
+									<li id="li-logout" class='show_noscorm'>
 										<a href="{@basePath}/{@lang}/logout.html">
 											<span class="glyphicon glyphicon-off"></span>&nbsp;<span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span>
 										</a>
