@@ -1,12 +1,12 @@
 SOFTWARE_REPOSITORY = git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git
-SUBMODULE_DIR = content_submodule
+SUBMODULE_DIR = ./content_submodule
 
 #
 # Use this target after checking out the content branch first time around.
 # 
 install: clean
 	# add the software as a submodule
-	git submodule add -b ${branch} -f ${SOFTWARE_REPOSITORY} ${SUBMODULE_DIR}
+	git submodule add --force -b ${branch}  ${SOFTWARE_REPOSITORY} ${SUBMODULE_DIR}
 	
 	# updates the linked submodules
 	git submodule init
