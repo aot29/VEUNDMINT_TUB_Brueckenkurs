@@ -92,6 +92,13 @@
         $('body').addClass('logged_out');
       }
     });
+    
+    //set visibility in scorm
+    if (scormBridge.isScormEnv()) {
+        $('body').addClass('is_scorm');
+    } else {
+        $('body').addClass('no_scorm'); 
+    }
 
     //fill user form if logged in
     var $form = $('#form-user-register');
@@ -102,16 +109,6 @@
         log.debug('error populating form with user data');
       });
     }
-    
-    //set visibility in scorm
-    if (scormBridge.isScormEnv()) {
-        $('.show_scorm').attr('style','display:block !important');
-        $('.show_noscorm').attr('style','display:none !important'); 
-    } else {
-        $('.show_scorm').attr('style','display:none !important');
-        $('.show_noscorm').attr('style','display:block !important'); 
-    }
-    
 
   }
 
