@@ -27,7 +27,7 @@ class LinkDecorator( AbstractParser ):
 	Can be decorated with VerboseDecorator to enable performance logging.
 	'''
 	
-	PATH_PREFIX = "../../../"
+	PATH_PREFIX = "../"
 	'''Prefix to add to links and image sources'''
 	
 	def __init__(self, parser ):
