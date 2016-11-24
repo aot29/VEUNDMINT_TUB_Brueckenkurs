@@ -4,7 +4,7 @@ from Latex files. It will convert latex input to html / css / js output and incl
 features such as exercises, tests, glossary, etc. It is easily extendable.
 
 ### build status
-* branch: develop_software [![build status](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/badges/develop_software/build.svg)](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/commits/develop_software)
+* branch: dev_TUB_software [![build status](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/badges/dev_TUB_software/build.svg)](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/commits/dev_TUB_software)
 
 ## Dependencies
 Install these packages using your package manager:
@@ -14,33 +14,81 @@ libxml2, libxml2-dev, libxslt1-dev, lib32z1, tidy,php-cli, nodejs
 ```
 If the nodejs version provided for your distributio is < 4.x, then see [here](https://nodejs.org/en/download/package-manager/)
 
-## Installation
-Clone the repository if not already done and checkout the development branch:
+This page documents how to set up an environment to work on existing courses or build a new one. There are two ways you can work on a course. *Content developers* write texts and exercises, *Software developers* work on the conversion software. Choose the documentation which best suits your needs. If you intend to work on both, then choose *Software developers*.
+
+# Content developers
+## 1. The first time around, 
+you will need to clone the content development branch and install it:
 ```
-git clone git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT_DEV
-cd VEUNDMINT_DEV
-git checkout develop_software
+git clone --single-branch -b dev_VBKM_content git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT_VBKM_CONTENT
+cd VEUNDMINT_VBKM_CONTENT
+make install
 ```
-The following will install the application in a Python virtual environment. Make sure the command virtualenv is installed:
+The LaTeX files can now be found in the **directory "content"**. 
+
+## 2. To edit the content, 
+you can now open a .tex file using Texmaker, and you should be able to build a PDF with it. 
+
+## 3. To update, 
+the content and the software to the latest version, use:
 ```
-which virtualenv
-```
-Go to the checkout path and invoke the installation script. This will install all dependencies.
-```
-make -f tools/makefiles/devinstall
-```
-To start developing, do:
-```
-source venv/bin/activate
-make -f tools/makefiles/multilang
-```
-This build everything is in the folder **public**.
-To run the server at http://localhost:3000 call:
-```
-npm run gulp watch &> gulp_output.log &
+make update
 ```
 
-## Manual Installation
+# Software developers
+
+## 1. The first time around, 
+you will need to clone the  development branch:
+```
+git clone --single-branch -b dev_TUB_software git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT_DEV
+cd  VEUNDMINT_DEV
+```
+
+## 2. Install a development environment 
+and **choose the course you want to work with** by passing the name of the content branch. 
+
+To install the maths course, do:
+```
+make install  branch=dev_VBKM_content
+```
+Alternatively, to install the physics course, do:
+```
+make install branch=dev_Physik_content
+```
+ 
+## 3. Working on the code and building the course
+Start the **virtual environment** by doing
+```
+source venv/bin/activate
+```
+Make changes, then build the course. To build the **maths course**, do:
+```
+make all
+```
+Alternatively, to build the **physics course**, do: 
+```
+make all course=PhysikBK
+```
+## 4. Testing
+You can now start the webserver and see the result in a browser by calling (preferably in another console):
+```
+npm run gulp watch
+```
+To run the **test suite**, make sure the webserver is running, then call
+```
+make test
+```
+## 5. Updating
+**To update** the source code and the content submodules, use
+```
+make update
+```
+
+##See
+* https://git-scm.com/book/en/v2/Git-Tools-Submodules
+* http://stackoverflow.com/questions/1777854/git-submodules-specify-a-branch-tag
+
+# Manual Installation
 
 Following, you will find installation instructions to get you started. This package is build in **Python3**. To get you started, first clone this repository
 ```
