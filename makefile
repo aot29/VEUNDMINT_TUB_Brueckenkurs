@@ -5,7 +5,7 @@ SUBMODULE_DIR = ./content_submodule
 # Use this target after checking out the content branch first time around.
 # 
 install: clean
-	# add the software as a submodule
+	# add the content as a submodule
 	git submodule add --force -b ${branch}  ${SOFTWARE_REPOSITORY} ${SUBMODULE_DIR}
 	
 	# updates the linked submodules
