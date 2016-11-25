@@ -62,7 +62,7 @@ gulp_all_tests:
     - "export LC_ALL=en_US.UTF-8"
     - "export LANG=en_US.UTF-8"
     - "export LANGUAGE=en_US.UTF-8"
-    - "green -vvv --run-coverage"
+    - "cd src && green -vvv --run-coverage"
     - "coverage html"
     # move coverage report to /coverage
     - "rsync -avr htmlcov/* /home/gitlab-runner/gitlab-ci/coverage"
