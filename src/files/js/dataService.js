@@ -42,7 +42,8 @@
 
   //the 'cache' for all userData
   var objCache = {
-    scores: []
+    scores: [],
+    sites: []
   };
 
   /**
@@ -115,6 +116,9 @@
   function subscribe (observable) {
     storageServices.push(observable);
     storageServicesMap[observable.name] = observable;
+    
+    //also we need to empty the promiseCache, as stored promises will not have called the newly subscribed service
+    promiseCache = {};
   }
 
   /**
@@ -269,7 +273,7 @@ function getAllDataTimestamps() {
 
 //never reject but set status which is important for Promise.all to function properly
 function reflectGetTimestamp(service){
-    console.log('reflectig on', service);
+    console.log('reflecting on', service);
     return service.getDataTimestamp().then(function(data){ 
         return { data:data, status: "resolved", serviceName:service.name }
     }, function(error){
@@ -645,7 +649,7 @@ exports.init = init;
 exports.makeSynchronous = makeSynchronous;
 exports.subscribe = subscribe;
 exports.unsubscribe = unsubscribe;
-exports.unsubscribeAll = function () { storageServices = []; storageServicesMap = {}; };
+exports.unsubscribeAll = function () { storageServices = []; storageServicesMap = {}; promiseCache = {}; };
 exports.getSubscribers = function () { return storageServices };
 exports.getAllDataTimestamps = getAllDataTimestamps;
 exports.getUserData = getUserData;

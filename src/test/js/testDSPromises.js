@@ -60,7 +60,7 @@ describe('dataService', function() {
       }
     }
     fs = new FailService();
-    ls = LocalStorageService();
+    ls = new LocalStorageService();
   });
 
   describe('#subscribe / #unsubscribe', function() {
@@ -85,6 +85,14 @@ describe('dataService', function() {
       dataService.unsubscribe(ls);
       subs = dataService.getSubscribers();
       assert.equal(subs.length, 0);
+      
+      dataService.subscribe(ls);
+      dataService.subscribe(fs);
+      dataService.getAllDataTimestamps();
+      dataService.unsubscribeAll();
+      
+      subs = dataService.getSubscribers();
+      assert.equal(subs.length, 0);
 
     });
   });
@@ -92,8 +100,9 @@ describe('dataService', function() {
   describe('#getAllDataTimestamps', function() {
 
     it('should call subscribed services and not unsubscribed services', function() {
+
       dataService.subscribe(fs);
-      //dataService.subscribe(ls);
+      assert.equal(dataService.getSubscribers().length, 1);
 
       var spyFsTimestamp = sinon.spy(fs, "getDataTimestamp");
       var spyLsTimestamp = sinon.spy(ls, "getDataTimestamp");
@@ -111,14 +120,20 @@ describe('dataService', function() {
       expect(ls.getDataTimestamp.calledOnce).to.equal(true);
     });
 
-    it('should reject if all registered services reject', function() {
+    it('should resolve if all registered services reject', function() {
       dataService.subscribe(fs);
       dataService.subscribe(ls);
 
       var service = dataService.getAllDataTimestamps();
 
       //service rejects, because all registered services reject
-      return expect(service).to.be.rejectedWith(TypeError);
+      return expect(service).to.be.fulfilled.then(function(data) {
+            expect(data.length).to.equal(2);
+             expect(data).to.have.deep.property('[0].status', 'rejected');
+             expect(data).to.have.deep.property('[1].status', 'rejected');
+             expect(data).to.have.deep.property('[0].error');
+             expect(data).to.have.deep.property('[0].error');
+      });
     });
 
     it('should resolve getAllDataTimestamps with correct timestamps', function() {
@@ -130,15 +145,17 @@ describe('dataService', function() {
       dataService.updateUserData({
         'name': 'test'
       });
+      
 
       return dataService.syncUp().then(function(data) {
         return dataService.getAllDataTimestamps();
       }).then(function(data) {
+          console.log(data);
         expect(data).to.have.deep.property('[0].serviceName', 'LocalStorageService');
-        expect(data).to.have.deep.property('[0].status', 'success');
-        expect(data).to.have.deep.property('[0].timestamp').to.be.below(new Date().getTime());
+        expect(data).to.have.deep.property('[0].status', 'resolved');
+        expect(data).to.have.deep.property('[0].data').to.be.below(new Date().getTime());
         expect(data).to.have.deep.property('[1].serviceName', 'failService');
-        expect(data).to.have.deep.property('[1].status', 'error');
+        expect(data).to.have.deep.property('[1].status', 'rejected');
       });
     });
 

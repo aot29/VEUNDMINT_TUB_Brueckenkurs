@@ -404,6 +404,14 @@
     }
     return versionedParameter;
   }
+  
+  function save() {
+      if (!isCustomAPI) {
+          return pipwerks.SCORM.save();
+    } else {
+        return scormAPI.LMSCommit('');
+    }
+  }
 
   // attach properties to the exports object to define
   // the exported module properties.
@@ -414,7 +422,7 @@
   exports.gracefullySet = gracefullySet;
   exports.get = pipwerks.SCORM.get;
   exports.set = pipwerks.SCORM.set;
-  exports.save = pipwerks.SCORM.save;
+  exports.save = save;
   exports.setJSONData = setJSONData;
   exports.getJSONData = getJSONData;
   exports.getScormVersion = getScormVersion;

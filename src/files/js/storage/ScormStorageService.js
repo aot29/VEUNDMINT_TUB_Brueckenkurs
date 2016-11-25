@@ -23,12 +23,19 @@
         
       var result = new Promise(function (resolve, reject) {
           
-        if (!scormBridge.isScormEnv() || !scormBridge.isCustomAPI) {
+        if (!scormBridge.isScormEnv() && !scormBridge.isCustomAPI) {
             reject(new TypeError('No Scorm Env / API found'));
         }
           
         var oldData = scormBridge.getJSONData() || {};
+        
+        console.log('oldData', oldData);
+        
         var newData = veHelpers.mergeRecursive(oldData, data);
+        
+        
+        console.log('newData', newData);
+        
         newData.timestamp = new Date().getTime();          
           
         var success = scormBridge.setJSONData(newData);
@@ -46,7 +53,7 @@
     that.getUserData = function () {
       var result = new Promise(function (resolve, reject) {
           
-        if (!scormBridge.isScormEnv() || !scormBridge.isCustomAPI) {
+        if (!scormBridge.isScormEnv() && !scormBridge.isCustomAPI) {
             reject(new TypeError('No Scorm Env / API found'));
         }  
           
@@ -70,7 +77,7 @@
       var scormUserData = scormBridge.getJSONData();
 
       var result = new Promise(function (resolve, reject) {
-        if (!scormBridge.isScormEnv() || !scormBridge.isCustomAPI) {
+        if (!scormBridge.isScormEnv() && !scormBridge.isCustomAPI) {
             reject(new TypeError('No Scorm Env / API found'));
         }             
           

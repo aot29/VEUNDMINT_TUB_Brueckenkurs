@@ -9,10 +9,15 @@ var expect = chai.expect;
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
+var dataFixtures = require('./dataFixtures.js');
+
 describe('dataService', function() {
 
   describe('#mergeRecursive()', function() {
     beforeEach(function() {
+        
+      complexData = dataFixtures.getComplexUserData();  
+        
       obj1 = {
         simple: 'attribute',
         scores: [
