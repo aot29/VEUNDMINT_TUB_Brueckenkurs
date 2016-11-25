@@ -198,13 +198,15 @@ $(window).on('beforeunload', function(){
         }
 
         //if we came from the same url in another language, return to the scroll position
-        //TODO ns make return to scroll top work again
-        // var oldScrollTop = intersite.getScrollTop();
-        // if (oldScrollTop !== 0) {
-        //  $('html, body').animate({scrollTop:oldScrollTop}, 1000);
-        //  intersite.setScrollTop(0);
-        // }
-
+        dataService.getUserData().then(function(userData) {
+           if (userData) {
+               if (userdata.scrollTop !== 0) {
+                $('html, body').animate({scrollTop: userData.scrollTop}, 1000);
+                dataService.updateUserData({scrollTop: 0});
+               }
+           }
+        });
+        
         // footer at bottom of column
         // don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
         $(window).resize( veundmint.positionFooter );
@@ -365,8 +367,7 @@ $(window).on('beforeunload', function(){
     $('body').on('change', '#selectLanguage', function() {
             //store the scroll Top for next site, will be set in veundmint.init()
             var oldScrollTop = $(document).scrollTop();
-            //TODO ns - make set scroll top work again
-            //intersite.setScrollTop(oldScrollTop);
+            dataService.updateUserData({scrollTop: oldScrollTop});
 
       var newUrl = url.replace('/' + ownLanguage + '/', '/' + this.value + '/');
       window.location.href = newUrl;
