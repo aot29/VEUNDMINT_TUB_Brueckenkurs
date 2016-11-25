@@ -68,6 +68,7 @@ class Option(object):
 		# Tree depends on language requested
 		self.module = ( lambda locale: "tree_en.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "tree_de.tex" ) (self.locale)
 
+		self.overrideValues() # need to call overrideValues before AND after, as some values are put together, e.g. in setConverterVars
 		self.setConversionFlags()
 		self.setTest()
 		self.setSourceOutputDirs()
@@ -79,9 +80,9 @@ class Option(object):
 		self.setTTM()
 		self.setTags()
 		self.setPluginOptions()
-		
-		self.overrideValues()
-		self.setConverterVars() # call setConverterVars AFTER overrideValues		
+		self.setConverterVars()
+		self.overrideValues() # need to call overrideValues before AND after, as some values are put together, e.g. in setConverterVars
+
 		self.checkConsistency() # call checkConsistency LAST
 
 

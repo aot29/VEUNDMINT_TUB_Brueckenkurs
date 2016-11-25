@@ -3,12 +3,13 @@ All notable changes to this project should be documented in this file.
 
 ## 25.10 - present
 ### Added
- - Split the course into a content and a software repository. It should now be possible to build several courses using the same software. See README for details.
- - Rewrote the top-level entry file (tex2x.py) using the dispatcher-pattern (tex2x/Dispatcher.py)
- - Moved parsing functionality to the package tex2x/parsers
+ - Split the course into a content and a software tier. It is now possible to build different courses using the same software. See README for details.
+ - Rewrote the top-level entry script (tex2x.py) using the dispatcher pattern (tex2x/Dispatcher.py)
+ - Replaced package tex2xStruct by package tex2x
+ - Refactored plugins/VEUNDMINT/Option.py
+ - Test coverage is now 70%
 ### Fixed
 - Removed private material from content
-- Fixed display of images in Roulette exercises and video
 
 ## 11.09.2016 - 24.10.2016
 ### Added

@@ -19,7 +19,7 @@
 import os
 from lxml import etree
 import shutil
-from tex2xStruct import System
+from tex2x import System
 
 def pack(path, modnumber, full_title):
     

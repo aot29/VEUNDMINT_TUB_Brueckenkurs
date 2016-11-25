@@ -15,7 +15,8 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-	@author Alvaro Ortiz
+	@author - Daniel Haase for KIT
+	@author Alvaro Ortiz for TU Berlin
 """
 import os
 from tex2x.dispatcher.Dispatcher import Dispatcher

@@ -35,7 +35,7 @@ from tex2x.parsers.TOCParser import TOCParser
 from tex2x.parsers.LinkDecorator import LinkDecorator
 from tex2x.parsers.MathMLDecorator import MathMLDecorator
 
-from . import System as TSystem
+from tex2x import System as TSystem
 
 
 class Dispatcher(AbstractDispatcher):

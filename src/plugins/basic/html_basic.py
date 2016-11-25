@@ -25,7 +25,7 @@ Todo:
 import os
 #from . import System
 from plugins.basic import Option_html_basic as op
-from tex2xStruct import System
+from tex2x import System
 from lxml import etree
 from lxml import html
 from copy import deepcopy

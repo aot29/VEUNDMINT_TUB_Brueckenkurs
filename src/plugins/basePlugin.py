@@ -26,7 +26,7 @@ from lxml import etree
 from lxml import html
 from copy import deepcopy
 import os
-from tex2xStruct import System
+from tex2x import System
 from plugins import exceptions
 import json
 

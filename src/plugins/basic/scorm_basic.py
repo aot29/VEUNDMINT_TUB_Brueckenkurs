@@ -17,7 +17,7 @@
 """
 
 import os
-from tex2xStruct import System
+from tex2x import System
 from plugins.basic import Option_scorm_basic as op
 from lxml import etree
 from lxml import html
