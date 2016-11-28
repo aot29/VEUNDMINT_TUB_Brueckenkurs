@@ -1,4 +1,4 @@
-"""
+﻿"""
 	VEUNDMINT plugin package
 	Copyright (C) 2016  VE&MINT-Projekt - http://www.ve-und-mint.de
 
@@ -134,14 +134,13 @@ class Option(object):
 		self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
 		self.convinfofile = "convinfo.js"
 
-
 	def setConversionFlags(self):
 		'''
 		VE&MINT conversion flags, using values 0 and 1 (integers)
 		'''
 		
 		self.testonly = ( lambda override: 1 if 'testonly=1' in override else 0 ) ( self.override )
-		self.disableLogin = 1	# =1 login buttons will be disabled
+		self.disableLogin = 0	# =1 login buttons will be disabled
 		self.scormlogin = 0		# =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
 		self.nosols =  0		# =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
 		self.doscorm = 0		# =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden

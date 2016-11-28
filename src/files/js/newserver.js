@@ -29,7 +29,7 @@
     apiScoresUrl: 'http://localhost:8000/score/',
     defaultLogLevel: 'debug'
   };
-  
+
   defaults.apiUsernameAvailable = defaults.apiUrl + 'checkusername/'
 
   var USER_CREDENTIALS_KEY = 've_user_credentials';
@@ -48,7 +48,7 @@
 
   log.info('newserver.js loaded');
 
-  init();
+  //init();
 
   /**
   * will load existing scores from the passed intersiteObj, as we can see this class
@@ -61,7 +61,7 @@
     // Merge user options with defaults
     settings = $.extend( defaults, options || {} );
     authenticate({
-      username: 'testrunner', 
+      username: 'testrunner',
       password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
     });
 
@@ -110,8 +110,8 @@
     log.info('newserver setScores() called with', data);
     return authAjaxPOST(settings.apiProfileUrl, {scores: data});
   }
-  
-  // Call /checkusername/?username=<username> at the server and return 
+
+  // Call /checkusername/?username=<username> at the server and return
   function usernameAvailable(username) {
 	  return authAjaxGET(settings.apiUsernameAvailable, {username: username}).then(function (data) {
 		  return data.username_available;
@@ -170,8 +170,8 @@
       }
     });
   }
-  
-  //this function authenticates a moodle user at the server and might also 
+
+  //this function authenticates a moodle user at the server and might also
   function authenticateMoodle() {
 	if (scormBridge.isScormEnv()) {
 		var username = scormBridge.getStudentName;
@@ -203,7 +203,7 @@
       }
     });
   }
-  
+
   /**
   * Make (unauthenticated) GET request to url with data
   * @param  {String} url  The url to send the request to

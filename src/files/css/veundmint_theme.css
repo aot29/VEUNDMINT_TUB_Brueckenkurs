@@ -52,16 +52,25 @@ body {
 }
 
 /* Special styles for when the user is logged in */
-body.logged_in .logged_out_only {
-  display: none;
+body.is_scorm.logged_in .logged_out_only {
+    display: block !important;
+}
+body.is_scorm.logged_out .logged_in_only {
+   display: block !important; 
+}
+body.no_scorm.logged_in .logged_out_only {
+    display: none !important;
+}
+body.no_scorm.logged_in .logged_in_only {
+    display: block !important;
+}
+body.no_scorm.logged_out .logged_out_only {
+    display: block !important;
+}
+body.no_scorm.logged_out .logged_in_only {
+    display: none !important;
 }
 
-.logged_in_only {
-  display: none;
-}
-body.logged_in .logged_in_only {
-  display: block;
-}
 
 /* on the start page */
 .jumbotron {

@@ -16,6 +16,15 @@ All notable changes to this project should be documented in this file.
 - PDF generation for whole course, German and English
 - Re-encoded all content in UTF-8
 - Next and Previous Chapter buttons at bottom of page
+- Ausführliche Dokumentation der Software Architektur
+- Entwicklung eines Migrationskonzepts für die Entwicklung von (intersite.js ->)
+dataService.js
+- Entwicklung erster Testdaten für dataService.js
+- Einführung von javascript tests mit mocha (+sinon) (`src/test/js/test.js`) - werden ausgefuehrt
+(nachdem neue pakete mit `npm install` installiert wurden über) `npm run test`
+(nach laengerer recherche keine moeglichkeit gefunden coverage reports zu mergen. es gibt allerdings kostenlose
+  services, sobald das repository open source ist: [https://codecov.io/](https://codecov.io/))
+- Einführung von js coverage mit istanbul `npm run coverage`
 
 ## 04.09.2016 - 10.09.2016
 ### Added
