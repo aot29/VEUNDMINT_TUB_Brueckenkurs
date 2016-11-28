@@ -169,7 +169,7 @@
     if (typeof(storedCompressedData) === 'undefined' || storedCompressedData === "" || storedCompressedData === null) {
         return;
     }
-    var decompressed = LZString.decompress(storedCompressedData);
+    var decompressed = LZString.decompressFromEncodedURIComponent(storedCompressedData);
     var obj = JSON.parse(decompressed);
     return obj;
   }
@@ -182,7 +182,7 @@
    */
   function setJSONData(data) {
     var JSONstring = JSON.stringify(data);
-    var compressed = LZString.compress(JSONstring);
+    var compressed = LZString.compressToEncodedURIComponent(JSONstring);
     return gracefullySet('cmi.suspend_data', compressed);
   }
 
