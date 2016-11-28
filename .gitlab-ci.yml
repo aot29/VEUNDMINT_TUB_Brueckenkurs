@@ -23,6 +23,7 @@ setup_python:
     - "[ ! -d venv ] && virtualenv -p python3 venv"
     - "source venv/bin/activate"
     - "pip3 install -r requirements.txt"
+    - "rm -rf content_submodule"
 
 gulp_build_multilang:
   stage: build
