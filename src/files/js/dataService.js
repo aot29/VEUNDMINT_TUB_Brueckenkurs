@@ -38,7 +38,8 @@
 
   var storageServices = [];
   var storageServicesMap = {};
-  var syncStrategies = ['timer', 'onunload']
+  var syncStrategies = ['timer', 'onunload'];
+  var syncUpExcludes = [];
 
   //the 'cache' for all userData
   var objCache = {
@@ -141,8 +142,15 @@
         log.debug('services returned the timestamps:', successAllTimestamps);
         log.debug('latest data was found at the service:', successAllTimestamps[0]);
         var latestTimestampData = successAllTimestamps[0];
+        
+        //save the service we received the data from to the sync up excludes that it will not try to replicate
+        //to the same service the data is from
+        log.debug('syncup pushing', latestTimestampData.serviceName);
+        syncUpExcludes.push(latestTimestampData.serviceName);
+        
         //return the userdata Promise from the service where the latest data was found
         //by comparing the timestamps
+
         return storageServicesMap[latestTimestampData.serviceName].getUserData();
       } else {
         return Promise.reject(new TypeError('getAllDataTimestamps did not return an Array.'));
@@ -158,7 +166,7 @@
       //trigger an asynchronous call to replicate obj cache to other storages
       //TODO only if they are empty (by timestamp)
       if (null !== latestData) {
-        //syncUp(objCache);
+        syncUp(objCache);
       }
 
       //empty the promise cache for user data
@@ -184,6 +192,14 @@
   function syncUp(data) {
     data = typeof data !== "undefined" ? data : changedData;
 
+    
+    var syncUpServices = []
+    for (var i=0; i<storageServices.length; i++) {
+        if (syncUpExcludes.indexOf(storageServices[i].name) === -1) {
+            syncUpServices.push(storageServices[i])
+        }
+    }
+
     log.debug('syncUp called data:', data);
 
     if (veHelpers.isEmpty(data)) {
@@ -199,9 +215,11 @@
     var totalResolved = 0;
     var totalRejected = 0;
     var status = {};
+    
+    log.debug('syncup services is ' , syncUpServices);
 
     var result = new Promise(function (resolve, reject) {
-      storageServices.forEach(function (service) {
+      syncUpServices.forEach(function (service) {
         service.saveUserData(data, doAsyncCalls).then(function (successData) {
           totalResolved += 1;
           status[service.name] = {status: 'success', data: successData}
@@ -211,6 +229,7 @@
         }).then(function (data) {
           if (totalResolved + totalRejected == storageServices.length) {
             changedData = {};
+            syncUpExcludes = [];
             resolve(status);
           }
         });
