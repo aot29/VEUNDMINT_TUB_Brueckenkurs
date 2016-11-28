@@ -30,6 +30,7 @@
     defaultLogLevel: 'debug',
     //wether a call to SyncDown should also try to syncUp data if timestamps differ
     alwaysSynchronize : true,
+    SYNC_DOWN_CACHE_KEY : 've_sync_down',
     USER_DATA_CACHE_KEY: 've_user_data',
     TIMESTAMPS_CACHE_KEY: 've_timestamps'
   };
@@ -132,7 +133,12 @@
     if (storageServices.length === 0) {
       return Promise.resolve('dataService: synDown called without subscribers, will do nothing.');
     }
-
+    
+    //return the promise if syncDown was already called
+    if (typeof promiseCache[defaults.SYNC_DOWN_CACHE_KEY] !== "undefined") {
+        return promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
+    }
+        
     log.debug('dataService: syncDown is calling getAllDataTimestamps');
     var userDataPromise = getAllDataTimestamps().then(function (successAllTimestamps) {
 
@@ -148,9 +154,11 @@
         log.debug('syncup pushing', latestTimestampData.serviceName);
         syncUpExcludes.push(latestTimestampData.serviceName);
         
+        delete promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
+        
+        
         //return the userdata Promise from the service where the latest data was found
         //by comparing the timestamps
-
         return storageServicesMap[latestTimestampData.serviceName].getUserData();
       } else {
         return Promise.reject(new TypeError('getAllDataTimestamps did not return an Array.'));
@@ -177,7 +185,7 @@
     });
 
     //put the promise in the cache
-    promiseCache[defaults.USER_DATA_CACHE_KEY] = userDataPromise;
+    promiseCache[defaults.SYNC_DOWN_CACHE_KEY] = userDataPromise;
 
     return userDataPromise;
   }
