@@ -6,7 +6,7 @@ import platform
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # The base url where the server will run - used for testing and configuration
-BASE_URL = 'http://guest43.mulf.tu-berlin.de/gitlab-ci-test'
+BASE_URL = 'https://guest6.mulf.tu-berlin.de/gitlab-ci-test'
 
 # Set the project wide log level (can be overridden in files)
 LOG_LEVEL = logging.DEBUG
@@ -37,4 +37,4 @@ ttmFile = os.path.join(sourceTEX, 'ttm_output.xml')
 #### Testing Options ####
 #########################
 
-scorm2004testurl = 'http://localhost:3000/scorm2004testwrap.htm'
+scorm2004testurl = BASE_URL + '/scorm2004testwrap.htm'
