@@ -2,15 +2,9 @@ import sys, os
 from plugins.VEUNDMINT.Option import Option as VEUNDMINTOption
 from types import ModuleType
 import inspect
+from tex2x import Singleton
 
-class Settings(dict):
-    
-    _instance = None
-    def __new__(cls, *args, **kwargs):
-        if not cls._instance:
-            cls._instance = super(Settings, cls).__new__(
-                                cls, *args, **kwargs)
-        return cls._instance
+class Settings(dict, metaclass=Singleton):
     
     def __getattr__(self, key):
         """
