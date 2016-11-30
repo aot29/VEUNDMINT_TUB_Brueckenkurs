@@ -149,11 +149,6 @@
         log.debug('latest data was found at the service:', successAllTimestamps[0]);
         var latestTimestampData = successAllTimestamps[0];
         
-        //save the service we received the data from to the sync up excludes that it will not try to replicate
-        //to the same service the data is from
-        log.debug('syncup pushing', latestTimestampData.serviceName);
-        syncUpExcludes.push(latestTimestampData.serviceName);
-        
         delete promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
         
         
