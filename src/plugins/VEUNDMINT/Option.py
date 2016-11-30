@@ -30,6 +30,7 @@ from git import Repo
 import sys
 import platform
 
+
 class Option(object):
 	"""
 	Tex2x lässt sich vielfältig konfigurieren. Da eine Konfiguration über Kommandozeilen-Parameter den Rahmen
@@ -48,11 +49,13 @@ class Option(object):
 
 	def __init__(self, currentDir, override):
 
+		import settings as new_settings
+		
 		#Debugging
 		self.DEBUG = False
 
 		# common vars on which the other vars depend. Set constructor.
-		# self.currentDir = new_settings.BASE_DIR # one level above location of tex2x.py
+		self.currentDir = new_settings.BASE_DIR # one level above location of tex2x.py
 		self.converterDir = os.path.join(self.currentDir, "src")
 		self.converterCommonFiles = os.path.join(self.converterDir, "files")
 		self.output = "build" # Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN

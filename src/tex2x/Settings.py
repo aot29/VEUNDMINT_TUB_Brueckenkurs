@@ -63,7 +63,8 @@ class Settings(dict):
         """
         Loads settings from the supplied settings in custom_settings, which
         can either be an object instance or a dict.
-        """
+        """        
+        
         if custom_settings is not None:
             is_module = False
             
@@ -73,7 +74,7 @@ class Settings(dict):
                 is_module = True
             elif (isinstance(custom_settings, dict)): 
                 loaded_settings = custom_settings
-            
+                            
             if isinstance(loaded_settings, dict):
                 for setting in loaded_settings:
                     if getattr(self, setting):
@@ -113,16 +114,3 @@ class SettingsMixin(Settings):
     it is possible to do x = MY_SETTING_KEY instead of x = settings.MY_SETTING_KEY
     """
     pass
-
-
-#settings = Settings()
-
-## for convenience an VEUNDMINT-Option settings is supplied
-#import argparse
-#parser = argparse.ArgumentParser(description='tex2x converter')
-#parser.add_argument("--plugin", help="specify the plugin you want to run")
-#parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
-#parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
-#args = parser.parse_args()
-
-#ve_settings = Settings(VEUNDMINTOption('', args.override))

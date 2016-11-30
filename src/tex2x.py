@@ -20,7 +20,6 @@
 """
 import os
 from tex2x.Settings import Settings
-
 #from tex2x.dispatcher.Dispatcher import Dispatcher
 #from tex2x.dispatcher.AbstractDispatcher import VerboseDispatcher
 import argparse
@@ -35,20 +34,22 @@ try:
 	
 	overridden_args = dict(k.split('=') for k in args.override)
 	
-    #print('overridden args is %s' % overridden_args)
 	
 	s=Settings(overridden_args)
 	import settings as default_settings
 	s.load_settings(default_settings)
 	print(s.scorm2004testurl)
+	from plugins.VEUNDMINT.Option import Option as VEUNDMINTOption
+	s.load_settings(VEUNDMINTOption('',''))
+	print(s.accessflags)
 
 	if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
 	    raise Exception("tex2x must be called in its own directory")
 
-    #create dispatcher and start processing
-	#dispatcher = Dispatcher(args.verbose, args.plugin, args.override )
-	#if args.verbose: dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
-	#dispatcher.dispatch()
+    create dispatcher and start processing
+	dispatcher = Dispatcher(args.verbose, args.plugin, args.override )
+	if args.verbose: dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
+	dispatcher.dispatch()
 
 except Exception:
 	# Handle exceptions at the highest level, not in the classes
