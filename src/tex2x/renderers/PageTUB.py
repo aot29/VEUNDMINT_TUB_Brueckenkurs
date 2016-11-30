@@ -34,16 +34,18 @@ class PageTUB( AbstractHtmlRenderer ):
 	BASE_TEMPLATE = "page.xslt"
 	""" The template which includes all others """
 	
-	def __init__( self, contentRenderer, tocRenderer, options ):
+	def __init__( self, contentRenderer, tocRenderer, options, data ):
 		"""
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
 		@param contentRenderer - PageXmlRenderer an AbstractXMLRenderer that builds the page contents, including the questions and roulettes added by the decorators
 		@param tocRenderer - TocRenderer an AbstractXMLRenderer that builds the table of contents
 		@param options - Option.py object
+		@param data - ???
 		"""
 		self.contentRenderer = contentRenderer
 		self.tocRenderer = tocRenderer
+		self.data = data
 		
 		# tplPath - String path to the directory holding the xslt templates
 		self.tplPath = options.converterTemplates
@@ -95,6 +97,11 @@ class PageTUB( AbstractHtmlRenderer ):
 		# Replace the content placeholder added in PageXmlRenderer with the actual (not necessarily XML-valid) HTML content
 		resultString = str( result )
 		tc.html = resultString.replace( '<content></content>', tc.content )
+
+		def dhtml(m):
+			pos = int(m.group(1))
+			return self.data['DirectHTML'][pos]
+		tc.html = re.sub(r"\<!-- directhtml;;(.+?); //--\>", dhtml, tc.html, 0, re.S)
 
 
 	def addFlags(self, xml, tc, basePath):
