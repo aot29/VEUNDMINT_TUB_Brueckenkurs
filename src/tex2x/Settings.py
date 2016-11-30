@@ -1,9 +1,30 @@
 import sys, os
-import settings as default_settings
 from plugins.VEUNDMINT.Option import Option as VEUNDMINTOption
 from types import ModuleType
+import inspect
 
 class Settings(dict):
+    
+    _instance = None
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(Settings, cls).__new__(
+                                cls, *args, **kwargs)
+        return cls._instance
+    
+    def __getattr__(self, key):
+        """
+        Override the getattr function to return the already set values if they exist
+        in the instance, otherwise return the attr from the calling module
+        """
+        frm = inspect.stack()[1]
+        mod = inspect.getmodule(frm[0])
+        
+        default = mod.__dict__.get(key, '')
+        
+        #if it is not set, default to the value in the calling module
+        return self.settings.get(key, default)        
+        
     
     #stores which settings in default_settings were overridden
     overridden = []
@@ -11,6 +32,9 @@ class Settings(dict):
     #store the 'most recent' settings that means here everything is overridden
     #according to the settings hierarchy
     settings = {}
+    
+    #store default settings from the module tex2x 
+    default_settings = {}
 
     #will store the settings of every installed plugin
     all_plugin_settings = {}
@@ -21,30 +45,26 @@ class Settings(dict):
     #settings that were set on the command line
     command_line_settings = {}
 
-    def __init__(self, plugin_settings=[], cl_settings={}, *args, **kwargs):
+    def __init__(self, cl_settings={}, *args, **kwargs):
         
-        super(Settings, self).__init__(*args, **kwargs)
+        #print('init called with settings %s , %s, %s' % (default_settings, plugin_settings, cl_settings))
+        
         self.__dict__ = self
         
-        self.all_plugin_settings = plugin_settings
         self.command_line_settings = cl_settings
         
-        #load settings in reverse order, most imortant settings first. that makes sure that composite settings
-        #that use other settings values get the correct value
+        #load command line settings first and then the environment settings
+        #other settings must be loaded via load_settings in some main module (currently tex2x.py)
         self.load_settings(self.command_line_settings)
         self.load_settings(self.get_env_settings())
-        for plugin_settings in self.all_plugin_settings:
-            self.load_settings(plugin_settings)
-        self.load_settings(default_settings)
+
 
     def load_settings(self, custom_settings):
         """
         Loads settings from the supplied settings in custom_settings, which
         can either be an object instance or a dict.
         """
-
         if custom_settings is not None:
-            print('loading custom settings %s', custom_settings)
             is_module = False
             
             #convert module instance to dict
@@ -56,13 +76,12 @@ class Settings(dict):
             
             if isinstance(loaded_settings, dict):
                 for setting in loaded_settings:
-                    if hasattr(self, setting):
-                        self.overridden.append(setting)
-                        print('overriding %s', setting)
-                        setattr(default_settings, setting, loaded_settings[setting])
+                    if getattr(self, setting):
+                        if setting not in self.overridden:
+                            self.overridden.append(setting)
                         if is_module:
-                            print('found setting %s in module %s' % (setting, custom_settings))
                             setattr(custom_settings, setting, self[setting])
+                    
                     #do not override    
                     if self.get(setting) is None:
                         self[setting] = loaded_settings[setting]
@@ -80,9 +99,12 @@ class Settings(dict):
         Loads environment variables and considers all of them settings for our program
         if they start with the supplied prefix
         """
-        env_settings = {k.replace(prefix, ''): v for k,v in os.environ.items() if k.startswith(prefix)}
-        print(env_settings)
-        return env_settings
+        if self.env_settings:
+            return self.env_settings
+        else:
+            env_settings = {k.replace(prefix, ''): v for k,v in os.environ.items() if k.startswith(prefix)}
+            self.env_settings = env_settings
+            return env_settings
 
 
 class SettingsMixin(Settings):

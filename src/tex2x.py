@@ -19,8 +19,10 @@
 	@author Alvaro Ortiz for TU Berlin
 """
 import os
-from tex2x.dispatcher.Dispatcher import Dispatcher
-from tex2x.dispatcher.AbstractDispatcher import VerboseDispatcher
+from tex2x.Settings import Settings
+
+#from tex2x.dispatcher.Dispatcher import Dispatcher
+#from tex2x.dispatcher.AbstractDispatcher import VerboseDispatcher
 import argparse
 import traceback
 
@@ -30,14 +32,23 @@ try:
 	parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
 	parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
 	args = parser.parse_args()
+	
+	overridden_args = dict(k.split('=') for k in args.override)
+	
+    #print('overridden args is %s' % overridden_args)
+	
+	s=Settings(overridden_args)
+	import settings as default_settings
+	s.load_settings(default_settings)
+	print(s.scorm2004testurl)
 
 	if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
 	    raise Exception("tex2x must be called in its own directory")
 
     #create dispatcher and start processing
-	dispatcher = Dispatcher(args.verbose, args.plugin, args.override )
-	if args.verbose: dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
-	dispatcher.dispatch()
+	#dispatcher = Dispatcher(args.verbose, args.plugin, args.override )
+	#if args.verbose: dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
+	#dispatcher.dispatch()
 
 except Exception:
 	# Handle exceptions at the highest level, not in the classes
