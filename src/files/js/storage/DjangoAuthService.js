@@ -81,8 +81,6 @@
         timeout: 3000,
       })).then(function(data) {
         return storeUserCredentials(data);
-    }, function(error) {
-      return new TypeError(error);
     });
   }
 

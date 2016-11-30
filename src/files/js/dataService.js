@@ -235,7 +235,7 @@
           totalRejected += 1;
           status[service.name] = {status: 'error', error: errorData}
         }).then(function (data) {
-          if (totalResolved + totalRejected == storageServices.length) {
+          if (totalResolved + totalRejected == syncUpServices.length) {
             changedData = {};
             syncUpExcludes = [];
             resolve(status);

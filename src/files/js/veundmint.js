@@ -159,16 +159,16 @@ $(window).on('beforeunload', function(){
 
 
         log.setDefaultLevel(settings.defaultLogLevel);
-
-        scormBridge.init();
-        //intersite.init(); is now
-        dataService.init();
         
         //register storageServices
         for (var i = 0; i < settings.storageServices.length; i++) {
             dataService.subscribe(settings.storageServices[i]);
-        }        
-        
+        }     
+
+        scormBridge.init();
+        //intersite.init(); is now
+        dataService.init();
+
         globalreadyHandler("");
         globalloadHandler("");
         ui.init();
@@ -221,126 +221,6 @@ $(window).on('beforeunload', function(){
 
     };
 
-
-    //
-    // Public APIs
-    //
-
-  /**
-   * Authenticates at the server (apiAuthUrl) with the given user credentials object
-   * that should contain a 'username' and a 'password'
-   * @param  {[type]}   user_credentials A javascript object that contains
-   * a username and a password like {username: 'username', password: 'password'}
-   * @param  {Function} callback callback function will be called with results from server that will
-   * either contain an error or a token {token: 'the auth token'}
-   * @return {[type]}            [description]
-   */
-  veundmint.authenticate = function (user_credentials, callback) {
-    // log in to the server
-    $.ajax({
-      type: "POST",
-      url: settings.apiAuthUrl,
-      data: user_credentials,
-      success: function (data) {
-                delete(user_credentials.password);
-                $.extend(user_credentials, data);
-                //user credentials will have the form {username: <name>, token: <token>}
-                localStorage.setItem(USER_CREDENTIALS_KEY, JSON.stringify(user_credentials));
-            }
-    });
-    // save answer from server in object
-    var auth_result = '';
-    if (typeof callback === "function") {
-    // Call it, since we have confirmed it is callable​
-        callback(auth_result);
-    }
-    log.debug('veundmint.authenticate called with:', user_credentials);
-
-    return auth_result;
-  }
-
-    veundmint.getMyUserProfile = function() {
-        veundmint.authAjaxGET(settings.apiProfileUrl, {}, function (data) {
-            log.debug('veundmint: getMyUserProfile', data);
-        });
-    }
-
-  /**
-   * Logs the user out from the server (serverLogoutUrl)
-   * @param  {Function} callback [description]
-   * @return {[type]}            [description]
-   */
-  veundmint.logout = function (callback) {
-    userCredentials = null;
-        localStorage.removeItem(USER_CREDENTIALS_KEY);
-    if (typeof callback === "function") {
-    // Call it, since we have confirmed it is callable​
-      callback(logout_result);
-    }
-
-    log.debug('veundmint.logout called');
-  }
-
-  /**
-   * Sends feedback about a user action to the server
-   * @param  {json} object [description]
-   * @return {json}        the json result from the server
-   */
-  veundmint.sendWebsiteAction = function (object) {
-
-    log.debug('veundmint.sendWebsiteAction called with object', object);
-
-        if (typeof settings.apiWebsiteActionUrl === "undefined") {
-            log.debug('apiWebsiteActionUrl is not set, will not call sendWebsiteAction()');
-            return null;
-        }
-
-        $.ajax({
-            type: "POST",
-            url: settings.apiWebsiteActionUrl,
-            data: object,
-            success: function (data) {
-                log.debug(data);
-            }
-        });
-  }
-
-    /**
-     * Get the user credentials from local variable. If not set, get it from local
-     * Storage and set it and return it
-     * @return {object or null} the user credentials object or null
-     */
-    veundmint.getUserCredentials = function () {
-        if (typeof userCredentials !== "undefined" && userCredentials !== null) {
-            return userCredentials;
-        } else {
-            var lsUserCred = localStorage.getItem(USER_CREDENTIALS_KEY);
-            if (lsUserCred !== null) {
-                return JSON.parse(lsUserCred);
-            }
-        }
-        log.debug('can only call getUserCredentials if user is authenticated')
-        return null;
-    }
-
-    veundmint.authAjaxGET = function (url, data, onSuccess) {
-        var userCredentials = veundmint.getUserCredentials();
-        if (userCredentials === null || typeof userCredentials === "undefined"
-            || typeof userCredentials.token === "undefined" ) {
-                log.debug('can only make authAjaxGET request if userCredentials are set');
-                return;
-        }
-        $.ajax({
-      type: "GET",
-            dataType: 'json',
-      url: url,
-      data: data,
-      success: onSuccess,
-            headers: {
-                'Authorization': 'JWT ' + userCredentials.token
-            }
-    });
-    }
 
   /**
    * sets up element to be a languageChooser

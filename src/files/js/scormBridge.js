@@ -95,6 +95,7 @@
       //search for the API first, here we have to use get because find did not set the API.isFound to true (no comment)
       pipwerks.SCORM.API.handle = pipwerks.SCORM.API.get();
     }
+    
 
     if (pipwerks.SCORM.API.isFound) {
       log.info('scormBridge.js init: SCORM API found');
@@ -125,6 +126,45 @@
       log.info('scormBridge.js init: SCORM API NOT found');
       isScormEnv = false;
     }
+    
+    //authenticate at server
+    var userCredentials = createOrGetUserCredentials();
+    dataService.authenticate(userCredentials).then(function(data) {
+        console.log('aaa', data); 
+    }, function(error) {
+        console.log('bbb', error);
+        if (typeof error.responseJSON !== 'undefined'
+            && typeof error.responseJSON.non_field_errors !== 'undefined'
+            && error.responseJSON.non_field_errors[0] == "Unable to login with provided credentials.") {
+            //user is not registered yet at django, so register them
+            userCredentials.password1 = userCredentials.password2 = userCredentials.password;
+            return dataService.registerUser(userCredentials);
+        }
+    });
+  }
+  
+  /**
+   * This function creates or gets previously created user credentials that can be used to identify scorm users
+   * at a server. They should never change for a single scorm user even after scorm logout
+   */
+  function createOrGetUserCredentials() {
+      
+      //try to get previously created userCredentials, create them otherwise
+      try {
+        var userCredentials = getJSONData().userCredentials;
+        var username = userCredentials.username;
+      } catch (err) {
+        //create a loginname
+        var loginName = 'scorm_' + getStudentId();
+        //create a relatively secure password
+        var pw = Date.now().toString(36) + Math.random().toString(36);
+        var userCredentials = {username: loginName, password: pw};
+        var oldData = getJSONData() || {};
+        var newData = veHelpers.mergeRecursive(oldData, {userCredentials: userCredentials});
+        setJSONData(newData);
+      }
+      
+      return userCredentials;
   }
 
   /**
