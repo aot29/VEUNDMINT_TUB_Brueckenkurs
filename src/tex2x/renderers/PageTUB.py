@@ -100,7 +100,8 @@ class PageTUB( AbstractHtmlRenderer ):
 
 		def dhtml(m):
 			pos = int(m.group(1))
-			return self.data['DirectHTML'][pos]
+			if 'DirectHTML' in self.data and pos in self.data['DirectHTML']:
+				return self.data['DirectHTML'][pos]
 		tc.html = re.sub(r"\<!-- directhtml;;(.+?); //--\>", dhtml, tc.html, 0, re.S)
 
 
