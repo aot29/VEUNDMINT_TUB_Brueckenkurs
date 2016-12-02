@@ -29,8 +29,9 @@ import os
 from tex2x import System
 from plugins import exceptions
 import json
+from tex2x.AbstractPlugin import AbstractPlugin
 
-class Plugin(object):
+class AbstractBasicPlugin(AbstractPlugin):
 	'''
 	Enthält eine Sammlung von Methoden dessen Aufruf beim Erstellen eines Plugins empfohlen wird. Für die erfolgreiche
 	Zusammenarbeit mit dem Structure-Objekt reicht es jedoch :func:`create_output` zu implementieren.

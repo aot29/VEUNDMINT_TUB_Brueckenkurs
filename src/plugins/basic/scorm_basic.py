@@ -25,14 +25,14 @@ from lxml.html import html5parser
 from lxml.html import tostring as html_tostring
 from copy import deepcopy
 import shutil
-from plugins.exceptions import PluginException
 import fnmatch
 
 from plugins import scorm_packer
 
 #Import des "Quasi-Interfaces"
-from plugins.basePlugin import Plugin as basePlugin
-class Plugin(basePlugin):
+from AbstractBasicPlugin import *
+
+class Plugin(AbstractBasicPlugin):
 	'''
 	classdocs
 	'''
