@@ -29,8 +29,9 @@ import os
 from tex2x import System
 from plugins import exceptions
 import json
+from tex2x.AbstractPlugin import *
 
-class Plugin(object):
+class AbstractBasicPlugin(AbstractPlugin):
 	'''
 	Enthält eine Sammlung von Methoden dessen Aufruf beim Erstellen eines Plugins empfohlen wird. Für die erfolgreiche
 	Zusammenarbeit mit dem Structure-Objekt reicht es jedoch :func:`create_output` zu implementieren.
@@ -91,7 +92,7 @@ class Plugin(object):
 				while (answer != "j" and answer != "n"):
 					answer = input("Fortfahren? (j/n)")
 				if answer == "n":
-					raise exceptions.PluginException("Das " + self.name + "-Plugin bricht seine Ausführung nach Userintervention ab.")
+					raise PluginException("Das " + self.name + "-Plugin bricht seine Ausführung nach Userintervention ab.")
 	
 	def __append_all_filenames_in_dir_to_list(self, filename_list, path, subpath):
 		"""

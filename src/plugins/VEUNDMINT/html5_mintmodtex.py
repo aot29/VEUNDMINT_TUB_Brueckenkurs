@@ -33,13 +33,12 @@ from tidylib import tidy_document
 from copy import deepcopy
 from random import randint
 
-from plugins.exceptions import PluginException
-from plugins.basePlugin import Plugin as basePlugin
+from tex2x.AbstractPlugin import *
 
 from plugins.VEUNDMINT.tcontent import TContent
 from tex2x.renderers.PageFactory import PageFactory
 
-class Plugin(basePlugin):
+class Plugin(AbstractPlugin):
 
 
 	def __init__(self, interface):
@@ -1111,8 +1110,6 @@ class Plugin(basePlugin):
 
 
 	def generate_directory(self):
-		if self.options.forceyes == 0:
-			self.check_if_dir_preexists(self.options.targetpath)
 		self.sys.emptyTree(self.options.targetpath)
 		self.sys.copyFiletree(self.options.converterCommonFiles, self.options.targetpath, ".")
 		if self.options.localjax == 1:

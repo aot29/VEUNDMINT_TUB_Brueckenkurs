@@ -16,5 +16,5 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from plugins.basic import html_basic
-from plugins.basic import scorm_basic
+#from plugins.basic import html_basic
+#from plugins.basic import scorm_basic

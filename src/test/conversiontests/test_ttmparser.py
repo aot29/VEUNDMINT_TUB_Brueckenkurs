@@ -10,7 +10,7 @@ from tex2x.parsers.TTMParser import TTMParser
 from tex2x.Settings import Settings, ve_settings
 from tex2x.dispatcher.Dispatcher import Dispatcher
 from plugins.VEUNDMINT.Option import Option
-from plugins.VEUNDMINT.system import System
+from tex2x.System import System
 import mmap
 from unittest.case import skip
 
