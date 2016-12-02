@@ -296,12 +296,6 @@ class System(object):
 		copy_file(os.path.join(source, filename),os.path.join(target, filename), update = 1)
 
 
-	def getPathName(self, path):
-		while path[0]=="." :
-			path=path[3:len(path)]
-		return(path)
-	
-	
 	def showFilesInPath(self, path):
 		pathLen=len(path)+1
 		fileArray=[]

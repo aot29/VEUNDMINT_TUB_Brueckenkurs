@@ -29,7 +29,7 @@ import os
 from tex2x import System
 from plugins import exceptions
 import json
-from tex2x.AbstractPlugin import AbstractPlugin
+from tex2x.AbstractPlugin import *
 
 class AbstractBasicPlugin(AbstractPlugin):
 	'''
@@ -92,7 +92,7 @@ class AbstractBasicPlugin(AbstractPlugin):
 				while (answer != "j" and answer != "n"):
 					answer = input("Fortfahren? (j/n)")
 				if answer == "n":
-					raise exceptions.PluginException("Das " + self.name + "-Plugin bricht seine Ausführung nach Userintervention ab.")
+					raise PluginException("Das " + self.name + "-Plugin bricht seine Ausführung nach Userintervention ab.")
 	
 	def __append_all_filenames_in_dir_to_list(self, filename_list, path, subpath):
 		"""
