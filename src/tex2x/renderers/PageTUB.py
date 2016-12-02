@@ -24,7 +24,7 @@ import os
 import re
 from tex2x.renderers.AbstractRenderer import *
 from tex2x.renderers.PageXmlRenderer import *
-
+from tex2x.Settings import settings
 
 class PageTUB( AbstractHtmlRenderer ):
 	"""
@@ -80,7 +80,8 @@ class PageTUB( AbstractHtmlRenderer ):
 		self.correctLinks( xml, basePath )
 		
 		# Load the template
-		templatePath = os.path.join( self.tplPath, PageTUB.BASE_TEMPLATE )
+		templatePath = os.path.join( settings.TEMPLATE_PATH, PageTUB.BASE_TEMPLATE )
+		print('trying to parse %s' % templatePath)
 		template = etree.parse( templatePath )
 
 		# Apply the template
@@ -131,7 +132,8 @@ class PageTUB( AbstractHtmlRenderer ):
 		if tc.uxid not in AbstractXmlRenderer.specialPagesUXID.keys():
 			raise Exception( "This does not seem to be a special page: %" % tc.uxid )
 		
-		pageContentPath = os.path.join( self.tplPath, "%s.xml" % AbstractXmlRenderer.specialPagesUXID[ tc.uxid ] )
+		pageContentPath = os.path.join( settings.TEMPLATE_PATH, "%s.xml" % AbstractXmlRenderer.specialPagesUXID[ tc.uxid ] )
+		print('trying to load %s' % pageContentPath)
 		parser = etree.XMLParser(remove_blank_text=True)
 		tree = etree.parse(pageContentPath, parser)
 		tc.content = etree.tostring( tree ).decode("utf-8")

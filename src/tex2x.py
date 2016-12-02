@@ -19,6 +19,7 @@
 	@author Alvaro Ortiz for TU Berlin
 """
 import os
+from tex2x.Settings import settings
 from tex2x.dispatcher.Dispatcher import Dispatcher
 from tex2x.dispatcher.AbstractDispatcher import VerboseDispatcher
 import argparse
@@ -30,6 +31,7 @@ try:
 	parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
 	parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
 	args = parser.parse_args()
+	
 
 	if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
 	    raise Exception("tex2x must be called in its own directory")

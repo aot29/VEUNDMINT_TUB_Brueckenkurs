@@ -29,7 +29,7 @@ import locale
 from git import Repo
 import sys
 import platform
-import settings as new_settings
+
 
 class Option(object):
 	"""
@@ -49,6 +49,8 @@ class Option(object):
 
 	def __init__(self, currentDir, override):
 
+		import settings as new_settings
+		
 		#Debugging
 		self.DEBUG = False
 

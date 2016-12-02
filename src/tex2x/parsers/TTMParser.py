@@ -19,8 +19,7 @@
 """
 import os, subprocess, logging, re
 import sys
-from tex2x.Settings import Settings
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 from tex2x.parsers.AbstractParser import AbstractParser
 
 logger = logging.getLogger(__name__)
@@ -31,7 +30,7 @@ class TTMParser(AbstractParser):
 	Can be decorated with VerboseParser to enable performance loging.
 	"""
 
-	def __init__(self, options, sys=None, ttmBin=settings.ttmBin):
+	def __init__(self, options, sys=None):
 		"""
 		@param options Object
 		@param sys - "A module exposing a class System" (Daniel Haase) 
@@ -41,7 +40,7 @@ class TTMParser(AbstractParser):
 		self.settings = settings
 		self.options = options
 		self.sys = sys
-		self.ttmBin = ttmBin
+		self.ttmBin = settings.ttmBin
 
 
 	def parse(self, sourceTEXStartFile=settings.sourceTEXStartFile, sourceTEX=settings.sourceTEX, ttmFile=settings.ttmFile, dorelease = settings.dorelease ):
@@ -54,12 +53,16 @@ class TTMParser(AbstractParser):
 		@param sourceTEX path to search for Tex input files
 		@param ttmFile path to output XML file
 		"""
+		
+		print ('TTMParser called with options sourceTEXStartFile: %s, sourceTEX: %s, ttmFile: %s' % (sourceTEXStartFile, sourceTEX, ttmFile))
+		
 		if hasattr(self.options, 'ttmExecute') and not self.options.ttmExecute:
 			# try to get the XML-file if it exists, otherwise generate it
 			if self.prepareXMLFile( sourceTEXStartFile, ttmFile ): return
 
 		# Check that TTM is executable
 		if not os.access( self.ttmBin, os.X_OK):
+			print(self.ttmBin)
 			raise Exception("ttm program file is not marked as executable, aborting")
 
 		# Check that output dir exists

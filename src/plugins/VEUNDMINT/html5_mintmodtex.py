@@ -34,12 +34,12 @@ from copy import deepcopy
 from random import randint
 
 from tex2x.AbstractPlugin import *
+from tex2x.Settings import settings
 
 from plugins.VEUNDMINT.tcontent import TContent
 from tex2x.renderers.PageFactory import PageFactory
 
 class Plugin(AbstractPlugin):
-
 
 	def __init__(self, interface):
 		# initialize data which is global for each conversion
@@ -116,11 +116,11 @@ class Plugin(AbstractPlugin):
 			self.sys.message(self.sys.CLIENTINFO, "Exercise server declared: " + self.options.exercise_server)
 		else:
 			self.sys.message(self.sys.CLIENTERROR, "No exercise server declared in options")
-
-
-		self.template_redirect_basic = self.sys.readTextFile(self.options.template_redirect_basic, self.options.stdencoding)
+		
+		print('trying to open %s' % os.path.join(settings.BASE_DIR, settings.template_redirect_basic))
+		self.template_redirect_basic = self.sys.readTextFile(os.path.join(settings.BASE_DIR, 'src', settings.template_redirect_basic), settings.stdencoding)
 		#self.template_redirect_multi = self.sys.readTextFile(self.options.template_redirect_multi, self.options.stdencoding)
-		self.template_redirect_scorm = self.sys.readTextFile(self.options.template_redirect_scorm, self.options.stdencoding)
+		self.template_redirect_scorm = self.sys.readTextFile(os.path.join(settings.BASE_DIR, 'src', settings.template_redirect_scorm), settings.stdencoding)
 
 		self.siteredirects = dict() # consists of pairs [ redirectfilename, redirectarget ]
 		for t in self.options.sitetaglist:

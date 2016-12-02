@@ -20,7 +20,6 @@
 import os, subprocess, logging, re
 import sys
 from tex2x.Settings import Settings
-from tex2x.Settings import ve_settings as settings
 from tex2x.parsers.AbstractParser import AbstractParser
 
 class MathMLDecorator( AbstractParser ):
@@ -35,7 +34,7 @@ class MathMLDecorator( AbstractParser ):
 		@param parser - Parser (object extending AbstractParser, in this case TTMParser)
 		"""
 		self.parser = parser
-		self.options = options
+		self.options = Settings()
 
 
 	def parse(self, *args, **kwargs):
@@ -44,7 +43,8 @@ class MathMLDecorator( AbstractParser ):
 		Use with TTM to correct MathML which is generated from Tex files
 		"""
 		# call the decorated class' runner
-		temp = self.parser.parse(*args, **kwargs)
+		temp = self.parser.parse()
+
 		
 		return self.optimizeMathML( temp )
 
