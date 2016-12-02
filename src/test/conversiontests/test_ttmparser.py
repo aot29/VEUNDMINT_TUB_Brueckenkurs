@@ -7,7 +7,7 @@ import unittest
 import os
 import subprocess
 from tex2x.parsers.TTMParser import TTMParser
-from tex2x.Settings import Settings, ve_settings
+from tex2x.Settings import settings
 from tex2x.dispatcher.Dispatcher import Dispatcher
 from plugins.VEUNDMINT.Option import Option
 from plugins.VEUNDMINT.system import System
@@ -23,9 +23,9 @@ class TTMParserTest(unittest.TestCase):
 		self.options = dispatcher.options
 		self.sys = dispatcher.sys
 		self.parser = TTMParser( self.options, self.sys )
-
-		self.tex_test_file = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
-		self.tex_test_output = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
+		self.tex_test_file = os.path.join(settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
+		print('tex_test_file %s', self.tex_test_file)
+		self.tex_test_output = os.path.join(settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
 
 	def testTitle(self):
 		"""
@@ -73,13 +73,13 @@ Ich stehe in der mitte
 		new_ttm = TTMParser(self.options, self.sys)
 		self.testTitle()
 		#new_ttm.parse(tex_start=self.tex_test_file, ttm_outfile=self.tex_test_output, sys=self.s)
-		#subprocess.run(ve_settings.ttmBin)
+		#subprocess.run(settings.ttmBin)
 		fake_ttm_process = subprocess.Popen("ls", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, universal_newlines = True)
 		fake_ttm_process.wait()
 		#out = fake_ttm_process.communicate()
 		fake_ttm_process.returncode = 3
 
-		new_ttm._logResults(subprocess=fake_ttm_process, ttmBin=ve_settings.ttmBin, sourceTEXStartFile='test.tex')
+		new_ttm._logResults(subprocess=fake_ttm_process, ttmBin=settings.ttmBin, sourceTEXStartFile='test.tex')
 
 	def isCorrectConversionTest(self, latex_string, html_string, dorelease = 0 ):
 		"""Checks for correct tex to html conversion

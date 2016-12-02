@@ -23,7 +23,8 @@ import imp
 import os
 import time
 import json
-from tex2x.Settings import ve_settings as settings
+
+from tex2x.Settings import settings
 
 from tex2x.dispatcher.AbstractDispatcher import AbstractDispatcher, VerboseDispatcher, PreprocessorDispatcher, PluginDispatcher
 
@@ -60,6 +61,8 @@ class Dispatcher(AbstractDispatcher):
 		4. Create the table of contents (TOC) and content tree, correct links
 		5. Output to static HTML files
 		'''
+		
+		print('language is %s' % settings.lang)
 		if hasattr(self.options, "overrides"):
 			for ov in self.options.overrides: print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
 
@@ -70,9 +73,10 @@ class Dispatcher(AbstractDispatcher):
 
 		# 2. Run TTM parser, load XML
 		ttm = TTMParser( self.options, self.sys )
-		ttm = MathMLDecorator( ttm, self.options ) # Add MathML corrections
+		
+		#ttm = MathMLDecorator( ttm, self.options ) # Add MathML corrections
 		if self.verbose: ttm = VerboseParser( ttm, "Step 2: Converting Tex to XML (TTM)" )
-		self.data['rawxml'] = ttm.parse( settings.sourceTEXStartFile, settings.sourceTEX, settings.ttmFile ) # run TTM parser with default options
+		self.data['rawxml'] = ttm.parse( ) # run TTM parser with default options
 		
 		# 3. Parse HTML
 		html = HTMLParser( self.options )
@@ -131,7 +135,7 @@ class Dispatcher(AbstractDispatcher):
 		class Options must be under LGPL or GPL license
 		'''
 		self.interface['options'] = None
-		path = os.path.join( "plugins", self.pluginName, Dispatcher.OPTIONSFILE )
+		path = os.path.join( settings.BASE_DIR, "src", "plugins", self.pluginName, Dispatcher.OPTIONSFILE )
 		if not os.path.isfile( path ):  raise Exception( "Option file not found at %s" % path )
 			
 		module = imp.load_source( self.pluginName, path )
@@ -147,7 +151,7 @@ class Dispatcher(AbstractDispatcher):
 		class System must be under GPL license
 		'''
 		self.interface['system'] = TSystem
-		path = os.path.join( "plugins", self.pluginName, Dispatcher.SYSTEMFILE )
+		path = os.path.join( settings.BASE_DIR, "src", "plugins", self.pluginName, Dispatcher.SYSTEMFILE )
 		if not os.path.isfile( path ):  raise Exception( "System file not found at %s" % path )
 		
 		module = imp.load_source(self.pluginName, path)

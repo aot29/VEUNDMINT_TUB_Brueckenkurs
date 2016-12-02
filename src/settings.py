@@ -14,24 +14,45 @@ LOG_LEVEL = logging.DEBUG
 
 converterDir = 'defaultConverterDirSetting'
 
+# The language that is used per default
+lang = 'de'
+
+# The temporary directory for all converter output
+outtmp = '_tmp'
+
+
+##########################
+#### Renderer Options ####
+##########################
+
+TEMPLATE_PATH = os.path.join(s().BASE_DIR, 'src/templates_xslt')
+
 #####################
 #### TTM Options ####
 #####################
 
 # The directory where the module's TeX files are located
-module_tex = os.path.join(s().BASE_DIR, 'module_veundmint')
+#module_tex = os.path.join(s().BASE_DIR, 'module_veundmint')
 
 # The ttm binary file
 ttmBin = os.path.join(s().BASE_DIR, 'src/ttm/ttm_osx') if platform.system() == 'Darwin' else os.path.join(s().BASE_DIR, 'src/ttm/ttm')
 
 # The directory ttm will look for TeX Files ?
-sourceTEX = os.path.join(s().BASE_DIR, 'src/tex')
+# sourceTEX = os.path.join(s().BASE_DIR, 'src/tex')
 
 # The TeX file ttm will start parsing with
-sourceTEXStartFile = os.path.join(s().module_tex, 'tree_tu9onlinekurs.tex')
+#sourceTEXStartFile = os.path.join(s().module_tex, 'tree_tu9onlinekurs.tex')
+
+
+sourceTEX = os.path.join(s().BASE_DIR, s().outtmp , "tex") # Teilpfad in dem die LaTeX-Quellenkopien liegen
+
+TTM_TREE = ( lambda lang: "tree_en.tex" if lang == 'en' else "tree_de.tex" ) (s().lang)
+
+sourceTEXStartFile = os.path.join(s().sourceTEX, s().TTM_TREE)
+
 
 # the file ttm will write its TeX parsing to (xml)
-ttmFile = os.path.join(s().sourceTEX, 'ttm_output.xml')
+#ttmFile = os.path.join(s().sourceTEX, 'ttm_output.xml')
 
 #########################
 #### Testing Options ####

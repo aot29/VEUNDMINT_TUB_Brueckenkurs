@@ -3,6 +3,7 @@ from plugins.VEUNDMINT.Option import Option as VEUNDMINTOption
 from types import ModuleType
 import inspect
 from tex2x import Singleton
+import argparse
 
 class Settings(dict, metaclass=Singleton):
     
@@ -36,30 +37,37 @@ class Settings(dict, metaclass=Singleton):
     #settings that were set in environment variables
     env_settings = {}
 
-    #settings that were set on the command line
-    command_line_settings = {}
 
-    def __init__(self, cl_settings={}, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         
         #print('init called with settings %s , %s, %s' % (default_settings, plugin_settings, cl_settings))
         
         self.__dict__ = self
         
-        self.command_line_settings = cl_settings
+        if self.get_command_line_args() is not None:
+            self.load_settings(dict(k.split('=') for k in self.get_command_line_args().override))
         
-        #load command line settings first and then the environment settings
-        #other settings must be loaded via load_settings in some main module (currently tex2x.py)
-        self.load_settings(self.command_line_settings)
         self.load_settings(self.get_env_settings())
+        
+        import settings as default_settings
+        self.load_settings(default_settings)
 
+        #TODO loads the veundmint plugin options per default, this should be refactored later
+        from plugins.VEUNDMINT.Option import Option as VEUNDMINTOption
+        if self.get_command_line_args() is not None:
+            self.load_settings(VEUNDMINTOption('', self.get_command_line_args().override))
+        else:
+            self.load_settings(VEUNDMINTOption('', ''))
+        
 
-    def load_settings(self, custom_settings):
+    def load_settings(self, custom_settings, override=False):
         """
         Loads settings from the supplied settings in custom_settings, which
         can either be an object instance or a dict.
         """        
         
         if custom_settings is not None:
+                        
             is_module = False
             
             #convert module instance to dict
@@ -78,7 +86,7 @@ class Settings(dict, metaclass=Singleton):
                             setattr(custom_settings, setting, self[setting])
                     
                     #do not override    
-                    if self.get(setting) is None:
+                    if (self.get(setting) is None) or override is True:
                         self[setting] = loaded_settings[setting]
             
 
@@ -100,11 +108,16 @@ class Settings(dict, metaclass=Singleton):
             env_settings = {k.replace(prefix, ''): v for k,v in os.environ.items() if k.startswith(prefix)}
             self.env_settings = env_settings
             return env_settings
+        
+    def get_command_line_args(self):
+        args = None
+        if 'tex2x' in sys.argv[0]:
+            parser = argparse.ArgumentParser(description='tex2x converter')
+            parser.add_argument("plugin", help="specify the plugin you want to run")
+            parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
+            parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
+            args = parser.parse_args(sys.argv[1:])
+        return args
 
 
-class SettingsMixin(Settings):
-    """
-    Mixin to allow easier access to setting values. If we inherit from SettingsMixin,
-    it is possible to do x = MY_SETTING_KEY instead of x = settings.MY_SETTING_KEY
-    """
-    pass
+settings = Settings()
