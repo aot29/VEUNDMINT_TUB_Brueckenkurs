@@ -25,7 +25,7 @@ class test_PageTUB(AbstractRendererTestCase):
 		
 		contentRenderer = PageXmlRenderer( self.options )
 		tocRenderer = TocRenderer( self.options )
-		self.page = PageTUB( contentRenderer, tocRenderer, self.options )
+		self.page = PageTUB( contentRenderer, tocRenderer, self.options, self.data )
 		# generate HTML element using the tc mock-up
 		self.page.generateHTML( self.tc )
 

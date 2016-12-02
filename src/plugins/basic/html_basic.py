@@ -29,16 +29,15 @@ from tex2x import System
 from lxml import etree
 from lxml import html
 from copy import deepcopy
-from plugins.exceptions import PluginException
 from lxml.html import html5parser
 import fnmatch
 
 
 #Import des "Quasi-Interfaces"
 #from . import basePluginVEMINT
-from plugins.basePlugin import Plugin as basePlugin
+from AbstractBasicPlugin import *
 
-class Plugin(basePlugin):
+class Plugin(AbstractBasicPlugin):
 	'''
 	classdocs
 	'''
@@ -62,7 +61,9 @@ class Plugin(basePlugin):
 		Plugin.required_interactions = list()#TODO: Liste besorgen
 		Plugin.required_swf_files = list()#TODO: Liste besorgen
 		Plugin.required_video_files = list()#TODO: Liste besorgen
-		self.check_if_dir_preexists(Plugin.options.targetpath)
+		
+		# Paths checks belong in the build system (makefiles), not in the classes providing functionality
+		# self.check_if_dir_preexists(Plugin.options.targetpath)
 
 		self.create_xml_files(Plugin.options.targetpath)
 		self.create_modstart_files()

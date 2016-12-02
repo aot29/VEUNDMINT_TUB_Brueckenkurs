@@ -35,12 +35,12 @@ from tex2x.parsers.TOCParser import TOCParser
 from tex2x.parsers.LinkDecorator import LinkDecorator
 from tex2x.parsers.MathMLDecorator import MathMLDecorator
 
-from tex2x import System as TSystem
+#from tex2x import System as TSystem
 
 
 class Dispatcher(AbstractDispatcher):
 	OPTIONSFILE = "Option.py"
-	SYSTEMFILE = "system.py"
+	SYSTEMFILE = "tex2x/System.py"
 	CURRDIR = ".."
 	
 	def __init__( self, verbose, pluginName, override ):
@@ -146,11 +146,9 @@ class Dispatcher(AbstractDispatcher):
 		system member: A module exposing a class "System", linked modules may provide the class definition and may CALL functions exposed by this object reference
 		class System must be under GPL license
 		'''
-		self.interface['system'] = TSystem
-		path = os.path.join( "plugins", self.pluginName, Dispatcher.SYSTEMFILE )
-		if not os.path.isfile( path ):  raise Exception( "System file not found at %s" % path )
+		if not os.path.isfile( Dispatcher.SYSTEMFILE ):  raise Exception( "System file not found at %s" % Dispatcher.SYSTEMFILE )
 		
-		module = imp.load_source(self.pluginName, path)
+		module = imp.load_source(self.pluginName, Dispatcher.SYSTEMFILE)
 		self.interface['system'] = module.System(self.interface['options'])			
 		# simplify access
 		self.sys = self.interface['system']
