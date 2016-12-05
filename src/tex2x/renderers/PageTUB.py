@@ -81,7 +81,6 @@ class PageTUB( AbstractHtmlRenderer ):
 		
 		# Load the template
 		templatePath = os.path.join( settings.TEMPLATE_PATH, PageTUB.BASE_TEMPLATE )
-		print('trying to parse %s' % templatePath)
 		template = etree.parse( templatePath )
 
 		# Apply the template
@@ -133,7 +132,6 @@ class PageTUB( AbstractHtmlRenderer ):
 			raise Exception( "This does not seem to be a special page: %" % tc.uxid )
 		
 		pageContentPath = os.path.join( settings.TEMPLATE_PATH, "%s.xml" % AbstractXmlRenderer.specialPagesUXID[ tc.uxid ] )
-		print('trying to load %s' % pageContentPath)
 		parser = etree.XMLParser(remove_blank_text=True)
 		tree = etree.parse(pageContentPath, parser)
 		tc.content = etree.tostring( tree ).decode("utf-8")

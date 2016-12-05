@@ -62,7 +62,6 @@ class Dispatcher(AbstractDispatcher):
 		5. Output to static HTML files
 		'''
 		
-		print('language is %s' % settings.lang)
 		if hasattr(self.options, "overrides"):
 			for ov in self.options.overrides: print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
 

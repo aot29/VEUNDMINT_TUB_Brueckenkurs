@@ -54,7 +54,7 @@ class TTMParser(AbstractParser):
 		@param ttmFile path to output XML file
 		"""
 		
-		print ('TTMParser called with options sourceTEXStartFile: %s, sourceTEX: %s, ttmFile: %s' % (sourceTEXStartFile, sourceTEX, ttmFile))
+		#print ('TTMParser called with options sourceTEXStartFile: %s, sourceTEX: %s, ttmFile: %s' % (sourceTEXStartFile, sourceTEX, ttmFile))
 		
 		if hasattr(self.options, 'ttmExecute') and not self.options.ttmExecute:
 			# try to get the XML-file if it exists, otherwise generate it
@@ -69,7 +69,7 @@ class TTMParser(AbstractParser):
 		if not os.path.exists( self.options.targetpath ):
 			os.makedirs(self.options.targetpath)
 			
-		# TODO DH: Why exactly do we need this?
+		# DH: Why exactly do we need this?
 		self.sys.pushdir() # AO: when this is removed, then the output plugin starts in the wrong dir
 		if not os.path.exists( sourceTEX ):
 			os.makedirs( sourceTEX )
