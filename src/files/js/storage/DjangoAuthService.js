@@ -77,6 +77,7 @@
   * @return {Promise}           Returns a promise with the data object
   */
   function authenticate (user_credentials) {
+      console.log('getting', settings.URL_API_TOKEN_AUTH)
     //console.log('calling authenticate with', user_credentials);
     return Promise.resolve(
       $.ajax({

@@ -120,6 +120,22 @@
         log.info('scormBridge.js init: LMS connection was already active');
       }
 
+        //authenticate at server
+        //TODO should be changed to a refresh call instead of authenticate
+        var userCredentials = createOrGetUserCredentials();
+        dataService.authenticate(userCredentials).then(function(data) {
+            console.log('aaa', data); 
+        }, function(error) {
+            console.log('bbb', error);
+            if (typeof error.responseJSON !== 'undefined'
+                && typeof error.responseJSON.non_field_errors !== 'undefined'
+                && error.responseJSON.non_field_errors[0] == "Unable to login with provided credentials.") {
+                //user is not registered yet at django, so register them
+                userCredentials.password1 = userCredentials.password2 = userCredentials.password;
+                return dataService.registerUser(userCredentials);
+            }
+        });
+
     } else if (isCustomAPI) {
       scormAPI.LMSInitialize('');
     } else {
@@ -127,20 +143,6 @@
       isScormEnv = false;
     }
     
-    //authenticate at server
-    var userCredentials = createOrGetUserCredentials();
-    dataService.authenticate(userCredentials).then(function(data) {
-        console.log('aaa', data); 
-    }, function(error) {
-        console.log('bbb', error);
-        if (typeof error.responseJSON !== 'undefined'
-            && typeof error.responseJSON.non_field_errors !== 'undefined'
-            && error.responseJSON.non_field_errors[0] == "Unable to login with provided credentials.") {
-            //user is not registered yet at django, so register them
-            userCredentials.password1 = userCredentials.password2 = userCredentials.password;
-            return dataService.registerUser(userCredentials);
-        }
-    });
   }
   
   /**
