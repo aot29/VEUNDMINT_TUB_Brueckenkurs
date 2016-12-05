@@ -31,12 +31,12 @@ try:
 	parser.add_argument("-v", "--verbose", help="increases verbosity", action="store_true")
 	parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
 	args = parser.parse_args()
-	
 
 	if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
 	    raise Exception("tex2x must be called in its own directory")
-
-    #create dispatcher and start processing
+     
+	settings.to_javascript_settings(settings.JS_SETTINGS_FILE)
+	#create dispatcher and start processing
 	dispatcher = Dispatcher(args.verbose, args.plugin, args.override )
 	if args.verbose: dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
 	dispatcher.dispatch()

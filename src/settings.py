@@ -6,6 +6,9 @@ from tex2x.Settings import Settings as s
 # The base directory of everything
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# The source directory (usually a subdirectory of BASE_DIR)
+SRC_DIR = os.path.join(s().BASE_DIR, 'src')
+
 # The base url where the server will run - used for testing and configuration
 BASE_URL = 'https://guest6.mulf.tu-berlin.de/gitlab-ci-test'
 
@@ -60,6 +63,14 @@ sourceTEXStartFile = os.path.join(s().sourceTEX, s().TTM_TREE)
 
 # the file ttm will write its TeX parsing to (xml)
 #ttmFile = os.path.join(s().sourceTEX, 'ttm_output.xml')
+
+############################
+#### Javascript Options ####
+############################
+
+JS_SETTINGS_FILE = os.path.join(s().SRC_DIR, 'files', 'js', 'settings.json')
+
+
 
 #########################
 #### Testing Options ####

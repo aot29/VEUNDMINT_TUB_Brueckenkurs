@@ -127,7 +127,7 @@ class Settings(dict, metaclass=Singleton):
             args = parser.parse_args(sys.argv[1:])
         return args
     
-    def to_javascript_settings(self):
+    def to_json(self):
         """
         Return a json String that can be used to export all values of the settings to javascript
         A new dict is constructed because of an NotSerializable error
@@ -137,5 +137,15 @@ class Settings(dict, metaclass=Singleton):
             if isinstance(v, (str, int, float, dict, list)):
                 d[k] = v
         return json.dumps(d, indent=4)
+    
+    def to_javascript_settings(self, path):
+        """
+        Write the settings as a json string to the file defined by
+        @param path - String of the path to write the settings to 
+        """
+        if ((not os.path.exists(os.path.dirname(path))) and (os.path.dirname(path) != "")):
+            os.makedirs(os.path.dirname(path))
+        with open(path, "w", encoding = 'utf8') as file:
+            file.write(self.to_json())
 
 settings = Settings()
