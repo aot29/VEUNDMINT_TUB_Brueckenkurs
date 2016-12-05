@@ -143,9 +143,40 @@ class Settings(dict, metaclass=Singleton):
         Write the settings as a json string to the file defined by
         @param path - String of the path to write the settings to 
         """
+        
+        module_start = """(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['loglevel', 'XMLHttpRequest'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        module.exports = factory(require('loglevel'), require('xmlhttprequest').XMLHttpRequest);
+    } else {
+        // Browser globals (root is window)
+        root.veSettings = factory(root.log, root.XMLHttpRequest);
+    }
+}(this, function (log, XMLHttpRequest) {
+
+  log.info('settings loaded');
+
+  /*
+  * Module veSettings
+  *
+  * This module is only responsible for loading the python settings
+  * that were exported to a json file in tex2x.py and to make them
+  * available with an easy call to veSettings.<setting_key>
+  *
+  */"""
+        module_end = """  return settings;
+
+
+}));"""
+        
         if ((not os.path.exists(os.path.dirname(path))) and (os.path.dirname(path) != "")):
             os.makedirs(os.path.dirname(path))
         with open(path, "w", encoding = 'utf8') as file:
-            file.write(self.to_json())
+            file.write(module_start + "\n var settings = " + self.to_json() + ";\n" + module_end)
 
 settings = Settings()

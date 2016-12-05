@@ -117,7 +117,6 @@ class Plugin(AbstractPlugin):
 		else:
 			self.sys.message(self.sys.CLIENTERROR, "No exercise server declared in options")
 		
-		print('trying to open %s' % os.path.join(settings.BASE_DIR, settings.template_redirect_basic))
 		self.template_redirect_basic = self.sys.readTextFile(os.path.join(settings.BASE_DIR, 'src', settings.template_redirect_basic), settings.stdencoding)
 		#self.template_redirect_multi = self.sys.readTextFile(self.options.template_redirect_multi, self.options.stdencoding)
 		self.template_redirect_scorm = self.sys.readTextFile(os.path.join(settings.BASE_DIR, 'src', settings.template_redirect_scorm), settings.stdencoding)

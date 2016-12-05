@@ -68,7 +68,7 @@ sourceTEXStartFile = os.path.join(s().sourceTEX, s().TTM_TREE)
 #### Javascript Options ####
 ############################
 
-JS_SETTINGS_FILE = os.path.join(s().SRC_DIR, 'files', 'js', 'settings.json')
+JS_SETTINGS_FILE = os.path.join(s().SRC_DIR, 'files', 'js', 'veSettings.js')
 
 
 
