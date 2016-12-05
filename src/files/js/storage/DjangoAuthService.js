@@ -2,17 +2,24 @@
   /* istanbul ignore next */
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['exports', 'IStorageService', 'veHelpers', 'jquery', 'bluebird'], function (exports, IStorageService, veHelpers, $, bluebird) {
+    define(['exports', 'veSettings', 'IStorageService', 'veHelpers', 'jquery', 'bluebird'], function (exports, IStorageService, veHelpers, $, bluebird) {
       factory((root.DjangoAuthService = exports), IStorageService, veHelpers, jQuery, bluebird);
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports, require('./IStorageService.js'), require('../veHelpers.js'), require('jquery'), require('bluebird'));
+    factory(exports, require('../veSettings.js'), require('./IStorageService.js'), require('../veHelpers.js'), require('jquery'), require('bluebird'));
   } else {
     // Browser globals
-    factory((root.DjangoAuthService = {}), root.IStorageService, root.veHelpers, root.$, root.Promise);
+    factory((root.DjangoAuthService = {}), root.veSettings, root.IStorageService, root.veHelpers, root.$, root.Promise);
   }
-}(this, function (exports, IStorageService, veHelpers, $, Promise) {
+}(this, function (exports, veSettings, IStorageService, veHelpers, $, Promise) {
+    
+    var settings = {
+        'URL_API_TOKEN_AUTH': veSettings.DJANGO_SERVER_URL + '/api-token-auth/',
+        'URL_CHECK_USERNAME': veSettings.DJANGO_SERVER_URL + '/checkusername/',
+        'URL_REGISTER' : veSettings.DJANGO_SERVER_URL + '/rest-auth/registration/',
+        'URL_CHANGE_USER' : veSettings.DJANGO_SERVER_URL + '/rest-auth/user/'
+    }  
 
   var USER_CREDENTIALS_KEY = 've_user_credentials';
   var userCredentials = {};
@@ -73,7 +80,7 @@
     //console.log('calling authenticate with', user_credentials);
     return Promise.resolve(
       $.ajax({
-        url: 'http://localhost:8000/api-token-auth/',
+        url: settings.URL_API_TOKEN_AUTH,
         method: 'POST',
         data: JSON.stringify(user_credentials),
         dataType: 'json',
@@ -185,7 +192,7 @@
    * @return {Promise<Boolean>} A promise resolving to true or false
    */
   function usernameAvailable(username) {
-    return ajaxGET('http://localhost:8000/checkusername/', {username:username});
+    return ajaxGET(settings.URL_CHECK_USERNAME, {username:username});
   }
 
   /**
@@ -194,7 +201,7 @@
    * @return {Promise<Object>} Resolves with user data, rejects with validation errors
    */
   function registerUser(userCredentials) {
-    return ajaxPOST('http://localhost:8000/rest-auth/registration/', userCredentials).then(function (successData) {
+    return ajaxPOST(settings.URL_REGISTER, userCredentials).then(function (successData) {
       //if successfully registered
       return storeUserCredentials(successData);
     });
@@ -206,7 +213,7 @@
    * @return {Promise<Object>} resolves with the changed user data
    */
   function changeUserData(userData) {
-    return authAjaxRequest('http://localhost:8000/rest-auth/user/', userData, true, 'PUT');
+    return authAjaxRequest(settings.URL_CHANGE_USER, userData, true, 'PUT');
   }
 
   /**

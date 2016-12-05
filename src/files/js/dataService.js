@@ -22,11 +22,6 @@
 
   // Default settings
   var defaults = {
-    apiUrl: 'http://localhost:8000/',
-    apiAuthUrl: 'http://localhost:8000/api-token-auth/',
-    apiProfileUrl: 'http://localhost:8000/profile/',
-    apiWebsiteActionUrl: 'http://localhost:8000/server-action/',
-    apiScoresUrl: 'http://localhost:8000/score/',
     defaultLogLevel: 'debug',
     //wether a call to SyncDown should also try to syncUp data if timestamps differ
     alwaysSynchronize : true,
