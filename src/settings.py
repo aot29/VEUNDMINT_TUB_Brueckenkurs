@@ -20,6 +20,13 @@ lang = 'de'
 # The temporary directory for all converter output
 outtmp = '_tmp'
 
+##########################
+#### Server Options   ####
+##########################
+
+# The url where the django server runs
+DJANGO_SERVER_URL = 'http://localhost:8000'
+
 
 ##########################
 #### Renderer Options ####

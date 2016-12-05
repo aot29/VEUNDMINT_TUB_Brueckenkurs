@@ -4,6 +4,7 @@ from types import ModuleType
 import inspect
 from tex2x import Singleton
 import argparse
+import json
 
 class Settings(dict, metaclass=Singleton):
     
@@ -15,7 +16,11 @@ class Settings(dict, metaclass=Singleton):
         frm = inspect.stack()[1]
         mod = inspect.getmodule(frm[0])
         
-        default = mod.__dict__.get(key, '')
+        if mod is not None:
+            default = mod.__dict__.get(key, '')
+        else:
+            default = ''
+            
         
         #if it is not set, default to the value in the calling module
         return self.settings.get(key, default)        
@@ -110,6 +115,9 @@ class Settings(dict, metaclass=Singleton):
             return env_settings
         
     def get_command_line_args(self):
+        """
+        Get the command line arguments that where used to call the python script (tex2x.py)
+        """
         args = None
         if 'tex2x' in sys.argv[0]:
             parser = argparse.ArgumentParser(description='tex2x converter')
@@ -118,6 +126,16 @@ class Settings(dict, metaclass=Singleton):
             parser.add_argument("override", help = "override option values ", nargs = "*", type = str, metavar = "option=value")
             args = parser.parse_args(sys.argv[1:])
         return args
-
+    
+    def to_javascript_settings(self):
+        """
+        Return a json String that can be used to export all values of the settings to javascript
+        A new dict is constructed because of an NotSerializable error
+        """
+        d = dict()
+        for k,v in self.items():
+            if isinstance(v, (str, int, float, dict, list)):
+                d[k] = v
+        return json.dumps(d, indent=4)
 
 settings = Settings()
