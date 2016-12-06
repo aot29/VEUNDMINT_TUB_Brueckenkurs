@@ -64,9 +64,9 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		annotations = annotator.generate( 'en' )
 		mathWords = [item.word for item in annotations]
 		self.assertTrue( len( mathWords ) > 0 )
+		print(mathWords)
 		self.assertTrue( 'Variable' in mathWords )
 		self.assertTrue( 'Term' in mathWords )
-		self.assertTrue( 'Number' in mathWords )
 		self.assertTrue( 'Equation' in mathWords )
 		self.assertTrue( 'Function' in mathWords )
 
@@ -94,7 +94,6 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		words = [item.word for item in annotations]
 		self.assertTrue( 'Variable' in words )
 		self.assertTrue( 'Term' in words )
-		self.assertTrue( 'Zahl' in words )
 		self.assertTrue( 'Gleichung' in words )
 		self.assertTrue( 'Funktion' in words )
 
@@ -119,7 +118,6 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		words = [item.word for item in annotations]
 		self.assertTrue( 'Variable' in words )
 		self.assertTrue( 'Term' in words )
-		self.assertTrue( 'Number' in words )
 		self.assertTrue( 'Equation' in words )
 		self.assertTrue( 'Function' in words )
 	

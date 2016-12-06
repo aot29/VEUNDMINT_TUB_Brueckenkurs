@@ -33,7 +33,7 @@ class WikipediaAnnotator(AbstractAnnotator):
 						"Theorie dynamischer Systeme", "Topologie", "Unterhaltungsmathematik", "Wirtschaftsmathematik", "Zahlentheorie"
 					],
 					'en' : [
-						"Mathematical terminology", "Fields of mathematics", " Algebra‎", 
+						"Mathematical terminology", "Fields of mathematics", "Algebra‎", "Elementary algebra",
 						"Mathematical analysis‎", "Applied mathematics‎", "Arithmetic‎", "Calculus", 
 						"Combinatorics", "Computational mathematics", "Discrete mathematics", 
 						"Dynamical systems", "Elementary mathematics‎", "Experimental mathematics", 
@@ -56,7 +56,7 @@ class WikipediaAnnotator(AbstractAnnotator):
 	The URL to Wikipedia, with placeholders for the language and the page title
 	'''
 	
-	WP_DISAMBIGUATION = { 'de' : "(Mathematik)", 'en' : "(mathematics)" }
+	WP_DISAMBIGUATION = { 'de' : ["(Mathematik)"], 'en' : ["(mathematics)", "(logic)"] }
 	'''
 	Strings used by Wikipedia for disambiguation. Have to be removed to serach for words in course pages
 	'''
@@ -71,8 +71,10 @@ class WikipediaAnnotator(AbstractAnnotator):
 		resp = []
 		WpPages = self.loadCategoryPages( self.getCategoryNames(lang), lang )
 		for pageName in WpPages:
+			word = pageName
 			# remove disambiguation terms from word
-			word = pageName.replace( WikipediaAnnotator.WP_DISAMBIGUATION[lang], "")
+			for dis in WikipediaAnnotator.WP_DISAMBIGUATION[lang]:
+				word = word.replace( dis, "")
 			word = word.strip()
 			
 			# make a tuple containing the word, the Wikipedia page name and the complete URL
