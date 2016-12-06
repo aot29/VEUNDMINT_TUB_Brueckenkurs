@@ -11,7 +11,7 @@ import unittest
 from plugins.VEUNDMINT.tcontent import TContent
 from plugins.VEUNDMINT.Option import Option
 from tex2x.renderers.AbstractRenderer import *
-
+from tex2x.parsers.AbstractParser import *
 from tex2x.Settings import settings
 
 class MockOptions(Option):
@@ -19,7 +19,22 @@ class MockOptions(Option):
 		super().__init__(".", "")
 		self.lang = "en"
 		
-	
+
+class MockParser(AbstractParser):
+	def __init__(self, options, sys):
+		'''
+		@param options Object
+		@param sys - "A module exposing a class System" (Daniel Haase) 
+		'''
+		self.options = options
+		self.sys = sys
+		
+	def parse(self, etree):
+		toc = None
+		content = []
+		return toc, content
+
+
 class AbstractRendererTestCase(unittest.TestCase):
 	"""
 	Provides a TContent object to test page and TOC renderers
@@ -39,7 +54,6 @@ class AbstractRendererTestCase(unittest.TestCase):
 		self.tc.title = "Test Title"
 		self.tc.caption = "Test"
 		self.tc.fullname = "html/test"
-		self.tc.content = "Some content."
 		self.tc.myid = 123
 		self.tc.level = 2
 		# add some content: text, MathMl, stuff to replace, input tags

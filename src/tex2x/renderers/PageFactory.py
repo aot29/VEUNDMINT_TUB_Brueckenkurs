@@ -51,8 +51,9 @@ class PageFactory(object):
 			# decorate with questions and roulette exercises
 			# the order is important, as roulette adds questions
 			xmlRenderer =   RouletteDecorator( 
-									QuestionDecorator( xmlRenderer ), self.data, self.options.strings
-								)
+								QuestionDecorator( xmlRenderer ), 
+								self.data, self.options.strings
+							)
 			# get a table of contents renderer			
 			tocRenderer = TocRenderer( self.options )
 			# get a page HTML renderer

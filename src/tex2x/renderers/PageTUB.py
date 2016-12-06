@@ -75,7 +75,11 @@ class PageTUB( AbstractHtmlRenderer ):
 			
 		# add links to next and previous entries
 		self._addPrevNextLinks(xml, tc, basePath)
-			
+		
+		# add annotations (but only to content pages)
+		if AbstractXmlRenderer.isCoursePage(tc):
+			self._addAnnotations( xml, tc.annotations )
+		
 		# correct the links in content and TOC
 		self.correctLinks( xml, basePath )
 		
@@ -115,14 +119,17 @@ class PageTUB( AbstractHtmlRenderer ):
 		"""
 		# add base path to XML, as the transformer doesn't seem to support parameter passing
 		xml.set( 'basePath', basePath )
+		
 		# flag test pages
 		xml.set( 'isTest', str( tc.testsite ).lower() ) # JS booleans are lowercase 
+
 		# flag the course pages
 		xml.set( 'isCoursePage', str( AbstractXmlRenderer.isCoursePage(tc) ) )
 		xml.set( 'isSpecialPage', str( AbstractXmlRenderer.isSpecialPage(tc) ) )
 		xml.set( 'isInfoPage', str( AbstractXmlRenderer.isInfoPage(tc) ) )
 		xml.set( 'isTestPage', str( AbstractXmlRenderer.isTestPage(tc) ) )
 		xml.set( 'requestLogout', str( AbstractXmlRenderer.isLogoutPage(tc) ).lower() )
+
 		# disable the login button?
 		xml.set( 'disableLogin', str( self.disableLogin ) )
 
@@ -212,3 +219,15 @@ class PageTUB( AbstractHtmlRenderer ):
 			navNextEl.set( "href", os.path.join(basePath, navNext.fullname ) )
 			page.append( navNextEl )
 
+
+	def _addAnnotations( self, xml, annotations ):
+		"""
+		Add annotations
+		@param xml - etree Element holding content and TOC
+		@param annotations - an array of Annotation objects
+		"""
+		annotationsEl = etree.Element( "annotations" )
+		for annotation in annotations:
+			annotationsEl.append( annotation.toEtree() )
+		if len(annotationsEl) > 0 :
+			xml.append( annotationsEl )

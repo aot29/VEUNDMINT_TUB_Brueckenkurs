@@ -23,6 +23,8 @@ import imp
 import os
 import time
 import json
+from lxml import etree
+
 from tex2x.Settings import ve_settings as settings
 
 from tex2x.dispatcher.AbstractDispatcher import AbstractDispatcher, VerboseDispatcher, PreprocessorDispatcher, PluginDispatcher
@@ -34,6 +36,7 @@ from tex2x.parsers.TOCParser import TOCParser
 
 from tex2x.parsers.LinkDecorator import LinkDecorator
 from tex2x.parsers.MathMLDecorator import MathMLDecorator
+from tex2x.parsers.WikipediaDecorator import WikipediaDecorator
 
 #from tex2x import System as TSystem
 
@@ -82,9 +85,13 @@ class Dispatcher(AbstractDispatcher):
 		# 4. Create TOC and content tree
 		tocParser = TOCParser( self.options, self.sys )
 		tocParser = LinkDecorator( tocParser )
+		tocParser = WikipediaDecorator( tocParser, self.options.lang)
 		if self.verbose: tocParser = VerboseParser( tocParser, "Step 4: Creating the table of contents (TOC) and content tree" )
 		self.toc, self.content = tocParser.parse( self.xmltree_raw )
-
+		
+		#print( etree.tostring( self.xmltree_raw ) )
+		#print(self.content[2][2])
+		
 		# 5. Start output plugin
 		plugin = PluginDispatcher( self.data, self.content, self.toc, self.requiredImages, self.interface['output_plugins'] )
 		if self.verbose: plugin = VerboseDispatcher( plugin, "Step 5: Output to static HTML files" )

@@ -44,7 +44,7 @@ class LinkDecorator( AbstractParser ):
 		"""
 		@param content - a list of [toc_node, content_node] items
 		"""
-		# call the decorated class' runner
+		# call the decorated class'  parse method
 		tempTOC, tempContent = self.parser.parse(*args, **kwargs)
 		
 		tempContent = self.correct_path_to_linked_files( tempContent )

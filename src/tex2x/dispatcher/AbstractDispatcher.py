@@ -93,7 +93,7 @@ class PluginDispatcher( AbstractDispatcher ):
 
 	def dispatch(self):
 		"""
-		Loads all plugins are runs them
+		Loads all plugins and runs them
 		"""
 
 		self.data['content'] = self.content
