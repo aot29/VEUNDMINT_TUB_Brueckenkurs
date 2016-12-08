@@ -56,8 +56,8 @@ class UserViewSet(viewsets.ModelViewSet):
 				transformed_score = {}
 				transformed_score['rawinput'] = score.get('rawinput', '')
 				transformed_score['points'] = score.get('points', 0)
-				transformed_score['value'] = score.get('rawinput', 0)
-				transformed_score['state'] = score.get('rawinput', 0)
+				transformed_score['value'] = score.get('value', 0)
+				transformed_score['state'] = score.get('state', 0)
 				
 				question={}
 				question['question_id'] = score.get('id', '')
@@ -72,7 +72,7 @@ class UserViewSet(viewsets.ModelViewSet):
 				transformed_scores.append(transformed_score)
 			
 			print ('transformed_scores', transformed_scores)
-			request.scores = transformed_scores
+			request.data['scores'] = transformed_scores
 				
 		return super(UserViewSet, self).create(request)
 

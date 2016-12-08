@@ -19,8 +19,16 @@ class UserFeedbackSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
 	
 	def validate(self, data):
-		print('scoreserializer data', data)
+		print('questionSerializer data', data)
 		return data
+	
+	def create(self, validated_data):
+		print ('questionSerializer validated data', validated_data)
+		return super(QuestionSerializer, self).create(validated_data)
+	
+	def update(self, instance, validated_data):
+		print ('questionSerializer update validated data', validated_data)
+		return super(QuestionSerializer, self).update(instance, validated_data)
 
 	class Meta:
 		model = Question
@@ -28,7 +36,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 class ScoreSerializer(serializers.ModelSerializer):
 	id = serializers.CharField(required=False, allow_blank=True, max_length=100)
-	#question = QuestionSerializer(required=False)
+	question = QuestionSerializer(required=False)
 	
 	def validate(self, data):
 		print('scoreserializer data', data)
@@ -191,15 +199,18 @@ class UserDataSerializer(serializers.ModelSerializer):
 		# Create or update each page instance
 		if 'scores' in validated_data:
 			for score in validated_data['scores']:
-				print(score)
+				print('score in userDataSerializer create', score)
 
 				# first: get or create a questions object
+				score_question = score.get('question', None)
+				
 				question, created = Question.objects.get_or_create(
-					question_id = score.get('q_id', ''),
-					siteuxid = score.get('siteuxid', ''),
-					section = score.get('section', 0),
-					maxpoints = score.get('maxpoints', 0),
-					intest = score.get('intest', False)
+					question_id = score_question.get('question_id', ''),
+					siteuxid = score_question.get('siteuxid', ''),
+					section = score_question.get('section', 0),
+					maxpoints = score_question.get('maxpoints', 0),
+					intest = score_question.get('intest', False),
+					type = score_question.get('type', None)
 				)
 				print(question)
 
