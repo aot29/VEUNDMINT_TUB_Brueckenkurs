@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from veundmint_base.models import Score, Question, UserFeedback, CourseProfile
+from veundmint_base.models import Site, Score, Question, UserFeedback, CourseProfile
 
 
 # Define an inline admin descriptor for Employee model
@@ -19,11 +19,15 @@ class UserAdmin(BaseUserAdmin):
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
+@admin.register(Site)
+class SiteAdmin(admin.ModelAdmin):
+	pass
+
 @admin.register(Score)
 class ScoreAdmin(admin.ModelAdmin):
-    list_display = ('user', 'q_id', 'points', 'rawinput', 'intest')
-    list_filter = ('user', 'q_id', 'intest')
-    search_fields = ['user__email', 'q_id']
+    #list_display = ('user', 'q_id', 'points', 'rawinput', 'intest', )
+    #list_filter = ('user', 'q_id', 'intest', )
+    search_fields = ['user__email', 'question__question_id']
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):

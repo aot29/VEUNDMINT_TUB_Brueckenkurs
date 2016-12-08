@@ -41,22 +41,29 @@ class Question(DateSensitiveModel):
 	section = models.PositiveSmallIntegerField()
 	maxpoints = models.PositiveSmallIntegerField()
 	intest = models.BooleanField(default=False)
-	type = models.PositiveSmallIntegerField()
+	type = models.PositiveSmallIntegerField(null=True)
 
 class UserFeedback(DateSensitiveModel):
 	rawfeedback = models.TextField(blank=True)
+
+class Site(DateSensitiveModel):
+	site_id = models.CharField(max_length=300, default='')
+
+	def __str__(self):
+		return self.site_id
+
 
 class Score(DateSensitiveModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="scores")
 
     #this should be used later with the model defined above, by now, for getting
     #started we just copied the model structure form old scores array
-    #question = models.ForeignKey(Question, blank=True, default=None, null=True)
-    q_id = models.CharField(max_length=50, default='')
-    siteuxid = models.CharField(max_length=200, default='')
-    section = models.PositiveSmallIntegerField(default = 0)
-    maxpoints = models.PositiveSmallIntegerField(default=0)
-    intest = models.BooleanField(default=False)
+    question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL)
+    # q_id = models.CharField(max_length=50, default='')
+    # siteuxid = models.CharField(max_length=200, default='')
+    # section = models.PositiveSmallIntegerField(default = 0)
+    # maxpoints = models.PositiveSmallIntegerField(default=0)
+    # intest = models.BooleanField(default=False)
     ### end
 
     points = models.PositiveSmallIntegerField(null=True, default=0)
@@ -65,10 +72,10 @@ class Score(DateSensitiveModel):
     rawinput = models.CharField(max_length=1000, blank=True)
     state = models.PositiveSmallIntegerField(blank=True, null=True)
 
-    uxid = models.CharField(max_length=100, blank=True)
+    #uxid = models.CharField(max_length=100, blank=True)
 
     class Meta:
-    	unique_together = ("user", "q_id")
+    	unique_together = ("user", "question")
 
 class Foo(models.Model):
     siteuxid = models.CharField(max_length=200, default='')
