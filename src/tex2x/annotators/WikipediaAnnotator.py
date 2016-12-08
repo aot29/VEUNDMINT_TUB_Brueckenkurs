@@ -18,7 +18,10 @@
 	@author Alvaro Ortiz for TU Berlin
 """
 import requests
+import json
+import os
 from tex2x.annotators.AbstractAnnotator import *
+import settings
 
 class WikipediaAnnotator(AbstractAnnotator):
 	'''
@@ -26,24 +29,9 @@ class WikipediaAnnotator(AbstractAnnotator):
 	Use this to create external lists of links on each page.
 	'''
 	
-	WP_MATH_CATEGORY = { 
-					'de' : [
-						"Mathematischer Grundbegriff", "Algebra", "Analysis", "Arithmetik", "Diskrete Mathematik", "Funktionentheorie", "Geometrie", 
-						"Kategorientheorie", "Mathematische Logik", "Numerische Mathematik", "Ordnungstheorie", "Stochastik",
-						"Theorie dynamischer Systeme", "Topologie", "Unterhaltungsmathematik", "Wirtschaftsmathematik", "Zahlentheorie"
-					],
-					'en' : [
-						"Mathematical terminology", "Fields of mathematics", "Algebra‎", "Elementary algebra",
-						"Mathematical analysis‎", "Applied mathematics‎", "Arithmetic‎", "Calculus", 
-						"Combinatorics", "Computational mathematics", "Discrete mathematics", 
-						"Dynamical systems", "Elementary mathematics‎", "Experimental mathematics", 
-						"Foundations of mathematics", "Game theory", "Geometry", "Graph theory", 
-						"Mathematical logic", "Mathematics of infinitesimals", "Number theory", 
-						"Order theory", "Recreational mathematics‎", "Representation theory", "Topology"
-						]
-					}
+	WP_MATH_CATEGORIES = "WikipediaCategories.json"
 	'''
-	The category containing the math words in German and English
+	Path to the json file containing containing Wikipedia categories to scan for math words in German and English
 	'''
 	
 	WP_API_URL_TPL = "https://%s.wikipedia.org/w/api.php?action=query&list=categorymembers&cmlimit=500&cmprop=title&format=json&cmtitle=Category:%s"
@@ -56,9 +44,14 @@ class WikipediaAnnotator(AbstractAnnotator):
 	The URL to Wikipedia, with placeholders for the language and the page title
 	'''
 	
-	WP_DISAMBIGUATION = { 'de' : ["(Mathematik)"], 'en' : ["(mathematics)", "(logic)"] }
+	WP_DISAMBIGUATION = { 'de' : ["Mathematik", "Geometrie"], 'en' : ["mathematics", "logic"] }
 	'''
-	Strings used by Wikipedia for disambiguation. Have to be removed to serach for words in course pages
+	Strings used by Wikipedia for disambiguation. Have to be removed to search for words in course pages
+	'''
+	
+	WP_BLACKLIST = { 'de' : [ "NaN", "Zahl", "Weg", "Bild", "Funktion", "Term", "Ebene", "Norm", "Ecke", "Mathematik" ], 'en' : ["Function", "Map", "Norm","Sign", "Mathematics"] }
+	'''
+	Strings to be filtered from matches, mostly because they keep popping-up on most pages
 	'''
 	
 	def generate( self, lang ):
@@ -69,13 +62,16 @@ class WikipediaAnnotator(AbstractAnnotator):
 		@return array of [word, Wikipedia lemma] items, e.g. ['Operator', 'Operator (Mathematik)']
 		"""
 		resp = []
-		WpPages = self.loadCategoryPages( self.getCategoryNames(lang), lang )
+		WpPages = self.loadCategoryPages( self.loadCategoryNames(lang), lang )
 		for pageName in WpPages:
 			word = pageName
 			# remove disambiguation terms from word
 			for dis in WikipediaAnnotator.WP_DISAMBIGUATION[lang]:
-				word = word.replace( dis, "")
+				word = word.replace( "(%s)" % dis, "")
 			word = word.strip()
+			
+			# ignore blacklisted words
+			if word in WikipediaAnnotator.WP_BLACKLIST[lang]: continue
 			
 			# make a tuple containing the word, the Wikipedia page name and the complete URL
 			resp.append( Annotation( word, pageName, self.getPageUrl(lang, pageName) ) )
@@ -83,14 +79,20 @@ class WikipediaAnnotator(AbstractAnnotator):
 		return resp
 	
 
-	def getCategoryNames(self, lang):
+	def loadCategoryNames(self, lang):
 		"""
-		The localized name of the category
+		Load the json files with the Wikipedia categories.
+		Return the localized names of the categories
 		
 		@param lang - language code (de or en)
-		@return string - the name of a Wikipedia category
+		@return list<string> - the names of the Wikipedia categories
 		"""
-		return WikipediaAnnotator.WP_MATH_CATEGORY[lang]
+		categories = []
+		with open( os.path.join( settings.BASE_DIR, "src", "tex2x", "annotators", WikipediaAnnotator.WP_MATH_CATEGORIES ) ) as file:
+			strings = json.load( file )
+			categories = strings["mathematics"][lang]
+			
+		return categories
 	
 	
 	def getApiUrl(self, lang, pageTitle):

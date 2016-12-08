@@ -64,11 +64,11 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		annotations = annotator.generate( 'en' )
 		mathWords = [item.word for item in annotations]
 		self.assertTrue( len( mathWords ) > 0 )
-		print(mathWords)
 		self.assertTrue( 'Variable' in mathWords )
 		self.assertTrue( 'Term' in mathWords )
 		self.assertTrue( 'Equation' in mathWords )
-		self.assertTrue( 'Function' in mathWords )
+		# blacklisted
+		self.assertFalse( 'Function' in mathWords )
 
 
 	def testFindMathWords(self):
@@ -93,9 +93,10 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 
 		words = [item.word for item in annotations]
 		self.assertTrue( 'Variable' in words )
-		self.assertTrue( 'Term' in words )
 		self.assertTrue( 'Gleichung' in words )
-		self.assertTrue( 'Funktion' in words )
+		# blacklisted
+		self.assertFalse( 'Funktion' in words )
+
 
 	def testFindMathWordsEN(self):
 		"""
@@ -119,7 +120,17 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		self.assertTrue( 'Variable' in words )
 		self.assertTrue( 'Term' in words )
 		self.assertTrue( 'Equation' in words )
-		self.assertTrue( 'Function' in words )
+	
+	
+	def testLoadWikipediaCategories(self):
+		"""
+		Load category names from json file
+		"""
+		lang = 'de'
+		annotator = WikipediaAnnotator()
+		categories = annotator.loadCategoryNames(lang)
+		self.assertTrue( len( categories ) > 0 )
+		
 	
 if __name__ == '__main__':
 	unittest.main()
