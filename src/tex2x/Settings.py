@@ -54,6 +54,8 @@ class Settings(dict, metaclass=Singleton):
         
         self.load_settings(self.get_env_settings())
         
+        #TODO load the plugin / content settings here
+        
         import settings as default_settings
         self.load_settings(default_settings)
 

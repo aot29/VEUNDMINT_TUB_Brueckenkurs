@@ -15,9 +15,33 @@ class UserFeedbackSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = UserFeedback
 		fields = ('rawfeedback', )
+		
+class QuestionSerializer(serializers.ModelSerializer):
+	
+	def validate(self, data):
+		print('scoreserializer data', data)
+		return data
+
+	class Meta:
+		model = Question
+		fields = ('question_id', 'siteuxid', 'section', 'maxpoints', 'intest', 'type')
 
 class ScoreSerializer(serializers.ModelSerializer):
 	id = serializers.CharField(required=False, allow_blank=True, max_length=100)
+	#question = QuestionSerializer(required=False)
+	
+	def validate(self, data):
+		print('scoreserializer data', data)
+		return data
+	
+	def create(self, validated_data):
+		print ('scoreSerializer validated data', validated_data)
+		return super(ScoreSerializer, self).create(validated_data)
+	
+	def update(self, instance, validated_data):
+		print ('scoreSerializer update validated data', validated_data)
+		return super(ScoreSerializer, self).update(instance, validated_data)
+
 	class Meta:
 		model = Score
 		fields = ('id', 'question', 'points', 'value', 'rawinput', 'state')
@@ -147,12 +171,18 @@ class RegistrationSerializer(RegisterSerializer):
 
 class UserDataSerializer(serializers.ModelSerializer):
 	scores = ScoreSerializer(many=True, required=False)
+	
+	def validate(self, data):
+		print('userdataserializer data', data)
+		return data
 
 	def create(self, validated_data):
 		"""
 		Method is used with all POST requests. And automatically handles
 		create and update depending on uxid and user
 		"""
+		print('userDataSerializer validated_data', validated_data)
+		
 		user = None
 		request = self.context.get("request")
 		if request and hasattr(request, "user"):
