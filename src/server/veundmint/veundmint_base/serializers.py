@@ -199,7 +199,6 @@ class UserDataSerializer(serializers.ModelSerializer):
 		# Create or update each page instance
 		if 'scores' in validated_data:
 			for score in validated_data['scores']:
-				print('score in userDataSerializer create', score)
 
 				# first: get or create a questions object
 				score_question = score.get('question', None)
@@ -212,18 +211,14 @@ class UserDataSerializer(serializers.ModelSerializer):
 					intest = score_question.get('intest', False),
 					type = score_question.get('type', None)
 				)
-				print(question)
+
 
 				# second: get or create the score obj defined by question and user, which
-				# should be unique together - q_id is rendered as id in
-				# ~ScoreSerializer
 
 				the_score, created = Score.objects.get_or_create(
 					question=question,
 					user=user
 				)
-
-				print(question)
 
 				# third: set the other fields on the object and save
 				the_score.points = score.get('points', the_score.points)
