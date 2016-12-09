@@ -100,14 +100,14 @@ class WikipediaAnnotator(AbstractAnnotator):
 		"""
 		categories = []
 		blacklist = []
-		with open( os.path.join( settings.BASE_DIR, "src", "tex2x", "annotators", WikipediaAnnotator.WP_CATEGORIES_PATH ) ) as file:
+		with open( os.path.join( settings.BASE_DIR, "content_submodule", WikipediaAnnotator.WP_CATEGORIES_PATH ) ) as file:
 			strings = json.load( file )
 			
 			# Wikipedia categories to scan for potential links from course pages
-			categories = strings["mathematics"][lang]["categories"]
+			categories = strings[lang]["categories"]
 		
 			# 	Strings to be filtered from matches, mostly because they keep popping-up on most pages
-			blacklist = strings["mathematics"][lang]["blacklist"]
+			blacklist = strings[lang]["blacklist"]
 		
 		return categories, blacklist
 	
@@ -132,9 +132,12 @@ class WikipediaAnnotator(AbstractAnnotator):
 					r1 = requests.post( url, data=None, cookies=None )
 					# Check http status
 					self.checkRequest( r1, url )
+					# request OK, stop trying
 					break
+				
 				except:
-					attemps += 1
+					# if request didn't work, try again
+					attempts += 1
 			
 			for item in r1.json()['query']['categorymembers']:
 				# skip category names
