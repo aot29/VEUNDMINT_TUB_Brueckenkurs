@@ -45,6 +45,15 @@ class WikipediaAnnotator(AbstractAnnotator):
 	The URL to Wikipedia human-readable pages, with placeholders for the language and the page title
 	'''
 
+	WP_MIN_LENGTH = 3
+	'''
+	Words shorter than this will be ignored
+	'''
+	
+	MAX_ATTEMPTS = 3
+	'''
+	Max number of attempts to load a page from Wikipedia
+	'''
 	
 	def generate( self, lang ):
 		"""
@@ -64,10 +73,13 @@ class WikipediaAnnotator(AbstractAnnotator):
 		
 		for pageName in wpPages:
 			word = pageName
-			
+						
 			# remove disambiguation terms from word, e.g. (mathematics) or (logic)
 			matches = re.search(disambiguationPattern, word)
 			if matches: word = matches.group(1).strip()				
+			
+			# ignore short words, as otherwise there are too many false positives
+			if len(word) <= WikipediaAnnotator.WP_MIN_LENGTH: continue
 			
 			# ignore blacklisted words
 			if word in blacklist: continue
@@ -111,10 +123,18 @@ class WikipediaAnnotator(AbstractAnnotator):
 		for pageTitle in pages:
 			# Read a page
 			url = self.getApiUrl(lang, pageTitle)
-			r1 = requests.post( url, data=None, cookies=None )
-			
-			# Check http status
-			self.checkRequest( r1, url )
+
+			attempts = 0
+			while attempts < WikipediaAnnotator.MAX_ATTEMPTS:
+				# try to connect with the Wikipedia API, give up after MAX_ATTEMPTS
+				try:
+					# send request
+					r1 = requests.post( url, data=None, cookies=None )
+					# Check http status
+					self.checkRequest( r1, url )
+					break
+				except:
+					attemps += 1
 			
 			for item in r1.json()['query']['categorymembers']:
 				# skip category names
