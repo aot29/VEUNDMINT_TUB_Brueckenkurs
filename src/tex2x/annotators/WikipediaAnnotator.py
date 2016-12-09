@@ -22,6 +22,7 @@ import json
 import os
 from tex2x.annotators.AbstractAnnotator import *
 import settings
+import re
 
 class WikipediaAnnotator(AbstractAnnotator):
 	'''
@@ -29,7 +30,7 @@ class WikipediaAnnotator(AbstractAnnotator):
 	Use this to create external lists of links on each page.
 	'''
 	
-	WP_MATH_CATEGORIES = "WikipediaCategories.json"
+	WP_CATEGORIES_PATH = "WikipediaCategories.json"
 	'''
 	Path to the json file containing containing Wikipedia categories to scan for math words in German and English
 	'''
@@ -41,18 +42,9 @@ class WikipediaAnnotator(AbstractAnnotator):
 
 	WP_URL_TPL = "https://%s.wikipedia.org/wiki/%s"
 	'''
-	The URL to Wikipedia, with placeholders for the language and the page title
+	The URL to Wikipedia human-readable pages, with placeholders for the language and the page title
 	'''
-	
-	WP_DISAMBIGUATION = { 'de' : ["Mathematik", "Geometrie"], 'en' : ["mathematics", "logic"] }
-	'''
-	Strings used by Wikipedia for disambiguation. Have to be removed to search for words in course pages
-	'''
-	
-	WP_BLACKLIST = { 'de' : [ "NaN", "Zahl", "Weg", "Bild", "Funktion", "Term", "Ebene", "Norm", "Ecke", "Mathematik" ], 'en' : ["Function", "Map", "Norm","Sign", "Mathematics"] }
-	'''
-	Strings to be filtered from matches, mostly because they keep popping-up on most pages
-	'''
+
 	
 	def generate( self, lang ):
 		"""
@@ -62,22 +54,29 @@ class WikipediaAnnotator(AbstractAnnotator):
 		@return array of [word, Wikipedia lemma] items, e.g. ['Operator', 'Operator (Mathematik)']
 		"""
 		resp = []
-		WpPages = self.loadCategoryPages( self.loadCategoryNames(lang), lang )
-		for pageName in WpPages:
+		
+		# Load the json files containing the desired categories and blacklists
+		categoryNames, blacklist = self.loadCategoryNames(lang)
+		wpPages = self.loadCategoryPages(categoryNames , lang )
+
+		# the regex pattern used for each page, see below
+		disambiguationPattern = re.compile('(.+?)\(.+?\)')
+		
+		for pageName in wpPages:
 			word = pageName
-			# remove disambiguation terms from word
-			for dis in WikipediaAnnotator.WP_DISAMBIGUATION[lang]:
-				word = word.replace( "(%s)" % dis, "")
-			word = word.strip()
+			
+			# remove disambiguation terms from word, e.g. (mathematics) or (logic)
+			matches = re.search(disambiguationPattern, word)
+			if matches: word = matches.group(1).strip()				
 			
 			# ignore blacklisted words
-			if word in WikipediaAnnotator.WP_BLACKLIST[lang]: continue
+			if word in blacklist: continue
 			
 			# make a tuple containing the word, the Wikipedia page name and the complete URL
 			resp.append( Annotation( word, pageName, self.getPageUrl(lang, pageName) ) )
 			
 		return resp
-	
+			
 
 	def loadCategoryNames(self, lang):
 		"""
@@ -85,34 +84,21 @@ class WikipediaAnnotator(AbstractAnnotator):
 		Return the localized names of the categories
 		
 		@param lang - language code (de or en)
-		@return list<string> - the names of the Wikipedia categories
+		@return list<string> - the names of the Wikipedia categories, list<string> - list of words to exclude
 		"""
 		categories = []
-		with open( os.path.join( settings.BASE_DIR, "src", "tex2x", "annotators", WikipediaAnnotator.WP_MATH_CATEGORIES ) ) as file:
+		blacklist = []
+		with open( os.path.join( settings.BASE_DIR, "src", "tex2x", "annotators", WikipediaAnnotator.WP_CATEGORIES_PATH ) ) as file:
 			strings = json.load( file )
-			categories = strings["mathematics"][lang]
 			
-		return categories
-	
-	
-	def getApiUrl(self, lang, pageTitle):
-		"""
-		The URL of the API of Wikipedia in the given language
+			# Wikipedia categories to scan for potential links from course pages
+			categories = strings["mathematics"][lang]["categories"]
 		
-		@param lang - language code (de or en)
-		@return string - URL a the corresponding Wikipedia API entry point
-		"""
-		return WikipediaAnnotator.WP_API_URL_TPL % ( lang, pageTitle )
-
-
-	def getPageUrl(self, lang, pageTitle):
-		"""
-		The URL of the Wikipedia human-readable page in the given language
-		@param lang - language code (de or en)
-		@return string - URL
-		"""
-		return WikipediaAnnotator.WP_URL_TPL % ( lang, pageTitle )
+			# 	Strings to be filtered from matches, mostly because they keep popping-up on most pages
+			blacklist = strings["mathematics"][lang]["blacklist"]
 		
+		return categories, blacklist
+	
 	
 	def loadCategoryPages(self, pages, lang):
 		"""
@@ -141,6 +127,25 @@ class WikipediaAnnotator(AbstractAnnotator):
 		# return content
 		return lemmata
 
+	
+	def getApiUrl(self, lang, pageTitle):
+		"""
+		The URL of the API of Wikipedia in the given language
+		
+		@param lang - language code (de or en)
+		@return string - URL a the corresponding Wikipedia API entry point
+		"""
+		return WikipediaAnnotator.WP_API_URL_TPL % ( lang, pageTitle )
+
+
+	def getPageUrl(self, lang, pageTitle):
+		"""
+		The URL of the Wikipedia human-readable page in the given language
+		@param lang - language code (de or en)
+		@return string - URL
+		"""
+		return WikipediaAnnotator.WP_URL_TPL % ( lang, pageTitle )
+		
 
 	def checkRequest(self, response, url ):
 		"""

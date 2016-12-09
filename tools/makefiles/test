@@ -78,7 +78,7 @@ endef
 # Run all tests (except quicktests) and gather test coverage data
 #	
 define systest_cmd
-	export BASE_URL=${BASE_URL} && cd src && green -vvvr test
+	export BASE_URL=${BASE_URL} && cd src && green -s1 -vvvr test
 endef
 
 
