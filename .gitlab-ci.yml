@@ -89,6 +89,8 @@ gulp_all_tests:
     - "export LC_ALL=en_US.UTF-8"
     - "export LANG=en_US.UTF-8"
     - "export LANGUAGE=en_US.UTF-8"
+    # important: run tests in single-process mode, 
+    # to avoid resource conflicts and being blocked by external APIs ()like Wikipedia
     - "cd src && green -s1 -vvv --run-coverage"
     - "coverage html"
     # move coverage report to /coverage
