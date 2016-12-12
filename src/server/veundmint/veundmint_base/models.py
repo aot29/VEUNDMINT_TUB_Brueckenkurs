@@ -48,6 +48,14 @@ class Site(DateSensitiveModel):
 		through_fields=('site', 'user'),
 	)
 	
+	@property
+	def totalScore(self):
+		return 1000
+	
+	@property
+	def maxScore(self):
+		return 9999
+	
 class Question(DateSensitiveModel):
 	question_id = models.CharField(max_length=50)
 	site = models.ForeignKey(Site, null=True, on_delete=models.SET_NULL, related_name="questions")

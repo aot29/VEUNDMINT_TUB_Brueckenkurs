@@ -108,7 +108,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 class ScoreSerializer(serializers.ModelSerializer):
 	id = serializers.CharField(required=False, allow_blank=True, max_length=100)
-	question = QuestionSerializer(required=False)
+	maxpoints = serializers.IntegerField(source="question.maxpoints")
 	
 	def validate(self, data):
 		print('scoreserializer data', data)
@@ -124,7 +124,7 @@ class ScoreSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Score
-		fields = ('id', 'question', 'points', 'value', 'rawinput', 'state')
+		fields = ('id', 'points', 'value', 'rawinput', 'state', 'maxpoints')
 
 class UserSerializer(UserDetailsSerializer):
 	university = serializers.CharField(source="profile.university", allow_blank=True)

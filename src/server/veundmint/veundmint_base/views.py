@@ -54,8 +54,11 @@ class NewUserDataViewSet(APIView):
 				resp[site.site_id][question.question_id] = {}
 				question_scores = Score.objects.filter(user=user, question=question)
 				print('QUESTION_SCORES', question_scores)
-				resp[site.site_id][question.question_id] = ScoreSerializer(question_scores, many=True).data
-			#resp[site.scores] = ScoreSerializer(site_scores).data
+				for score in question_scores:
+					resp[site.site_id][question.question_id] = ScoreSerializer(score).data
+			resp[site.site_id]['millis'] = 0
+			resp[site.site_id]['totalScore'] = site.totalScore
+			resp[site.site_id]['maxScore'] = site.maxScore
 		return Response(resp)
 
 
