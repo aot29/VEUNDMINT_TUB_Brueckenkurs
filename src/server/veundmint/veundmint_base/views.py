@@ -1,4 +1,4 @@
-import random, string
+import random, string, json
 
 from django.utils import timezone
 from django.shortcuts import render
@@ -22,8 +22,8 @@ from allauth.account.utils import complete_signup
 
 from veundmint_base.serializers import UserDataSerializer, WebsiteActionSerializer, \
 ScoreSerializer, UserFeedbackSerializer, JWTUserSerializer, UserSerializer, UserXSerializer, \
-JWTUserSerializer
-from veundmint_base.models import WebsiteAction, Score, UserFeedback
+JWTUserSerializer, NewUserDataSerializer, SiteSerializer
+from veundmint_base.models import WebsiteAction, Score, UserFeedback, Site, Question
 
 
 # ViewSets define the view behavior.
@@ -36,6 +36,28 @@ class UserFeedbackViewSet(viewsets.ModelViewSet):
     queryset = UserFeedback.objects.all()
     serializer_class = UserFeedbackSerializer
     permission_classes = (permissions.AllowAny,)
+    
+class NewUserDataViewSet(APIView):
+	"""
+	A simple ViewSet for listing or retrieving users.
+	"""
+	def get(self, request, format=None):
+		user = self.request.user
+		scores = Score.objects.filter(pk=user.pk)
+		sites = Site.objects.all()
+		resp = {}
+		for site in sites:
+			resp[site.site_id] = {}
+			questions = site.questions.all()
+			print('QUESTIONS', questions)
+			for question in questions:
+				resp[site.site_id][question.question_id] = {}
+				question_scores = Score.objects.filter(user=user, question=question)
+				print('QUESTION_SCORES', question_scores)
+				resp[site.site_id][question.question_id] = ScoreSerializer(question_scores, many=True).data
+			#resp[site.scores] = ScoreSerializer(site_scores).data
+		return Response(resp)
+
 
 class UserViewSet(viewsets.ModelViewSet):
 

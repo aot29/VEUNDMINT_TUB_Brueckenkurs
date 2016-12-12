@@ -25,7 +25,7 @@ from rest_auth.registration.views import VerifyEmailView
 
 from veundmint_base.models import WebsiteAction
 from veundmint_base.views import WebsiteActionViewSet, UserViewSet, ScoreViewSet,\
-ProfileViewSet, CheckUsernameView, DataTimestampView, UserFeedbackViewSet
+ProfileViewSet, CheckUsernameView, DataTimestampView, UserFeedbackViewSet, NewUserDataViewSet
 
 
 router = routers.DefaultRouter()
@@ -33,6 +33,7 @@ router.register(r'server-action', WebsiteActionViewSet)
 router.register(r'score', ScoreViewSet, base_name='scores')
 router.register(r'user-data', UserViewSet, base_name='user-data')
 router.register(r'user-feedback', UserFeedbackViewSet)
+#router.register(r'new-user-data', NewUserDataViewSet, base_name='new-user-data')
 
 urlpatterns = [
     #url(r'^', include('veundmint_base.urls')),
@@ -43,7 +44,8 @@ urlpatterns = [
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^checkusername/', CheckUsernameView.as_view()),
-    url(r'^user-data-timestamp/', DataTimestampView.as_view())
+    url(r'^user-data-timestamp/', DataTimestampView.as_view()),
+    url(r'^new-user-data/', NewUserDataViewSet.as_view())
 ]
 
 if settings.DEBUG:

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from veundmint_base.models import Site, Score, Question, UserFeedback, CourseProfile
+from veundmint_base.models import Site, Score, Question, UserFeedback, CourseProfile, Statistics
 
 
 # Define an inline admin descriptor for Employee model
@@ -21,6 +21,10 @@ admin.site.register(User, UserAdmin)
 
 @admin.register(Site)
 class SiteAdmin(admin.ModelAdmin):
+	pass
+
+@admin.register(Statistics)
+class StatisticsAdmin(admin.ModelAdmin):
 	pass
 
 @admin.register(Score)

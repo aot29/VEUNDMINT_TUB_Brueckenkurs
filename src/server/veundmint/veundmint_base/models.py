@@ -35,23 +35,31 @@ class WebsiteAction(DateSensitiveModel):
 	ip_address = models.CharField(max_length=200)
 	browser_type = models.CharField(max_length=1000)
 
+
+
+class UserFeedback(DateSensitiveModel):
+	rawfeedback = models.TextField(blank=True)
+	
+class Site(DateSensitiveModel):
+	site_id = models.CharField(max_length=300, default='')
+	users = models.ManyToManyField(
+		settings.AUTH_USER_MODEL,
+		through='Statistics',
+		through_fields=('site', 'user'),
+	)
+	
 class Question(DateSensitiveModel):
 	question_id = models.CharField(max_length=50)
-	siteuxid = models.CharField(max_length=200)
+	site = models.ForeignKey(Site, null=True, on_delete=models.SET_NULL, related_name="questions")
 	section = models.PositiveSmallIntegerField()
 	maxpoints = models.PositiveSmallIntegerField()
 	intest = models.BooleanField(default=False)
 	type = models.PositiveSmallIntegerField(null=True)
-
-class UserFeedback(DateSensitiveModel):
-	rawfeedback = models.TextField(blank=True)
-
-class Site(DateSensitiveModel):
-	site_id = models.CharField(max_length=300, default='')
-
-	def __str__(self):
-		return self.site_id
-
+	
+class Statistics(DateSensitiveModel):
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL, related_name="statistics")
+	site = models.ForeignKey(Site, null=True, on_delete=models.SET_NULL)
+	millis = models.PositiveIntegerField(null=True, default=0)
 
 class Score(DateSensitiveModel):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="scores")
