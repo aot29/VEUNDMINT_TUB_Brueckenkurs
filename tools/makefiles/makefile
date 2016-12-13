@@ -38,7 +38,7 @@ DEFAULT_LANG = de
 # Build everything for the bootstrap version
 # Including PDFs
 #
-all: | cleanupBefore buildDE fix startGulp movePDF cleanupAfter
+all: | cleanupBefore buildDE fix startGulp movePDF document cleanupAfter
 	echo "ready"
 
 buildDE: 
@@ -158,7 +158,8 @@ cleanupAfter:
 	-rm -Rf $(OUTPUT)
 	-rm -Rf $(OUTPUT)_en
 	-rm -Rf $(OUTPUT)_de
-#	-rm -Rf _tmp
+	-rm -Rf _tmp
+	-rm -Rf doc
 
 
 #
@@ -174,3 +175,12 @@ startGulp:
 #
 movePDF:
 	-cp -R $(OUTPUT)/pdf public/
+	
+#
+# Produce documentation
+#
+document:
+	doxygen doxygen.conf
+	-cp -R doc public/
+	
+	
