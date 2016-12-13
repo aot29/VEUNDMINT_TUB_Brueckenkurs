@@ -1,8 +1,9 @@
 stages:
   - setup
   - build
-  - deploy
+  - deploy_staging
   - test
+  - deploy_prod
 
 cache:
   key: "$CI_BUILD_REF_NAME"
@@ -83,7 +84,7 @@ gulp_build_physik:
     - "rsync -avr --exclude public/* /home/gitlab-runner/physikbk"
 
 deploy_staging:
-  stage: deploy
+  stage: deploy_staging
   script:
     - echo "Deploy to staging server"
   environment:
@@ -93,7 +94,7 @@ deploy_staging:
     - dev_TUB_software
 
 deploy_prod:
-  stage: deploy
+  stage: deploy_prod
   script:
     - echo "Deploy to production server"
   environment:
