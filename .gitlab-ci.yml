@@ -86,21 +86,11 @@ gulp_build_physik:
 deploy_staging:
   stage: deploy_staging
   script:
-    - echo "Deploy to staging server"
+    - "cd $CI_PROJECT_DIR"
+    - "rsync -avr --exclude public/* /home/gitlab-runner/gitlab-ci"
   environment:
     name: staging
-    url: https://staging.example.com
-  only:
-    - dev_TUB_software
-
-deploy_prod:
-  stage: deploy_prod
-  script:
-    - echo "Deploy to production server"
-  environment:
-    name: production
-    url: https://example.com
-  when: manual
+    url: http://guest43.mulf.tu-berlin.de/gitlab-ci-test/
   only:
     - dev_TUB_software
 
@@ -121,3 +111,16 @@ gulp_all_tests:
     - "coverage html"
     # move coverage report to /coverage
     - "rsync -avr htmlcov/* /home/gitlab-runner/gitlab-ci/coverage"
+    
+deploy_prod:
+  stage: deploy_prod
+  script:
+    - "cd $CI_PROJECT_DIR"
+    # copy to production server without coverage and doc
+    - "rsync -avr -e ssh --exclude=coverage --exclude=doc public/* mulfadmin@guest6.mulf.tu-berlin.de:/var/www/mfr_test"
+  environment:
+    name: production
+    url: https://guest6.mulf.tu-berlin.de/mfr_test/
+  when: manual
+  only:
+    - dev_TUB_software
