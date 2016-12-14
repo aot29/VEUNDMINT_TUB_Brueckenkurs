@@ -18,7 +18,6 @@
 	@author Alvaro Ortiz for TU Berlin
 """
 from lxml import etree
-from asyncio.windows_events import NULL
 
 class AbstractAnnotator(object):
 	'''
