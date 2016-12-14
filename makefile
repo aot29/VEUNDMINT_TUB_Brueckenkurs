@@ -26,7 +26,7 @@ install: clean
 all:
 ifeq ($(course),PhysikBK)
 	# link to actual physics tex-tree to he name expected by the script
-	ln -sf $(CURDIR)/content_submodule/content/tree_physik_bk.tex $(CURDIR)/content_submodule/content/tree_de.tex
+	# ln -sf $(CURDIR)/content_submodule/content/tree_physik_bk.tex $(CURDIR)/content_submodule/content/tree_de.tex
 	# call the makefile, with overrides, skip creating PDF
 	$(MAKE) -f tools/makefiles/makefile OVERRIDE="'description=Onlinebrückenkurs Physik'" nopdf
 	# forward to the first page
