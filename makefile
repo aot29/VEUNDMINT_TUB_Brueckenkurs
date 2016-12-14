@@ -69,3 +69,10 @@ clean:
 #
 test:
 	$(MAKE) -f tools/makefiles/test localhost
+
+	
+#
+# Build the documentation
+#
+docs:
+	$(MAKE) -f tools/makefiles/makefile docs

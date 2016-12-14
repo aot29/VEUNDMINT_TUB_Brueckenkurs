@@ -179,7 +179,7 @@ movePDF:
 #
 # Produce documentation
 #
-document:
+docs:
 	doxygen doxygen.conf
 	-cp -R doc public/
 	
