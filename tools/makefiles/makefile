@@ -38,7 +38,7 @@ DEFAULT_LANG = de
 # Build everything for the bootstrap version
 # Including PDFs
 #
-all: | cleanupBefore buildDE fix startGulp movePDF document cleanupAfter
+all: | cleanupBefore buildDE fix startGulp movePDF docs cleanupAfter
 	echo "ready"
 
 buildDE: 
