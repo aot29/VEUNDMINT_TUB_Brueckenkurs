@@ -132,7 +132,7 @@
     if (e == null) {
       return;
     }
-    log.debug('dataservice', dataService);
+
     dataService.getUserData().then(function(userData) {
 
       var s = "";
@@ -141,35 +141,49 @@
       var si = [];
       for (k = 0; k < globalexpoints.length; k++) {
         p[k] = 0; t[k] = 0; si[k] = 0;
+		
+		
+		//visitedModulesInChapter
+		var visitedModules = _.size(_.pickBy(userData.stats, function(site, key) {
+			var prefix = 'VBKM' + ("0" + (k+1)).slice(-2);
+			return key.startsWith(prefix);
+		}));
+		
+		//test calculation
+		var prefix = 'VBKM' + ("0" + (k+1)).slice(-2);
+		var match = prefix + '_Abschlusstest';
+		var testSite = _.pickBy(userData.stats, function(site, key) {
+			return key === match;
+		})[match];
+		
+		var testScore = _.get(testSite,'points',0);
+		
+		console.log('testScore on testSite', testScore, testSite);
+		
+		
         var j = 0;
         for (j = 0; j < userData.scores.length; j++) {
-          if ((userData.scores[j].section == (k+1)) && (userData.scores[j].siteuxid.slice(0,6) != "VBKMT_")) {
+          if ((userData.scores[j].section == (k+1)) && (userData.scores[j].siteuxid.slice(0,6) != "VBKM_")) {
             p[k] += userData.scores[j].points;
             if (userData.scores[j].intest == true) { t[k] += userData.scores[j].points; }
           }
         }
-
-        //TODO ns - this is not working: Insgesamt 0 von 15 Lerneinheiten des Moduls besucht.
-        // for (j = 0; j < userData.sites.length; j++) {
-        //   if (userData.sites[j].section == (k+1)) {
-        //     si[k] += userData.sites[j].points;
-        //   }
-        // }
+        
         s += "<strong>Kapitel " + (k+1) + ": " + globalsections[k] + "</strong><br />";
 
-        var progressWidthGlobal = si[k] / globalsitepoints[k] * 100;
-        s += $.i18n('msg-total-progress', si[k], globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
-        s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + si[k] + "' aria-valuemax='" + globalsitepoints[k] + "' style='width: " + progressWidthGlobal + "%'><span class='sr-only'>" + progressWidthGlobal + "% Complete</span></div></div>";
+        var progressWidthGlobal = visitedModules / globalsitepoints[k] * 100;
+        s += $.i18n('msg-total-progress', visitedModules, globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
+        s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + visitedModules + "' aria-valuemax='" + globalsitepoints[k] + "' style='width: " + progressWidthGlobal + "%'><span class='sr-only'>" + progressWidthGlobal + "% Complete</span></div></div>";
 
         var progressWidthEx = p[k] / globalexpoints[k] * 100;
         s += $.i18n('msg-total-points', p[k], globalexpoints[k]) + "<br />";//"Insgesamt " + p[k] + " von " + globalexpoints[k] + " Punkten der Aufgaben erreicht.<br />";
         s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + p[k] + "' aria-valuemax='" + globalexpoints[k] + "' style='width: " + progressWidthEx + "%'><span class='sr-only'>" + progressWidthEx + "% Complete</span></div></div>";
 
-        var progressWidthTest = t[k] / globaltestpoints[k] * 100;
-        s += $.i18n( 'msg-total-test', t[k], globaltestpoints[k] ) + "<br />";//"Insgesamt " + t[k] + " von " + globaltestpoints[k] + " Punkten im Abschlusstest erreicht.<br />";
-        s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + t[k] + "' aria-valuemax='" + globaltestpoints[k] + "' style='width: " + progressWidthTest + "%'><span class='sr-only'>" + progressWidthTest + "% Complete</span></div></div>";
+        var progressWidthTest = testScore / globaltestpoints[k] * 100;
+        s += $.i18n( 'msg-total-test', testScore, globaltestpoints[k] ) + "<br />";//"Insgesamt " + t[k] + " von " + globaltestpoints[k] + " Punkten im Abschlusstest erreicht.<br />";
+        s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + testScore + "' aria-valuemax='" + globaltestpoints[k] + "' style='width: " + progressWidthTest + "%'><span class='sr-only'>" + progressWidthTest + "% Complete</span></div></div>";
 
-        var ratio = t[k]/globaltestpoints[k];
+        var ratio = testScore/globaltestpoints[k];
         if (ratio < 0.9) {
           s += "<span style='color:#E00000'>" + $.i18n('msg-failed-test') + "</span>"; // Abschlusstest ist noch nicht bestanden.
         } else {

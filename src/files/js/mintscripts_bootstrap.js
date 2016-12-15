@@ -1320,7 +1320,7 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
       console.log('getresult', userData);
       for (j = 0; j < userData.scores.length; j++) {
         if (userData.scores[j].uxid == uxid) {
-          console.log('retresult found score', userData.scores[j].rawinput);
+          console.log('getresult found score', userData.scores[j].rawinput);
           return userData.scores[j].rawinput;
         }
       }
@@ -1345,23 +1345,51 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
   }
 
   /**
+   * TODO THIS IS DEPRECATED
   * Looks up userData for an input for the field with uxid. Returns the rawinput
   * attribute.
   * @param  {String} uxid     The uxid of the field to look
   * @param  {Object} userData [description]
   * @return {String}          [description]
   */
-  function getUserInputForUxid(uxid, userData) {
-    if(userData && userData.scores && userData.scores.length) {
-        for (j = 0; j < userData.scores.length; j++) {
-        if (userData.scores[j].uxid == uxid) {
-            console.log('getUserInputForUxid found score', userData.scores[j].rawinput);
-            return userData.scores[j].rawinput;
-        }
-        }
-    }
-    return null;
-  }
+	function getUserInputForUxid(uxid, userData) {
+// 		if(userData && userData.scores && userData.scores.length) {
+// 			for (j = 0; j < userData.scores.length; j++) {
+// 			if (userData.scores[j].uxid == uxid) {
+// 				console.log('getUserInputForUxid found score', userData.scores[j].rawinput);
+// 				return userData.scores[j].rawinput;
+// 			}
+// 			}
+// 		}
+		if (userData && userData.stats && userData.stats[SITE_UXID] && userData.stats[SITE_UXID][uxid]) {
+			log.debug('minsscripts_bootstrap.js: getUserInputForUxid', uxid, userData, userData.stats[SITE_UXID][uxid].rawinput);
+			return userData.stats[SITE_UXID][uxid].rawinput;
+		}
+		return null;
+	}
+	
+  /**
+  * Looks up userData for an input for the field with uxid. Returns the rawinput
+  * attribute.
+  * @param  {String} uxid     The uxid of the field to look
+  * @param  {Object} userData [description]
+  * @return {String}          [description]
+  */
+	function getUserInputForId(id, userData) {
+// 		if(userData && userData.scores && userData.scores.length) {
+// 			for (j = 0; j < userData.scores.length; j++) {
+// 			if (userData.scores[j].uxid == uxid) {
+// 				console.log('getUserInputForUxid found score', userData.scores[j].rawinput);
+// 				return userData.scores[j].rawinput;
+// 			}
+// 			}
+// 		}
+		if (userData && userData.stats && userData.stats[SITE_UXID] && userData.stats[SITE_UXID][id]) {
+			log.debug('minsscripts_bootstrap.js: getUserInputForUxid', id, userData, userData.stats[SITE_UXID][id].rawinput);
+			return userData.stats[SITE_UXID][id].rawinput;
+		}
+		return null;
+	}
 
   // Fuellt alle vorhandenen Fragefelder der Seite mit den gespeicherten Antworten aus dem LMS,
   // falls empty==true wird alles mit Leerstrings gefuellt auch wenn API da ist, falls keine API da ist oder Benutzer nicht will gibt es immer Leerstrings
@@ -1382,7 +1410,7 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
       for (i=1; i<FVAR.length; i++) {
         var e = document.getElementById(FVAR[i].id);
         if (FVAR[i].sync == 1) {
-          v = getUserInputForUxid(FVAR[i].uxid, data);
+          v = getUserInputForId(FVAR[i].id, data);
           if (v==null) continue;
           switch(FVAR[i].type) {
 
@@ -1527,7 +1555,7 @@ function finish_button(name) {
     //     intersite.sendeFeedback({statistics: cm }, true);
     //     log.trace("Testfinish gesendet");
     // }
-    dataService.sendUserFeedback({statistics: cm});
+    //dataService.sendUserFeedback({statistics: cm});
 
     if ((doScorm == 1) && (SITE_UXID == "VBKMT_AbgebeTest")) {
       // MatheV4: Gesamtpunktzahl ueber alle ABSCHLUSSTESTS mitteln und Prozentwert an SCORM uebertragen
@@ -1561,6 +1589,9 @@ function notifyPoints(i, points, state) {
     nPoints += points;
     nMaxPoints += FVAR[i].maxpoints;
   }
+  
+  dataService.updateScore(SITE_UXID, FVAR[i]);
+  
   //TODO ns - update scores
   // if ((intersite.isActive() == true) && (FVAR[i].sync == 1)) {
   //     if ((intersite.getObj().configuration.CF_LOCAL == "1") && (intersite.getObj().configuration.CF_TESTS == "1")) {
@@ -2522,7 +2553,9 @@ function shareFacebook() {
 		globalMillis += timerMillis;
 		var history = { globalmillis: globalMillis };
 
-		if (typeof userData.stats[SITE_UXID] === 'undefined' || typeof userData.stats[SITE_UXID].millis === 'undefined' ) {
+		if (typeof userData.stats === 'undefined' || 
+			typeof userData.stats[SITE_UXID] === 'undefined' || 
+			typeof userData.stats[SITE_UXID].millis === 'undefined' ) {
 			siteMillis = 0;
 		} else {
 			siteMillis = userData.stats[SITE_UXID].millis;
