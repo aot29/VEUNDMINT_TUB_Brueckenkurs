@@ -81,7 +81,7 @@ class VerboseDispatcher( AbstractDispatcher ):
 
 class PreprocessorDispatcher( AbstractDispatcher ):
 	"""
-	Run pre-processing plugins.
+	Run pre-processors of the "plugin". Pre-processors can be configured in Option.py, using the field usePreprocessorPlugins and following fields.
 	Can be decorated with VerboseDecorator for performance logs.
 	"""
 	def __init__(self, plugins):

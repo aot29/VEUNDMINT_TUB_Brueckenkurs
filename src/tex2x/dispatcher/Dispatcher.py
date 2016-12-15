@@ -1,6 +1,5 @@
-## @package tex2x.annotators.WikipediaAnnotator
-#  Classes for collecting potentially interesting pages from Wikipedia, by using the MediaWiki API. 
-#  Used by the annotation functionality to link pages automatically to Wikipedia entries.
+## @package tex2x.dispatcher.Dispatcher
+#  The dispatcher is the first class to be called by tex2x and sets the processing pipeline together.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
 #  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
@@ -37,7 +36,7 @@ from tex2x.parsers.WikipediaDecorator import WikipediaDecorator
 
 class Dispatcher(AbstractDispatcher):
 	"""
-	Base classes for the dispatcher functionality. The dispatcher is the first class to be called by tex2x and sets the processing pipeline together.	
+	The dispatcher is the first class to be called by tex2x and sets the processing pipeline together.	
 	The dispatcher uses the template method pattern: 	
 	"Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. 
 	Lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure." 
