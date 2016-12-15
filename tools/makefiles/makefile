@@ -61,7 +61,7 @@ buildDE:
 # Build everything for the bootstrap version
 # WITHOUT PDFs
 #
-nopdf: |cleanupBefore convert_without_pdf merge fixRedirects fix fixSpecialPages startGulp cleanupAfter
+nopdf: |cleanupBefore convert_without_pdf merge fixRedirects fix fixSpecialPages startGulp docs cleanupAfter
 	echo "ready"
 
 
