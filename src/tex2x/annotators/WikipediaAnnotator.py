@@ -1,22 +1,22 @@
-"""
-	tex2x converter - Processes tex-files in order to create various output formats via plugins
-	Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+## @package tex2x.annotators.WikipediaAnnotator
+#  Classes for collecting potentially interesting pages from Wikipedia, by using the MediaWiki API. 
+#  Used by the annotation functionality to link pages automatically to Wikipedia entries.
+#
+#  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
+#  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#  \author Alvaro Ortiz for TU Berlin
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	
-	@author Alvaro Ortiz for TU Berlin
-"""
 import requests
 import json
 import os
@@ -25,39 +25,36 @@ import settings
 import re
 
 class WikipediaAnnotator(AbstractAnnotator):
-	'''
-	Lists the Wikipedia entries in the STEM categories, in the chosen language.
-	Use this to create external lists of links on each page.
-	'''
+	"""
+	Lists the Wikipedia entries in the chosen categories, in the chosen language.
+	Use this to create a list of links to Wikipedia. In combination with WikipediaDecorator, this can link course pages to corresponding Wikipedia entries.
+	The categories to be searched for entries are set in content_submodule/WikipediaCategories.json
+
+	@see https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Verkn%C3%BCpfung-mit-Wikipedia (in German)
+	"""
 	
+	## Path to the json file containing containing Wikipedia categories to scan for math words in German and English
 	WP_CATEGORIES_PATH = "WikipediaCategories.json"
-	'''
-	Path to the json file containing containing Wikipedia categories to scan for math words in German and English
-	'''
 	
+	## The URL to the Wikipedia API search category entry point, with placeholders for the language and the category
 	WP_API_URL_TPL = "https://%s.wikipedia.org/w/api.php?action=query&list=categorymembers&cmlimit=500&cmprop=title&format=json&cmtitle=Category:%s"
-	'''
-	The URL to the Wikipedia API search category entry point, with placeholders for the language and the category
-	'''
 
+	## The URL to Wikipedia human-readable pages, with placeholders for the language and the page title
 	WP_URL_TPL = "https://%s.wikipedia.org/wiki/%s"
-	'''
-	The URL to Wikipedia human-readable pages, with placeholders for the language and the page title
-	'''
 
+	## Words shorter than this will be ignored
 	WP_MIN_LENGTH = 3
-	'''
-	Words shorter than this will be ignored
-	'''
 	
+	## Max number of attempts to load a page from Wikipedia
 	MAX_ATTEMPTS = 3
-	'''
-	Max number of attempts to load a page from Wikipedia
-	'''
 	
 	def generate( self, lang ):
 		"""
-		List the entries of the maths category in Wikipedia
+		List the entries of the chosen categories in Wikipedia.
+		* A blacklist of words to ignore is in the json file WP_CATEGORIES_PATH
+		* A list of categories for each langauge is also in the json file WP_CATEGORIES_PATH
+		* Disambiguation prefixes from Wikipedia (e.g. (Mathematik) ... ) are removed.
+		* Entries where the title is less than 3 letters will be filtered out (as they result in too many false positives).
 		
 		@param lang - language code
 		@return array of [word, Wikipedia lemma] items, e.g. ['Operator', 'Operator (Mathematik)']
@@ -92,7 +89,7 @@ class WikipediaAnnotator(AbstractAnnotator):
 
 	def loadCategoryNames(self, lang):
 		"""
-		Load the json files with the Wikipedia categories.
+		Load the json files with the Wikipedia categories. The path to the file is specified in WP_CATEGORIES_PATH.
 		Return the localized names of the categories
 		
 		@param lang - language code (de or en)
@@ -164,6 +161,7 @@ class WikipediaAnnotator(AbstractAnnotator):
 	def getPageUrl(self, lang, pageTitle):
 		"""
 		The URL of the Wikipedia human-readable page in the given language
+		
 		@param lang - language code (de or en)
 		@return string - URL
 		"""
@@ -173,6 +171,10 @@ class WikipediaAnnotator(AbstractAnnotator):
 	def checkRequest(self, response, url ):
 		"""
 		Check if a http request was successful, throw an exception otherwise
+		
+		@param response the http response object to be examined
+		@param url the url just called 
+		@throws Exception if the response is not OK
 		"""
 		# Check http status
 		if response.status_code != 200: raise Exception( 'Failed request url %s status %d' % ( url, response.status_code) )

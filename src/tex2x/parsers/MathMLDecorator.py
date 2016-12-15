@@ -155,7 +155,7 @@ class MathMLDecorator( AbstractParser ):
 		replace = r"h"
 		t = re.subn(pattern, replace, xmltext)
 		xmltext = t[0]
-
+		
 		#Probleme Ableitungen 2. Grades beheben
 		pattern = r"</mi>\"<mo stretchy"
 		replace = r"</mi><mo>'</mo><mo>'</mo><mo stretchy"
