@@ -521,24 +521,25 @@ function CreateQuestionObj(uxid, c, solution, id, type, option, pnts, intest, se
     //TODO ns this is not the very best position and the current reason that we
     //also update user data if user just clicks in an input
     //it should really be attached to 'change' event in jQuery.
-    dataService.updateUserData(
-      {
-        scores:[
-          {
-            id:FVAR[id].id,
-            points: FVAR[id].points,
-            uxid:FVAR[id].uxid,
-            siteuxid: SITE_UXID,
-            rawinput:FVAR[id].rawinput,
-            maxpoints:FVAR[id].maxpoints,
-            value:FVAR[id].value,
-            state:FVAR[id].state,
-            section:FVAR[id].section,
-            intest:FVAR[id].intest
-          }
-        ]
-      }
-    );
+//     dataService.updateUserData(
+//       {
+//         scores:[
+//           {
+//             id:FVAR[id].id,
+//             points: FVAR[id].points,
+//             uxid:FVAR[id].uxid,
+//             siteuxid: SITE_UXID,
+//             rawinput:FVAR[id].rawinput,
+//             maxpoints:FVAR[id].maxpoints,
+//             value:FVAR[id].value,
+//             state:FVAR[id].state,
+//             section:FVAR[id].section,
+//             intest:FVAR[id].intest
+//           }
+//         ]
+//       }
+//     );
+	//dataService.updateScore(SITE_UXID, FVAR[id]);
 
     var formula = 0; // Stellt der Feldinhalt eine Formel dar?
     if (FVAR[id].type == 4) formula = 1; // Eingabefeld fuer mathematische Ausdruecke? Rohe Zahlen oder Intervalle werden nicht gehintet
@@ -2510,17 +2511,27 @@ function shareFacebook() {
   }
 
   function globalTimerHandler() {
-    //TODO ns - this can also be done with dataService intersite obj
-    // var j;
-    // timerIterator++;
-    // if (intersite.isActive()) {
-    //     intersite.getObj().history.globalmillis += timerMillis;
-    //     var k;
-    //     var ux = "SITE_" + SITE_UXID;
-    //     for (k = 0; k < intersite.getObj().sites.length; k++) {
-    //         if (intersite.getObj().sites[k].uxid == ux) {
-    //             intersite.getObj().sites[k].millis += timerMillis;
-    //         }
-    //     }
-    // }
+	  dataService.getUserData().then(function (userData) {
+		  var siteMillis, globalMillis;
+		  
+		if (typeof userData.history === 'undefined' || typeof userData.history.globalmillis === 'undefined' ) {
+			globalMillis = 0;
+		} else {
+			globalMillis = userData.history.globalmillis;
+		}
+		globalMillis += timerMillis;
+		var history = { globalmillis: globalMillis };
+
+		if (typeof userData.stats[SITE_UXID] === 'undefined' || typeof userData.stats[SITE_UXID].millis === 'undefined' ) {
+			siteMillis = 0;
+		} else {
+			siteMillis = userData.stats[SITE_UXID].millis;
+		}
+		siteMillis += timerMillis;
+		var stats = {};
+		stats[SITE_UXID] = {};
+		stats[SITE_UXID].millis = siteMillis;
+		dataService.updateUserData({stats: stats, history: history})
+		
+	});
   }

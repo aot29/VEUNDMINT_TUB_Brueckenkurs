@@ -102,6 +102,45 @@
     }
     return updateUserData({scores: updatedScores});
   }
+  
+  function updateScore(siteuxid, fvar) {
+	getUserData().then(function(userData) {
+		//check if siteuxid is in userData
+		
+		var stats = {};
+		var userSitePoints = 0;
+		stats[siteuxid] = {};
+		
+		//update site points
+		if (typeof userData.stats[siteuxid] !== 'undefined' && typeof userData.stats[siteuxid].points !== 'undefined') {
+			userSitePoints = userData.stats[siteuxid].points;
+		} 
+		if (typeof userData.stats[siteuxid] !== 'undefined' && typeof userData.stats[siteuxid][fvar.id] !== 'undefined' ){
+			userSitePoints -= userData.stats[siteuxid][fvar.id].points;
+		}
+
+		userSitePoints += fvar.points;
+		
+		stats[siteuxid][fvar.id] = {
+            id:fvar.id,
+            points: fvar.points,
+            uxid:fvar.uxid,
+            siteuxid: siteuxid,
+            rawinput:fvar.rawinput,
+            maxpoints:fvar.maxpoints,
+            value:fvar.value,
+            state:fvar.state,
+            section:fvar.section,
+            intest:fvar.intest
+          }
+         stats[siteuxid].points = userSitePoints;
+          
+		updateUserData({stats: stats});
+          
+	});
+
+
+}
 
   /**
    * Add a storage service to the list of subscribed storageServices. All subscribers
@@ -305,7 +344,7 @@ function reflectGetTimestamp(service){
 * @return {Promise<Object>} A Promise containing the UserData Object
 */
 function getUserData() {
-  log.debug('getUserData objCache is', objCache);
+
   if (objCache !== null && !veHelpers.isEmpty(objCache) && !veHelpers.isEmpty(objCache.scores)) {
     return Promise.resolve(objCache);
   } else {
@@ -679,6 +718,7 @@ exports.mergeRecursive = mergeRecursive;
 exports.mockLocalStorage = mockLocalStorage;
 exports.sendUserFeedback = sendUserFeedback;
 exports.importUserData = importUserData;
+exports.updateScore = updateScore;
 
 //TODO these functions should be moved to own authservice
 exports.usernameAvailable = usernameAvailable;

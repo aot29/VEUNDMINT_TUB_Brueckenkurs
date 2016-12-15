@@ -35,8 +35,6 @@ class WebsiteAction(DateSensitiveModel):
 	ip_address = models.CharField(max_length=200)
 	browser_type = models.CharField(max_length=1000)
 
-
-
 class UserFeedback(DateSensitiveModel):
 	rawfeedback = models.TextField(blank=True)
 	
@@ -68,6 +66,7 @@ class Statistics(DateSensitiveModel):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL, related_name="statistics")
 	site = models.ForeignKey(Site, null=True, on_delete=models.SET_NULL)
 	millis = models.PositiveIntegerField(null=True, default=0)
+	points = models.PositiveIntegerField(null=True, default=0)
 
 class Score(DateSensitiveModel):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="scores")
