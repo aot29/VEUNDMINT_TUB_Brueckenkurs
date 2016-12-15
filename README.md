@@ -10,9 +10,9 @@ features such as exercises, tests, glossary, etc. It is easily extendable.
 Install these packages using your package manager:
 
 ```
-libxml2, libxml2-dev, libxslt1-dev, lib32z1, tidy,php-cli, nodejs
+libxml2, libxml2-dev, libxslt1-dev, lib32z1, tidy,php-cli, nodejs, doxygen
 ```
-If the nodejs version provided for your distributio is < 4.x, then see [here](https://nodejs.org/en/download/package-manager/)
+If the nodejs version provided for your distribution is < 4.x, then see [here](https://nodejs.org/en/download/package-manager/)
 
 This page documents how to set up an environment to work on existing courses or build a new one. There are two ways you can work on a course. *Content developers* write texts and exercises, *Software developers* work on the conversion software. Choose the documentation which best suits your needs. If you intend to work on both, then choose *Software developers*.
 

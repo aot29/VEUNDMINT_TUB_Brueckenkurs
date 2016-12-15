@@ -8,10 +8,13 @@ stages:
 cache:
   key: "$CI_BUILD_REF_NAME"
   paths:
+    # cache virtual env folders, node modules and bower_components to speed up
+    # building - content_submodule and public to allow redeploying
     - venv/
     - node_modules/
     - bower_components/
     - content_submodule/
+    - public/
 
 before_script:
   - "echo we are working in $CI_PROJECT_DIR"

@@ -42,7 +42,7 @@ DEFAULT_LANG = de
 # Build everything for the bootstrap version
 # Including PDFs
 #
-allTUB: |cleanupBefore convert_with_pdf merge fixRedirects fix fixSpecialPages startGulp movePDF cleanupAfter
+allTUB: |cleanupBefore convert_with_pdf merge fixRedirects fix fixSpecialPages startGulp movePDF docs cleanupAfter
 	echo "ready"
 
 
@@ -50,7 +50,7 @@ allTUB: |cleanupBefore convert_with_pdf merge fixRedirects fix fixSpecialPages s
 # Build everything for the bootstrap version
 # WITHOUT PDFs
 #
-nopdf: |cleanupBefore convert_without_pdf merge fixRedirects fix fixSpecialPages startGulp cleanupAfter
+nopdf: |cleanupBefore convert_without_pdf merge fixRedirects fix fixSpecialPages startGulp docs cleanupAfter
 	echo "ready"
 
 
@@ -169,3 +169,6 @@ startGulp:
 
 movePDF:
 	$(MAKE) -f tools/makefiles/makefile movePDF
+
+docs:
+	$(MAKE) -f tools/makefiles/makefile docs
