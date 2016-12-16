@@ -267,6 +267,7 @@ class Plugin(AbstractPlugin):
 
 			tocelement = tupel[0]
 			contentelement = tupel[1]
+			if (len(tupel) >= 3): annotationelement = tupel[2]
 			text = etree.tostring(contentelement, pretty_print = True, encoding = "unicode")
 
 
@@ -341,6 +342,8 @@ class Plugin(AbstractPlugin):
 						self.sys.message(self.sys.CLIENTERROR, "start end end of xcontent " + i + " do not match")
 
 					p.content = m.group(5)
+					p.annotations = annotationelement
+
 					# first label appearing in content becomes contentlabel
 					lms = re.search(r"<!-- mmlabel;;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?);;(.+?); //-->", text, re.S)
 					if lms:

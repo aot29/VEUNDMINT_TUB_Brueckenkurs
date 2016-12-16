@@ -1,50 +1,64 @@
-"""
-	tex2x converter - Processes tex-files in order to create various output formats via plugins
-	Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+## @package tex2x.parsers.LinkDecorator
+#  Create the table of contents (TOC) and the content tree.
+#
+#  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
+#  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#  \author Daniel Haase for KIT
+#  \author Alvaro Ortiz for TU Berlin
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	
-	@author Daniel Haase for KIT
-	@author Alvaro Ortiz for TU Berlin
-"""
 from tex2x.parsers.AbstractParser import AbstractParser
 
 class LinkDecorator( AbstractParser ):
-	'''
-	This class is meant to decorate TOCParser.
+	"""
 	Add methods to correct where the links in the content point to.
+	This class is meant to decorate TOCParser.
 	Can be decorated with VerboseDecorator to enable performance logging.
-	'''
+	"""
 	
+	## PATH_PREFIX
+	#  Prefix to add to links and image sources
 	PATH_PREFIX = "../"
-	'''Prefix to add to links and image sources'''
 	
 	def __init__(self, parser ):
-		'''
+		"""
+		Constructor
+		
 		@param options Object
 		@param sys - "A module exposing a class System" (Daniel Haase) 
-		'''
+		"""
+		## @var parser
+		#  Parser (object extending AbstractParser, in this case TOCParser)
 		self.parser = parser
+		
+		## @var options
+		# simplify access to the interface options member (Daniel Haase) - refactor
 		self.options = parser.options
+		
+		## @var sys
+		#  Simplify access to the interface options member (Daniel Haase) - refactor
 		self.sys = parser.sys
 		
 
 	def parse(self, *args, **kwargs):
 		"""
+		Call the TOCParser (the decorated class) and correct the links in the TOC and in the content tree.
+		Links, inage sources, embedded video sources and iframe sources are corrected by adding the PATH_PREFIX.
+		
 		@param content - a list of [toc_node, content_node] items
+		@return toc, content - two trees as returned by TOCParser
 		"""
-		# call the decorated class' runner
+		# call the decorated class' parse method
 		tempTOC, tempContent = self.parser.parse(*args, **kwargs)
 		
 		tempContent = self.correct_path_to_linked_files( tempContent )

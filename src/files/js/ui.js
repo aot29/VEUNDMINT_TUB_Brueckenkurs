@@ -81,7 +81,7 @@
       }, function (error) {
         log.debug('error logging out', error);
       });
-      opensite('index.html');
+      opensite(linkPath + '/index.html');
     });
 
     //set the body class to logged_in if logged in else set it to logged_out

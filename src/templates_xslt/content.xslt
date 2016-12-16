@@ -28,7 +28,22 @@
 				</a>
 			</xsl:if>
 
+			<!-- Add page annotations (links to Wikipedia) -->
+			<xsl:apply-templates select="annotations" />
+
 		</div>
+	</xsl:template>
+
+
+	<xsl:template match="annotations">
+		<div class="annotations">
+			<span data-toggle="i18n" data-i18n="external_links"/>: <ul class="annotations"><xsl:apply-templates select="annotation" /></ul>
+		</div>
+	</xsl:template>
+
+
+	<xsl:template match="annotation">
+		<li><a href="{@url}" target="_blank"><xsl:value-of select="@word" /></a></li>
 	</xsl:template>
 
 

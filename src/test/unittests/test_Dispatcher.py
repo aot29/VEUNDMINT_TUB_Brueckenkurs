@@ -5,13 +5,14 @@ Activate Python venv if necessary, then run with:
 > cd src
 > python3 -m unittest test.unittests.test_Dispatcher.test_Dispatcher
 
-@author: ortiz
+@author: Alvaro Ortiz
 '''
 import os
 import sys
 import unittest
 from tex2x.dispatcher.Dispatcher import Dispatcher
 from tex2x.dispatcher.AbstractDispatcher import VerboseDispatcher
+
 class test_Dispatcher(unittest.TestCase):
 	
 	def testCreate(self):

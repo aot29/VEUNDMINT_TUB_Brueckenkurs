@@ -17,6 +17,7 @@ from tex2x.Settings import settings
 
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
 from tex2x.renderers.AbstractRenderer import *
+from tex2x.annotators.AbstractAnnotator import Annotation
 
 class test_PageTUB(AbstractRendererTestCase):
 	
@@ -157,6 +158,19 @@ class test_PageTUB(AbstractRendererTestCase):
 		#print( etree.tostring( xml ) )
 		self.assertEquals( siblings[2].fullname, xml.xpath('navNext/@href')[0], "Next page not found" )
 		self.assertEquals( siblings[0].fullname, xml.xpath('navPrev/@href')[0], "Prev page not found" )
+
+
+	def testAnnotations(self):
+		# An annotations array
+		annotations = [ Annotation( word='Operator', title='Operator (Mathematik)', url='https://de.wikipedia.org/wiki/Operator_(Mathematik)' )]
+		# get a basic page renderer
+		xmlRenderer = PageXmlRenderer( self.options )
+		xml = xmlRenderer.generateXML( self.tc )
+		# add annotations array to xml
+		self.page._addAnnotations( xml, annotations )
+		self.assertEqual( 'Operator', xml.xpath('annotations/annotation/@word')[0], "Wrong annotation word" )
+		self.assertEqual( 'Operator (Mathematik)', xml.xpath('annotations/annotation/@title')[0], "Wrong annotation title" )
+		self.assertEqual( 'https://de.wikipedia.org/wiki/Operator_(Mathematik)', xml.xpath('annotations/annotation/@url')[0], "Wrong annotation URL" )
 
 
 	def testGetBasePath(self):

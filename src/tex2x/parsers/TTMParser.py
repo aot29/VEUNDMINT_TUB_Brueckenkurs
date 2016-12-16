@@ -1,22 +1,22 @@
-"""
-	Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+## @package tex2x.parsers.TTMParser
+#  Class that can parse texfiles to xml. Relies on the 'ttm' binary.
+#
+#  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
+#  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#	@author Daniel Haase for KIT 
+#	@author Niklas Plessing, Alvaro Ortiz for TU Berlin
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	
-	@author Daniel Haase for KIT 
-	@author Niklas Plessing, Alvaro Ortiz for TU Berlin
-"""
 import os, subprocess, logging, re
 import sys
 from tex2x.Settings import settings
@@ -26,20 +26,36 @@ logger = logging.getLogger(__name__)
 
 class TTMParser(AbstractParser):
 	"""
-	Class that can parse texfiles to xml. Relies on the 'ttm' binary.
-	Can be decorated with VerboseParser to enable performance loging.
+	Class that can parse Tex source files to an XML file, including parsing MathML. Relies on the TTM binary.
+	Documentation for TTM can be found here: http://hutchinson.belmont.ma.us/tth/mml/
+	Can be decorated with VerboseParser to enable performance logging.
 	"""
 
 	def __init__(self, options, sys=None):
 		"""
+		Constructor.
+		
 		@param options Object
 		@param sys - "A module exposing a class System" (Daniel Haase) 
-		@param ttmBin path to TTM binary		
+		@param ttmBin path to TTM binary
 		"""
+		## @varsubprocess
+		#  Subprocess connecting to TTM input/output/error pipes and error codes
 		self.subprocess = None
-		self.settings = settings
+		
+		## @var options
+		#   Object encapsulating all the options necessary to run the tex2x converter. 
 		self.options = options
+
+		## @var sys
+		#  tex2x System object providing methods for handling files.
 		self.sys = sys
+
+
+
+		
+		## @var ttmBin
+		#  Path to TTM binary
 		self.ttmBin = settings.ttmBin
 
 
@@ -52,6 +68,8 @@ class TTMParser(AbstractParser):
 		@param sourceTEXStartFile path to source Tex file
 		@param sourceTEX path to search for Tex input files
 		@param ttmFile path to output XML file
+		@param dorelease - deprecated, use unit tests and continuous integration instead.
+		@return: String - the XML as loaded from file
 		"""
 		
 		#print ('TTMParser called with options sourceTEXStartFile: %s, sourceTEX: %s, ttmFile: %s' % (sourceTEXStartFile, sourceTEX, ttmFile))
@@ -97,20 +115,19 @@ class TTMParser(AbstractParser):
 		"""
 		Return a reference to the ttmParser Process, might return None, when called
 		before the parse function was called..
+		
+		@return subprocess - subprocess connecting to TTM input/output/error pipes and error codes
 		"""
 		return self.subprocess
 
 
-	def getParserSys(self):
-		return self.sys
-	
-	
 	def prepareXMLFile(self, sourceTEXStartFile, ttmFile):
 		"""
 		If options.ttmExecute is False, verify that the XML-file exists, or return false
 		
 		@param sourceTEXStartFile path to source Tex file
 		@param ttmFile path to output XML file
+		@return boolean
 		"""
 		if (os.path.exists( sourceTEXStartFile ) ):
 			self.sys.copyFile( sourceTEXStartFile, ttmFile, "" )
@@ -121,7 +138,8 @@ class TTMParser(AbstractParser):
 		
 	def loadXML(self, ttmFile):
 		"""
-		Load the XML file, do some replacement to fix MathML and entities problems
+		Load the XML file, do some replacement to fix MathML and entities problems.
+		
 		@return: String - the XML as loaded from file
 		"""
 		xmlfile = open( ttmFile, "rb")
@@ -138,6 +156,7 @@ class TTMParser(AbstractParser):
 		"""
 		Log the output from ttm_process in a human readable form. Is still using the system class. It
 		might be good to use logging.Logger instead(?)
+		
 		@param subprocess - subprocess connecting to TTM input/output/error pipes and error codes
 		@param ttmBin path to TTM binary
 		@param sourceTEXStartFile - path to source Tex file
