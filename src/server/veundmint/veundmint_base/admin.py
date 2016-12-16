@@ -29,13 +29,14 @@ class StatisticsAdmin(admin.ModelAdmin):
 
 @admin.register(Score)
 class ScoreAdmin(admin.ModelAdmin):
-    #list_display = ('user', 'q_id', 'points', 'rawinput', 'intest', )
-    #list_filter = ('user', 'q_id', 'intest', )
+    list_display = ('user', 'points', 'rawinput', 'question' )
+    list_filter = ('user', 'points', 'rawinput', 'question__question_id' )
     search_fields = ['user__email', 'question__question_id']
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-	pass
+	list_display = ('question_id', 'site', 'maxpoints', 'section')
+	list_filter = ('question_id', 'site', 'maxpoints')
 
 @admin.register(UserFeedback)
 class UserFeedbackAdmin(admin.ModelAdmin):

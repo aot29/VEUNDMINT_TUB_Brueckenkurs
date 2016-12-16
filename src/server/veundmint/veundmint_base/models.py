@@ -37,23 +37,15 @@ class WebsiteAction(DateSensitiveModel):
 
 class UserFeedback(DateSensitiveModel):
 	rawfeedback = models.TextField(blank=True)
-	
+
 class Site(DateSensitiveModel):
-	site_id = models.CharField(max_length=300, default='')
+	site_id = models.CharField(max_length=300, blank=False)
 	users = models.ManyToManyField(
 		settings.AUTH_USER_MODEL,
 		through='Statistics',
 		through_fields=('site', 'user'),
 	)
-	
-	@property
-	def totalScore(self):
-		return 1000
-	
-	@property
-	def maxScore(self):
-		return 9999
-	
+
 class Question(DateSensitiveModel):
 	question_id = models.CharField(max_length=50)
 	site = models.ForeignKey(Site, null=True, on_delete=models.SET_NULL, related_name="questions")
@@ -61,7 +53,10 @@ class Question(DateSensitiveModel):
 	maxpoints = models.PositiveSmallIntegerField()
 	intest = models.BooleanField(default=False)
 	type = models.PositiveSmallIntegerField(null=True)
-	
+
+	def __str__(self):
+		return self.question_id
+
 class Statistics(DateSensitiveModel):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL, related_name="statistics")
 	site = models.ForeignKey(Site, null=True, on_delete=models.SET_NULL)

@@ -10,7 +10,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.settings import api_settings
 
 class SiteListSerializer(serializers.ListSerializer):
-	
+
 	def to_representation(self, data):
 		"""
 		List of object instances -> dict of dicts of primitive datatypes.
@@ -24,28 +24,28 @@ class SiteListSerializer(serializers.ListSerializer):
 		}
 
 class ScoreListSerializer(serializers.ListSerializer):
-	
+
 	def to_internal_value(self, data):
 		"""
 		List of dicts of native values <- List of dicts of primitive datatypes.
 		"""
 		print('to_internal_value data', data)
-		
+
 		transformed_data = []
-		
+
 				#return {
-			#'intest': data.question.intest, 
-			#'maxpoints': data.question.maxpoints, 
-			#'siteuxid': data.question.siteuxid,  
-			#'section': data.question.section, 
+			#'intest': data.question.intest,
+			#'maxpoints': data.question.maxpoints,
+			#'siteuxid': data.question.siteuxid,
+			#'section': data.question.section,
 			#'type': data.question.type,
-			#'rawinput': data.rawinput, 
+			#'rawinput': data.rawinput,
 			#'id': data.id,
-			#'points': data.points, 
-			#'value': data.value, 
+			#'points': data.points,
+			#'value': data.value,
 			#'state': data.state
 			#}
-		
+
 		for q_key, score in data.items():
 			print('SCORE IS SCORE IS', score)
 			transformed_data.append({
@@ -86,45 +86,67 @@ class UserFeedbackSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = UserFeedback
 		fields = ('rawfeedback', )
-		
+
+class SiteSerializer(serializers.ModelSerializer):
+
+	site_id = serializers.CharField(required=True, allow_blank=False)
+
+	def validate(self, data):
+		print('siteSerializer data', data)
+		return data
+
+	def create(self, validated_data):
+		print ('siteSerializer validated data', validated_data)
+		return super(SiteSerializer, self).create(validated_data)
+
+	def update(self, instance, validated_data):
+		print ('siteSerializer update validated data', validated_data)
+		return super(SiteSerializer, self).update(instance, validated_data)
+
+	class Meta:
+		model = Site
+		fields = ('site_id', )
+
 class QuestionSerializer(serializers.ModelSerializer):
-	
+
+	site = SiteSerializer()
+
 	def validate(self, data):
 		print('questionSerializer data', data)
 		return data
-	
+
 	def create(self, validated_data):
 		print ('questionSerializer validated data', validated_data)
 		return super(QuestionSerializer, self).create(validated_data)
-	
+
 	def update(self, instance, validated_data):
 		print ('questionSerializer update validated data', validated_data)
 		return super(QuestionSerializer, self).update(instance, validated_data)
 
 	class Meta:
 		model = Question
-		fields = ('question_id', 'section', 'maxpoints', 'intest', 'type')
-		
+		fields = ('question_id', 'section', 'maxpoints', 'intest', 'type', 'site')
+
 
 class ScoreSerializer(serializers.ModelSerializer):
 	id = serializers.CharField(required=False, allow_blank=True, max_length=100)
-	maxpoints = serializers.IntegerField(source="question.maxpoints")
-	
+	question = QuestionSerializer()
+
 	def validate(self, data):
 		print('scoreserializer data', data)
 		return data
-	
+
 	def create(self, validated_data):
 		print ('scoreSerializer validated data', validated_data)
 		return super(ScoreSerializer, self).create(validated_data)
-	
+
 	def update(self, instance, validated_data):
 		print ('scoreSerializer update validated data', validated_data)
 		return super(ScoreSerializer, self).update(instance, validated_data)
 
 	class Meta:
 		model = Score
-		fields = ('id', 'points', 'value', 'rawinput', 'state', 'maxpoints')
+		fields = ('id', 'points', 'value', 'rawinput', 'state', 'question')
 
 class UserSerializer(UserDetailsSerializer):
 	university = serializers.CharField(source="profile.university", allow_blank=True)
@@ -246,18 +268,11 @@ class RegistrationSerializer(RegisterSerializer):
 		profile.university = user_data['university']
 
 		profile.save()
-		
-class SiteSerializer(serializers.ModelSerializer):
-	id = serializers.CharField(required=False, allow_blank=True, max_length=100)
-	
-	class Meta:
-		model = Site
-		list_serializer_class = SiteListSerializer
 
 class StatisticsSerializer(serializers.ModelSerializer):
-	
+
 	site = SiteSerializer()
-	
+
 	class Meta:
 		model = Statistics
 		fields = ('site', )
@@ -265,7 +280,7 @@ class StatisticsSerializer(serializers.ModelSerializer):
 class NewScoreSerializer(serializers.ModelSerializer):
 	id = serializers.CharField(required=False, allow_blank=True, max_length=100)
 	question = QuestionSerializer(required=False)
-	
+
 	def to_internal_value(self, data):
 		print('to_internal_value', data)
 		question = data.get('question')
@@ -283,22 +298,22 @@ class NewScoreSerializer(serializers.ModelSerializer):
 			'points': int(points),
 			'question': question
 		}
-	
+
 	def to_representation(self, data):
 		"""
 		We override the to_representation method to flatten the object
 		"""
 		print(data.__dict__)
-		
+
 		return {
-			'intest': data.question.intest, 
-			'maxpoints': data.question.maxpoints, 
-			'section': data.question.section, 
+			'intest': data.question.intest,
+			'maxpoints': data.question.maxpoints,
+			'section': data.question.section,
 			'type': data.question.type,
-			'rawinput': data.rawinput, 
+			'rawinput': data.rawinput,
 			'id': data.id,
-			'points': data.points, 
-			'value': data.value, 
+			'points': data.points,
+			'value': data.value,
 			'state': data.state
 			}
 
@@ -309,18 +324,18 @@ class NewScoreSerializer(serializers.ModelSerializer):
 
 
 class NewUserDataSerializer(serializers.ModelSerializer):
-	
+
 	statistics = StatisticsSerializer(many=True)
-	
+
 	#scores = NewScoreSerializer(many=True)
-	
+
 	#def create(self, validated_data):
 		#"""
 		#Method is used with all POST requests. And automatically handles
 		#create and update depending on uxid and user
 		#"""
 		#print('userDataSerializer validated_data', validated_data)
-		
+
 		#user = None
 		#request = self.context.get("request")
 		#if request and hasattr(request, "user"):
@@ -332,7 +347,7 @@ class NewUserDataSerializer(serializers.ModelSerializer):
 
 				## first: get or create a questions object
 				#score_question = score.get('question', None)
-				
+
 				#question, created = Question.objects.get_or_create(
 					#question_id = score_question.get('question_id', ''),
 					#siteuxid = score_question.get('siteuxid', ''),
@@ -360,14 +375,14 @@ class NewUserDataSerializer(serializers.ModelSerializer):
 				#the_score.save()
 
 		#return user
-	
+
 	class Meta:
 		model = get_user_model()
 		fields = ('email', 'scores', 'statistics')
 
 class UserDataSerializer(serializers.ModelSerializer):
 	scores = ScoreSerializer(many=True, required=False)
-	
+
 	def validate(self, data):
 		print('userdataserializer data', data)
 		return data
@@ -378,7 +393,7 @@ class UserDataSerializer(serializers.ModelSerializer):
 		create and update depending on uxid and user
 		"""
 		print('userDataSerializer validated_data', validated_data)
-		
+
 		user = None
 		request = self.context.get("request")
 		if request and hasattr(request, "user"):
@@ -388,12 +403,20 @@ class UserDataSerializer(serializers.ModelSerializer):
 		if 'scores' in validated_data:
 			for score in validated_data['scores']:
 
+
 				# first: get or create a questions object
 				score_question = score.get('question', None)
-				
+				score_question_site = score_question.get('site', None)
+
+				print('SCOOOORE - QuESTION', score_question)
+
+				site, created = Site.objects.get_or_create(
+					site_id = score_question_site.get('site_id', ''),
+				)
+
 				question, created = Question.objects.get_or_create(
 					question_id = score_question.get('question_id', ''),
-					siteuxid = score_question.get('siteuxid', ''),
+					site = site,
 					section = score_question.get('section', 0),
 					maxpoints = score_question.get('maxpoints', 0),
 					intest = score_question.get('intest', False),

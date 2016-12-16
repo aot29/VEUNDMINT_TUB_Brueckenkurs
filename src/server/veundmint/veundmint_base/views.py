@@ -36,7 +36,7 @@ class UserFeedbackViewSet(viewsets.ModelViewSet):
     queryset = UserFeedback.objects.all()
     serializer_class = UserFeedbackSerializer
     permission_classes = (permissions.AllowAny,)
-    
+
 class NewUserDataViewSet(APIView):
 	"""
 	A simple ViewSet for listing or retrieving users.
@@ -69,36 +69,73 @@ class UserViewSet(viewsets.ModelViewSet):
 	def get_queryset(self):
 		user = self.request.user
 		return get_user_model().objects.filter(pk=user.pk)
-	
+
 	def create(self, request):
-		print('userviewset create request', request.data)
-		#here we transform the posted data
-		scores = request.data.get('scores', None)
-		print('userviewset scores', scores)
-		if scores is not None:
+		stats = request.data.get('stats', None)
+
+		if stats is not None:
 			transformed_scores = []
-			for score in scores:
-				transformed_score = {}
-				transformed_score['rawinput'] = score.get('rawinput', '')
-				transformed_score['points'] = score.get('points', 0)
-				transformed_score['value'] = score.get('value', 0)
-				transformed_score['state'] = score.get('state', 0)
-				
-				question={}
-				question['question_id'] = score.get('id', '')
-				question['siteuxid'] = score.get('siteuxid', '')
-				question['section'] = score.get('section', 0)
-				question['maxpoints'] = score.get('maxpoints', 0)
-				question['intest'] = score.get('intest', False)
-				question['type'] = score.get('type', None)
-				
-				transformed_score['question'] = question
-				
-				transformed_scores.append(transformed_score)
-			
-			print ('transformed_scores', transformed_scores)
-			request.data['scores'] = transformed_scores
-				
+			for site in stats:
+				for key in stats[site]:
+					print(key)
+					if key != 'millis' and key != 'points':
+						print('key is question')
+						score = stats[site][key]
+
+						print('score is :\n', score)
+						print('\n')
+
+						transformed_score = {}
+						transformed_score['rawinput'] = score.get('rawinput', '')
+						transformed_score['points'] = score.get('points', 0)
+						transformed_score['value'] = score.get('value', 0)
+						transformed_score['state'] = score.get('state', 0)
+						print(transformed_score)
+
+						site_obj = {}
+						site_obj['site_id'] = score.get('siteuxid', '')
+
+						question={}
+						question['question_id'] = score.get('id', '')
+						question['section'] = score.get('section', 0)
+						question['maxpoints'] = score.get('maxpoints', 0)
+						question['intest'] = score.get('intest', False)
+						question['type'] = score.get('type', None)
+						question['site'] = site_obj
+
+						transformed_score['question'] = question
+						print ('x-x-x-x\n', transformed_score)
+						transformed_scores.append(transformed_score)
+
+						request.data['scores'] = transformed_scores
+
+		#here we transform the posted data
+		# scores = request.data.get('scores', None)
+		# print('userviewset scores', scores)
+		# if scores is not None:
+		# 	transformed_scores = []
+		# 	for score in scores:
+		# 		transformed_score = {}
+		# 		transformed_score['rawinput'] = score.get('rawinput', '')
+		# 		transformed_score['points'] = score.get('points', 0)
+		# 		transformed_score['value'] = score.get('value', 0)
+		# 		transformed_score['state'] = score.get('state', 0)
+		#
+		# 		question={}
+		# 		question['question_id'] = score.get('id', '')
+		# 		question['siteuxid'] = score.get('siteuxid', '')
+		# 		question['section'] = score.get('section', 0)
+		# 		question['maxpoints'] = score.get('maxpoints', 0)
+		# 		question['intest'] = score.get('intest', False)
+		# 		question['type'] = score.get('type', None)
+		#
+		# 		transformed_score['question'] = question
+		#
+		# 		transformed_scores.append(transformed_score)
+		#
+		# 	print ('transformed_scores', transformed_scores)
+		# 	request.data['scores'] = transformed_scores
+
 		return super(UserViewSet, self).create(request)
 
 	def list(self, request, *args, **kwargs):

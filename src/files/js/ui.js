@@ -92,12 +92,12 @@
         $('body').addClass('logged_out');
       }
     });
-    
+
     //set visibility in scorm
     if (scormBridge.isScormEnv()) {
         $('body').addClass('is_scorm');
     } else {
-        $('body').addClass('no_scorm'); 
+        $('body').addClass('no_scorm');
     }
 
     //fill user form if logged in
@@ -116,9 +116,9 @@
   /**
   * Score functionality
   */
-  
+
   $('input[id^="QFELD_"').on('change', function(event) {
-	log.debug('ui.js: you changed', event);  
+	log.debug('ui.js: you changed', event);
 	//The index of the changed input field in the array of input fields on that page
 	var indexOfChangedElement = $('input[id^="QFELD_"').index($(event.target));
 	log.debug(indexOfChangedElement);
@@ -141,37 +141,35 @@
       var si = [];
       for (k = 0; k < globalexpoints.length; k++) {
         p[k] = 0; t[k] = 0; si[k] = 0;
-		
-		
+
+
 		//visitedModulesInChapter
 		var visitedModules = _.size(_.pickBy(userData.stats, function(site, key) {
 			var prefix = 'VBKM' + ("0" + (k+1)).slice(-2);
 			return key.startsWith(prefix);
 		}));
-		
+
+		log.debug('visitedModules', visitedModules);
+
 		//test calculation
 		var prefix = 'VBKM' + ("0" + (k+1)).slice(-2);
 		var match = prefix + '_Abschlusstest';
 		var testSite = _.pickBy(userData.stats, function(site, key) {
 			return key === match;
 		})[match];
-		
+
 		var testScore = _.get(testSite,'points',0);
-		
+
 		console.log('testScore on testSite', testScore, testSite);
-		
-		
+
+
         var j = 0;
-        for (j = 0; j < userData.scores.length; j++) {
-          if ((userData.scores[j].section == (k+1)) && (userData.scores[j].siteuxid.slice(0,6) != "VBKM_")) {
-            p[k] += userData.scores[j].points;
-            if (userData.scores[j].intest == true) { t[k] += userData.scores[j].points; }
-          }
-        }
-        
+
+
         s += "<strong>Kapitel " + (k+1) + ": " + globalsections[k] + "</strong><br />";
 
         var progressWidthGlobal = visitedModules / globalsitepoints[k] * 100;
+				console.log('aaa', $.i18n('msg-total-progress'));
         s += $.i18n('msg-total-progress', visitedModules, globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
         s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + visitedModules + "' aria-valuemax='" + globalsitepoints[k] + "' style='width: " + progressWidthGlobal + "%'><span class='sr-only'>" + progressWidthGlobal + "% Complete</span></div></div>";
 
