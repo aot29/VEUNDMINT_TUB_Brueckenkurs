@@ -152,7 +152,7 @@ describe('dataService', function() {
       }).then(function(data) {
         expect(data).to.have.deep.property('[0].serviceName', 'LocalStorageService');
         expect(data).to.have.deep.property('[0].status', 'resolved');
-        expect(data).to.have.deep.property('[0].data').to.be.below(new Date().getTime());
+        expect(data).to.have.deep.property('[0].data').to.be.below(new Date().getTime() + 100);
         expect(data).to.have.deep.property('[1].serviceName', 'failService');
         expect(data).to.have.deep.property('[1].status', 'rejected');
       });
