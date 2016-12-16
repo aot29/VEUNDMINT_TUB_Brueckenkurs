@@ -67,6 +67,14 @@
       });
       return result;
     }
+    
+    that.logout = function() {
+      if (!localStorage) {
+        return new Promise.reject(new TypeError('LocalStorageService: localStorage is not enabled'));  
+        }       
+        
+        localStorage.removeItem(storageKey);
+	}
 
     return that;
   }

@@ -36,6 +36,8 @@
   var storageServicesMap = {};
   var syncStrategies = ['timer', 'onunload'];
   var syncUpExcludes = [];
+  
+  var justLoggedOut = false;
 
   //the 'cache' for all userData
   var objCache = {
@@ -160,6 +162,7 @@
   /**
    * Synchronizes data from servers / other storages to objCache. Will automatically
    * consider only the latest data for downloading.
+   * @param  {String}  fromService - only! sync data down from the supplied service
    * @return {Promise} A promise holding the userData.
    */
   function syncDown() {
@@ -167,32 +170,40 @@
     if (storageServices.length === 0) {
       return Promise.resolve('dataService: synDown called without subscribers, will do nothing.');
     }
+    
+    //if we want data from the given service, use that, else use the data from the service
+    //with latest timestamp
+    var dataPromise;
+      
+	//return the promise if syncDown was already called
+	if (typeof promiseCache[defaults.SYNC_DOWN_CACHE_KEY] !== "undefined") {
+		return promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
+	}
+	
+	log.debug('dataService: syncDown is calling getAllDataTimestamps');
+	dataPromise = getAllDataTimestamps().then(function (successAllTimestamps) {
 
-    //return the promise if syncDown was already called
-    if (typeof promiseCache[defaults.SYNC_DOWN_CACHE_KEY] !== "undefined") {
-        return promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
-    }
+		if (Array.isArray(successAllTimestamps) && successAllTimestamps.length > 0) {
+			log.debug('before sorting', successAllTimestamps);
+			successAllTimestamps.sort(compareTimestamps);
+			log.debug('after sorting', successAllTimestamps);
 
-    log.debug('dataService: syncDown is calling getAllDataTimestamps');
-    var userDataPromise = getAllDataTimestamps().then(function (successAllTimestamps) {
+			log.debug('services returned the timestamps:', successAllTimestamps);
+			log.debug('latest data was found at the service:', successAllTimestamps[0]);
+			var latestTimestampData = successAllTimestamps[0];
 
-      if (Array.isArray(successAllTimestamps) && successAllTimestamps.length > 0) {
-        successAllTimestamps.sort(compareTimestamps);
+			delete promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
 
-        log.debug('services returned the timestamps:', successAllTimestamps);
-        log.debug('latest data was found at the service:', successAllTimestamps[0]);
-        var latestTimestampData = successAllTimestamps[0];
+			//return the userdata Promise from the service where the latest data was found
+			//by comparing the timestamps
+			return storageServicesMap[latestTimestampData.serviceName].getUserData();
+		} else {
+			return Promise.reject(new TypeError('getAllDataTimestamps did not return an Array.'));
+		}
+	});
+	
 
-        delete promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
-
-
-        //return the userdata Promise from the service where the latest data was found
-        //by comparing the timestamps
-        return storageServicesMap[latestTimestampData.serviceName].getUserData();
-      } else {
-        return Promise.reject(new TypeError('getAllDataTimestamps did not return an Array.'));
-      }
-    }).then(function(latestData) {
+    var userDataPromise = dataPromise.then(function(latestData) {
       objCache = latestData || {};
       //if there were localChanges merge them, so they are not lost
       if (!veHelpers.isEmpty(changedData)) {
@@ -229,6 +240,10 @@
   function syncUp(data) {
     data = typeof data !== "undefined" ? data : changedData;
 
+	//return early if user has just logged out - there should be no sync
+	if (justLoggedOut) {
+		return;
+	}
 
     var syncUpServices = []
     for (var i=0; i<storageServices.length; i++) {
@@ -420,7 +435,14 @@ function authenticate(userCredentials) {
   var result = new Promise(function (resolve, reject) {
     storageServices.forEach(function (service) {
       if (typeof service.authenticate !== "undefined") {
-        resolve(service.authenticate(userCredentials));
+        var authPromise = service.authenticate(userCredentials).then(function(data) {
+			return service.getUserData();
+		}).then(function(data) {
+			changedData = data;
+			syncUpExcludes.push(service.name);
+			return syncUp();
+		});
+		resolve(authPromise);
       }
     });
     reject(new TypeError('No service found with authenticate function'));
@@ -455,6 +477,7 @@ function logout() {
         resolve(service.logout());
       }
     });
+	justLoggedOut = true;
     reject(new TypeError('No service found with logout function'));
   });
   return result;
