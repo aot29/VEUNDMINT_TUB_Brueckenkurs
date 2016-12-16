@@ -1,23 +1,20 @@
-'''
-	This file is part of the VEUNDMINT plugin package
-
-	The VEUNDMINT plugin package is free software; you can redistribute it and/or modify
-	it under the terms of the GNU Lesser General Public License as published by
-	the Free Software Foundation; either version 3 of the License, or (at your
-	option) any later version.
-
-	The VEUNDMINT plugin package is distributed in the hope that it will be useful, but
-	WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-	or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
-	License for more details.
-
-	You should have received a copy of the GNU Lesser General Public License
-	along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
-	
-	Created on Aug 4, 2016
-	@author: Alvaro Ortiz for TUB (http://tu-berlin.de)
-'''
-
+## @package tex2x.renderers.TocRenderer
+#  Generates a table of contents for the selected page.
+#
+#  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
+#  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#  \author Alvaro Ortiz for TU Berlin
 
 from lxml import etree
 import re
@@ -30,6 +27,12 @@ class TocRenderer( AbstractXmlRenderer ):
 	"""	
 	
 	def __init__(self, options):
+		"""
+		Constructor.
+		Instantiated by PageFactory.
+		"""
+		## @var options
+		# simplify access to the interface options member (Daniel Haase) - refactor
 		self.options = options
 		
 	
@@ -38,7 +41,7 @@ class TocRenderer( AbstractXmlRenderer ):
 		Create XML for the table of contents
 		
 		@param tc - a TContent object encapsulating page data and content
-		@return an etree element
+		@return an etree element representing the TOC
 		"""
 		toc = etree.Element( 'toc' )
 		
@@ -81,7 +84,7 @@ class TocRenderer( AbstractXmlRenderer ):
 		@param sibling - a TContent object encapsulating a TOC entry
 		@param moduleId -  - int id of the currently selected module
 		@param pageId - int id of the currently selected page
-		@return an etree element
+		@return an etree element representing this TOC entry.
 		"""
 		entry = self.generateSingleEntryXML( sibling, moduleId )
 
@@ -99,7 +102,7 @@ class TocRenderer( AbstractXmlRenderer ):
 		
 		@param sibling - a TContent object encapsulating a TOC entry
 		@param selectedId - int the id of the currently selected page
-		@return an etree element
+		@return an etree element representing the children of this TOC entry.
 		"""
 		childrenElement = etree.Element( 'children' )		
 		for child in sibling.children:
@@ -121,7 +124,7 @@ class TocRenderer( AbstractXmlRenderer ):
 		
 		@param child - a TContent object encapsulating a TOC entry
 		@param selectedId - int the id of the currently selected page
-		@return an etree element
+		@return an etree element representing a TOC entry.
 		"""		
 		childEl = etree.Element( 'entry' )
 		
@@ -156,10 +159,11 @@ class TocRenderer( AbstractXmlRenderer ):
 	
 	def _makeCaption(self, tc):
 		"""
-		Make the caption to be displayed for each TOC entry
+		Make the caption to be displayed for each TOC entry.
+		The caption is the text displayed for each toc entry.
 		
-		@param child - a TContent object encapsulating a TOC entry
-		@return - String
+		@param tc - a TContent object encapsulating a TOC entry
+		@return - String, the text to be displayed for this entry in the TOC.
 		"""
 
 		# don't add section numbers to captions on the first page (imprint, course information etc.)

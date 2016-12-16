@@ -67,6 +67,7 @@ class Dispatcher(AbstractDispatcher):
 	def __init__( self, verbose, pluginName, override ):
 		"""
 		Constructor
+		Instantiated by tex2x.py
 		
 		@param verbose Boolean
 		@param pluginName - Name of the application to execute (default VEUNDMINT)
@@ -101,6 +102,9 @@ class Dispatcher(AbstractDispatcher):
 		4. Create the table of contents (TOC) and content tree, correct links
 		5. Output to static HTML files
 		"""
+		
+		# note: self.options is set in initOptionsModule
+		
 		if hasattr(self.options, "overrides"):
 			for ov in self.options.overrides: print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
 

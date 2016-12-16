@@ -1,24 +1,20 @@
-'''
-	This file is part of the VEUNDMINT plugin package
-
-	The VEUNDMINT plugin package is free software; you can redistribute it and/or modify
-	it under the terms of the GNU Lesser General Public License as published by
-	the Free Software Foundation; either version 3 of the License, or (at your
-	option) any later version.
-
-	The VEUNDMINT plugin package is distributed in the hope that it will be useful, but
-	WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-	or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
-	License for more details.
-
-	You should have received a copy of the GNU Lesser General Public License
-	along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
-	
-	Created on Jul 29, 2016
-	@author: Alvaro Ortiz for TUB (http://tu-berlin.de)
-'''
-
-
+## @package tex2x.renderers.TocRenderer
+#  Generates a table of contents for the selected page.
+#
+#  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
+#  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#  \author Alvaro Ortiz for TU Berlin
 from lxml import etree
 import os
 import re
@@ -31,26 +27,38 @@ class PageTUB( AbstractHtmlRenderer ):
 	Render page by applying XSLT templates, using the lxml library.
 	"""
 	
+	## The template which includes all others
 	BASE_TEMPLATE = "page.xslt"
-	""" The template which includes all others """
 	
 	def __init__( self, contentRenderer, tocRenderer, options, data ):
 		"""
-		Please do not instantiate directly, use PageFactory instead (except for unit tests).
+		Constructor.
+		Instantiated by PageFactory.
 		
 		@param contentRenderer - PageXmlRenderer an AbstractXMLRenderer that builds the page contents, including the questions and roulettes added by the decorators
 		@param tocRenderer - TocRenderer an AbstractXMLRenderer that builds the table of contents
-		@param options - Option.py object
-		@param data - ???
+		@param options - Option.py object containing the options for the conversion.
+		@param data - simplify access to the interface data member (Daniel Haase) 
 		"""
+		
+		## @var contentRenderer
+		#  PageXmlRenderer an AbstractXMLRenderer that builds the page contents, including the questions and roulettes added by the decorators
 		self.contentRenderer = contentRenderer
+		
+		## @var tocRenderer
+		#  TocRenderer an AbstractXMLRenderer that builds the table of contents
 		self.tocRenderer = tocRenderer
+		
+		## @var data
+		#  simplify access to the interface data member (Daniel Haase)
 		self.data = data
 		
-		# tplPath - String path to the directory holding the xslt templates
+		## @var tplPath
+		#  tplPath - String path to the directory holding the xslt templates
 		self.tplPath = options.converterTemplates
 		
-		# disableLogin - boolean, whether to disable the login button. false=enabled (default), true = disabled.
+		## @var disableLogin 
+		#  Boolean, whether to disable the login button. false=enabled (default), true = disabled.
 		self.disableLogin = options.disableLogin
 
 
@@ -102,6 +110,7 @@ class PageTUB( AbstractHtmlRenderer ):
 		resultString = str( result )
 		tc.html = resultString.replace( '<content></content>', tc.content )
 
+		# move this to a better place
 		def dhtml(m):
 			pos = int(m.group(1))
 			#if 'DirectHTML' in self.data and pos in self.data['DirectHTML']:
@@ -135,6 +144,12 @@ class PageTUB( AbstractHtmlRenderer ):
 
 
 	def loadSpecialPage(self, tc):
+		"""
+		Load a special page. Special pages are listed in AbstractRenderer.specialPagesUXID,
+		e.g. data, signup, login, logout, search, favorites
+		
+		@param tc - TContent object for the page
+		"""
 		if tc.uxid not in AbstractXmlRenderer.specialPagesUXID.keys():
 			raise Exception( "This does not seem to be a special page: %" % tc.uxid )
 		
