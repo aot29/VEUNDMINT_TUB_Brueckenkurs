@@ -117,7 +117,7 @@
   * Score functionality
   */
 
-  $('input[id^="QFELD_"').on('change', function(event) {
+  $('.QFELD').on('change', function(event) {
 	log.debug('ui.js: you changed', event);
 	//The index of the changed input field in the array of input fields on that page
 	var indexOfChangedElement = $('input[id^="QFELD_"').index($(event.target));
