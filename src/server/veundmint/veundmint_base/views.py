@@ -49,11 +49,9 @@ class NewUserDataViewSet(APIView):
 		for site in sites:
 			resp[site.site_id] = {}
 			questions = site.questions.all()
-			print('QUESTIONS', questions)
 			for question in questions:
 				resp[site.site_id][question.question_id] = {}
 				question_scores = Score.objects.filter(user=user, question=question)
-				print('QUESTION_SCORES', question_scores)
 				for score in question_scores:
 					resp[site.site_id][question.question_id] = ScoreSerializer(score).data
 			resp[site.site_id]['millis'] = 0
@@ -63,6 +61,12 @@ class NewUserDataViewSet(APIView):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+	"""
+	This is the main ViewSet that is responsible for serializing received user
+	data to django's database architecture. Pay attention to the create and list
+	methods below, as they transform data because the client has a different
+	data structure than the django orm and thus needs some transformation.
+	"""
 
 	serializer_class = UserDataSerializer
 
@@ -71,34 +75,40 @@ class UserViewSet(viewsets.ModelViewSet):
 		return get_user_model().objects.filter(pk=user.pk)
 
 	def create(self, request):
+		"""
+		This method handles all POST requests to the endpoint defined in urls.py.
+		It will transform the json object received from a js client to a format
+		that is readable by the involved serializers for statistics, scores,
+		questions, sites. That means that the simplified js json structure is
+		rebuilt to match object relations defined in django models.
+		"""
 		stats = request.data.get('stats', None)
 
+		# The stats object is all we need and get
 		if stats is not None:
 			transformed_scores = []
 			transformed_statistics = []
+
 			for site in stats:
 
+				#handle passed statistics
 				site_statistic = {}
 				site_statistic['millis'] = stats[site].get('millis', 0)
 				site_statistic['points'] = stats[site].get('points', 0)
 				site_statistic['site'] = {'site_id': site}
 				transformed_statistics.append(site_statistic)
 
+				#for all keys that are in stats (which can either be keys to
+				#sites or points or millis)
 				for key in stats[site]:
-					print(key)
 					if key != 'millis' and key != 'points':
-						print('key is question')
 						score = stats[site][key]
-
-						print('score is :\n', score)
-						print('\n')
 
 						transformed_score = {}
 						transformed_score['rawinput'] = score.get('rawinput', '')
 						transformed_score['points'] = score.get('points', 0)
 						transformed_score['value'] = score.get('value', 0)
 						transformed_score['state'] = score.get('state', 0)
-						print(transformed_score)
 
 						site_obj = {}
 						site_obj['site_id'] = score.get('siteuxid', '')
@@ -112,38 +122,10 @@ class UserViewSet(viewsets.ModelViewSet):
 						question['site'] = site_obj
 
 						transformed_score['question'] = question
-						print ('x-x-x-x\n', transformed_score)
 						transformed_scores.append(transformed_score)
 
 			request.data['scores'] = transformed_scores
 			request.data['statistics'] = transformed_statistics
-
-		#here we transform the posted data
-		# scores = request.data.get('scores', None)
-		# print('userviewset scores', scores)
-		# if scores is not None:
-		# 	transformed_scores = []
-		# 	for score in scores:
-		# 		transformed_score = {}
-		# 		transformed_score['rawinput'] = score.get('rawinput', '')
-		# 		transformed_score['points'] = score.get('points', 0)
-		# 		transformed_score['value'] = score.get('value', 0)
-		# 		transformed_score['state'] = score.get('state', 0)
-		#
-		# 		question={}
-		# 		question['question_id'] = score.get('id', '')
-		# 		question['siteuxid'] = score.get('siteuxid', '')
-		# 		question['section'] = score.get('section', 0)
-		# 		question['maxpoints'] = score.get('maxpoints', 0)
-		# 		question['intest'] = score.get('intest', False)
-		# 		question['type'] = score.get('type', None)
-		#
-		# 		transformed_score['question'] = question
-		#
-		# 		transformed_scores.append(transformed_score)
-		#
-		# 	print ('transformed_scores', transformed_scores)
-		# 	request.data['scores'] = transformed_scores
 
 		return super(UserViewSet, self).create(request)
 
@@ -152,7 +134,47 @@ class UserViewSet(viewsets.ModelViewSet):
 
 		serializer = UserDataSerializer(self.request.user)
 		data = serializer.data
-		print(data)
+		statistics = data.get('statistics', None)
+		scores = data.get('scores', None)
+
+		new_data = {}
+		stats = {}
+		full_site_obj = {}
+
+		for score in scores:
+			print(score)
+			site_scores = {}
+			score_site_id = score['question']['site']['site_id']
+			score_question_id = score['question']['question_id']
+
+			if score_site_id not in stats:
+				stats[score_site_id] = {}
+
+			if score_question_id not in stats[score_site_id]:
+				stats[score_site_id][score_question_id] = {
+					'id' : score.get('id', None),
+					'points' : score.get('points', 0),
+					#TODO 'uxid': score.get
+					'siteuxid' : score['question']['site']['site_id'],
+					'rawinput': score.get('rawinput', ''),
+					'maxpoints': score['question']['maxpoints'],
+					'value': score.get('value', 0),
+					'section': score.get('section', 0),
+					'intest': score['question']['intest'],
+					'type': score.get('type', None)
+				}
+
+		for site in statistics:
+			site_id = site['site']['site_id']
+
+			if site_id not in stats:
+				stats[site_id] = {}
+
+			stats[site_id]['millis'] = site.get('millis', 0)
+			stats[site_id]['points'] = site.get('points', 0)
+
+		new_data['stats'] = stats
+
 		#data['totalScore'] = sum([score['points'] for score in data['scores']])
 		# TODO this will be for the new data Structure with scores not array but obj
 		# newscores = {}
@@ -160,7 +182,7 @@ class UserViewSet(viewsets.ModelViewSet):
 		#     newscores[score['id']] = score
 		# data['scores'] = newscores
 		# #result = {'totalScore': sum([score['points'] for score in data.scores]), 'data':data}
-		return Response(data)
+		return Response(new_data)
 
 class ProfileViewSet(viewsets.ViewSet):
 
