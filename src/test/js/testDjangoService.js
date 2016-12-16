@@ -49,7 +49,7 @@ describe('DjangoServices', function() {
 		it('#authenticate - should authenticate users and store token', function() {
 			return DjangoAuthService.authenticate({
 				username: 'testrunner',
-				password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+				password:'<>87c`}X&c8)2]Ja6E2cLDyr]*A$^3E'
 			}).then(function(data) {
 				expect(DjangoAuthService.isAuthenticated()).to.equal(true);
 				expect(DjangoAuthService.getToken()).to.not.equal(null);
@@ -60,7 +60,7 @@ describe('DjangoServices', function() {
 		it('#authAjaxGet - should add auth header and make successful request', function() {
 			return DjangoAuthService.authenticate({
 				username: 'testrunner',
-				password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+				password:'<>87c`}X&c8)2]Ja6E2cLDyr]*A$^3E'
 			}).should.be.fulfilled.then(function(data) {
 				return DjangoAuthService.authAjaxGet('http://localhost:8000/user-data/').should.be.fulfilled;
 			});
@@ -124,6 +124,6 @@ describe('DjangoServices', function() {
 function auth() {
 	return DjangoAuthService.authenticate({
 		username: 'testrunner',
-		password:'<>87c`}X&c8)2]Ja6E2cLD%yr]*A$^3E'
+		password:'<>87c`}X&c8)2]Ja6E2cLDyr]*A$^3E'
 	});
 }

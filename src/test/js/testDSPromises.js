@@ -85,12 +85,12 @@ describe('dataService', function() {
       dataService.unsubscribe(ls);
       subs = dataService.getSubscribers();
       assert.equal(subs.length, 0);
-      
+
       dataService.subscribe(ls);
       dataService.subscribe(fs);
       dataService.getAllDataTimestamps();
       dataService.unsubscribeAll();
-      
+
       subs = dataService.getSubscribers();
       assert.equal(subs.length, 0);
 
@@ -145,12 +145,11 @@ describe('dataService', function() {
       dataService.updateUserData({
         'name': 'test'
       });
-      
+
 
       return dataService.syncUp().then(function(data) {
         return dataService.getAllDataTimestamps();
       }).then(function(data) {
-          console.log(data);
         expect(data).to.have.deep.property('[0].serviceName', 'LocalStorageService');
         expect(data).to.have.deep.property('[0].status', 'resolved');
         expect(data).to.have.deep.property('[0].data').to.be.below(new Date().getTime());
