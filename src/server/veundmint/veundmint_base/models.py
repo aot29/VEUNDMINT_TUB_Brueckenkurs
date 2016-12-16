@@ -54,6 +54,7 @@ class Question(DateSensitiveModel):
 	site = models.ForeignKey(Site, null=True, on_delete=models.SET_NULL, related_name="questions")
 	section = models.PositiveSmallIntegerField()
 	maxpoints = models.PositiveSmallIntegerField()
+	#TODO this value should move to Site where it logically belongs
 	intest = models.BooleanField(default=False)
 	type = models.PositiveSmallIntegerField(null=True)
 
@@ -69,15 +70,7 @@ class Statistics(DateSensitiveModel):
 class Score(DateSensitiveModel):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="scores")
 
-	#this should be used later with the model defined above, by now, for getting
-	#started we just copied the model structure form old scores array
 	question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL)
-	# q_id = models.CharField(max_length=50, default='')
-	# siteuxid = models.CharField(max_length=200, default='')
-	# section = models.PositiveSmallIntegerField(default = 0)
-	# maxpoints = models.PositiveSmallIntegerField(default=0)
-	# intest = models.BooleanField(default=False)
-	### end
 
 	points = models.PositiveSmallIntegerField(null=True, default=0)
 	value = models.PositiveSmallIntegerField(blank=True, null=True)

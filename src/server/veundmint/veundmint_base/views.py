@@ -130,6 +130,12 @@ class UserViewSet(viewsets.ModelViewSet):
 		return super(UserViewSet, self).create(request)
 
 	def list(self, request, *args, **kwargs):
+		"""
+		The reverse operations of the create method above. This function takes
+		the django data with django orm and transforms it to the expected
+		data structure by js. Data that has been 'create'ed and 'list'ed should
+		have exactly the same structure.
+		"""
 		queryset = self.get_queryset()
 
 		serializer = UserDataSerializer(self.request.user)
@@ -142,7 +148,7 @@ class UserViewSet(viewsets.ModelViewSet):
 		full_site_obj = {}
 
 		for score in scores:
-			print(score)
+
 			site_scores = {}
 			score_site_id = score['question']['site']['site_id']
 			score_question_id = score['question']['question_id']
@@ -175,13 +181,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
 		new_data['stats'] = stats
 
-		#data['totalScore'] = sum([score['points'] for score in data['scores']])
-		# TODO this will be for the new data Structure with scores not array but obj
-		# newscores = {}
-		# for score in data['scores']:
-		#     newscores[score['id']] = score
-		# data['scores'] = newscores
-		# #result = {'totalScore': sum([score['points'] for score in data.scores]), 'data':data}
 		return Response(new_data)
 
 class ProfileViewSet(viewsets.ViewSet):
