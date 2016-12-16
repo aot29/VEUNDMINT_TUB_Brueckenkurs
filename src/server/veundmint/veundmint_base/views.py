@@ -22,7 +22,7 @@ from allauth.account.utils import complete_signup
 
 from veundmint_base.serializers import UserDataSerializer, WebsiteActionSerializer, \
 ScoreSerializer, UserFeedbackSerializer, JWTUserSerializer, UserSerializer, UserXSerializer, \
-JWTUserSerializer, NewUserDataSerializer, SiteSerializer
+JWTUserSerializer, SiteSerializer
 from veundmint_base.models import WebsiteAction, Score, UserFeedback, Site, Question
 
 
@@ -118,7 +118,8 @@ class UserViewSet(viewsets.ModelViewSet):
 						question['section'] = score.get('section', 0)
 						question['maxpoints'] = score.get('maxpoints', 0)
 						question['intest'] = score.get('intest', False)
-						question['type'] = score.get('type', None)
+						#question['type'] = score.get('type', None)
+						question['uxid'] = score.get('uxid', None)
 						question['site'] = site_obj
 
 						transformed_score['question'] = question
@@ -158,16 +159,17 @@ class UserViewSet(viewsets.ModelViewSet):
 
 			if score_question_id not in stats[score_site_id]:
 				stats[score_site_id][score_question_id] = {
-					'id' : score.get('id', None),
+					'id' : score['question']['question_id'],
 					'points' : score.get('points', 0),
 					#TODO 'uxid': score.get
 					'siteuxid' : score['question']['site']['site_id'],
 					'rawinput': score.get('rawinput', ''),
 					'maxpoints': score['question']['maxpoints'],
 					'value': score.get('value', 0),
-					'section': score.get('section', 0),
+					'section': score['question']['section'],
 					'intest': score['question']['intest'],
-					'type': score.get('type', None)
+					#'type': score.get('type', None),
+					'uxid': score['question']['uxid']
 				}
 
 		for site in statistics:
@@ -177,7 +179,8 @@ class UserViewSet(viewsets.ModelViewSet):
 				stats[site_id] = {}
 
 			stats[site_id]['millis'] = site.get('millis', 0)
-			stats[site_id]['points'] = site.get('points', 0)
+			if site.get('points'):
+				stats[site_id]['points'] = site.get('points')
 
 		new_data['stats'] = stats
 

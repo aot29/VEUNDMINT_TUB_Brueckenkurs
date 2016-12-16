@@ -50,13 +50,14 @@ class Site(DateSensitiveModel):
 		return self.site_id
 
 class Question(DateSensitiveModel):
-	question_id = models.CharField(max_length=50)
+	question_id = models.CharField(max_length=100)
 	site = models.ForeignKey(Site, null=True, on_delete=models.SET_NULL, related_name="questions")
-	section = models.PositiveSmallIntegerField()
-	maxpoints = models.PositiveSmallIntegerField()
+	section = models.PositiveSmallIntegerField(null=True)
+	maxpoints = models.PositiveSmallIntegerField(null=True)
 	#TODO this value should move to Site where it logically belongs
 	intest = models.BooleanField(default=False)
 	type = models.PositiveSmallIntegerField(null=True)
+	uxid = models.CharField(max_length=100, null=True)
 
 	def __str__(self):
 		return self.question_id

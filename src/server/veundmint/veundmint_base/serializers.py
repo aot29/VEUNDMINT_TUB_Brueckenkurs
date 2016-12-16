@@ -23,59 +23,6 @@ class SiteListSerializer(serializers.ListSerializer):
 			item.site_id : self.child.to_representation(item) for item in iterable
 		}
 
-class ScoreListSerializer(serializers.ListSerializer):
-
-	def to_internal_value(self, data):
-		"""
-		List of dicts of native values <- List of dicts of primitive datatypes.
-		"""
-		print('to_internal_value data', data)
-
-		transformed_data = []
-
-				#return {
-			#'intest': data.question.intest,
-			#'maxpoints': data.question.maxpoints,
-			#'siteuxid': data.question.siteuxid,
-			#'section': data.question.section,
-			#'type': data.question.type,
-			#'rawinput': data.rawinput,
-			#'id': data.id,
-			#'points': data.points,
-			#'value': data.value,
-			#'state': data.state
-			#}
-
-		for q_key, score in data.items():
-			print('SCORE IS SCORE IS', score)
-			transformed_data.append({
-				'question': {
-					'question_id': q_key,
-					'intest': score.get('intest', False),
-					'siteuxid': score.get('siteuxid', None),
-					'section': score.get('section', None),
-					'type': score.get('type', None),
-					'maxpoints': score.get('maxpoints',0)
-				},
-				'id': score.get('id', None),
-				'points': score.get('points', 0),
-				'value': score.get('value', None),
-				'state': score.get('state', None)
-			})
-		return super(ScoreListSerializer, self).to_internal_value(transformed_data)
-
-	def to_representation(self, data):
-		"""
-		List of object instances -> List of dicts of primitive datatypes.
-		"""
-		# Dealing with nested relationships, data can be a Manager,
-		# so, first get a queryset from the Manager if needed
-		iterable = data.all() if isinstance(data, models.Manager) else data
-
-		return {
-			item.question.question_id : self.child.to_representation(item) for item in iterable
-		}
-
 # Serializers define the API representation.
 class WebsiteActionSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
@@ -125,7 +72,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Question
-		fields = ('question_id', 'section', 'maxpoints', 'intest', 'type', 'site')
+		fields = ('question_id', 'section', 'maxpoints', 'intest', 'site', 'uxid')
 
 
 class ScoreSerializer(serializers.ModelSerializer):
@@ -212,7 +159,6 @@ class JWTUserSerializer(JWTSerializer):
 	user = UserSerializer(required=False)
 
 	def update(self, instance, validated_data):
-		print ('JWT update')
 		profile_data = validated_data.pop('profile', {})
 		university = profile_data.get('university')
 		study = profile_data.get('study')
@@ -277,109 +223,6 @@ class StatisticsSerializer(serializers.ModelSerializer):
 		model = Statistics
 		fields = ('site', 'points', 'millis')
 
-class NewScoreSerializer(serializers.ModelSerializer):
-	id = serializers.CharField(required=False, allow_blank=True, max_length=100)
-	question = QuestionSerializer(required=False)
-
-	def to_internal_value(self, data):
-		print('to_internal_value', data)
-		question = data.get('question')
-		points = data.get('points')
-
-		# Perform the data validation.
-		#if not score:
-			#raise ValidationError({
-				#'score': 'This field is required.'
-			#})
-
-		# Return the validated values. This will be available as
-		# the `.validated_data` property.
-		return {
-			'points': int(points),
-			'question': question
-		}
-
-	def to_representation(self, data):
-		"""
-		We override the to_representation method to flatten the object
-		"""
-		print(data.__dict__)
-
-		return {
-			'intest': data.question.intest,
-			'maxpoints': data.question.maxpoints,
-			'section': data.question.section,
-			'type': data.question.type,
-			'rawinput': data.rawinput,
-			'id': data.id,
-			'points': data.points,
-			'value': data.value,
-			'state': data.state
-			}
-
-	class Meta:
-		model = Score
-		list_serializer_class = ScoreListSerializer
-		fields = ('id', 'question', 'points', 'rawinput', 'state')
-
-
-class NewUserDataSerializer(serializers.ModelSerializer):
-
-	statistics = StatisticsSerializer(many=True)
-
-	#scores = NewScoreSerializer(many=True)
-
-	#def create(self, validated_data):
-		#"""
-		#Method is used with all POST requests. And automatically handles
-		#create and update depending on uxid and user
-		#"""
-		#print('userDataSerializer validated_data', validated_data)
-
-		#user = None
-		#request = self.context.get("request")
-		#if request and hasattr(request, "user"):
-			#user = request.user
-
-		## Create or update each page instance
-		#if 'scores' in validated_data:
-			#for score in validated_data['scores']:
-
-				## first: get or create a questions object
-				#score_question = score.get('question', None)
-
-				#question, created = Question.objects.get_or_create(
-					#question_id = score_question.get('question_id', ''),
-					#siteuxid = score_question.get('siteuxid', ''),
-					#section = score_question.get('section', 0),
-					#maxpoints = score_question.get('maxpoints', 0),
-					#intest = score_question.get('intest', False),
-					#type = score_question.get('type', None)
-				#)
-
-
-				## second: get or create the score obj defined by question and user, which
-
-				#the_score, created = Score.objects.get_or_create(
-					#question=question,
-					#user=user
-				#)
-
-				## third: set the other fields on the object and save
-				#the_score.points = score.get('points', the_score.points)
-				#the_score.value = score.get('value', the_score.value)
-				#the_score.rawinput = score.get('rawinput', the_score.rawinput)
-				#the_score.state = score.get('state', the_score.state)
-
-				#print ('created: %s, updated %s, : %s' % (created, not created, ScoreSerializer(the_score).data))
-				#the_score.save()
-
-		#return user
-
-	class Meta:
-		model = get_user_model()
-		fields = ('email', 'scores', 'statistics')
-
 class UserDataSerializer(serializers.ModelSerializer):
 	scores = ScoreSerializer(many=True, required=False)
 	statistics = StatisticsSerializer(many=True, required=False)
@@ -402,7 +245,6 @@ class UserDataSerializer(serializers.ModelSerializer):
 
 		if 'statistics' in validated_data:
 			for statistic in validated_data['statistics']:
-				print ('sssssstattt found --- - - -- - - ', statistic)
 
 				#TODO this and similar can also be done with a serializer
 				statistic_site = statistic.get('site', None)
@@ -428,23 +270,24 @@ class UserDataSerializer(serializers.ModelSerializer):
 				score_question = score.get('question', None)
 				score_question_site = score_question.get('site', None)
 
-				site, created = Site.objects.get_or_create(
+				site, site_created = Site.objects.get_or_create(
 					site_id = score_question_site.get('site_id', ''),
 				)
 
-				question, created = Question.objects.get_or_create(
+				question, q_created = Question.objects.get_or_create(
 					question_id = score_question.get('question_id', ''),
-					site = site,
-					section = score_question.get('section', 0),
-					maxpoints = score_question.get('maxpoints', 0),
-					intest = score_question.get('intest', False),
-					type = score_question.get('type', None)
+					site = site
 				)
-
+				question.uxid = score_question.get('uxid', None)
+				question.section = score_question.get('section', 0)
+				question.maxpoints = score_question.get('maxpoints', 0)
+				#question.type = score_question.get('type', None)
+				question.intest = score_question.get('intest', False)
+				question.save()
 
 				# second: get or create the score obj defined by question and user, which
 
-				the_score, created = Score.objects.get_or_create(
+				the_score, score_created = Score.objects.get_or_create(
 					question=question,
 					user=user
 				)
@@ -455,7 +298,6 @@ class UserDataSerializer(serializers.ModelSerializer):
 				the_score.rawinput = score.get('rawinput', the_score.rawinput)
 				the_score.state = score.get('state', the_score.state)
 
-				print ('created: %s, updated %s, : %s' % (created, not created, ScoreSerializer(the_score).data))
 				the_score.save()
 
 		return user
@@ -466,7 +308,6 @@ class UserDataSerializer(serializers.ModelSerializer):
 
 
 def jwt_response_payload_handler(token, user=None, request=None):
-	print('I AM RESPONSING')
 	return {
 		'token': token,
 		'user': UserSerializer(user, context={'request': request}).data

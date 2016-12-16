@@ -15,19 +15,18 @@
 }(this, function (exports, veSettings, IStorageService, DjangoAuthService, veHelpers, request, rp) {
 
   var DjangoStorageService = function (settings) {
-      
+
     var settings = {
         'URL_USER_DATA': veSettings.DJANGO_SERVER_URL + '/user-data/',
         'URL_TIMESTAMP': veSettings.DJANGO_SERVER_URL + '/user-data-timestamp/',
         'URL_USER_FEEDBACK' : veSettings.DJANGO_SERVER_URL + '/user-feedback/'
-    }  
-      
+    }
+
     var that = IStorageService.IStorageService();
 
     that.name = 'DjangoStorageService';
 
     that.saveUserData = function (data, async) {
-      console.log('saving django user data', data);
       return DjangoAuthService.authAjaxPost(settings.URL_USER_DATA, data, async);
     }
 
