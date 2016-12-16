@@ -102,25 +102,25 @@
     }
     return updateUserData({scores: updatedScores});
   }
-  
+
   function updateScore(siteuxid, fvar) {
 	getUserData().then(function(userData) {
 		//check if siteuxid is in userData
-		
+
 		var stats = {};
 		var userSitePoints = 0;
 		stats[siteuxid] = {};
-		
+
 		//update site points
 		if (typeof userData.stats[siteuxid] !== 'undefined' && typeof userData.stats[siteuxid].points !== 'undefined') {
 			userSitePoints = userData.stats[siteuxid].points;
-		} 
+		}
 		if (typeof userData.stats[siteuxid] !== 'undefined' && typeof userData.stats[siteuxid][fvar.id] !== 'undefined' ){
 			userSitePoints -= userData.stats[siteuxid][fvar.id].points;
 		}
 
 		userSitePoints += fvar.points;
-		
+
 		stats[siteuxid][fvar.id] = {
             id:fvar.id,
             points: fvar.points,
@@ -134,9 +134,9 @@
             intest:fvar.intest
           }
          stats[siteuxid].points = userSitePoints;
-          
+
 		updateUserData({stats: stats});
-          
+
 	});
 
 
@@ -152,7 +152,7 @@
   function subscribe (observable) {
     storageServices.push(observable);
     storageServicesMap[observable.name] = observable;
-    
+
     //also we need to empty the promiseCache, as stored promises will not have called the newly subscribed service
     promiseCache = {};
   }
@@ -167,12 +167,12 @@
     if (storageServices.length === 0) {
       return Promise.resolve('dataService: synDown called without subscribers, will do nothing.');
     }
-    
+
     //return the promise if syncDown was already called
     if (typeof promiseCache[defaults.SYNC_DOWN_CACHE_KEY] !== "undefined") {
         return promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
     }
-        
+
     log.debug('dataService: syncDown is calling getAllDataTimestamps');
     var userDataPromise = getAllDataTimestamps().then(function (successAllTimestamps) {
 
@@ -182,10 +182,10 @@
         log.debug('services returned the timestamps:', successAllTimestamps);
         log.debug('latest data was found at the service:', successAllTimestamps[0]);
         var latestTimestampData = successAllTimestamps[0];
-        
+
         delete promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
-        
-        
+
+
         //return the userdata Promise from the service where the latest data was found
         //by comparing the timestamps
         return storageServicesMap[latestTimestampData.serviceName].getUserData();
@@ -229,7 +229,7 @@
   function syncUp(data) {
     data = typeof data !== "undefined" ? data : changedData;
 
-    
+
     var syncUpServices = []
     for (var i=0; i<storageServices.length; i++) {
         if (syncUpExcludes.indexOf(storageServices[i].name) === -1) {
@@ -252,7 +252,7 @@
     var totalResolved = 0;
     var totalRejected = 0;
     var status = {};
-    
+
     log.debug('syncup services is ' , syncUpServices);
 
     var result = new Promise(function (resolve, reject) {
@@ -274,7 +274,7 @@
     });
 
   return result;
-}    
+}
 
 
   /**
@@ -310,11 +310,11 @@ function getAllDataTimestamps() {
     return Promise.reject(new TypeError('no storageServices we could get data from' +
       'register them by calling dataService.subscribe(yourStorageService)'));
   }
-  
+
   if (typeof (promiseCache[defaults.TIMESTAMPS_CACHE_KEY]) !== 'undefined') {
-  
+
       result = promiseCache[defaults.TIMESTAMPS_CACHE_KEY];
-      
+
     } else {
 
         var result = Promise.all(storageServices.map(reflectGetTimestamp)).then(function(data) {
@@ -323,14 +323,14 @@ function getAllDataTimestamps() {
         });
     }
 
-  promiseCache[defaults.TIMESTAMPS_CACHE_KEY] = result;  
+  promiseCache[defaults.TIMESTAMPS_CACHE_KEY] = result;
   return result;
 }
 
 //never reject but set status which is important for Promise.all to function properly
 function reflectGetTimestamp(service){
-    console.log('reflecting on', service);
-    return service.getDataTimestamp().then(function(data){ 
+
+    return service.getDataTimestamp().then(function(data){
         return { data:data, status: "resolved", serviceName:service.name }
     }, function(error){
         return { error:error, status: "rejected", serviceName:service.name }
@@ -498,12 +498,12 @@ function logout() {
  * @return {Object} An object giving information about the status of the import
  */
 function importUserData() {
-   
-  //as we are only importing from localStorage there is no sense in that  
+
+  //as we are only importing from localStorage there is no sense in that
   if (!localStorage) {
         return;
   }
-    
+
   //first try to find old userData which was either stored in localStorage
   //under an empty keyname or a keyname depending on the course
   var key1 = "";

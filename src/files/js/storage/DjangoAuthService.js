@@ -13,13 +13,13 @@
     factory((root.DjangoAuthService = {}), root.veSettings, root.IStorageService, root.veHelpers, root.$, root.Promise);
   }
 }(this, function (exports, veSettings, IStorageService, veHelpers, $, Promise) {
-    
+
     var settings = {
         'URL_API_TOKEN_AUTH': veSettings.DJANGO_SERVER_URL + '/api-token-auth/',
         'URL_CHECK_USERNAME': veSettings.DJANGO_SERVER_URL + '/checkusername/',
         'URL_REGISTER' : veSettings.DJANGO_SERVER_URL + '/rest-auth/registration/',
         'URL_CHANGE_USER' : veSettings.DJANGO_SERVER_URL + '/rest-auth/user/'
-    }  
+    }
 
   var USER_CREDENTIALS_KEY = 've_user_credentials';
   var userCredentials = {};
@@ -77,8 +77,6 @@
   * @return {Promise}           Returns a promise with the data object
   */
   function authenticate (user_credentials) {
-      console.log('getting', settings.URL_API_TOKEN_AUTH)
-    //console.log('calling authenticate with', user_credentials);
     return Promise.resolve(
       $.ajax({
         url: settings.URL_API_TOKEN_AUTH,
@@ -103,7 +101,7 @@
     } catch (err) {
           log.error('DjangoAuthService: localStorage is disabled');
         }
-    
+
     isAuthenticated = false;
   }
 
@@ -166,10 +164,10 @@
         method = typeof method !== 'undefined' ? method : 'POST';
 
         var userCredentials = getUserCredentials();
-        //console.log('and user credentials is', userCredentials);
+
         if (userCredentials === null || typeof userCredentials === "undefined"
         || typeof userCredentials.token === "undefined" ) {
-          //console.log('can only make authAjaxGET request if userCredentials are set');
+          
           return Promise.reject(new TypeError('not authenticated'));
         }
         return Promise.resolve(

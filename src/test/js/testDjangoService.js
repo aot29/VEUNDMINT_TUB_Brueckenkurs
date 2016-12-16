@@ -93,15 +93,6 @@ describe('DjangoServices', function() {
 					userData2.should.deep.equal(dataFixtures.getNewUserData());
 				});
 			}).timeout(5000);
-
-			// it('should send a request and store if authenticated', function() {
-			// 	return auth().should.be.fulfilled.then(function(data) {
-			// 		return ds.saveUserData({scores:[{id:'12', uxid:'21', siteuxid:'test', rawinput:'testing'}]}).should.be.fulfilled;
-			// 	}).then(function(userData) {
-			// 		userData.scores.should.contain.an.item.with.property('id', '12');
-			// 		userData.scores.should.contain.an.item.with.property('rawinput', 'testing');
-			// 	});
-			// });
 		});
 
 		describe('#getDataTimeStamp', function() {
@@ -118,13 +109,11 @@ describe('DjangoServices', function() {
 				return ds.getUserData().should.be.rejectedWith('not authenticated');
 			});
 
-			// it('should get user data if authenticated', function() {
-			// 	return auth().should.be.fulfilled.then(function(data) {
-			// 		return ds.getUserData().should.be.fulfilled;
-			// 	}).then(function(userData) {
-			// 		expect(userData).to.have.property('scores');
-			// 	});
-			// });
+			it('should get user data if authenticated', function() {
+				return auth().should.be.fulfilled.then(function(data) {
+					return ds.getUserData().should.be.fulfilled;
+				});
+			});
 
 		})
 

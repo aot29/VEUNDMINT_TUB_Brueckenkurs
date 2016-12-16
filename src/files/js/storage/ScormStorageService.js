@@ -20,32 +20,32 @@
     that.name = 'ScormStorageService';
 
     that.saveUserData = function(data) {
-        
+
       var result = new Promise(function (resolve, reject) {
-          
+
         if (!scormBridge.isScormEnv() && !scormBridge.isCustomAPI) {
             reject(new TypeError('No Scorm Env / API found'));
         }
-        
+
         resolve('data theoretically saved in scorm');
-          
+
           //TODO because of the size limitation in matet / scorm 1.2 of 4k we
           //can not store userdata in scorm, as a hack we fallback to localstorage
           //django
 //         var oldData = scormBridge.getJSONData() || {};
-//         
+//
 //         console.log('oldData', oldData);
-//         
+//
 //         var newData = veHelpers.mergeRecursive(oldData, data);
-//         
-//         
+//
+//
 //         console.log('newData', newData);
-//         
-//         newData.timestamp = new Date().getTime();          
+//
+//         newData.timestamp = new Date().getTime();
 //           
 //         var success = scormBridge.setJSONData(newData);
 //         success &= scormBridge.save();
-//         
+//
 //         if (success) {
 //           resolve(newData);
 //         } else {
@@ -57,11 +57,11 @@
 
     that.getUserData = function () {
 //       var result = new Promise(function (resolve, reject) {
-//           
+//
 //         if (!scormBridge.isScormEnv() && !scormBridge.isCustomAPI) {
 //             reject(new TypeError('No Scorm Env / API found'));
-//         }  
-//           
+//         }
+//
 //         var data = scormBridge.getJSONData();
 //         if (data) {
 //           resolve(data);
@@ -82,12 +82,12 @@
 
         return Promise.resolve(-1);
 //       var scormUserData = scormBridge.getJSONData();
-// 
+//
 //       var result = new Promise(function (resolve, reject) {
 //         if (!scormBridge.isScormEnv() && !scormBridge.isCustomAPI) {
 //             reject(new TypeError('No Scorm Env / API found'));
-//         }             
-//           
+//         }
+//
 //         if (typeof scormUserData !== 'undefined' && scormUserData !== null) {
 //           resolve(scormUserData.timestamp);
 //         } else {
@@ -96,7 +96,7 @@
 //         }
 //       });
 //       return result;
-      
+
     }
 
     return that;

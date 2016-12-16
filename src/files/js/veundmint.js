@@ -159,11 +159,11 @@ $(window).on('beforeunload', function(){
 
 
         log.setDefaultLevel(settings.defaultLogLevel);
-        
+
         //register storageServices
         for (var i = 0; i < settings.storageServices.length; i++) {
             dataService.subscribe(settings.storageServices[i]);
-        }     
+        }
 
         scormBridge.init();
         //intersite.init(); is now
@@ -206,7 +206,7 @@ $(window).on('beforeunload', function(){
                }
            }
         });
-        
+
         // footer at bottom of column
         // don't use navbar-fixed-bottom, as it doesn't play well with offcanvas
         $(window).resize( veundmint.positionFooter );

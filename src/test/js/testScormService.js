@@ -33,15 +33,15 @@ describe('ScormStorageService', function() {
   describe('#getDataTimestamp', function() {
     it('should return -1 promise', function() {
       return ScormStorageService.getDataTimestamp().should.be.fulfilled.then(function(data) {
-        expect(data).to.equal(-1);  
+        expect(data).to.equal(-1);
         })
     });
   });
-  
+
   describe('#saveUserData', function() {
       //as there is a size limitation it should do nothing but return a string
       return ScormStorageService.saveUserData({}).should.be.fulfilled.then(function(data) {
-       expect(data).to.equal('data theoretically saved in scorm');   
+       expect(data).to.equal('data theoretically saved in scorm');
     });
   }
 )
@@ -51,7 +51,7 @@ describe('ScormStorageService', function() {
 //       var userData = dataFixtures.getComplexUserData();
 //       console.log(userData.scores.length);
 //       console.log(userData.sites.length);
-// 
+//
 //       return ScormStorageService.saveUserData(userData).should.be.fulfilled.then(function(data) {
 //           console.log(data.scores.length);
 //           console.log(data.sites.length);
