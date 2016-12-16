@@ -214,7 +214,7 @@
       //trigger an asynchronous call to replicate obj cache to other storages
       //TODO only if they are empty (by timestamp)
       if (null !== latestData) {
-        syncUp(objCache);
+        //syncUp(objCache);
       }
 
       //empty the promise cache for user data
