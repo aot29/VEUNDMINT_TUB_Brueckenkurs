@@ -75,7 +75,15 @@ class UserViewSet(viewsets.ModelViewSet):
 
 		if stats is not None:
 			transformed_scores = []
+			transformed_statistics = []
 			for site in stats:
+
+				site_statistic = {}
+				site_statistic['millis'] = stats[site].get('millis', 0)
+				site_statistic['points'] = stats[site].get('points', 0)
+				site_statistic['site'] = {'site_id': site}
+				transformed_statistics.append(site_statistic)
+
 				for key in stats[site]:
 					print(key)
 					if key != 'millis' and key != 'points':
@@ -107,7 +115,8 @@ class UserViewSet(viewsets.ModelViewSet):
 						print ('x-x-x-x\n', transformed_score)
 						transformed_scores.append(transformed_score)
 
-						request.data['scores'] = transformed_scores
+			request.data['scores'] = transformed_scores
+			request.data['statistics'] = transformed_statistics
 
 		#here we transform the posted data
 		# scores = request.data.get('scores', None)

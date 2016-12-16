@@ -19,13 +19,22 @@ class UserAdmin(BaseUserAdmin):
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
+class QuestionInline(admin.TabularInline):
+	model = Question
+	can_delete = False
+	readonly_fields = ('question_id', 'site', 'maxpoints', 'section', 'type', 'intest')
+
+	def has_add_permission(self, request):
+		return False
+
 @admin.register(Site)
 class SiteAdmin(admin.ModelAdmin):
-	pass
+	inlines = (QuestionInline, )
 
 @admin.register(Statistics)
 class StatisticsAdmin(admin.ModelAdmin):
-	pass
+    list_display = ('user', 'site', 'millis', 'points' )
+    list_filter = ('user', 'site', 'points' )
 
 @admin.register(Score)
 class ScoreAdmin(admin.ModelAdmin):

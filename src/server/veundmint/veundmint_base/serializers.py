@@ -275,7 +275,7 @@ class StatisticsSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Statistics
-		fields = ('site', )
+		fields = ('site', 'points', 'millis')
 
 class NewScoreSerializer(serializers.ModelSerializer):
 	id = serializers.CharField(required=False, allow_blank=True, max_length=100)
@@ -382,6 +382,7 @@ class NewUserDataSerializer(serializers.ModelSerializer):
 
 class UserDataSerializer(serializers.ModelSerializer):
 	scores = ScoreSerializer(many=True, required=False)
+	statistics = StatisticsSerializer(many=True, required=False)
 
 	def validate(self, data):
 		print('userdataserializer data', data)
@@ -399,16 +400,33 @@ class UserDataSerializer(serializers.ModelSerializer):
 		if request and hasattr(request, "user"):
 			user = request.user
 
+		if 'statistics' in validated_data:
+			for statistic in validated_data['statistics']:
+				print ('sssssstattt found --- - - -- - - ', statistic)
+
+				#TODO this and similar can also be done with a serializer
+				statistic_site = statistic.get('site', None)
+
+				site, created = Site.objects.get_or_create(
+					site_id = statistic_site.get('site_id', ''),
+				)
+
+				statistic_obj, created = Statistics.objects.get_or_create(
+					site = site,
+					user = user
+				)
+
+				statistic_obj.points = statistic.get('points', 0)
+				statistic_obj.millis = statistic.get('millis', 0)
+				statistic_obj.save()
+
 		# Create or update each page instance
 		if 'scores' in validated_data:
 			for score in validated_data['scores']:
 
-
 				# first: get or create a questions object
 				score_question = score.get('question', None)
 				score_question_site = score_question.get('site', None)
-
-				print('SCOOOORE - QuESTION', score_question)
 
 				site, created = Site.objects.get_or_create(
 					site_id = score_question_site.get('site_id', ''),
@@ -444,7 +462,7 @@ class UserDataSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = get_user_model()
-		fields = ('email', 'scores')
+		fields = ('email', 'scores', 'statistics')
 
 
 def jwt_response_payload_handler(token, user=None, request=None):

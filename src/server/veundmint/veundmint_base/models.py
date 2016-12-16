@@ -46,6 +46,9 @@ class Site(DateSensitiveModel):
 		through_fields=('site', 'user'),
 	)
 
+	def __str__(self):
+		return self.site_id
+
 class Question(DateSensitiveModel):
 	question_id = models.CharField(max_length=50)
 	site = models.ForeignKey(Site, null=True, on_delete=models.SET_NULL, related_name="questions")
