@@ -1,4 +1,4 @@
-## @package tex2x.dispatcher.Dispatcher
+## @package tex2x.parsers.TTMParser
 #  Class that can parse texfiles to xml. Relies on the 'ttm' binary.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins

@@ -1040,6 +1040,31 @@ $\phantom{\MForLoop{#1}{b}}$
 }
 \fi%
 
+
+%% Test wahrscheinlich kaput!
+\ifttm
+\newcommand{\MQuestionRadiobox}[5]{
+\special{html:<!-- mdeclareuxid;;}UX#4\special{html:;;}\arabic{section}\special{html:;;}#2\special{html:;; //-->}%
+\ifnum\value{MGroupActive}=0\MDebugMessage{ERROR: Checkbox Nr. \arabic{MFieldCounter}\ ist nicht in einer Kontrollgruppe, es wird niemals eine Loesung angezeigt!}\fi
+\special{html: %
+<!-- mdeclarepoints;;}\arabic{section}\special{html:;;}#2\special{html:;;}#3\special{html:;;}\arabic{MTestSite}\special{html:;;}\arabic{chapter}%
+\special{html:;; //--><!-- onloadstart //-->CreateQuestionObj("}#4\special{html:",}\arabic{MFieldCounter}\special{html:,"}#1\special{html:","}#2\special{html:",2,"IMG}#2%
+\special{html:",}#3\special{html:,}\arabic{MTestSite}\special{html:,}\arabic{section}\special{html:);<!-- onloadstop //-->}%
+\special{html:<input cval="0" mfieldtype="2" type="radio" name="Name_}#5\special{html:" id="}#2\special{html:" onchange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}
+\special{html:<span><span class="glyphicon glyphicon-question-sign" id="}IMG#2\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
+% not needed yet so f. it
+}
+\else%
+\newcommand{\MQuestionRadiobox}[4]{
+\ifnum\value{QBoxFlag}=1\fbox{$\phantom{X}$}\else$\phantom{X}$\fi%
+}
+\fi%
+
+\newcommand{\MRadiobox}[3]{
+\MQuestionRadiobox{#1}{\MGenerateID}{\MStdPoints}{#2}{#3}
+\addtocounter{MFieldCounter}{1}
+}
+
 \def\MGenerateID{QFELD_\arabic{section}.\arabic{subsection}.\arabic{MSiteCounter}.QF\arabic{MFieldCounter}}
 
 % #1 = 0/1 ggf. mit ::smc abgetrennt auszuschliessende single-choice-boxen (UXIDs durch , getrennt ohne UX), #2 = uxid ohne UX

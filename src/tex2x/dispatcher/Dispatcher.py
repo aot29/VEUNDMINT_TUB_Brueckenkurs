@@ -61,12 +61,13 @@ class Dispatcher(AbstractDispatcher):
 	SYSTEMFILE = "tex2x/System.py"
 	
 	## CURRDIR
-	#  not sure ...
+	#  Passed to Option
 	CURRDIR = ".."
 	
 	def __init__( self, verbose, pluginName, override ):
 		"""
 		Constructor
+		Instantiated by tex2x.py
 		
 		@param verbose Boolean
 		@param pluginName - Name of the application to execute (default VEUNDMINT)
@@ -88,6 +89,16 @@ class Dispatcher(AbstractDispatcher):
 		#  Override options in the plugin's Option.py file, e.g. 'description=My Course' to change the course title
 		self.override = override
 		
+		## @var options
+		#  simplify access to the interface options member (Daniel Haase) - refactor
+		#  NOTE: self.options is set in initOptionsModule
+		self.options = None
+
+		## @var sys
+		#  Simplify access to the interface options member (Daniel Haase) - refactor
+		#  NOTE: self.sys is set in initOptionsModule
+		self.sys = None
+
 		# start processing some stuff that is required later (refactor)
 		self.initModules()
 
@@ -101,6 +112,7 @@ class Dispatcher(AbstractDispatcher):
 		4. Create the table of contents (TOC) and content tree, correct links
 		5. Output to static HTML files
 		"""
+				
 		if hasattr(self.options, "overrides"):
 			for ov in self.options.overrides: print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
 
@@ -187,9 +199,6 @@ class Dispatcher(AbstractDispatcher):
 			
 		module = imp.load_source( self.pluginName, path )
 		self.interface['options'] = module.Option(Dispatcher.CURRDIR, self.override)
-
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
 		self.options = self.interface['options']
 
 
@@ -202,8 +211,6 @@ class Dispatcher(AbstractDispatcher):
 		
 		module = imp.load_source(self.pluginName, Dispatcher.SYSTEMFILE)
 		self.interface['system'] = module.System(self.interface['options'])			
-		## @var sys
-		#  Simplify access to the interface options member (Daniel Haase) - refactor
 		self.sys = self.interface['system']
 
 

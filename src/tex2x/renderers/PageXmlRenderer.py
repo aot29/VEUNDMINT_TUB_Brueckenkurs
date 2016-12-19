@@ -1,22 +1,21 @@
-'''
-	This file is part of the VEUNDMINT plugin package
-
-	The VEUNDMINT plugin package is free software; you can redistribute it and/or modify
-	it under the terms of the GNU Lesser General Public License as published by
-	the Free Software Foundation; either version 3 of the License, or (at your
-	option) any later version.
-
-	The VEUNDMINT plugin package is distributed in the hope that it will be useful, but
-	WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-	or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
-	License for more details.
-
-	You should have received a copy of the GNU Lesser General Public License
-	along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
-	
-	Created on Aug 5, 2016
-	@author: Alvaro Ortiz for TUB (http://tu-berlin.de)
-'''
+## @package tex2x.renderers.PageXmlRenderer
+#  Contains PageXmlRenderer, RouletteDecorator and QuestionDecorator.
+#  Classes for handling XML tree for a page.
+#
+#  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
+#  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#  \author Alvaro Ortiz for TU Berlin
 
 from lxml import etree
 import re
@@ -29,13 +28,15 @@ class PageXmlRenderer(AbstractXmlRenderer):
 	Actual page contents are added in PageTUB.
 	"""
 
-
 	def __init__(self, options):
 		"""
+		Constructor.
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
 		
 		@param options - Options.py object
 		"""
+		## @var options
+		# simplify access to the interface options member (Daniel Haase) - refactor
 		self.options = options
 		
 		
@@ -44,7 +45,6 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		Create a XML document representing a page from a TContent object
 		
 		@param tc - a TContent object encapsulating page data and content
-		@param basePath - String prefix for all links
 		@return an etree element
 		"""
 		# page is the root element
@@ -106,11 +106,20 @@ class RouletteDecorator( PageXmlDecorator ):
 	
 	def __init__(self, renderer, data, i18strings):
 		"""
+		Constructor.
+		Instantiated by PageFactory.
+		
 		@param renderer - an object implementing AbstractXmlRenderer
 		@param data - a dict containing the DirectRoulettes key
 		"""
 		super().__init__(renderer)
+
+		## @var data
+		#  simplify access to the interface data member (Daniel Haase) 
 		self.data = data
+				
+		## @var i18strings
+		#  Deserialized JSON object containeing localized UI strings. Loaded in Options.py.
 		self.i18strings = i18strings
 	
 	
@@ -219,6 +228,9 @@ class QuestionDecorator(PageXmlDecorator):
 	
 	def __init__(self, renderer):
 		"""
+		Constructor.
+		Instantiated by PageFactory.
+		
 		@param renderer - an object implementing AbstractXmlRenderer
 		"""
 		super().__init__(renderer)
