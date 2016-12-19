@@ -23,7 +23,7 @@ from tex2x.renderers.AbstractRenderer import *
 
 class TocRenderer( AbstractXmlRenderer ):
 	"""
-	Generates a table of contents for the selected page (the TContent tc object passed to generateXML)
+	Generates a table of contents for the selected page (the TContent tc object passed to renderXML)
 	"""	
 	
 	def __init__(self, options):
@@ -36,7 +36,7 @@ class TocRenderer( AbstractXmlRenderer ):
 		self.options = options
 		
 	
-	def generateXML( self, tc ):
+	def renderXML( self, tc ):
 		"""
 		Create XML for the table of contents
 		

@@ -15,7 +15,7 @@ class test_TocRenderer(AbstractRendererTestCase):
 		AbstractRendererTestCase.setUp(self)
 
 		self.tocRenderer = TocRenderer( self.options )
-		self.xml = self.tocRenderer.generateXML( self.tc )
+		self.xml = self.tocRenderer.renderXML( self.tc )
 	
 	
 	def  test_makeCaptionWithUmlaut(self):

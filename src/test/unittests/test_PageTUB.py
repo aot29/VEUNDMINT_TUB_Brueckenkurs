@@ -28,7 +28,7 @@ class test_PageTUB(AbstractRendererTestCase):
 		tocRenderer = TocRenderer( self.options )
 		self.page = PageTUB( contentRenderer, tocRenderer, self.options, self.data )
 		# generate HTML element using the tc mock-up
-		self.page.generateHTML( self.tc )
+		self.page.renderHTML( self.tc )
 
 
 	def testLoadSpecialPage(self):
@@ -44,14 +44,14 @@ class test_PageTUB(AbstractRendererTestCase):
 			self.assertTrue( '<!-- mdeclaresiteuxidpost;;%s;; //-->' % key in self.tc.content )
 
 
-	def testGenerateHTML_for_special_pages(self):
+	def testRenderHTML_for_special_pages(self):
 		for key in AbstractXmlRenderer.specialPagesUXID.keys():
 
 			if key == 'VBKM_MISCSEARCH' : continue
 
 			# Can the page be generated from template?
 			self.tc.uxid = key
-			self.page.generateHTML( self.tc )
+			self.page.renderHTML( self.tc )
 			self.assertTrue( '<!-- mdeclaresiteuxidpost;;%s;; //-->' % key in self.tc.html, "UXID Tag not found in %s" % key )
 			# navbar present?
 			self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
@@ -151,7 +151,7 @@ class test_PageTUB(AbstractRendererTestCase):
 	def testPrevNextLInks(self):
 		# Create the XML output for a page with left and right neighbors
 		siblings = self.tc.children
-		xml = self.page.contentRenderer.generateXML( siblings[1] )
+		xml = self.page.contentRenderer.renderXML( siblings[1] )
 		self.assertTrue( len( siblings ) >= 3 )
 		# add links to next and previous entries
 		self.page._addPrevNextLinks(xml, siblings[1] )
@@ -165,7 +165,7 @@ class test_PageTUB(AbstractRendererTestCase):
 		annotations = [ Annotation( word='Operator', title='Operator (Mathematik)', url='https://de.wikipedia.org/wiki/Operator_(Mathematik)' )]
 		# get a basic page renderer
 		xmlRenderer = PageXmlRenderer( self.options )
-		xml = xmlRenderer.generateXML( self.tc )
+		xml = xmlRenderer.renderXML( self.tc )
 		# add annotations array to xml
 		self.page._addAnnotations( xml, annotations )
 		self.assertEqual( 'Operator', xml.xpath('annotations/annotation/@word')[0], "Wrong annotation word" )

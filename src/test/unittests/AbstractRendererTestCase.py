@@ -20,7 +20,7 @@ class MockOptions(Option):
 		self.lang = "en"
 		
 
-class MockParser(AbstractParser):
+class MockGenerator(AbstractParser):
 	def __init__(self, options, sys):
 		'''
 		@param options Object
@@ -29,7 +29,7 @@ class MockParser(AbstractParser):
 		self.options = options
 		self.sys = sys
 		
-	def parse(self, etree):
+	def generate(self, etree):
 		toc = None
 		content = []
 		return toc, content

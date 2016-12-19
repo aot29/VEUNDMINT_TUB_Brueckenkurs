@@ -26,6 +26,12 @@ class AbstractDispatcher(object):
 	Lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure." 
 	- Gamma, Helm, Johnson, Vlissides (1995) 'Design Patterns: Elements of Reusable Object-Oriented Software'
 	"""
+	def __init(self):
+		"""
+		This class is abstract, so cannot be instantiated.
+		"""
+		raise NotImplementedError
+	
 	def dispatch(self):
 		"""
 		The dispatch method is called by classes implementing the AbstractDispatcher class.

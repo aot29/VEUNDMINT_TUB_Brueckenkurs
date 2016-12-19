@@ -896,7 +896,7 @@ class Plugin(AbstractPlugin):
 	def generate_html(self, tc):
 		for c in tc.children:
 			self.generate_html(c)
-		self.page.generateHTML(tc)
+		self.page.renderHTML(tc)
 
 
 	def write_htmlfiles(self, tc):

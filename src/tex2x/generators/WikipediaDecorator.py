@@ -17,11 +17,11 @@
 #  \author Alvaro Ortiz for TU Berlin
 
 from lxml import etree
-from tex2x.parsers.AbstractParser import AbstractParser
+from tex2x.generators.AbstractGenerator import AbstractGenerator
 from urllib.parse import urlencode
 from tex2x.annotators.WikipediaAnnotator import WikipediaAnnotator
 
-class WikipediaDecorator( AbstractParser ):
+class WikipediaDecorator( AbstractGenerator ):
 	"""
 	Course pages are annotated with links to Wikipedia. A course page can have more than one annotation. 
 	
@@ -33,26 +33,25 @@ class WikipediaDecorator( AbstractParser ):
 	@see https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Verkn%C3%BCpfung-mit-Wikipedia
 	"""
 		
-	def __init__(self, parser, lang='de' ):
+	def __init__(self, generator, lang='de' ):
 		"""
 		Constructor.
 		
-		@param options Object
-		@param sys - "A module exposing a class System" (Daniel Haase)
-		@see annotators.WikipediaAnnotator
+		@param generator Object extending AbstractGenerator
+		@param lang - Wikipedia language to use
 		"""
 		
-		## @var parser
-		#  Parser (object extending AbstractParser, in this case TOCParser)
-		self.parser = parser
+		## @var generator
+		#  Generator (object extending AbstractParser, in this case ContentGenerator)
+		self.generator = generator
 		
 		## @var options
 		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = parser.options
+		self.options = generator.options
 		
 		## @var sys
 		#  Simplify access to the interface options member (Daniel Haase) - refactor
-		self.sys = parser.sys
+		self.sys = generator.sys
 		
 		## @var lang
 		#  The language of the page ('de' or 'en')
@@ -63,14 +62,14 @@ class WikipediaDecorator( AbstractParser ):
 		self.annotator = WikipediaAnnotator()
 		
 
-	def parse(self, *args, **kwargs):
+	def generate(self, *args, **kwargs):
 		"""
-		Executes a parser (here TOCParser) and then adds links to Wikipedia.
+		Call the ContentGenerator (the decorated class) and then adds links to Wikipedia.
 		
 		@param content - a list of [toc_node, content_node] items
 		"""
 		# call the decorated class' parse method
-		tempTOC, tempContent = self.parser.parse(*args, **kwargs)
+		tempTOC, tempContent = self.generator.generate(*args, **kwargs)
 
 		# add annotations 		
 		tempContent = self.addWikipediaAnnotations( tempContent, self.lang )

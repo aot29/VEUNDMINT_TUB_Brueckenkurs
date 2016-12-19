@@ -39,7 +39,7 @@ class AbstractXmlRenderer(object):
 	# test pages
 	testPagesUXID = [ "VBKMT_START", "VBKMT_OffenerTest", "VBKMT_AbgebeTest" ]
 	
-	def generateXML(self, obj):
+	def renderXML(self, obj):
 		'''
 		Generates a XML as a string from the given object
 		
@@ -147,7 +147,7 @@ class AbstractHtmlRenderer(object):
 	Please program to interface whenever possible (aka "programming by contract") to reduce coupling.
 	'''
 	
-	def generateHTML(self, obj):
+	def renderHTML(self, obj):
 		'''
 		Generates a HTML page as a string using loaded templates and the given object
 		
@@ -186,13 +186,13 @@ class PageXmlDecorator( AbstractXmlRenderer ):
 		self.renderer = renderer
 		
 	
-	def generateXml(self, tc):
+	def renderXML(self, tc):
 		"""
 		Decorate the class. This method is to be called 
 		first thing in the overriding method by all extending decorator classes, 
 		like this:
-		xml = super().generateXml( tc )
+		xml = super().renderXML( tc )
 		"""
-		return self.renderer.generateXML(tc)
+		return self.renderer.renderXML(tc)
 		
 	

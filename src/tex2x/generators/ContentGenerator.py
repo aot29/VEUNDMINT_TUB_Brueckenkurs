@@ -19,11 +19,11 @@
 
 from copy import deepcopy
 from lxml import etree
-from tex2x.parsers.AbstractParser import AbstractParser
+from tex2x.generators.AbstractGenerator import AbstractGenerator
 
-class TOCParser( AbstractParser ):
+class ContentGenerator( AbstractGenerator ):
 	"""
-	Run the TOC parser to create the table of contents and the content tree.
+	Run the ContentGenerator to create the table of contents and the content tree.
 	Instantiated by the Dispatcher.	
 	Can be decorated with VerboseParser to enable performance logging.
 	"""
@@ -43,7 +43,7 @@ class TOCParser( AbstractParser ):
 		self.sys = sys
 		
 
-	def parse( self, htmltree ):
+	def generate( self, htmltree ):
 		"""
 		Create the table of contents (TOC) and the content tree.
 

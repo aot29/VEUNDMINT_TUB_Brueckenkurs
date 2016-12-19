@@ -25,13 +25,16 @@ from lxml import etree
 
 from tex2x.Settings import ve_settings as settings
 from tex2x.dispatcher.AbstractDispatcher import AbstractDispatcher, VerboseDispatcher, PreprocessorDispatcher, PluginDispatcher
+
 from tex2x.parsers.AbstractParser import VerboseParser
 from tex2x.parsers.TTMParser import TTMParser
 from tex2x.parsers.HTMLParser import HTMLParser
-from tex2x.parsers.TOCParser import TOCParser
-from tex2x.parsers.LinkDecorator import LinkDecorator
 from tex2x.parsers.MathMLDecorator import MathMLDecorator
-from tex2x.parsers.WikipediaDecorator import WikipediaDecorator
+
+from tex2x.generators.AbstractGenerator import VerboseGenerator
+from tex2x.generators.ContentGenerator import ContentGenerator
+from tex2x.generators.LinkDecorator import LinkDecorator
+from tex2x.generators.WikipediaDecorator import WikipediaDecorator
 
 
 class Dispatcher(AbstractDispatcher):
@@ -117,15 +120,15 @@ class Dispatcher(AbstractDispatcher):
 			for ov in self.options.overrides: print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
 
 		# 1. Run pre-processing plugins
-		preprocessor = PreprocessorDispatcher( self.interface['preprocessor_plugins'] )
-		if self.verbose: preprocessor = VerboseDispatcher( preprocessor, "Step 1: Preprocessing" )
-		preprocessor.dispatch()
+		preprocessorDispatcher = PreprocessorDispatcher( self.preprocessors )
+		if self.verbose: preprocessorDispatcher = VerboseDispatcher( preprocessorDispatcher, "Step 1: Preprocessing" )
+		preprocessorDispatcher.dispatch()
 
 		# 2. Run TTM parser, load XML
-		ttm = TTMParser( self.options, self.sys )
-		ttm = MathMLDecorator( ttm, self.options ) # Add MathML corrections
-		if self.verbose: ttm = VerboseParser( ttm, "Step 2: Converting Tex to XML (TTM)" )
-		self.data['rawxml'] = ttm.parse( settings.sourceTEXStartFile, settings.sourceTEX, settings.ttmFile ) # run TTM parser with default options
+		self.parser = TTMParser( self.options, self.sys )
+		self.parser = MathMLDecorator( self.parser, self.options ) # Add MathML corrections
+		if self.verbose: self.parser = VerboseParser( self.parser, "Step 2: Converting Tex to XML (TTM)" )
+		self.data['rawxml'] = self.parser.parse( settings.sourceTEXStartFile, settings.sourceTEX, settings.ttmFile ) # run TTM parser with default options
 		
 		# 3. Parse HTML
 		html = HTMLParser( self.options )
@@ -133,11 +136,11 @@ class Dispatcher(AbstractDispatcher):
 		xmltree_raw = html.parse( self.data['rawxml'] )
 		
 		# 4. Create TOC and content tree
-		tocParser = TOCParser( self.options, self.sys )
-		tocParser = LinkDecorator( tocParser )
-		tocParser = WikipediaDecorator( tocParser, self.options.lang)
-		if self.verbose: tocParser = VerboseParser( tocParser, "Step 4: Creating the table of contents (TOC) and content tree" )
-		self.toc, content = tocParser.parse( xmltree_raw )
+		self.generator = ContentGenerator( self.options, self.sys )
+		self.generator = LinkDecorator( self.generator )
+		self.generator = WikipediaDecorator( self.generator, self.options.lang)
+		if self.verbose: self.generator = VerboseGenerator( self.generator, "Step 4: Creating the table of contents (TOC) and content tree" )
+		self.toc, content = self.generator.generate( xmltree_raw )
 		
 		#print( etree.tostring( xmltree_raw ) )
 		#print(self.content[2][2])
@@ -225,7 +228,9 @@ class Dispatcher(AbstractDispatcher):
 			
 			module = imp.load_source(self.pluginName + "_preprocessor_" + p, path )
 			self.interface['preprocessor_plugins'].append(module.Preprocessor(self.interface))
-				
+			
+		self.preprocessors = self.interface['preprocessor_plugins']
+
 
 	def initOutputPlugins(self):
 		'''

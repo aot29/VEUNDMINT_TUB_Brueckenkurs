@@ -26,13 +26,13 @@ class test_PageXmlRenderer(AbstractRendererTestCase):
         self.renderer = RouletteDecorator( pageWithQuestions, self.data, self.i18strings )
         
 
-    def test_generateXML(self):
+    def test_renderXML(self):
         '''
         Test that the XML contains all required elements and attributes
         '''
         # create an XML element using the tc mock-up 
-        # (only for testing, i.r.l. you can skip this step and do page.generateHTML directly)
-        self.xml = self.renderer.generateXML( self.tc )
+        # (only for testing, i.r.l. you can skip this step and do page.renderHTML directly)
+        self.xml = self.renderer.renderXML( self.tc )
         
         #Title
         self.assertEqual( self.tc.title, self.xml.xpath('/page/title')[0].text, "Title is wrong in XML" )

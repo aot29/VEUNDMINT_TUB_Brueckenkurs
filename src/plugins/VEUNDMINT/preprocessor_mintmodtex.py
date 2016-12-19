@@ -28,8 +28,9 @@ import os.path
 import subprocess
 import fileinput
 import sys
+from tex2x.AbstractPlugin import *
 
-class Preprocessor(object):
+class Preprocessor(AbstractPreprocessor):
 	
 	# Constructor parameters: log object reference and data storage for the plugin chain (dict), and options object reference
 	def __init__(self, interface):

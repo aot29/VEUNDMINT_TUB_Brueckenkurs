@@ -62,7 +62,7 @@ class PageTUB( AbstractHtmlRenderer ):
 		self.disableLogin = options.disableLogin
 
 
-	def generateHTML( self, tc ):
+	def renderHTML( self, tc ):
 		"""
 		Applies the template to the page data. The result is a HTML string which is stored in tc.html.
 		
@@ -73,13 +73,13 @@ class PageTUB( AbstractHtmlRenderer ):
 		basePath = self.getBasePath(tc)
 		
 		# Create the XML output
-		xml = self.contentRenderer.generateXML( tc )
+		xml = self.contentRenderer.renderXML( tc )
 		self.addFlags(xml, tc, basePath)
 				
 		# Prepare a non-special page, otherwise skip TOC and FF-RW links
 		if not ( AbstractXmlRenderer.isSpecialPage( tc ) or AbstractXmlRenderer.isTestPage( tc ) )  :
 			# toc
-			xml.append( self.tocRenderer.generateXML( tc ) )
+			xml.append( self.tocRenderer.renderXML( tc ) )
 			
 		# add links to next and previous entries
 		self._addPrevNextLinks(xml, tc, basePath)

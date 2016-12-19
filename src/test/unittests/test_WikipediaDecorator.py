@@ -13,7 +13,7 @@ import unittest
 from lxml import etree
 from tex2x.dispatcher.Dispatcher import Dispatcher
 from tex2x.annotators.WikipediaAnnotator import WikipediaAnnotator
-from tex2x.parsers.WikipediaDecorator import WikipediaDecorator
+from tex2x.generators.WikipediaDecorator import WikipediaDecorator
 from test.unittests.AbstractRendererTestCase import *
 
 class test_WikipediaDecorator(AbstractRendererTestCase):
@@ -21,14 +21,14 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
-		self.mockparser = MockParser( dispatcher.options, dispatcher.sys )
+		self.mockGenerator = MockGenerator( dispatcher.options, dispatcher.sys )
 
 	
 	def testCreate(self):
 		'''
 		Check if a WikipediaDecorator can be created at all
 		'''
-		wd = WikipediaDecorator( self.mockparser )
+		wd = WikipediaDecorator( self.mockGenerator )
 		self.assertTrue(True)
 
 
@@ -38,8 +38,8 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		'''
 		rawxml = "<root>test</root>"
 		xml = etree.fromstring( rawxml )
-		wd = WikipediaDecorator( self.mockparser )
-		toc, content = wd.parse( xml )
+		wd = WikipediaDecorator( self.mockGenerator )
+		toc, content = wd.generate( xml )
 		
 		# content is an array
 		# each element has 3 elements. The 3. are the annotations
@@ -85,7 +85,7 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		"""
 		lang = 'de'
 		xml = etree.fromstring( rawxml )
-		wd = WikipediaDecorator( self.mockparser, lang )
+		wd = WikipediaDecorator( self.mockGenerator, lang )
 		annotator = WikipediaAnnotator()
 		wikipediaItems = annotator.generate( lang )
 		annotations = wd.findAnnotationsForPage( [None, xml], wikipediaItems )
@@ -110,7 +110,7 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		"""
 		lang = 'en'
 		xml = etree.fromstring( rawxml )
-		wd = WikipediaDecorator( self.mockparser, lang )
+		wd = WikipediaDecorator( self.mockGenerator, lang )
 		annotator = WikipediaAnnotator()
 		wikipediaItems = annotator.generate( lang )
 		annotations = wd.findAnnotationsForPage( [None, xml], wikipediaItems )

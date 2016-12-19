@@ -40,7 +40,7 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		self.options = options
 		
 		
-	def generateXML( self, tc ):
+	def renderXML( self, tc ):
 		"""
 		Create a XML document representing a page from a TContent object
 		
@@ -123,7 +123,7 @@ class RouletteDecorator( PageXmlDecorator ):
 		self.i18strings = i18strings
 	
 	
-	def generateXML(self, tc):
+	def renderXML(self, tc):
 		"""
 		Move the roulette questions wrapped in rouletteexc_start and rouletteexc-stop comments to the page header
 		
@@ -131,7 +131,7 @@ class RouletteDecorator( PageXmlDecorator ):
 		@return an etree element
 		"""
 		# call the method from the superclass
-		xml = super().generateXml( tc )
+		xml = super().renderXML( tc )
 		
 		# skip on special pages
 		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml
@@ -236,7 +236,7 @@ class QuestionDecorator(PageXmlDecorator):
 		super().__init__(renderer)
 
 	
-	def generateXML(self, tc):
+	def renderXML(self, tc):
 		"""
 		Move the questions wrapped in onloadstart and onloadstop comments to the page header
 		
@@ -244,7 +244,7 @@ class QuestionDecorator(PageXmlDecorator):
 		@return an etree element
 		"""
 		# call the method from the superclass
-		xml = super().generateXml(tc)
+		xml = super().renderXML(tc)
 		
 		# skip on special pages
 		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml
