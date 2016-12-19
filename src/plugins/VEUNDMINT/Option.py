@@ -165,7 +165,7 @@ class Option(object):
 		self.forceyes = 1		# =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
 		self.symbolexplain = 1	# =1 -> Short list explaining symbols is added to table of contents
 		self.forceoffline = 0	# =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
-		self.quiet = 1			# =1 -> Absolutely no print messages, caller must deduce outcome by return value of sys.exit
+		self.quiet = 1			# =1 -> Absolutelynoprint messages, caller must deduce outcome by return value of sys.exit
 		self.bootstrap = 1	  	# Use Bootstrap for responsive layout
 
 		# optimization options
