@@ -984,6 +984,7 @@
 % 2 = Ja/Nein-Checkbox, Loesung ist 0 oder 1   (OPTION = Image-id fuer Rueckmeldung)
 % 3 = Reelle Zahlen Geparset
 % 4 = Funktionen Geparset (mit Stuetzstellen zur ueberpruefung)
+% 25 = radio checkbox
 
 % Dieser Befehl erstellt ein interaktives Aufgabenfeld. Parameter:
 % - #1 Laenge in Zeichen
@@ -1020,6 +1021,37 @@ $\phantom{\MForLoop{#1}{b}}$
 }
 \fi%
 
+
+
+%% For the physics course with units
+\ifttm
+\newcommand{\MPQuestionID}[8]{
+\special{html:<!-- mdeclareuxid;;}UX#7\special{html:;;}\arabic{section}\special{html:;;}#3\special{html:;; //-->}%
+\special{html:<!-- mdeclarepoints;;}\arabic{section}\special{html:;;}#3\special{html:;;}#6\special{html:;;}\arabic{MTestSite}\special{html:;;}\arabic{chapter}%
+\special{html:;; //--><!-- onloadstart //-->CreateQuestionObj("}#7\special{html:",}\arabic{MFieldCounter}\special{html:,"}#2%
+\special{html:","}#3\special{html:",}#4\special{html:,"}#5\special{html:",}#6\special{html:,}\arabic{MTestSite}\special{html:,}\arabic{section}%
+\special{html:);<!-- onloadstop //-->}%
+\special{html:<input mfieldtype="}#4\special{html:" name="Name_}#3\special{html:" id="}#3\special{html:" type="text" size="}#1\special{html:" maxlength="}#1%
+\special{html:" }
+\ifnum\value{MGroupActive}=0\special{html:onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onblur="handlerBlur(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,0);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,0);"/>}%
+#8
+\special{html:<span><span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
+\else%
+\special{html:onblur="handlerBlur(}\arabic{MFieldCounter}%
+\special{html:);" onfocus="handlerFocus(}\arabic{MFieldCounter}\special{html:);" onkeyup="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpaste="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" oninput="handlerChange(}\arabic{MFieldCounter}\special{html:,1);" onpropertychange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}%
+#8
+\special{html:<span><span class="glyphicon glyphicon-question-sign" id="}QM#3\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
+\fi
+}
+\else
+\newcommand{\MPQuestionID}[7]{
+\ifnum\value{QBoxFlag}=1\fbox{$\phantom{\MForLoop{#1}{b}}$}
+\else
+$\phantom{\MForLoop{#1}{b}}$
+\fi%
+}
+\fi%
+
 % ACHTUNG: Die langen Zeilen bitte so lassen, Zeilenumbrueche im tex werden in div's umgesetzt
 % QuestionCheckbox macht ausserhalb einer QuestionGroup keinen Sinn!
 % #1 = solution (1 oder 0), ggf. mit ::smc abgetrennt auszuschliessende single-choice-boxen (UXIDs durch , getrennt), #2 = id, #3 = points, #4 = uxid
@@ -1040,8 +1072,9 @@ $\phantom{\MForLoop{#1}{b}}$
 }
 \fi%
 
+%mtristate="1"
 
-%% Test wahrscheinlich kaput!
+%% Radio buttons 
 \ifttm
 \newcommand{\MQuestionRadiobox}[5]{
 \special{html:<!-- mdeclareuxid;;}UX#4\special{html:;;}\arabic{section}\special{html:;;}#2\special{html:;; //-->}%
@@ -1050,7 +1083,7 @@ $\phantom{\MForLoop{#1}{b}}$
 <!-- mdeclarepoints;;}\arabic{section}\special{html:;;}#2\special{html:;;}#3\special{html:;;}\arabic{MTestSite}\special{html:;;}\arabic{chapter}%
 \special{html:;; //--><!-- onloadstart //-->CreateQuestionObj("}#4\special{html:",}\arabic{MFieldCounter}\special{html:,"}#1\special{html:","}#2\special{html:",2,"IMG}#2%
 \special{html:",}#3\special{html:,}\arabic{MTestSite}\special{html:,}\arabic{section}\special{html:);<!-- onloadstop //-->}%
-\special{html:<input cval="0" mfieldtype="2" type="radio" name="Name_}#5\special{html:" id="}#2\special{html:" onchange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}
+\special{html:<input mtristate="1" cval="0" mfieldtype="2" type="radio" name="Name_}#5\special{html:" id="}#2\special{html:" onchange="handlerChange(}\arabic{MFieldCounter}\special{html:,1);"/>}
 \special{html:<span><span class="glyphicon glyphicon-question-sign" id="}IMG#2\special{html:"/></span>} % needs to be nested spans here, as they get garbled-up somehow
 % not needed yet so f. it
 }
@@ -1060,6 +1093,10 @@ $\phantom{\MForLoop{#1}{b}}$
 }
 \fi%
 
+% radio checkbox
+% #1 = 0/1
+% #2 = id
+% #3 = group name ( assign the same group name to all of the radiobuttons you wish to be linked)
 \newcommand{\MRadiobox}[3]{
 \MQuestionRadiobox{#1}{\MGenerateID}{\MStdPoints}{#2}{#3}
 \addtocounter{MFieldCounter}{1}
@@ -1094,6 +1131,12 @@ $\phantom{\MForLoop{#1}{b}}$
 % Parameter: Laenge des Feldes, Loesung (wird auch geparsed), Stellen Genauigkeit hinter dem Komma, weitere Stellen werden mathematisch gerundet vor Vergleich
 \newcommand{\MParsedQuestion}[3]{
 \MQuestionID{#1}{#2}{\MGenerateID}{3}{#3}{\MStdPoints}{#2}
+\addtocounter{MFieldCounter}{1}
+}
+
+%  Physik Parameter: Laenge des Feldes, Loesung (wird auch geparsed), Stellen Genauigkeit hinter dem Komma, weitere Stellen werden mathematisch gerundet vor Vergleich
+\newcommand{\MPParsedQuestion}[4]{
+\MPQuestionID{#1}{#2}{\MGenerateID}{3}{#3}{\MStdPoints}{#2}{#4}
 \addtocounter{MFieldCounter}{1}
 }
 
