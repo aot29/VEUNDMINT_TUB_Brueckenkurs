@@ -26,10 +26,12 @@ from lxml import etree
 from tex2x.Settings import ve_settings as settings
 from tex2x.dispatcher.AbstractDispatcher import AbstractDispatcher, VerboseDispatcher, PreprocessorDispatcher, PluginDispatcher
 
+from tex2x.translators.AbstractTranslator import VerboseTranslator
+from tex2x.translators.TTMTranslator import TTMTranslator
+from tex2x.translators.MathMLDecorator import MathMLDecorator
+
 from tex2x.parsers.AbstractParser import VerboseParser
-from tex2x.parsers.TTMParser import TTMParser
 from tex2x.parsers.HTMLParser import HTMLParser
-from tex2x.parsers.MathMLDecorator import MathMLDecorator
 
 from tex2x.generators.AbstractGenerator import VerboseGenerator
 from tex2x.generators.ContentGenerator import ContentGenerator
@@ -110,7 +112,7 @@ class Dispatcher(AbstractDispatcher):
 		"""
 		The dispatcher calls each step of the conversion pipeline.
 		1. Run pre-processing plugins
-		2. Run TTM (convert Tex to XML), load XML file created by TTM
+		2. Run TTM (convert Tex to XML), load XML file created by TTM, 
 		3. Parse XML files into a HTML tree
 		4. Create the table of contents (TOC) and content tree, correct links
 		5. Output to static HTML files
@@ -125,10 +127,10 @@ class Dispatcher(AbstractDispatcher):
 		preprocessorDispatcher.dispatch()
 
 		# 2. Run TTM parser, load XML
-		self.parser = TTMParser( self.options, self.sys )
-		self.parser = MathMLDecorator( self.parser, self.options ) # Add MathML corrections
-		if self.verbose: self.parser = VerboseParser( self.parser, "Step 2: Converting Tex to XML (TTM)" )
-		self.data['rawxml'] = self.parser.parse( settings.sourceTEXStartFile, settings.sourceTEX, settings.ttmFile ) # run TTM parser with default options
+		self.translator = TTMTranslator( self.options, self.sys )
+		self.translator = MathMLDecorator( self.translator, self.options ) # Add MathML corrections
+		if self.verbose: self.translator = VerboseTranslator( self.translator, "Step 2: Converting Tex to XML (TTM)" )
+		self.data['rawxml'] = self.translator.translate( settings.sourceTEXStartFile, settings.sourceTEX, settings.ttmFile ) # run TTM parser with default options
 		
 		# 3. Parse HTML
 		html = HTMLParser( self.options )

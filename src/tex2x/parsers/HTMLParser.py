@@ -17,47 +17,40 @@
 #  \author Daniel Haase for KIT 
 #  \author Alvaro Ortiz for TU Berlin
 
-from lxml import html
-from lxml import etree
 import os
 from tex2x.parsers.AbstractParser import AbstractParser
+from tex2x.Settings import ve_settings as settings
+from lxml import html
+from lxml import etree
 
 class HTMLParser( AbstractParser ):
 	"""
-	Calls lxml.HTMLParser to generate an etree from an XML string.
 	Can be decorated with VerboseParser to enable performance loging.
 	
 	@see http://lxml.de/api/lxml.etree.HTMLParser-class.html
 	"""
-	def __init__(self, options, remove_blank_text = False):
+	def __init__( self, options ):
 		"""
 		Constructor.
 		
 		@param options - Object encapsulating all the options necessary to run the tex2x converter. 
-		@param remove_blank_text - discard empty text nodes that are ignorable (i.e. not actual text content)
+		@param sys - "A module exposing a class System" (Daniel Haase) 
 		"""
-		## @var options
-		#   Object encapsulating all the options necessary to run the tex2x converter. 
-		self.options = options
-		
-		## @var remove_blank_text
-		#  Discard empty text nodes that are ignorable (i.e. not actual text content)
-		self.remove_blank_text = remove_blank_text
-		
 		## @var parser
 		#  An HTML parser that is configured to return lxml.html Element
 		self.parser = html.HTMLParser(remove_blank_text = False)
-
-
-	def parse(self, rawxml):
-		"""
-		Parse a string containing XML into a HTML5 etree.
 		
-		@param rawxml - String containing XML
-		@return: etree - the HTML tree as parsed from the XML string given in the constructor
+		## @var options
+		#   Object encapsulating all the options necessary to run the tex2x converter. 
+		self.options = options
+				
+
+	def parse(self, xmlString):
 		"""
-		rawxml = self.replace_html_entities( rawxml )
-		return etree.fromstring( rawxml, self.parser )
+		Calls lxml.HTMLParser to generate an etree from an XML string.
+		"""
+		xmlString = self.replace_html_entities( xmlString )
+		return etree.fromstring( xmlString, self.parser )
 
 
 	def replace_html_entities(self, text):

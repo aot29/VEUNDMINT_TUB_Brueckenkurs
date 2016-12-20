@@ -21,18 +21,18 @@ import os, subprocess, logging, re
 import sys
 from tex2x.Settings import Settings
 from tex2x.Settings import ve_settings as settings
-from tex2x.parsers.AbstractParser import AbstractParser
+from tex2x.translators.AbstractTranslator import AbstractTranslator
 
 logger = logging.getLogger(__name__)
 
-class TTMParser(AbstractParser):
+class TTMTranslator(AbstractTranslator):
 	"""
-	Class that can parse Tex source files to an XML file, including parsing MathML. Relies on the TTM binary.
+	Class that can translate LaTeX source files to an XML file, including parsing MathML. Relies on the TTM binary.
 	Documentation for TTM can be found here: http://hutchinson.belmont.ma.us/tth/mml/
 	Can be decorated with VerboseParser to enable performance logging.
 	"""
 
-	def __init__(self, options, sys=None, ttmBin=settings.ttmBin):
+	def __init__(self, options, sys, ttmBin=settings.ttmBin):
 		"""
 		Constructor.
 		
@@ -40,7 +40,7 @@ class TTMParser(AbstractParser):
 		@param sys - "A module exposing a class System" (Daniel Haase) 
 		@param ttmBin path to TTM binary
 		"""
-		## @varsubprocess
+		## @var subprocess
 		#  Subprocess connecting to TTM input/output/error pipes and error codes
 		self.subprocess = None
 		
@@ -55,19 +55,20 @@ class TTMParser(AbstractParser):
 		## @var ttmBin
 		#  Path to TTM binary
 		self.ttmBin = ttmBin
+		
 
-
-	def parse(self, sourceTEXStartFile=settings.sourceTEXStartFile, sourceTEX=settings.sourceTEX, ttmFile=settings.ttmFile, dorelease = settings.dorelease ):
+	def translate(self, sourceTEXStartFile=settings.sourceTEXStartFile, sourceTEX=settings.sourceTEX, ttmFile=settings.ttmFile, dorelease = settings.dorelease ):
 		"""
 		Executes the TTM command and creates a XML-file from Tex sources.
 		Parses files from TeX to ?, uses the converterDir Option which is set to /src
+		Calls lxml.HTMLParser to generate an etree from an XML string.
 		WARNING: an external program is being called here, so this could theoretically be a security liability
 		
 		@param sourceTEXStartFile path to source Tex file
 		@param sourceTEX path to search for Tex input files
 		@param ttmFile path to output XML file
 		@param dorelease - deprecated, use unit tests and continuous integration instead.
-		@return: String - the XML as loaded from file
+		@return: String, etree - the XML as loaded from file as string, as tree
 		"""
 		if hasattr(self.options, 'ttmExecute') and not self.options.ttmExecute:
 			# try to get the XML-file if it exists, otherwise generate it
@@ -95,17 +96,17 @@ class TTMParser(AbstractParser):
 			self._logResults(self.subprocess, self.ttmBin, sourceTEXStartFile, dorelease )
 		
 			# if TTM worked, load the XML file
-			xml = self.loadXML( ttmFile )
+			xmlString = self.loadXML( ttmFile )
 
 		# don't catch exception here, fatal exceptions should be handled at outer level
 		finally:
 			self.sys.popdir()
 			pass
 
-		return xml
+		return xmlString
 
 
-	def getParserProcess(self):
+	def getProcess(self):
 		"""
 		Return a reference to the ttmParser Process, might return None, when called
 		before the parse function was called..
