@@ -98,7 +98,7 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		tc.sectionId = sectionId
 
 
-class RouletteDecorator( PageXmlDecorator ):
+class RouletteDecorator( AbstractXmlRenderer ):
 	"""
 	Adds roulette-exercises to page xml.
 	Implements the decorator pattern.
@@ -112,7 +112,9 @@ class RouletteDecorator( PageXmlDecorator ):
 		@param renderer - an object implementing AbstractXmlRenderer
 		@param data - a dict containing the DirectRoulettes key
 		"""
-		super().__init__(renderer)
+		## @var renderer
+		#  An object implementing AbstractXmlRenderer
+		self.renderer = renderer
 
 		## @var data
 		#  simplify access to the interface data member (Daniel Haase) 
@@ -131,7 +133,7 @@ class RouletteDecorator( PageXmlDecorator ):
 		@return an etree element
 		"""
 		# call the method from the superclass
-		xml = super().renderXML( tc )
+		xml = self.renderer.renderXML( tc )
 		
 		# skip on special pages
 		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml
@@ -220,7 +222,7 @@ class RouletteDecorator( PageXmlDecorator ):
 		return xml
 	
 
-class QuestionDecorator(PageXmlDecorator):
+class QuestionDecorator(AbstractXmlRenderer):
 	"""
 	Adds questions to page xml.
 	Implements the decorator pattern.
@@ -233,7 +235,9 @@ class QuestionDecorator(PageXmlDecorator):
 		
 		@param renderer - an object implementing AbstractXmlRenderer
 		"""
-		super().__init__(renderer)
+		## @var renderer
+		#  An object implementing AbstractXmlRenderer
+		self.renderer = renderer
 
 	
 	def renderXML(self, tc):
@@ -244,7 +248,7 @@ class QuestionDecorator(PageXmlDecorator):
 		@return an etree element
 		"""
 		# call the method from the superclass
-		xml = super().renderXML(tc)
+		xml = self.renderer.renderXML(tc)
 		
 		# skip on special pages
 		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml

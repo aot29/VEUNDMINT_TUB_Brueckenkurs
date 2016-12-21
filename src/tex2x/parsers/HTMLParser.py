@@ -48,6 +48,8 @@ class HTMLParser( AbstractParser ):
 	def parse(self, xmlString):
 		"""
 		Calls lxml.HTMLParser to generate an etree from an XML string.
+		@param xmlString - string containing XML, as produced by TTM
+		@return etree containing HTML5 (XML)
 		"""
 		xmlString = self.replace_html_entities( xmlString )
 		return etree.fromstring( xmlString, self.parser )

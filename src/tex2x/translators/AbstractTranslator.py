@@ -50,6 +50,13 @@ class VerboseTranslator( AbstractTranslator ):
 		
 	
 	def translate(self, *args, **kwargs):
+		"""
+		@param sourceTEXStartFile path to source Tex file
+		@param sourceTEX path to search for Tex input files
+		@param ttmFile path to output XML file
+		@param dorelease - deprecated, use unit tests and continuous integration instead.
+		@return: String - the XML as loaded from file as string
+		"""
 		time_start = time.time()
 
 		# call the decorated class' runner

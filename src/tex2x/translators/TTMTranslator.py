@@ -1,5 +1,5 @@
 ## @package tex2x.parsers.TTMParser
-#  Class that can parse texfiles to xml. Relies on the 'ttm' binary.
+#  Class that can parse LaTeX files to xml files. Relies on the 'ttm' binary.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
 #  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
@@ -60,15 +60,14 @@ class TTMTranslator(AbstractTranslator):
 	def translate(self, sourceTEXStartFile=settings.sourceTEXStartFile, sourceTEX=settings.sourceTEX, ttmFile=settings.ttmFile, dorelease = settings.dorelease ):
 		"""
 		Executes the TTM command and creates a XML-file from Tex sources.
-		Parses files from TeX to ?, uses the converterDir Option which is set to /src
-		Calls lxml.HTMLParser to generate an etree from an XML string.
+		Translates files from LaTeX to XML, uses the converterDir Option which is set to /src
 		WARNING: an external program is being called here, so this could theoretically be a security liability
 		
 		@param sourceTEXStartFile path to source Tex file
 		@param sourceTEX path to search for Tex input files
 		@param ttmFile path to output XML file
 		@param dorelease - deprecated, use unit tests and continuous integration instead.
-		@return: String, etree - the XML as loaded from file as string, as tree
+		@return: String - the XML as loaded from file as string
 		"""
 		if hasattr(self.options, 'ttmExecute') and not self.options.ttmExecute:
 			# try to get the XML-file if it exists, otherwise generate it

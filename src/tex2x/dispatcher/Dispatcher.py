@@ -126,11 +126,11 @@ class Dispatcher(AbstractDispatcher):
 		if self.verbose: preprocessorDispatcher = VerboseDispatcher( preprocessorDispatcher, "Step 1: Preprocessing" )
 		preprocessorDispatcher.dispatch()
 
-		# 2. Run TTM parser, load XML
+		# 2. Run TTM translator, load XML
 		self.translator = TTMTranslator( self.options, self.sys )
 		self.translator = MathMLDecorator( self.translator, self.options ) # Add MathML corrections
 		if self.verbose: self.translator = VerboseTranslator( self.translator, "Step 2: Converting Tex to XML (TTM)" )
-		self.data['rawxml'] = self.translator.translate( settings.sourceTEXStartFile, settings.sourceTEX, settings.ttmFile ) # run TTM parser with default options
+		self.data['rawxml'] = self.translator.translate( settings.sourceTEXStartFile, settings.sourceTEX ) # run TTM parser with default options
 		
 		# 3. Parse HTML
 		html = HTMLParser( self.options )
@@ -156,7 +156,7 @@ class Dispatcher(AbstractDispatcher):
 		if self.options.cleanup == 1: self.clean_up();
 
 		# stop program execution and return proper error level as return value
-		#self.sys.finish_program()
+		# self.sys.finish_program()
 		# no way the application runs without errors
 
 

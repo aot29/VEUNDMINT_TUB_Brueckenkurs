@@ -62,3 +62,6 @@ class VerboseGenerator( AbstractGenerator ):
 		print("%s - %s s\n" % ( self.msg, time_diff ) )
 		
 		return response
+
+		
+	

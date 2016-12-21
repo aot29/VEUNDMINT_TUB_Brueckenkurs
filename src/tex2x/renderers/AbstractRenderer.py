@@ -173,26 +173,3 @@ class AbstractHtmlRenderer(object):
 				a.set( 'href', os.path.join( basePath, link ) )
 
 
-class PageXmlDecorator( AbstractXmlRenderer ):
-	"""
-	Base class for all page decorators.
-	"""
-	def __init__(self, renderer):
-		"""
-		Initialize the base class with the class that will be decorated
-		
-		@param renderer - an object implementing AbstractXmlRenderer
-		"""
-		self.renderer = renderer
-		
-	
-	def renderXML(self, tc):
-		"""
-		Decorate the class. This method is to be called 
-		first thing in the overriding method by all extending decorator classes, 
-		like this:
-		xml = super().renderXML( tc )
-		"""
-		return self.renderer.renderXML(tc)
-		
-	
