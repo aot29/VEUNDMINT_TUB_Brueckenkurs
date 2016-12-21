@@ -20,6 +20,7 @@ import os
 import re
 from tex2x.renderers.AbstractRenderer import *
 from tex2x.renderers.PageXmlRenderer import *
+from tex2x.Settings import ve_settings as settings
 
 
 class PageTUB( AbstractHtmlRenderer ):
@@ -30,14 +31,13 @@ class PageTUB( AbstractHtmlRenderer ):
 	## The template which includes all others
 	BASE_TEMPLATE = "page.xslt"
 	
-	def __init__( self, contentRenderer, tocRenderer, options, data ):
+	def __init__( self, contentRenderer, tocRenderer, data ):
 		"""
 		Constructor.
 		Instantiated by PageFactory.
 		
 		@param contentRenderer - PageXmlRenderer an AbstractXMLRenderer that builds the page contents, including the questions and roulettes added by the decorators
 		@param tocRenderer - TocRenderer an AbstractXMLRenderer that builds the table of contents
-		@param options - Option.py object containing the options for the conversion.
 		@param data - simplify access to the interface data member (Daniel Haase) 
 		"""
 		
@@ -55,11 +55,11 @@ class PageTUB( AbstractHtmlRenderer ):
 		
 		## @var tplPath
 		#  tplPath - String path to the directory holding the xslt templates
-		self.tplPath = options.converterTemplates
+		self.tplPath = settings.converterTemplates
 		
 		## @var disableLogin 
 		#  Boolean, whether to disable the login button. false=enabled (default), true = disabled.
-		self.disableLogin = options.disableLogin
+		self.disableLogin = settings.disableLogin
 
 
 	def renderHTML( self, tc ):

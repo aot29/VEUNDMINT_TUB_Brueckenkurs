@@ -33,21 +33,16 @@ class TTMTranslator(AbstractTranslator):
 	Can be decorated with VerboseParser to enable performance logging.
 	"""
 
-	def __init__(self, options, ttmBin=settings.ttmBin):
+	def __init__(self, ttmBin=settings.ttmBin):
 		"""
 		Constructor.
 		
-		@param options Object
 		@param ttmBin path to TTM binary
 		"""
 		## @var subprocess
 		#  Subprocess connecting to TTM input/output/error pipes and error codes
 		self.subprocess = None
-		
-		## @var options
-		#   Object encapsulating all the options necessary to run the tex2x converter. 
-		self.options = options
-		
+				
 		## @var ttmBin
 		#  Path to TTM binary
 		self.ttmBin = ttmBin
@@ -65,7 +60,7 @@ class TTMTranslator(AbstractTranslator):
 		@param dorelease - deprecated, use unit tests and continuous integration instead.
 		@return: String - the XML as loaded from file as string
 		"""
-		if hasattr(self.options, 'ttmExecute') and not self.options.ttmExecute:
+		if hasattr( settings, 'ttmExecute') and not settings.ttmExecute:
 			# try to get the XML-file if it exists, otherwise generate it
 			if self.prepareXMLFile( sourceTEXStartFile, ttmFile ): return
 
@@ -74,8 +69,8 @@ class TTMTranslator(AbstractTranslator):
 			raise Exception("ttm program file is not marked as executable, aborting")
 
 		# Check that output dir exists
-		if not os.path.exists( self.options.targetpath ):
-			os.makedirs(self.options.targetpath)
+		if not os.path.exists( settings.targetpath ):
+			os.makedirs(settings.targetpath)
 			
 		# TODO DH: Why exactly do we need this?
 		sys.pushdir() # AO: when this is removed, then the output plugin starts in the wrong dir

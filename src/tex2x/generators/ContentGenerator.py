@@ -21,6 +21,7 @@ from copy import deepcopy
 from lxml import etree
 from tex2x.generators.AbstractGenerator import AbstractGenerator
 from tex2x.System import ve_system as sys
+from tex2x.Settings import ve_settings as settings
 
 class ContentGenerator( AbstractGenerator ):
 	"""
@@ -28,16 +29,12 @@ class ContentGenerator( AbstractGenerator ):
 	Instantiated by the Dispatcher.	
 	Can be decorated with VerboseParser to enable performance logging.
 	"""
-	def __init__(self, options ):
+	def __init__(self ):
 		"""
-		Constructor.
-		
-		@param options Object
+		Constructor. Needs to overrides the constructor of the abstract base class.
 		"""
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = options
-				
+		pass
+
 
 	def generate( self, htmltree ):
 		"""
@@ -105,7 +102,7 @@ class ContentGenerator( AbstractGenerator ):
 		"""
 
 		#Kopie, um Schreibweise zu verkürzen
-		contentStructure = self.options.ContentStructure
+		contentStructure = settings.ContentStructure
 
 		root = htmltree
 		body = root.find("body")
@@ -179,17 +176,17 @@ class ContentGenerator( AbstractGenerator ):
 			if level == -1:
 				#Es wurde ein zugehöriges Modul gefunden
 				#Modul wird gespeichert mit zugehörigem Knoten aus dem Inhaltsverzeichnis
-				if node.get("class") != None and self.options.ModuleStructureClass in node.get("class") and node.get("class").index(self.options.ModuleStructureClass) == 0:
+				if node.get("class") != None and settings.ModuleStructureClass in node.get("class") and node.get("class").index(settings.ModuleStructureClass) == 0:
 					#Jetzt sehen wir uns die Zahl an, die in der Klasse mit angegeben wird
 					number = ""
-					if (len(node.get("class")) > len(self.options.ModuleStructureClass)):
+					if (len(node.get("class")) > len(settings.ModuleStructureClass)):
 						try:
-							int(node.get("class")[len(self.options.ModuleStructureClass):])#Test auf Integer
-							number = node.get("class")[len(self.options.ModuleStructureClass):]#wir benutzen die Nummer anschließend als String weiter
+							int(node.get("class")[len(settings.ModuleStructureClass):])#Test auf Integer
+							number = node.get("class")[len(settings.ModuleStructureClass):]#wir benutzen die Nummer anschließend als String weiter
 						except:
 							print("Fehler beim Parsen der xcontent-Nummer")
 					else:
-						sys.message(sys.CLIENTWARN, "Dissection found class " + self.options.ModuleStructureClass + ", but without a number")
+						sys.message(sys.CLIENTWARN, "Dissection found class " + settings.ModuleStructureClass + ", but without a number")
 
 
 

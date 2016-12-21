@@ -14,11 +14,6 @@ from tex2x.renderers.AbstractRenderer import *
 from tex2x.parsers.AbstractParser import *
 from tex2x.Settings import settings
 from tex2x.System import ve_system as sys
-
-class MockOptions(Option):
-	def __init__(self):
-		super().__init__(".", "")
-		self.lang = "en"
 		
 
 class MockGenerator(AbstractParser):
@@ -42,10 +37,6 @@ class AbstractRendererTestCase(unittest.TestCase):
 	tplPath = os.path.join(settings.BASE_DIR, "src/templates_xslt")
 
 	def setUp(self):
-		self.lang = "en"
-		self.data = None
-		self.i18strings = dict({"roulette_new": "New exercise"})
-		self.options = MockOptions()
 		self.data = None
 		
 		# Setup a tc object for testing

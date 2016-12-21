@@ -20,6 +20,7 @@
 from lxml import etree
 import re
 from tex2x.renderers.AbstractRenderer import *
+from tex2x.Settings import ve_settings as settings
 
 class PageXmlRenderer(AbstractXmlRenderer):
 	"""
@@ -28,16 +29,12 @@ class PageXmlRenderer(AbstractXmlRenderer):
 	Actual page contents are added in PageTUB.
 	"""
 
-	def __init__(self, options):
+	def __init__( self ):
 		"""
 		Constructor.
-		Please do not instantiate directly, use PageFactory instead (except for unit tests).
-		
-		@param options - Options.py object
+		Please do not instantiate directly, use PageFactory instead (except for unit tests).		
 		"""
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = options
+		pass
 		
 		
 	def renderXML( self, tc ):
@@ -52,7 +49,7 @@ class PageXmlRenderer(AbstractXmlRenderer):
 
 		#self._generateIds( tc )
 		#lang - String ISO-639-1 language code ("de" or "en")
-		xml.set( 'lang', self.options.lang )
+		xml.set( 'lang', settings.lang )
 		# site ID
 		#xml.set( 'siteId', tc.siteId )
 		# UX ID

@@ -45,10 +45,6 @@ class WikipediaDecorator( AbstractGenerator ):
 		#  Generator (object extending AbstractParser, in this case ContentGenerator)
 		self.generator = generator
 		
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = generator.options
-				
 		## @var lang
 		#  The language of the page ('de' or 'en')
 		self.lang = lang

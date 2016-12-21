@@ -99,11 +99,11 @@ class Dispatcher(AbstractDispatcher):
 	def dispatch(self):
 		"""
 		The dispatcher calls each step of the conversion pipeline.
-		1. Run pre-processing plugins
-		2. Run TTM (convert Tex to XML), load XML file created by TTM, 
-		3. Parse XML files into a HTML tree
-		4. Create the table of contents (TOC) and content tree, correct links
-		5. Output to static HTML files
+		1. Preprocessors: Run pre-processing plugins
+		2. Translator: Run TTM (convert Tex to XML), load XML file created by TTM, 
+		3. Parser: Parse XML files into a HTML tree
+		4. Generator: Create the table of contents (TOC) and content tree, correct links
+		5. Plugins: Output to static HTML files
 		"""
 				
 		if hasattr(settings, "overrides"):
@@ -115,18 +115,18 @@ class Dispatcher(AbstractDispatcher):
 		preprocessorDispatcher.dispatch()
 
 		# 2. Run TTM translator, load XML
-		self.translator = TTMTranslator( settings )
-		self.translator = MathMLDecorator( self.translator, settings ) # Add MathML corrections
+		self.translator = TTMTranslator()
+		self.translator = MathMLDecorator( self.translator ) # Add MathML corrections
 		if self.verbose: self.translator = VerboseTranslator( self.translator, "Step 2: Converting Tex to XML (TTM)" )
-		self.data['rawxml'] = self.translator.translate( settings.sourceTEXStartFile, settings.sourceTEX ) # run TTM parser with default options
+		self.data['rawxml'] = self.translator.translate() # run TTM parser with default options
 		
 		# 3. Parse HTML
-		html = HTMLParser( settings )
+		html = HTMLParser()
 		if self.verbose: html = VerboseParser( html, "Step 3: Parsing to HTML" )
 		xmltree_raw = html.parse( self.data['rawxml'] )
 		
 		# 4. Create TOC and content tree
-		self.generator = ContentGenerator( settings )
+		self.generator = ContentGenerator()
 		self.generator = LinkDecorator( self.generator )
 		self.generator = WikipediaDecorator( self.generator, settings.lang)
 		if self.verbose: self.generator = VerboseGenerator( self.generator, "Step 4: Creating the table of contents (TOC) and content tree" )

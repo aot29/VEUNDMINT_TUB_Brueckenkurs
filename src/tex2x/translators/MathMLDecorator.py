@@ -30,20 +30,15 @@ class MathMLDecorator( AbstractTranslator ):
 	Can be decorated with VerboseParser to enable performance logging.
 	"""
 
-	def __init__(self, translator, options ):
+	def __init__( self, translator ):
 		"""
 		@param translator - Translator (object extending AbstractTranslator, in this case TTMTranslator)
-		@param options - Object encapsulating all the options necessary to run the tex2x converter. 
 		"""
 		
 		## @var parser
 		#  Parser (object extending AbstractParser, in this case TTMParser)
 		self.translator = translator
 		
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = options
-
 
 	def translate(self, *args, **kwargs):
 		"""
@@ -79,8 +74,8 @@ class MathMLDecorator( AbstractTranslator ):
 		replace = r"<mtable>"
 		xmltext = re.sub(pattern, replace, xmltext)
 
-		if not hasattr(self.options, "keepequationtables"): self.options.keepequationtables = 0
-		if self.options.keepequationtables == 0:
+		if not hasattr(settings, "keepequationtables"): settings.keepequationtables = 0
+		if settings.keepequationtables == 0:
 			pattern = r"<table width=\"100%\"><tr><td align=\"center\">(?P<a>\s*(<math(.|\n)*?</math>)\s*)</td></tr></table>"
 			replace = r"<center>\g<a></center>"
 			xmltext = re.sub(pattern, replace, xmltext)

@@ -59,7 +59,7 @@ class PageFactory(object):
 		from tex2x.renderers.PageXmlRenderer import PageXmlRenderer, QuestionDecorator, RouletteDecorator 
 
 		# get a basic page renderer
-		xmlRenderer = PageXmlRenderer( settings )
+		xmlRenderer = PageXmlRenderer()
 		
 		# decorate with questions and roulette exercises
 		# the order is important, as roulette adds questions
@@ -69,10 +69,10 @@ class PageFactory(object):
 						)
 
 		# get a table of contents renderer			
-		tocRenderer = TocRenderer( settings )
+		tocRenderer = TocRenderer()
 
 		# get a page HTML renderer
-		page = PageTUB( xmlRenderer, tocRenderer, settings, self.data )
+		page = PageTUB( xmlRenderer, tocRenderer, self.data )
 
 		return page 
 

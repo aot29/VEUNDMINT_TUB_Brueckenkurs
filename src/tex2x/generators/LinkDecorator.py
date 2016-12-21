@@ -40,11 +40,7 @@ class LinkDecorator( AbstractGenerator ):
 		## @var generator
 		#  Generator (object extending AbstractParser, in this case ContentGenerator)
 		self.generator = generator
-		
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = generator.options
-				
+						
 
 	def generate(self, *args, **kwargs):
 		"""

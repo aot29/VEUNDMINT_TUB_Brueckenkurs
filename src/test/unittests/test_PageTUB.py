@@ -13,7 +13,7 @@ from plugins.VEUNDMINT.tcontent import TContent
 from tex2x.renderers.PageXmlRenderer import *
 from tex2x.renderers.TocRenderer import TocRenderer
 from tex2x.renderers.PageTUB import PageTUB
-from tex2x.Settings import settings
+from tex2x.Settings import ve_settings as settings
 
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
 from tex2x.renderers.AbstractRenderer import *
@@ -24,9 +24,9 @@ class test_PageTUB(AbstractRendererTestCase):
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 		
-		contentRenderer = PageXmlRenderer( self.options )
-		tocRenderer = TocRenderer( self.options )
-		self.page = PageTUB( contentRenderer, tocRenderer, self.options, self.data )
+		contentRenderer = PageXmlRenderer()
+		tocRenderer = TocRenderer()
+		self.page = PageTUB( contentRenderer, tocRenderer, self.data )
 		# generate HTML element using the tc mock-up
 		self.page.renderHTML( self.tc )
 
@@ -101,11 +101,11 @@ class test_PageTUB(AbstractRendererTestCase):
 		#encoding
 		self.assertTrue( "utf-8" in self.tc.html, "Wrong or missing encoding in HTML" )
 		# language
-		self.assertTrue( 'html lang="%s"' % self.lang in self.tc.html, "Wrong or missing language code in HTML" )
+		self.assertTrue( 'html lang="%s"' % settings.lang in self.tc.html, "Wrong or missing language code in HTML" )
 		# MathJax got loaded
 		self.assertTrue( 'MathJax.js' in self.tc.html, "Missing external MathJax in HTML" )
 		# i18n points to the right locale
-		self.assertTrue( "$.i18n().load( { '%s' :" % self.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
+		self.assertTrue( "$.i18n().load( { '%s' :" % settings.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
 		# navbar
 		self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
 		
@@ -164,7 +164,7 @@ class test_PageTUB(AbstractRendererTestCase):
 		# An annotations array
 		annotations = [ Annotation( word='Operator', title='Operator (Mathematik)', url='https://de.wikipedia.org/wiki/Operator_(Mathematik)' )]
 		# get a basic page renderer
-		xmlRenderer = PageXmlRenderer( self.options )
+		xmlRenderer = PageXmlRenderer()
 		xml = xmlRenderer.renderXML( self.tc )
 		# add annotations array to xml
 		self.page._addAnnotations( xml, annotations )

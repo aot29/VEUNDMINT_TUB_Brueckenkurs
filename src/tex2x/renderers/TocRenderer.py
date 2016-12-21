@@ -20,20 +20,20 @@ from lxml import etree
 import re
 import html
 from tex2x.renderers.AbstractRenderer import *
+from tex2x.Settings import ve_settings as settings
 
 class TocRenderer( AbstractXmlRenderer ):
 	"""
 	Generates a table of contents for the selected page (the TContent tc object passed to renderXML)
 	"""	
 	
-	def __init__(self, options):
+	def __init__(self):
 		"""
 		Constructor.
 		Instantiated by PageFactory.
+		Needs to override constructor from parent abstract class.
 		"""
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = options
+		pass
 		
 	
 	def renderXML( self, tc ):
@@ -52,7 +52,7 @@ class TocRenderer( AbstractXmlRenderer ):
 		# add a parameter to the tree: the currently selected page
 		toc.set( 'forPage', str( pageId ) )
 		# course description
-		toc.set( 'description', self.options.description )
+		toc.set( 'description', settings.description )
 
 		# the TOC entries tree
 		entries = etree.Element( 'entries' )

@@ -11,7 +11,7 @@ from lxml import etree
 
 from plugins.VEUNDMINT.tcontent import TContent
 from tex2x.renderers.PageXmlRenderer import *
-from tex2x.Settings import settings
+from tex2x.Settings import ve_settings as settings
 
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
 from tex2x.renderers.AbstractRenderer import *
@@ -21,9 +21,9 @@ class test_PageXmlRenderer(AbstractRendererTestCase):
     
     def setUp(self):
         AbstractRendererTestCase.setUp(self)        
-        page = PageXmlRenderer( self.options )
+        page = PageXmlRenderer()
         pageWithQuestions = QuestionDecorator( page )
-        self.renderer = RouletteDecorator( pageWithQuestions, self.data, self.i18strings )
+        self.renderer = RouletteDecorator( pageWithQuestions, self.data, settings.strings )
         
 
     def test_renderXML(self):
@@ -37,7 +37,7 @@ class test_PageXmlRenderer(AbstractRendererTestCase):
         #Title
         self.assertEqual( self.tc.title, self.xml.xpath('/page/title')[0].text, "Title is wrong in XML" )
         #Lang
-        self.assertEqual( self.lang, self.xml.xpath('/page/@lang')[0], "Language code is wrong in XML" )
+        self.assertEqual( settings.lang, self.xml.xpath('/page/@lang')[0], "Language code is wrong in XML" )
         # found a question in the sample content
         self.assertEqual( 1, len( self.xml.xpath( '/page/questions' ) ), "Expected a question, but none or more than one found" )
         # found a roulette exercise in the sample content

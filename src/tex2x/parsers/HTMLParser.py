@@ -29,20 +29,14 @@ class HTMLParser( AbstractParser ):
 	
 	@see http://lxml.de/api/lxml.etree.HTMLParser-class.html
 	"""
-	def __init__( self, options ):
+	def __init__( self ):
 		"""
 		Constructor.
-		
-		@param options - Object encapsulating all the options necessary to run the tex2x converter. 
 		"""
 		## @var parser
 		#  An HTML parser that is configured to return lxml.html Element
 		self.parser = html.HTMLParser(remove_blank_text = False)
-		
-		## @var options
-		#   Object encapsulating all the options necessary to run the tex2x converter. 
-		self.options = options
-				
+						
 
 	def parse(self, xmlString):
 		"""
@@ -64,7 +58,7 @@ class HTMLParser( AbstractParser ):
 		@author - Daniel Haase (except for the try-finally part)
 		"""
 		#Liste Lesen und verarbeiten
-		fobj = open(os.path.join(self.options.currentDir,"src", "entity_list.txt"), "r")
+		fobj = open(os.path.join(settings.currentDir,"src", "entity_list.txt"), "r")
 		try:
 			line_list = fobj.readlines()
 			entity_list = list()
