@@ -15,13 +15,14 @@ from tex2x.dispatcher.Dispatcher import Dispatcher
 from tex2x.annotators.WikipediaAnnotator import WikipediaAnnotator
 from tex2x.generators.WikipediaDecorator import WikipediaDecorator
 from test.unittests.AbstractRendererTestCase import *
+from tex2x.Settings import ve_settings as settings
 
 class test_WikipediaDecorator(AbstractRendererTestCase):
 
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
-		self.mockGenerator = MockGenerator( dispatcher.options, dispatcher.sys )
+		self.mockGenerator = MockGenerator( settings, dispatcher.sys )
 
 	
 	def testCreate(self):

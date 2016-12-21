@@ -29,6 +29,7 @@ import subprocess
 import fileinput
 import sys
 from tex2x.AbstractPlugin import *
+from tex2x.Settings import ve_settings as settings
 
 class Preprocessor(AbstractPreprocessor):
 	
@@ -38,7 +39,6 @@ class Preprocessor(AbstractPreprocessor):
 		# copy interface member references
 		self.sys = interface['system']
 		self.data = interface['data']
-		self.options = interface['options']
 		self.name = "MINTMODTEX"
 		self.version ="P0.1.0"
 		self.sys.message(self.sys.VERBOSEINFO, "Preprocessor " + self.name + " of version " + self.version + " constructed")
@@ -56,11 +56,11 @@ class Preprocessor(AbstractPreprocessor):
 			
 		else:
 			# read original code of the macro package
-			macrotex = self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", self.options.macrofile), self.options.stdencoding)
+			macrotex = self.sys.readTextFile(os.path.join(settings.converterDir, "tex", settings.macrofile), settings.stdencoding)
 
 			# read requested i18n file and concatenate macro files if present
 			try:
-				i18ntex = self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", self.options.i18nfile), self.options.stdencoding)
+				i18ntex = self.sys.readTextFile(os.path.join(settings.converterDir, "tex", settings.i18nfile), settings.stdencoding)
 				self.data['macrotex'] = i18ntex + macrotex
 				#self.data['macrotex'] = macrotex
 
@@ -69,9 +69,9 @@ class Preprocessor(AbstractPreprocessor):
 				self.data['macrotex'] = macrotex
 			
 			if re.search(r"\\MPragma{mintmodversion;" + self.version + r"}", self.data['macrotex'], re.S):
-				self.sys.message(self.sys.VERBOSEINFO, "Macro package " + self.options.macrofile + " checked, seems to be ok")
+				self.sys.message(self.sys.VERBOSEINFO, "Macro package " + settings.macrofile + " checked, seems to be ok")
 			else:				
-				self.sys.message(self.sys.CLIENTERROR, "Macro package " + self.options.macrofile + " does not provide macroset of preprocessor version")
+				self.sys.message(self.sys.CLIENTERROR, "Macro package " + settings.macrofile + " does not provide macroset of preprocessor version")
 			
 		if 'modmacrotex' in self.data:
 			sys.message(sys.CLIENTWARN, "Using MODIFIED macrotex from an another preprocessor, hope it works out")
@@ -82,11 +82,11 @@ class Preprocessor(AbstractPreprocessor):
 
 
 		# append signature values as LaTeX macros
-		self._addTeXMacro("MSignatureMain", self.options.signature_main)
-		self._addTeXMacro("MSignatureVersion", self.options.signature_version)
-		self._addTeXMacro("MSignatureLocalization", self.options.signature_localization)
-		self._addTeXMacro("MSignatureVariant", self.options.variant)
-		self._addTeXMacro("MSignatureDate", self.options.signature_date)
+		self._addTeXMacro("MSignatureMain", settings.signature_main)
+		self._addTeXMacro("MSignatureVersion", settings.signature_version)
+		self._addTeXMacro("MSignatureLocalization", settings.signature_localization)
+		self._addTeXMacro("MSignatureVariant", settings.variant)
+		self._addTeXMacro("MSignatureDate", settings.signature_date)
 
 		if 'DirectHTML' in self.data:
 			sys.message(sys.CLIENTWARN, "Another plugin has been using DirectHTML, appending existing values")
@@ -133,17 +133,17 @@ class Preprocessor(AbstractPreprocessor):
 		self.directexercises = ""
 
 		# Prepare working folder
-		self.sys.emptyTree(self.options.sourcepath)
-		self.sys.copyFiletree(self.options.texCommonFiles, self.options.sourceTEX, ".")
-		self.sys.copyFiletree(self.options.sourcepath_original, self.options.sourceTEX, ".")
+		self.sys.emptyTree(settings.sourcepath)
+		self.sys.copyFiletree(settings.texCommonFiles, settings.sourceTEX, ".")
+		self.sys.copyFiletree(settings.sourcepath_original, settings.sourceTEX, ".")
 		self.sys.timestamp("Source and common tex files copied")
-		if os.path.isfile(self.options.sourceTEXStartFile):
-			self.sys.message(self.sys.VERBOSEINFO, "Found main tex file " + self.options.sourceTEXStartFile)
+		if os.path.isfile(settings.sourceTEXStartFile):
+			self.sys.message(self.sys.VERBOSEINFO, "Found main tex file " + settings.sourceTEXStartFile)
 		else:
-			self.sys.message(self.sys.FATALERROR, "Main tex file " + self.options.sourceTEXStartFile + " not present in original source folder " + self.options.sourcepath_original)
+			self.sys.message(self.sys.FATALERROR, "Main tex file " + settings.sourceTEXStartFile + " not present in original source folder " + settings.sourcepath_original)
 
 		# initialize course variant data
-		self.variant = self.options.variant
+		self.variant = settings.variant
 		self.sys.message(self.sys.CLIENTINFO, "Preprocessor uses course variant " + self.variant)
 		# modify macro package to variant (as a variable, not a file yet)
 		(self.data['modmacrotex'], k) = re.subn(r"\\variantstdtrue", "\\\\variant" + self.variant + "true % this string was added by tex2x VEUNDMINT preprocessor\n", self.data['modmacrotex'], 0, re.S)
@@ -153,14 +153,14 @@ class Preprocessor(AbstractPreprocessor):
 			self.sys.message(self.sys.CLIENTERROR, "Variant selection statement \\variantstdtrue found " + str(k) + " times in macro file")
   
 		# Preprocessing of each tex file in the folder and subfolders
-		pathLen = len(self.options.sourceTEX) + 1
+		pathLen = len(settings.sourceTEX) + 1
 		fileArray = []
-		for root,dirs,files in os.walk(self.options.sourceTEX):				
+		for root,dirs,files in os.walk(settings.sourceTEX):				
 			root = root[pathLen:]
 			for name in files:
 				if (name[-4:] == ".tex"):
 					# store path to source copy and original source file
-					fileArray.append([os.path.join(self.options.sourceTEX, root, name), os.path.join(self.options.sourcepath_original, root, name)])
+					fileArray.append([os.path.join(settings.sourceTEX, root, name), os.path.join(settings.sourcepath_original, root, name)])
 			for name in dirs:
 				continue
 
@@ -168,26 +168,26 @@ class Preprocessor(AbstractPreprocessor):
 
 		nonpass = 0
 		for texfile in fileArray:
-			if re.match(".*" + self.options.macrofilename  + "\\.tex", texfile[0]):
+			if re.match(".*" + settings.macrofilename  + "\\.tex", texfile[0]):
 				self.sys.message(self.sys.VERBOSEINFO, "Preprocessing and release check ignores macro file " + texfile[0])
 			else:
-				tex = self.sys.readTextFile(texfile[0], self.options.stdencoding)
+				tex = self.sys.readTextFile(texfile[0], settings.stdencoding)
 				if not self.checkRelease(tex, texfile[1]):
 					nonpass += 1
 					self.sys.message(self.sys.VERBOSEINFO, "Original tex-file " + texfile[1] + " did not pass release check");
-					if (self.options.dorelease == 1):
+					if (settings.dorelease == 1):
 						self.sys.message(self.sys.FATALERROR, "Refusing to continue with dorelease=1 after checkRelease failed, see logfile for details")
 
 			
 				tex = self.preprocess_texfile(texfile[0], tex)
-				self.sys.writeTextFile(texfile[0], tex, self.options.stdencoding)
+				self.sys.writeTextFile(texfile[0], tex, settings.stdencoding)
 
 
 		# Remove the i18n localization \input commands from LaTeX, as the converter inserts them into the source code, 
 		# and the presence of both confuses pdflatex
 		pattern = re.compile(r"\\\input{.*}")
 		for texfile in fileArray:
-			#if re.match(".*" + self.options.macrofilename  + "\\.tex", texfile[0]): continue
+			#if re.match(".*" + settings.macrofilename  + "\\.tex", texfile[0]): continue
 			#if re.match(".*/veundmint_de.tex", texfile[0]): continue
 			#if re.match(".*/veundmint_en.tex", texfile[0]): continue
 			if re.match(".*/vbkm.*", texfile[0]):	
@@ -211,13 +211,13 @@ class Preprocessor(AbstractPreprocessor):
 
 		# Create copyright text file and exercise export
 		self.data['copyrightcollection'] = self.data['copyrightcollection'] + "\\begin{tabular}{llll}%\n" + self.copyrightcollection + "\\end{tabular}\n"
-		self.sys.writeTextFile(self.options.copyrightFile, "% autogenerated by the tex2x VEUNDMINT plugin\n% do not modify\n" + self.data['copyrightcollection'], self.options.stdencoding)
+		self.sys.writeTextFile(settings.copyrightFile, "% autogenerated by the tex2x VEUNDMINT plugin\n% do not modify\n" + self.data['copyrightcollection'], settings.stdencoding)
 		self.data['directexercises'] = self.data['directexercises'] + self.directexercises
-		self.sys.writeTextFile(self.options.directexercisesFile, "% autogenerated by the tex2x VEUNDMINT plugin\n% do not modify\n" + self.data['directexercises'], self.options.stdencoding)
+		self.sys.writeTextFile(settings.directexercisesFile, "% autogenerated by the tex2x VEUNDMINT plugin\n% do not modify\n" + self.data['directexercises'], settings.stdencoding)
 
 		# create macro and style files used for pdflatex and ttm processing
 		self.sys.pushdir()
-		os.chdir(self.options.sourceTEX)
+		os.chdir(settings.sourceTEX)
 		self._installPackages()
 		self.sys.popdir()
 		
@@ -225,14 +225,14 @@ class Preprocessor(AbstractPreprocessor):
 		# \author and \title MUST NOT appear in the tex source, they generate h1 and h3 tags through ttm which confuse xml dissection
 		maintex = "% this file was autogenerated by tex2x VEUNDMINT preprocessor, do not modify!\n" \
 				 + "\\documentclass{book}\n" \
-				 + "\\input{" + self.options.macrofile + "} % variant " + self.variant + "\n" \
+				 + "\\input{" + settings.macrofile + "} % variant " + self.variant + "\n" \
 				 + "\\newcounter{MChaptersGiven}\\setcounter{MChaptersGiven}{1}\n" \
 				 + "\\begin{document}\n" \
 				 + "\\begin{html}<!-- variant;\\end{html}\\MVariant\\begin{html} //-->\\end{html}\n" \
-				 + self.sys.readTextFile(self.options.sourceTEXStartFile, self.options.stdencoding) + "\n" \
+				 + self.sys.readTextFile(settings.sourceTEXStartFile, settings.stdencoding) + "\n" \
 				 + "\\end{document}\n"
-		self.sys.writeTextFile(self.options.sourceTEXStartFile, maintex, self.options.stdencoding)
-		self.sys.message(self.sys.VERBOSEINFO, "Generated main tex file for HTML conversion: " + self.options.sourceTEXStartFile)
+		self.sys.writeTextFile(settings.sourceTEXStartFile, maintex, settings.stdencoding)
+		self.sys.message(self.sys.VERBOSEINFO, "Generated main tex file for HTML conversion: " + settings.sourceTEXStartFile)
 		
 		self.sys.timestamp("Finished preprocessor " + self.name)
 				
@@ -293,13 +293,13 @@ class Preprocessor(AbstractPreprocessor):
 	def preprocess_texfile(self, name, tex):
 		# variables used only for one specific tex file
 		self.local = dict()
-		self.local['htmltikzscale'] = self.options.htmltikzscale # may be overwritten by pragmas
+		self.local['htmltikzscale'] = settings.htmltikzscale # may be overwritten by pragmas
 		self.local['tex'] = tex
 		# Exclude special files from preprocessing
-		if re.match(".*" + self.options.module, name): #  . from file expansion is read as any letter due to regex rules, but it's ok
+		if re.match(".*" + settings.module, name): #  . from file expansion is read as any letter due to regex rules, but it's ok
 			self.sys.message(self.sys.VERBOSEINFO, "Preprocessing ignores module main file " + name)
 			return tex
-		for p in self.options.generate_pdf:
+		for p in settings.generate_pdf:
 			if re.match(".*" + p + "\\.tex", name):
 				self.sys.message(self.sys.VERBOSEINFO, "Preprocessing ignores pdf main file " + name)
 				return tex
@@ -320,7 +320,7 @@ class Preprocessor(AbstractPreprocessor):
 		if m:
 			self.local['pdirname'] = m.group(1)
 			self.local['pfilename'] = m.group(2)
-			pm = re.search(re.escape(self.options.sourceTEX) + r"/(.+)/" + re.escape(self.local['pdirname']), name)
+			pm = re.search(re.escape(settings.sourceTEX) + r"/(.+)/" + re.escape(self.local['pdirname']), name)
 			if pm:
 				self.local['moddirprefix'] = m.group(1)
 				self.sys.message(self.sys.VERBOSEINFO, "Preprocessing file " + self.local['pfilename'] + " in prefix directory " + self.local['moddirprefix'])
@@ -374,7 +374,7 @@ class Preprocessor(AbstractPreprocessor):
 				self.sys.message(self.sys.CLIENTWARN, "Roulette input file " + rfile + " is a pure tex file, please change the file name to non-tex to avoid double preparsing")
 			else:
 				self.sys.message(self.sys.VERBOSEINFO, "MDirectRouletteExercises on include file " + rfile + " with id " + rid)
-			rtext = self.sys.readTextFile(rfile, self.options.stdencoding)
+			rtext = self.sys.readTextFile(rfile, settings.stdencoding)
 		  
 			# Each exercise given in the include file is written to a separate div, only one of them being visible, although all question objects will be generated from start
 			idd = 0
@@ -391,7 +391,7 @@ class Preprocessor(AbstractPreprocessor):
 			if re.search(r"\\begin\{MExercise\}", rtext):
 				self.sys.message(self.sys.CLIENTERROR, "Roulette exercises not exhausted by exercise loop")
 
-			rtext = r"\ifttm\special{html:<!-- directroulette-start;" + rid + r"; //-->}" + htex + r"\special{html:<!-- directroulette-stop;" + rid + r"; //-->}\else\texttt{" + self.options.strings['roulette_text'] + r"}\fi" + "\n"
+			rtext = r"\ifttm\special{html:<!-- directroulette-start;" + rid + r"; //-->}" + htex + r"\special{html:<!-- directroulette-stop;" + rid + r"; //-->}\else\texttt{" + settings.strings['roulette_text'] + r"}\fi" + "\n"
 			
 			self.local['tex'] = self.local['tex'].replace(r"\MDirectRouletteExercises{" + rfilename + r"}{" +rid + r"}", rtext, 1) 
 			
@@ -450,7 +450,7 @@ class Preprocessor(AbstractPreprocessor):
 
 	def preprocess_directhtml(self):
 	  # prepare exercises for export if requested
-	  if (self.options.qautoexport == 1):
+	  if (settings.qautoexport == 1):
 		  self.local['tex'] = re.sub(r"\\begin\{MExercise\}(.+?)\\end\{MExercise\}", r"\\begin{MExportExercise}\1\end{MExportExercise}", self.local['tex'], 0, re.S)
 
 	  m = re.search(r"\\MSection{(.+?)}", self.local['tex'], re.S)
@@ -489,7 +489,7 @@ class Preprocessor(AbstractPreprocessor):
 	# copyright processing, exports, tikz-generation and DirectHTML processing must happen before this one
 
 		# attach standard MINT authorship and CC license to each auto tikz image
-		if self.options.autotikzcopyright == 1:
+		if settings.autotikzcopyright == 1:
 			def ctikz(part):
 				label = self._autolabel()
 				return "\MCopyrightLabel{" + label + "}\\MCopyrightNotice{\\MCCLicense}{TIKZ}{MINT}{TikZ-Quelltext in der Datei " + self.local['pfilename'] + "}{" + label + "}\\MTikzAuto{"
@@ -497,7 +497,7 @@ class Preprocessor(AbstractPreprocessor):
 			(self.local['tex'], n) = re.subn(r"\\MTikzAuto\{", ctikz, self.local['tex'], 0, re.S)
 			if (n > 0):
 				self.sys.message(self.sys.VERBOSEINFO, "Forcibly attached CC licenses to " + str(n) + " tikz pictures in this files")
-		if self.options.displaycopyrightlinks != 1:
+		if settings.displaycopyrightlinks != 1:
 			# force silent copyright links
 			self.local['tex'] = self.local['tex'].replace("\\MCopyrightLabel{", "\\MSilentCopyrightLabel{")
 	
@@ -544,7 +544,7 @@ class Preprocessor(AbstractPreprocessor):
 			self.sys.message(self.sys.CLIENTWARN, "texfile contains \\tikzsetexternalprefix which interferes with tikz automatization")
 		(self.local['tex'], n) = re.subn(r"\\Mtikzexternalize", r"", self.local['tex'], 0, re.S)
 		if n > 0:
-			if (self.options.dotikz == 0):
+			if (settings.dotikz == 0):
 				self.sys.message(self.sys.VERBOSEINFO, "Mtikzexternalize ignored, present externalized files will be used")
 			else:
 				self.sys.message(self.sys.VERBOSEINFO, "Mtikzexternalize activated, externalized files will be generated")
@@ -636,11 +636,11 @@ class Preprocessor(AbstractPreprocessor):
 		if m:
 			f = float(m.group(1))
 			self.local['htmltikzscale'] = f
-			self.sys.message(self.sys.CLIENTINFO, "Pragma HTMLTikZScale: HTMLTikZ scaling factor set from " + str(self.options.htmltikzscale) + " to " + str(f) + " for this tex file only")
+			self.sys.message(self.sys.CLIENTINFO, "Pragma HTMLTikZScale: HTMLTikZ scaling factor set from " + str(settings.htmltikzscale) + " to " + str(f) + " for this tex file only")
 
 		m = re.search(r"\\MPragma\{SolutionSelect\}", self.local['tex'], re.S)
 		if m:
-			if self.options.nosols == 0:
+			if settings.nosols == 0:
 				self.sys.message(self.sys.CLIENTINFO, "Pragma SolutionSelect: Ignored because option nosols is not activated");
 			else:
 				self.sys.message(self.sys.CLIENTINFO, "Pragma SolutionSelect: solution and solution-hint environments will be removed")
@@ -671,14 +671,14 @@ class Preprocessor(AbstractPreprocessor):
 			self.local['tex'] = re.sub(re.escape(k[0]), k[1], self.local['tex'], 0, re.S)
 			
 		(self.local['tex'], n) = re.subn(r"\\MPreambleInclude\{(.*)\}", "\\MPragma{Nothing}", self.local['tex'], 0, re.S)
-		if n > 0: self.sys.message(self.sys.CLIENTERROR, "Inclusion of local preamble is no longer supported, please add them to " + self.options.macrofile + " manually")
+		if n > 0: self.sys.message(self.sys.CLIENTERROR, "Inclusion of local preamble is no longer supported, please add them to " + settings.macrofile + " manually")
 
 		return
  
  
 	def preprocess_includify(self):
 		# transform document from local compilable module to include of main file
-		for tag in [ "\\begin{document}", "\\end{document}", "\\input{" + self.options.macrofile + "}", "\\input{" + self.options.macrofilename + "}", "\\printindex", "\\MPrintIndex"]:
+		for tag in [ "\\begin{document}", "\\end{document}", "\\input{" + settings.macrofile + "}", "\\input{" + settings.macrofilename + "}", "\\printindex", "\\MPrintIndex"]:
 			self.local['tex'] = self.local['tex'].replace(tag, "")
 		
 		# rewrite input statements to match local directory (master document is on a higher level)
@@ -785,7 +785,7 @@ class Preprocessor(AbstractPreprocessor):
 		# check MLabel functionality and move labels to appropriate positions
 		for tag in ['label', 'ref', 'eref']:
 			if ("\\" + tag) in  self.local['tex']:
-				self.sys.message(self.sys.CLIENTERROR, "Use of LaTeX command \\" + tag + " with the VEUNDMINT package will break label management, please use commands from the macro package " + self.options.macrofile + " instead")
+				self.sys.message(self.sys.CLIENTERROR, "Use of LaTeX command \\" + tag + " with the VEUNDMINT package will break label management, please use commands from the macro package " + settings.macrofile + " instead")
 
 		# check duplicate constructs
 		m = re.search(r"\\MLabel\{([^\}]*)\}[\s%]*\\MLabel\{([^\}]*)\}", self.local['tex'], re.S)
@@ -817,17 +817,17 @@ class Preprocessor(AbstractPreprocessor):
 	def _installPackages(self):
 		# installs modified local macro package and used style files in the current directory
 		# don't use a direct copy, always check and modify the encoding if needed
-		self.sys.writeTextFile(self.options.macrofile, self.data['modmacrotex'], self.options.stdencoding)
-		for f in self.options.texstylefiles:
-			self.sys.writeTextFile(f, self.sys.readTextFile(os.path.join(self.options.converterDir, "tex", f), self.options.stdencoding), self.options.stdencoding)
+		self.sys.writeTextFile(settings.macrofile, self.data['modmacrotex'], settings.stdencoding)
+		for f in settings.texstylefiles:
+			self.sys.writeTextFile(f, self.sys.readTextFile(os.path.join(settings.converterDir, "tex", f), settings.stdencoding), settings.stdencoding)
 		return
 
 
 	def _removePackages(self):
 		# removeslocal macro package and style files in the current directory
-		for f in self.options.texstylefiles:
+		for f in settings.texstylefiles:
 			self.sys.removeFile(f)
-		self.sys.removeFile(self.options.macrofile)
+		self.sys.removeFile(settings.macrofile)
 
  
 	def _addTeXMacro(self, macro, tex):

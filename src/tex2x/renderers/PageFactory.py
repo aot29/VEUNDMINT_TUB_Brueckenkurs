@@ -16,6 +16,7 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #  \author Alvaro Ortiz for TU Berlin
+from tex2x.Settings import ve_settings as settings
 
 class PageFactory(object):
 	"""
@@ -38,11 +39,7 @@ class PageFactory(object):
 		## @var data
 		#  simplify access to the interface data member (Daniel Haase) 
 		self.data = interface['data']
-		
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = interface['options']
-		
+				
 		## @var outputplugin
 		#  Plugin (object implementing AbstractPlugin):
 		self.outputplugin = outputplugin
@@ -56,7 +53,7 @@ class PageFactory(object):
 		@return object implementing AbstractHtmlRenderer
 		"""
 		
-		if ( not  self.options.bootstrap ): raise Exception( 'Only Bootstrap Page renderer is supported in this version' )
+		if ( not  settings.bootstrap ): raise Exception( 'Only Bootstrap Page renderer is supported in this version' )
 		
 		# When using bootstrap, use the Page object by TUB
 		from tex2x.renderers.PageTUB import PageTUB
@@ -64,20 +61,20 @@ class PageFactory(object):
 		from tex2x.renderers.PageXmlRenderer import PageXmlRenderer, QuestionDecorator, RouletteDecorator 
 
 		# get a basic page renderer
-		xmlRenderer = PageXmlRenderer( self.options )
+		xmlRenderer = PageXmlRenderer( settings )
 		
 		# decorate with questions and roulette exercises
 		# the order is important, as roulette adds questions
 		xmlRenderer =   RouletteDecorator(
 							QuestionDecorator( xmlRenderer ), 
-							self.data, self.options.strings
+							self.data, settings.strings
 						)
 
 		# get a table of contents renderer			
-		tocRenderer = TocRenderer( self.options )
+		tocRenderer = TocRenderer( settings )
 
 		# get a page HTML renderer
-		page = PageTUB( xmlRenderer, tocRenderer, self.options, self.data )
+		page = PageTUB( xmlRenderer, tocRenderer, settings, self.data )
 
 		return page 
 

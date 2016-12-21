@@ -73,6 +73,7 @@ class Dispatcher(AbstractDispatcher):
 		"""
 		Constructor
 		Instantiated by tex2x.py
+		Calls initmodules() to read settings and self.sys.
 		
 		@param verbose Boolean
 		@param pluginName - Name of the application to execute (default VEUNDMINT)
@@ -96,8 +97,8 @@ class Dispatcher(AbstractDispatcher):
 		
 		## @var options
 		#  simplify access to the interface options member (Daniel Haase) - refactor
-		#  NOTE: self.options is set in initOptionsModule
-		self.options = None
+		#  NOTE: settings is set in initOptionsModule
+		settings = None
 
 		## @var sys
 		#  Simplify access to the interface options member (Daniel Haase) - refactor
@@ -118,8 +119,8 @@ class Dispatcher(AbstractDispatcher):
 		5. Output to static HTML files
 		"""
 				
-		if hasattr(self.options, "overrides"):
-			for ov in self.options.overrides: print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
+		if hasattr(settings, "overrides"):
+			for ov in settings.overrides: print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
 
 		# 1. Run pre-processing plugins
 		preprocessorDispatcher = PreprocessorDispatcher( self.preprocessors )
@@ -127,20 +128,20 @@ class Dispatcher(AbstractDispatcher):
 		preprocessorDispatcher.dispatch()
 
 		# 2. Run TTM translator, load XML
-		self.translator = TTMTranslator( self.options, self.sys )
-		self.translator = MathMLDecorator( self.translator, self.options ) # Add MathML corrections
+		self.translator = TTMTranslator( settings, self.sys )
+		self.translator = MathMLDecorator( self.translator, settings ) # Add MathML corrections
 		if self.verbose: self.translator = VerboseTranslator( self.translator, "Step 2: Converting Tex to XML (TTM)" )
 		self.data['rawxml'] = self.translator.translate( settings.sourceTEXStartFile, settings.sourceTEX ) # run TTM parser with default options
 		
 		# 3. Parse HTML
-		html = HTMLParser( self.options )
+		html = HTMLParser( settings )
 		if self.verbose: html = VerboseParser( html, "Step 3: Parsing to HTML" )
 		xmltree_raw = html.parse( self.data['rawxml'] )
 		
 		# 4. Create TOC and content tree
-		self.generator = ContentGenerator( self.options, self.sys )
+		self.generator = ContentGenerator( settings, self.sys )
 		self.generator = LinkDecorator( self.generator )
-		self.generator = WikipediaDecorator( self.generator, self.options.lang)
+		self.generator = WikipediaDecorator( self.generator, settings.lang)
 		if self.verbose: self.generator = VerboseGenerator( self.generator, "Step 4: Creating the table of contents (TOC) and content tree" )
 		self.toc, content = self.generator.generate( xmltree_raw )
 		
@@ -153,7 +154,7 @@ class Dispatcher(AbstractDispatcher):
 		plugin.dispatch()
 		
 		# Clean up temporary files
-		if self.options.cleanup == 1: self.clean_up();
+		if settings.cleanup == 1: self.clean_up();
 
 		# stop program execution and return proper error level as return value
 		# self.sys.finish_program()
@@ -198,13 +199,15 @@ class Dispatcher(AbstractDispatcher):
 		options member: A module exposing a class "Option", linked modules must provide the class definition and may READ but not modify data exposed by this object reference
 		class Options must be under LGPL or GPL license
 		'''
-		self.interface['options'] = None
-		path = os.path.join( "plugins", self.pluginName, Dispatcher.OPTIONSFILE )
-		if not os.path.isfile( path ):  raise Exception( "Option file not found at %s" % path )
+		#self.interface['options'] = None
+		#path = os.path.join( "plugins", self.pluginName, Dispatcher.OPTIONSFILE )
+		#if not os.path.isfile( path ):  raise Exception( "Option file not found at %s" % path )
 			
-		module = imp.load_source( self.pluginName, path )
-		self.interface['options'] = module.Option(Dispatcher.CURRDIR, self.override)
-		self.options = self.interface['options']
+		#module = imp.load_source( self.pluginName, path )
+		#self.interface['options'] = module.Option(Dispatcher.CURRDIR, self.override)
+		#self.interface['options'] = settings
+		#settings = self.interface['options']
+		pass
 
 
 	def initSystemModule(self):
@@ -215,7 +218,7 @@ class Dispatcher(AbstractDispatcher):
 		if not os.path.isfile( Dispatcher.SYSTEMFILE ):  raise Exception( "System file not found at %s" % Dispatcher.SYSTEMFILE )
 		
 		module = imp.load_source(self.pluginName, Dispatcher.SYSTEMFILE)
-		self.interface['system'] = module.System(self.interface['options'])			
+		self.interface['system'] = module.System(settings)			
 		self.sys = self.interface['system']
 
 
@@ -224,8 +227,8 @@ class Dispatcher(AbstractDispatcher):
 		preprocessor_plugins member: A list of modules exposing a class "Preprocessor" which has a function "preprocess"
 		'''
 		self.interface['preprocessor_plugins'] = []
-		for p in self.interface['options'].usePreprocessorPlugins:
-			path = self.interface['options'].pluginPath[p]
+		for p in settings.usePreprocessorPlugins:
+			path = settings.pluginPath[p]
 			if not os.path.isfile( path ):  raise Exception( "Preprocessor file %s not found at %s" % (p, path) )
 			
 			module = imp.load_source(self.pluginName + "_preprocessor_" + p, path )
@@ -239,9 +242,9 @@ class Dispatcher(AbstractDispatcher):
 		output_plugins member: A list of modules exposing a class "Plugin" which has a function "create_output"
 		'''
 		self.interface['output_plugins'] = []
-		for p in self.interface['options'].useOutputPlugins:
-			module = imp.load_source( self.pluginName + "_output_" + p, self.interface['options'].pluginPath[p] )
-			path = self.interface['options'].pluginPath[p]
+		for p in settings.useOutputPlugins:
+			module = imp.load_source( self.pluginName + "_output_" + p, settings.pluginPath[p] )
+			path = settings.pluginPath[p]
 			if not os.path.isfile( path ):  raise Exception( "Output plugin file %s not found at %s" % (p, path) )
 			
 			self.interface['output_plugins'].append(module.Plugin(self.interface))
@@ -249,6 +252,6 @@ class Dispatcher(AbstractDispatcher):
 	# --------------------- END DEFINITION OF THE MODULE INTERFACE ------------------------------------------------------		
 	
 	def clean_up(self):
-		print("Cleaning up: " + os.path.abspath(self.options.sourcepath))
-		self.sys.removeTree(self.options.sourcepath)
+		print("Cleaning up: " + os.path.abspath(settings.sourcepath))
+		self.sys.removeTree(settings.sourcepath)
 

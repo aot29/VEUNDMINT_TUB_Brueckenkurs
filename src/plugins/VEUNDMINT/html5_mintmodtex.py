@@ -38,6 +38,8 @@ from tex2x.AbstractPlugin import *
 from plugins.VEUNDMINT.tcontent import TContent
 from tex2x.renderers.PageFactory import PageFactory
 
+from tex2x.Settings import ve_settings as settings
+
 class Plugin(AbstractPlugin):
 
 
@@ -46,7 +48,6 @@ class Plugin(AbstractPlugin):
 		# copy interface member references
 		self.sys = interface['system']
 		self.data = interface['data']
-		self.options = interface['options']
 		self.name = "HTML5_MINTMODTEX"
 		self.version ="P0.1.0"
 		self.outputextension = "html"
@@ -102,28 +103,28 @@ class Plugin(AbstractPlugin):
 			else:
 				self.data[dat] = []
 
-		if (self.options.feedback_service != ""):
-			self.sys.message(self.sys.CLIENTINFO, "Feedback server declared: " + self.options.feedback_service)
+		if (settings.feedback_service != ""):
+			self.sys.message(self.sys.CLIENTINFO, "Feedback server declared: " + settings.feedback_service)
 		else:
 			self.sys.message(self.sys.CLIENTERROR, "No feedback server declared in options, feedback send will not be possible")
 
-		if (self.options.data_server != ""):
-			self.sys.message(self.sys.CLIENTINFO, "Data server declared: " + self.options.data_server + " (" + self.options.data_server_description + ")")
+		if (settings.data_server != ""):
+			self.sys.message(self.sys.CLIENTINFO, "Data server declared: " + settings.data_server + " (" + settings.data_server_description + ")")
 		else:
 			self.sys.message(self.sys.CLIENTERROR, "No data server declared in options")
 
-		if (self.options.exercise_server != ""):
-			self.sys.message(self.sys.CLIENTINFO, "Exercise server declared: " + self.options.exercise_server)
+		if (settings.exercise_server != ""):
+			self.sys.message(self.sys.CLIENTINFO, "Exercise server declared: " + settings.exercise_server)
 		else:
 			self.sys.message(self.sys.CLIENTERROR, "No exercise server declared in options")
 
 
-		self.template_redirect_basic = self.sys.readTextFile(self.options.template_redirect_basic, self.options.stdencoding)
-		#self.template_redirect_multi = self.sys.readTextFile(self.options.template_redirect_multi, self.options.stdencoding)
-		self.template_redirect_scorm = self.sys.readTextFile(self.options.template_redirect_scorm, self.options.stdencoding)
+		self.template_redirect_basic = self.sys.readTextFile(settings.template_redirect_basic, settings.stdencoding)
+		#self.template_redirect_multi = self.sys.readTextFile(settings.template_redirect_multi, settings.stdencoding)
+		self.template_redirect_scorm = self.sys.readTextFile(settings.template_redirect_scorm, settings.stdencoding)
 
 		self.siteredirects = dict() # consists of pairs [ redirectfilename, redirectarget ]
-		for t in self.options.sitetaglist:
+		for t in settings.sitetaglist:
 			self.sys.message(self.sys.VERBOSEINFO, "Adding %s to site redirects" % t)
 			self.siteredirects[t] = [ t + "." + self.outputextension, "" ]
 
@@ -386,8 +387,8 @@ class Plugin(AbstractPlugin):
 					p.menuitem = 0
 					p.nr = ""
 					p.level = p.parent.level + 1
-					if p.level != self.options.contentlevel:
-						self.sys.message(self.sys.CLIENTWARN, "xcontent did not get level " + str(self.options.contentlevel) + " as required by options")
+					if p.level != settings.contentlevel:
+						self.sys.message(self.sys.CLIENTWARN, "xcontent did not get level " + str(settings.contentlevel) + " as required by options")
 
 					p.tocsymb = "status1"
 					if re.search(r"<!-- declaretestsymb //-->", p.content, re.S):
@@ -410,7 +411,7 @@ class Plugin(AbstractPlugin):
 
 					self.sys.message(self.sys.VERBOSEINFO, "xcontent " + p.title + " has number " + p.nr)
 					# expand <title>
-					p.title = self.options.moduleprefix + " Abschnitt " + sid + " " + p.title
+					p.title = settings.moduleprefix + " Abschnitt " + sid + " " + p.title
 					# care for ttm problem: subsubsection titles appear without number prefix
 
 
@@ -422,10 +423,10 @@ class Plugin(AbstractPlugin):
 							if q.level == 2:
 								# ti is of type CHAPTER.SECTION TITLE
 								ti = re.sub(r"(\d*)\.(\d*) (.*)", r"\2 \3", ti, 0, re.S)
-								ti = self.options.strings['chapter'] + " " + ti
+								ti = settings.strings['chapter'] + " " + ti
 							if q.level == 3:
 								# ti contains title only, without number
-								ti = self.options.strings['subsection'] + " " + str(q.nr) + " " + ti
+								ti = settings.strings['subsection'] + " " + str(q.nr) + " " + ti
 							if (secprefix != ""):
 								secprefix = ti + "  - " + secprefix
 							else:
@@ -513,7 +514,7 @@ class Plugin(AbstractPlugin):
 				self.sys.message(self.sys.CLIENTWARN, "A modstart box appears in a content node without children, so it will be empty")
 				return "" # don't generate the box
 			s = "<div class=\"modstartbox\">\n"
-			s += self.options.strings['modstartbox_tocline'] + "<br /><br />"
+			s += settings.strings['modstartbox_tocline'] + "<br /><br />"
 			# iterate children (MSubsection nodes if tc.level==2) to get local toc
 			s += "<ul>\n"
 			for k in range(len(tc.children)):
@@ -599,7 +600,7 @@ class Plugin(AbstractPlugin):
 			m = re.search(r"(.*)HELPSECTION(.*)", tc.title, re.S)
 			if m:
 				self.sys.message(self.sys.CLIENTINFO, "Helpsection is being set")
-				tc.title = m.group(1) + self.options.strings['module_helpsitetitle'] + m.group(2)
+				tc.title = m.group(1) + settings.strings['module_helpsitetitle'] + m.group(2)
 				tc.helpsite = True
 			else:
 				tc.helpsite = False
@@ -694,7 +695,7 @@ class Plugin(AbstractPlugin):
 			if not found:
 				self.sys.message(self.sys.CLIENTERROR, "Label " + lab + " has not been found by stage1, label list contains " + str(len(self.data['labels'])) + " items")
 				objtype = 0
-				return self.options.strings['brokenlabel']
+				return settings.strings['brokenlabel']
 
 			# label types must be consistent with macro file definition !
 
@@ -705,17 +706,17 @@ class Plugin(AbstractPlugin):
 			if objtype == 1:
 				# sections are module numbers, displayed as a pure number without subsection numbers, index is irrelevant
 				reftext = sec
-				ptext = self.options.strings['module_labelprefix']
+				ptext = settings.strings['module_labelprefix']
 
 			elif objtype == 2:
 				# subsections are MSubsections in modules, represented as SECTION.SUBSECTION, index is irrelevant
 				reftext = sec + "." + ssec
-				ptext = self.options.strings['subsection_labelprefix']
+				ptext = settings.strings['subsection_labelprefix']
 
 			elif objtype == 3:
 				# subsubsections are prepresented as number triplet
 				reftext = sec + "." + ssec + "." + refindex
-				ptext = self.options.strings['subsubsection_labelprefix']
+				ptext = settings.strings['subsubsection_labelprefix']
 
 			elif objtype == 4:
 				# a info box, given by a number triplet
@@ -728,22 +729,22 @@ class Plugin(AbstractPlugin):
 
 			elif objtype == 5:
 				# an exercise, represented by a number triplet
-				ptext = self.options.strings['exercise_labelprefix']
+				ptext = settings.strings['exercise_labelprefix']
 				reftext = sec + "." + ssec + "." + refindex
 
 			elif objtype == 6:
 				# an example, represented by a number triplet
-				ptext = self.options.strings['example_labelprefix']
+				ptext = settings.strings['example_labelprefix']
 				reftext = sec + "." + ssec + "." + refindex
 
 			elif objtype == 7:
 				# an experiment
-				ptext = self.options.strings['experiment_labelprefix']
+				ptext = settings.strings['experiment_labelprefix']
 				reftext = sec + "." + ssec + "." + refindex
 
 			elif objtype == 8:
 				# an image, is referenced by a single number
-				ptext = self.options.strings['image_labelprefix']
+				ptext = settings.strings['image_labelprefix']
 				if (((fb == 1) or (fb == 2) or (fb == 4)) and (prefi == 0)):
 					reftext = refindex
 				else:
@@ -752,7 +753,7 @@ class Plugin(AbstractPlugin):
 
 			elif objtype == 9:
 				# a table, is referenced by a single number
-				ptext = self.options.strings['table_labelprefix']
+				ptext = settings.strings['table_labelprefix']
 				if (((fb == 1) or (fb == 2) or (fb == 4)) and (prefi == 0)):
 					reftext = refindex
 				else:
@@ -762,12 +763,12 @@ class Plugin(AbstractPlugin):
 			elif objtype == 10:
 				# a equation, represented by a number triplet with braces
 				# equation numbers force MLastIndex to be set to "equation" in TeX conversion
-				ptext = self.options.strings['equation_labelprefix']
+				ptext = settings.strings['equation_labelprefix']
 				reftext = "(" + sec + "." + ssec + "." + refindex + ")"
 
 			elif objtype == 11:
 				# a theorem or theoremx, represented by a number triplet
-				ptext = self.options.strings['theorem_labelprefix']
+				ptext = settings.strings['theorem_labelprefix']
 				if (((fb == 1) or (fb == 2) or (fb == 4)) and (prefi == 0)):
 					reftext = sec + "." + ssec + "." + refindex
 				else:
@@ -776,7 +777,7 @@ class Plugin(AbstractPlugin):
 
 			elif objtype == 12:
 				# a video, represented by a single number
-				ptext = self.options.strings['video_labelprefix']
+				ptext = settings.strings['video_labelprefix']
 				if (((fb == 1) or (fb == 2) or (fb == 4)) and (prefi == 0)):
 					reftext = sec + "." + ssec + "." + refindex
 				else:
@@ -786,7 +787,7 @@ class Plugin(AbstractPlugin):
 			elif objtype == 13:
 				# index entries in modules, only position S.SS.SSS is known
 				reftext = sec + "." + ssec
-				ptext = self.options.strings['subsection_labelprefix']
+				ptext = settings.strings['subsection_labelprefix']
 
 			else:
 			   self.sys.message(self.sys.CLIENTWARN, "An MRef reference of type " + str(objtype) + " from label " + lab + " has unknown type")
@@ -798,7 +799,7 @@ class Plugin(AbstractPlugin):
 				return "<a class=\"MINTERLINK\" href=\"" + href + "\">" + reftext + "</a>"
 
 			self.sys.message(self.sys.CLIENTERROR, "Label " + lab + " could not be resolved")
-			return self.options.strings['brokenlabel']
+			return settings.strings['brokenlabel']
 
 			# end refexpand
 		tc.content = re.sub(r"\<!-- mmref;;(.+?);;(.+?); //--\>", refexpand, tc.content, 0, re.S)
@@ -819,7 +820,7 @@ class Plugin(AbstractPlugin):
 				return "<a class=\"MINTERLINK\" href=\"" + href + "\">" + txt + "</a>"
 			else:
 				self.sys.message(self.sys.CLIENTERROR, "Could not resolve MSRef on label " + lab + " with text " + txt)
-				return self.options.strings['brokenlabel']
+				return settings.strings['brokenlabel']
 
 		tc.content = re.sub(r"\<!-- msref;;(.+?);;(.+?); //--\>", srefexpand, tc.content, 0, re.S)
 
@@ -903,27 +904,27 @@ class Plugin(AbstractPlugin):
 		for c in tc.children:
 			self.write_htmlfiles(c)
 		if tc.display:
-			f_html = os.path.join(self.options.targetpath, self.outputsubdir, tc.link + "." + self.outputextension)
-			f_json = os.path.join(self.options.targetpath, self.outputsubdir, tc.link + "." + "json")
+			f_html = os.path.join(settings.targetpath, self.outputsubdir, tc.link + "." + self.outputextension)
+			f_json = os.path.join(settings.targetpath, self.outputsubdir, tc.link + "." + "json")
 			if not self.releaseCheck(tc.html, f_html):
 				self.sys.message(self.sys.CLIENTWARN, "File " + f_html + " did not pass post release check")
-				if self.options.dorelease == 1:
+				if settings.dorelease == 1:
 					self.sys.message(self.sys.FATALERROR, "Refusing to create a release version due to check errors")
 
 			# wrong place to set javascript vars:
 			# this class should be concerned with writing files, not changing their content
 			jso = json.dumps(tc.sitejson)
-			if len(jso) > self.options.maxsitejsonlength:
+			if len(jso) > settings.maxsitejsonlength:
 				# use a separate file for the json companion object
 				tc.html = tc.html.replace("var sitejson_load = false;", "var sitejson_load = true;", 1)
-				self.sys.writeTextFile(f_json, jso, self.options.outputencoding)
+				self.sys.writeTextFile(f_json, jso, settings.outputencoding)
 				self.sys.message(self.sys.CLIENTINFO, 'JSON for %s written to %s' % (tc.caption, f_json) )
 			else:
 				# directly paste the object as JSON string into the page
 				tc.html = tc.html.replace("var sitejson = {};", "var sitejson = " + jso + ";", 1);
 
 			# write the actual html file
-			self.sys.writeTextFile(f_html, tc.html, self.options.outputencoding)
+			self.sys.writeTextFile(f_html, tc.html, settings.outputencoding)
 			self.filecount += 1
 			if "<!-- mglobalstarttag -->" in tc.html:
 				self.sys.message(self.sys.CLIENTINFO, "Global starttag found in file " + f_html + ", locally " + tc.link)
@@ -931,7 +932,7 @@ class Plugin(AbstractPlugin):
 				self.entryfile = "entry_" + tc.docname + "." + self.outputextension
 
 			# search for other tags and create redirects if found
-			for s in self.options.sitetaglist:
+			for s in settings.sitetaglist:
 				self.sys.message(self.sys.VERBOSEINFO, "Tag %s found in %s" % (s, tc.link) )
 				if "<!-- mglobal" + s + "tag -->" in tc.html:
 					self.sys.message(self.sys.CLIENTINFO, "Global " + s + "tag found in file " + f_html + ", locally " + tc.link)
@@ -955,63 +956,63 @@ class Plugin(AbstractPlugin):
 			self.createRedirect("index.html", self.startfile, False)
 			self.sys.message(self.sys.CLIENTINFO, "HTML Tree entry chain created")
 			self.sys.message(self.sys.CLIENTINFO, "  index.html -> " + self.startfile)
-			if (self.options.doscorm == 1) or (self.options.doscorm12 == 1):
+			if (settings.doscorm == 1) or (settings.doscorm12 == 1):
 				self.createRedirect(self.entryfile, self.startfile, True)
 				self.sys.message(self.sys.CLIENTINFO, "  SCORM -> " + self.entryfile + " -> " + self.startfile)
 
-		for s in self.options.sitetaglist:
+		for s in settings.sitetaglist:
 			if self.siteredirects[s][1] != "":
 				self.sys.message(self.sys.VERBOSEINFO, "Writing misc file for tag %s redirect in %s %s" % (s, self.siteredirects[s][0], self.siteredirects[s][1]) )
 				self.createRedirect(self.siteredirects[s][0], self.siteredirects[s][1], False)
 
 		# write SCORM manifest if needed
-		if self.options.doscorm == 1:
+		if settings.doscorm == 1:
 			pass
 
 		# write variables in conversion info file
 		self.data['signature'] = self.sys.get_conversion_signature()
 		# generate a course id which is unique (given course and version)
-		self.data['signature']['CID'] = "(" + self.options.signature_main + ";;" + self.options.signature_version + ";;" + self.options.signature_localization + ")"
+		self.data['signature']['CID'] = "(" + settings.signature_main + ";;" + settings.signature_version + ";;" + settings.signature_localization + ")"
 		self.sys.message(self.sys.CLIENTINFO, "Generating Course Signature:")
-		self.sys.message(self.sys.CLIENTINFO, "	  main: " + self.options.signature_main)
-		self.sys.message(self.sys.CLIENTINFO, "   version: " + self.options.signature_version)
-		self.sys.message(self.sys.CLIENTINFO, "	locale: " + self.options.signature_localization)
+		self.sys.message(self.sys.CLIENTINFO, "	  main: " + settings.signature_main)
+		self.sys.message(self.sys.CLIENTINFO, "   version: " + settings.signature_version)
+		self.sys.message(self.sys.CLIENTINFO, "	locale: " + settings.signature_localization)
 		self.sys.message(self.sys.CLIENTINFO, " timestamp: " + self.data['signature']['timestamp'])
 		self.sys.message(self.sys.CLIENTINFO, " conv-user: " + self.data['signature']['convuser'])
 		self.sys.message(self.sys.CLIENTINFO, " c-machine: " + self.data['signature']['convmachine'])
 		self.sys.message(self.sys.CLIENTINFO, "	   CID: " + self.data['signature']['CID'])
-		self.sys.message(self.sys.CLIENTINFO, "  git-head: " + self.options.signature_git_head)
-		self.sys.message(self.sys.CLIENTINFO, "git-branch: " + self.options.signature_git_branch)
-		self.sys.message(self.sys.CLIENTINFO, "   git-msg: " + self.options.signature_git_message)
-		self.sys.message(self.sys.CLIENTINFO, "   git-sha: " + self.options.signature_git_commit)
-		self.sys.message(self.sys.CLIENTINFO, " git-cauth: " + self.options.signature_git_committer)
-		self.sys.message(self.sys.CLIENTINFO, " git-dirty: " + str(self.options.signature_git_dirty))
+		self.sys.message(self.sys.CLIENTINFO, "  git-head: " + settings.signature_git_head)
+		self.sys.message(self.sys.CLIENTINFO, "git-branch: " + settings.signature_git_branch)
+		self.sys.message(self.sys.CLIENTINFO, "   git-msg: " + settings.signature_git_message)
+		self.sys.message(self.sys.CLIENTINFO, "   git-sha: " + settings.signature_git_commit)
+		self.sys.message(self.sys.CLIENTINFO, " git-cauth: " + settings.signature_git_committer)
+		self.sys.message(self.sys.CLIENTINFO, " git-dirty: " + str(settings.signature_git_dirty))
 		self.sys.message(self.sys.CLIENTINFO, "Signature will be available in the HTML tree")
         # scorm and scormLogin are now available in js (intersite.isScormEnv())
 		s = "// Automatically generated by the tex2x VEUNDMINT output plugin\n" \
             + "var outputExtension = \"" + self.outputextension + "\";\n" \
             + "var outputSubdir = \"" + self.outputsubdir + "\";\n" \
-            + "var outputWebdir = \"" + self.options.output + "\";\n" \
-            + "var MESSAGE_DONE = \"" + self.options.strings['message_done'] + "\";\n" \
-            + "var MESSAGE_PROGRESS = \"" + self.options.strings['message_progress'] + "\";\n" \
-            + "var MESSAGE_PROBLEM = \"" + self.options.strings['message_problem'] + "\";\n" \
-            + "var forceOffline = " + str(self.options.forceoffline) + ";\n" \
-            + "var isRelease = " + str(self.options.dorelease) + ";\n" \
-            + "var doCollections = " + str(self.options.docollections) + ";\n" \
-            + "var isVerbose = " + str(self.options.doverbose) + ";\n" \
-            + "var testOnly = " + str(self.options.testonly) + ";\n" \
+            + "var outputWebdir = \"" + settings.output + "\";\n" \
+            + "var MESSAGE_DONE = \"" + settings.strings['message_done'] + "\";\n" \
+            + "var MESSAGE_PROGRESS = \"" + settings.strings['message_progress'] + "\";\n" \
+            + "var MESSAGE_PROBLEM = \"" + settings.strings['message_problem'] + "\";\n" \
+            + "var forceOffline = " + str(settings.forceoffline) + ";\n" \
+            + "var isRelease = " + str(settings.dorelease) + ";\n" \
+            + "var doCollections = " + str(settings.docollections) + ";\n" \
+            + "var isVerbose = " + str(settings.doverbose) + ";\n" \
+            + "var testOnly = " + str(settings.testonly) + ";\n" \
             + "var signature_CID = \"" + self.data['signature']['CID'] + "\";\n" \
-            + "var signature_git_dirty = " + str(self.options.signature_git_dirty) + ";\n" \
-            + "var signature_git_head = \"" + self.options.signature_git_head + "\";\n" \
-            + "var signature_git_branch = \"" + self.options.signature_git_branch + "\";\n" \
-            + "var signature_git_message = \"" + self.options.signature_git_message + "\";\n" \
-            + "var signature_git_commit = \"" + self.options.signature_git_commit + "\";\n"
+            + "var signature_git_dirty = " + str(settings.signature_git_dirty) + ";\n" \
+            + "var signature_git_head = \"" + settings.signature_git_head + "\";\n" \
+            + "var signature_git_branch = \"" + settings.signature_git_branch + "\";\n" \
+            + "var signature_git_message = \"" + settings.signature_git_message + "\";\n" \
+            + "var signature_git_commit = \"" + settings.signature_git_commit + "\";\n"
 
-		if self.options.doscorm12 == 1:
+		if settings.doscorm12 == 1:
 			# s += "var doScorm = 1;\n"
 			s += "var expectedScormVersion = \"1.2\";\n"
 		else:
-			if self.options.doscorm == 1:
+			if settings.doscorm == 1:
 				# s += "var doScorm = 1;\n"
 				s += "var expectedScormVersion = \"2004\";\n"
 			else:
@@ -1023,25 +1024,25 @@ class Plugin(AbstractPlugin):
 		for vr in ["signature_main", "signature_version", "signature_localization", "do_feedback", "do_export", "reply_mail",
 				   "data_server", "exercise_server", "feedback_service", "data_server_description", "data_server_user",
 				  "variant"]:
-			s += "var " + vr + " = \"" + getattr(self.options, vr) + "\";\n"
+			s += "var " + vr + " = \"" + getattr(settings, vr) + "\";\n"
 
 		s += "var feedbackdesc = data_server_description;\n";
 
 
-		if self.options.dorelease == 1:
+		if settings.dorelease == 1:
 			self.sys.message(self.sys.CLIENTINFO, "RELEASE VERSION will be generated")
 		else:
 			self.sys.message(self.sys.CLIENTINFO, "Nonrelease will be generated")
 			s += "console.log(\"NON RELEASE VERSION\");\n"
 
-		if self.options.doverbose == 1:
+		if settings.doverbose == 1:
 			self.sys.message(self.sys.CLIENTINFO, "Verboseversion will be generated")
 			s += "console.log(\"VERBOSE VERSION\");\n"
 
-		if self.options.do_feedback == 1:
+		if settings.do_feedback == 1:
 			self.sys.message(self.sys.CLIENTINFO, "Feedbackversion will be generated")
 
-		if self.options.do_export == 1:
+		if settings.do_export == 1:
 			self.sys.message(self.sys.CLIENTINFO, "Exportversion will be generated")
 
 		s += "var globalsections = [];\n"
@@ -1054,14 +1055,14 @@ class Plugin(AbstractPlugin):
 				if str(i) in self.data[glb]:
 					s += "global" + glb + "[" + str(i) + "] = " + str(self.data[glb][str(i)]) + ";\n"
 
-				self.sys.writeTextFile(os.path.join(self.options.targetpath, 'js', self.options.convinfofile), s, self.options.outputencoding)
+				self.sys.writeTextFile(os.path.join(settings.targetpath, 'js', settings.convinfofile), s, settings.outputencoding)
 
 
 	# generate css and js style files
 	def generate_css(self):
 
-		path = os.path.join(self.options.sourcepath, self.options.template_precss)
-		self.sys.copyFiletree(self.options.converterDir, self.options.sourcepath, self.options.template_precss)
+		path = os.path.join(settings.sourcepath, settings.template_precss)
+		self.sys.copyFiletree(settings.converterDir, settings.sourcepath, settings.template_precss)
 		self.sys.pushdir()
 		os.chdir(path)
 
@@ -1077,19 +1078,19 @@ class Plugin(AbstractPlugin):
 
 		# parse color values (given as strings without # prefix), sorting them is just to beautify git diff results
 		jcss += "var COLORS = new Object();\n"
-		c = sorted(self.options.colors.items(), key = lambda x: x[0])
+		c = sorted(settings.colors.items(), key = lambda x: x[0])
 		for p in c:
 			jcss += "COLORS." + p[0] + " = \"" + p[1] + "\";\n"
 
 		# parse fonts
 		jcss += "var FONTS = new Object();\n"
-		c = sorted(self.options.fonts.items(), key = lambda x: x[0])
+		c = sorted(settings.fonts.items(), key = lambda x: x[0])
 		for p in c:
 			jcss += "FONTS." + p[0] + " = \"" + p[1] + "\";\n"
 
 		# parse sizes
 		jcss += "var SIZES = new Object();\n"
-		c = sorted(self.options.sizes.items(), key = lambda x: x[0])
+		c = sorted(settings.sizes.items(), key = lambda x: x[0])
 		for p in c:
 			jcss += "SIZES." + p[0] + " = " + str(p[1]) + ";\n"
 
@@ -1106,43 +1107,43 @@ class Plugin(AbstractPlugin):
 
 		jcss += " + \"\";"
 
-		self.sys.writeTextFile(os.path.join(self.options.targetpath, "grundlagen.css"), ocss, self.options.outputencoding)
-		self.sys.writeTextFile(os.path.join(self.options.targetpath, "js/dynamiccss.js"), jcss, self.options.outputencoding)
+		self.sys.writeTextFile(os.path.join(settings.targetpath, "grundlagen.css"), ocss, settings.outputencoding)
+		self.sys.writeTextFile(os.path.join(settings.targetpath, "js/dynamiccss.js"), jcss, settings.outputencoding)
 		self.sys.popdir()
 		self.sys.message(self.sys.VERBOSEINFO, "Stylefiles created")
 
 
 	def generate_directory(self):
-		self.sys.emptyTree(self.options.targetpath)
-		self.sys.copyFiletree(self.options.converterCommonFiles, self.options.targetpath, ".")
-		if self.options.localjax == 1:
-			mpath = os.path.join(self.options.targetpath, "MathJax")
+		self.sys.emptyTree(settings.targetpath)
+		self.sys.copyFiletree(settings.converterCommonFiles, settings.targetpath, ".")
+		if settings.localjax == 1:
+			mpath = os.path.join(settings.targetpath, "MathJax")
 			self.sys.emptyTree(mpath)
-			p = subprocess.Popen(["tar", "-xvzf", os.path.join(self.options.converterDir, self.options.mathjaxtgz), "--directory=" + mpath],
+			p = subprocess.Popen(["tar", "-xvzf", os.path.join(settings.converterDir, settings.mathjaxtgz), "--directory=" + mpath],
 								 stdout = subprocess.PIPE, shell = False, universal_newlines = True)
 			(tar, err) = p.communicate()
 			if p.returncode != 0:
 				self.sys.message(self.sys.CLIENTERROR, "Could not unpack local MathJax folder:\n" + tar + "\n" + str(err))
 			else:
-				self.sys.message(self.sys.CLIENTINFO, "Local MathJax installed (from " + self.options.mathjaxtgz + ") in path " + mpath)
+				self.sys.message(self.sys.CLIENTINFO, "Local MathJax installed (from " + settings.mathjaxtgz + ") in path " + mpath)
 
-		if self.options.doscorm12 == 1:
-			p = subprocess.Popen(["tar", "-xvzf", os.path.join(self.options.converterDir, self.options.scorm12tgz), "--directory=" + self.options.targetpath],
+		if settings.doscorm12 == 1:
+			p = subprocess.Popen(["tar", "-xvzf", os.path.join(settings.converterDir, settings.scorm12tgz), "--directory=" + settings.targetpath],
 								 stdout = subprocess.PIPE, shell = False, universal_newlines = True)
 			(tar, err) = p.communicate()
 			if p.returncode != 0:
 				self.sys.message(self.sys.CLIENTERROR, "Could not unpack local SCORM 1.2 material:\n" + tar + "\n" + str(err))
 			else:
-				self.sys.message(self.sys.CLIENTINFO, "Local SCORM 1.2 base files installed (from " + self.options.scorm12tgz + ")" )
+				self.sys.message(self.sys.CLIENTINFO, "Local SCORM 1.2 base files installed (from " + settings.scorm12tgz + ")" )
 
-		if self.options.doscorm == 1:
-			p = subprocess.Popen(["tar", "-xvzf", os.path.join(self.options.converterDir, self.options.scorm4tgz), "--directory=" + self.options.targetpath],
+		if settings.doscorm == 1:
+			p = subprocess.Popen(["tar", "-xvzf", os.path.join(settings.converterDir, settings.scorm4tgz), "--directory=" + settings.targetpath],
 								 stdout = subprocess.PIPE, shell = False, universal_newlines = True)
 			(tar, err) = p.communicate()
 			if p.returncode != 0:
 				self.sys.message(self.sys.CLIENTERROR, "Could not unpack local SCORM 4 material:\n" + tar + "\n" + str(err))
 			else:
-				self.sys.message(self.sys.CLIENTINFO, "Local SCORM 4 base files installed (from " + self.options.scorm12tgz + ")" )
+				self.sys.message(self.sys.CLIENTINFO, "Local SCORM 4 base files installed (from " + settings.scorm12tgz + ")" )
 
 
 	def createRedirect(self, filename, redirect, scorm):
@@ -1152,48 +1153,48 @@ class Plugin(AbstractPlugin):
 		else:
 			s = self.template_redirect_basic
 		s = re.sub(r"\$url", redirect, s, 0, re.S)
-		self.sys.writeTextFile(os.path.join(self.options.targetpath, filename), s, self.options.outputencoding)
+		self.sys.writeTextFile(os.path.join(settings.targetpath, filename), s, settings.outputencoding)
 		self.sys.message(self.sys.CLIENTINFO, "Redirect created from " + filename + " to " + redirect)
 
 
 	def finishing(self):
 		# perform borkification if requested
-		if self.options.borkify == 1:
+		if settings.borkify == 1:
 			self.borkifyHTML()
 			self.minimizeJS()
 
 		# set linux usage flags for all files
-		p = subprocess.Popen(["chmod", "-R", self.options.accessflags, self.options.targetpath], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+		p = subprocess.Popen(["chmod", "-R", settings.accessflags, settings.targetpath], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
 		(chmod, err) = p.communicate()
 		if p.returncode != 0:
-			self.sys.message(self.sys.CLIENTERROR, "Could not set access flags on output folder " + self.options.targetpath)
+			self.sys.message(self.sys.CLIENTERROR, "Could not set access flags on output folder " + settings.targetpath)
 
 		# final check for unwanted files in target
 		for xt in [ "py", "pyc", "sty", "tex", "png~", "js~", "tex~", self.outputextension + "~"]:
-			fl = self.sys.listFiles(os.path.join(self.options.targetpath, "*." + xt))
+			fl = self.sys.listFiles(os.path.join(settings.targetpath, "*." + xt))
 			if len(fl) > 0:
 				self.sys.message(self.sys.CLIENTWARN, str(len(fl)) + " unwanted files with extension " + xt + " found in target directory")
-				if self.options.dorelease == 1:
+				if settings.dorelease == 1:
 					self.sys.message(self.sys.FATALERROR, "Aborting release because target directory is unclean")
 
 
-		if self.options.dopdf == 1:
-			pd = " and pdf (" + ",".join(doct for doct in self.options.generate_pdf) + ")"
+		if settings.dopdf == 1:
+			pd = " and pdf (" + ",".join(doct for doct in settings.generate_pdf) + ")"
 		else:
 			pd = ""
 		self.sys.message(self.sys.CLIENTINFO, "FINISHED tree containing " + self.outputextension + pd)
 
-		if self.options.doscorm12 == 1:
+		if settings.doscorm12 == 1:
 			self.writeSCORM12files()
 
-		if self.options.doscorm == 1:
+		if settings.doscorm == 1:
 			self.writeSCORM4files()
 
-		if self.options.dozip == 1:
+		if settings.dozip == 1:
 			self.sys.pushdir()
-			os.chdir(self.options.targetpath)
-			zipfile = self.options.output + ".zip"
-			p = subprocess.Popen(["zip", "-r", os.path.join(self.options.currentDir, zipfile), ".", "-i", "*"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+			os.chdir(settings.targetpath)
+			zipfile = settings.output + ".zip"
+			p = subprocess.Popen(["zip", "-r", os.path.join(settings.currentDir, zipfile), ".", "-i", "*"], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
 			(output, err) = p.communicate()
 			self.sys.popdir()
 			if p.returncode == 0:
@@ -1228,17 +1229,17 @@ class Plugin(AbstractPlugin):
 
 
 	def generate_pdf(self):
-		if self.options.dopdf != 1:
+		if settings.dopdf != 1:
 			self.sys.message(self.sys.VERBOSEINFO, "PDF generation not activated in options")
 			return
 
 		self.sys.message(self.sys.VERBOSEINFO, "Generating PDFs, can take a while...")
 		self.sys.pushdir()
-		os.chdir(self.options.sourceTEX)
+		os.chdir(settings.sourceTEX)
 		pdfok = True
-		for doct in self.options.generate_pdf:
+		for doct in settings.generate_pdf:
 			tfile = doct
-			docdesc = self.options.generate_pdf[doct]
+			docdesc = settings.generate_pdf[doct]
 			if tfile[-4:] != ".tex":
 				tfile = doct + ".tex"
 			else:
@@ -1273,7 +1274,7 @@ class Plugin(AbstractPlugin):
 
 			if pdfok:
 				self.sys.timestamp("Generation of PDF files for " + tfile + " (" + docdesc + ") successfull")
-				self.sys.copyFile("." , self.options.targetpath, doct + ".pdf")
+				self.sys.copyFile("." , settings.targetpath, doct + ".pdf")
 				self.sys.message(self.sys.CLIENTINFO, "Generated " + doct + ".pdf in top level directory")
 			else:
 				self.sys.timestamp("PDF generation aborted for " + tfile)
@@ -1285,7 +1286,7 @@ class Plugin(AbstractPlugin):
 	def releaseCheck(self, html, fname):
 		reply = True
 		# check for broken labels from internal label management
-		if self.options.strings['brokenlabel'] in html:
+		if settings.strings['brokenlabel'] in html:
 			reply = False
 			self.sys.message(self.sys.VERBOSEINFO, "Broken internal label found in html file " + fname)
 
@@ -1313,7 +1314,7 @@ class Plugin(AbstractPlugin):
 
 		# Don't use tidy on bootrap version, as it erases necessary elements.
 		# tidy is applied in PageTUB on the page content anyway.
-		if ( not self.options.bootstrap ):
+		if ( not settings.bootstrap ):
 			# check for proper HTML syntax
 			(document, tidylines) = tidy_document(html)
 
@@ -1327,7 +1328,7 @@ class Plugin(AbstractPlugin):
 				nonlocal reply, fname, wrn, inf
 				if m.group(3) == "Error":
 					ok = False
-					for tag in self.options.specialtags:
+					for tag in settings.specialtags:
 						if m.group(4) == "<" + tag + "> is not recognized!":
 							ok = True
 					if not ok:
@@ -1352,16 +1353,16 @@ class Plugin(AbstractPlugin):
 
 	def minimizeJS(self):
 		self.sys.pushdir()
-		os.chdir(self.options.targetpath)
+		os.chdir(settings.targetpath)
 
 		fs = ""
-		for f in self.options.jstominimize:
+		for f in settings.jstominimize:
 			jcontent = self.sys.readTextFile(f, "utf-8")
 			# perform some checks on the JS code
 			if "console.log" in jcontent:
 				self.sys.message(self.sys.CLIENTINFO, "There are console.log commands in js file " + f + ", these should be replaced by logMessage commands")
 
-			p = subprocess.Popen(["java", "-jar", os.path.join(self.options.converterDir, "yuicompressor-2.4.8.jar"), f, "-o", f], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
+			p = subprocess.Popen(["java", "-jar", os.path.join(settings.converterDir, "yuicompressor-2.4.8.jar"), f, "-o", f], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
 			(output, err) = p.communicate()
 			if p.returncode < 0:
 				self.sys.message(self.sys.FATALERROR, "Call to java for jar yuicompressor on file " + f + " was terminated by a signal (POSIX return code " + p.returncode + ")")
@@ -1377,19 +1378,19 @@ class Plugin(AbstractPlugin):
 
 		self.sys.message(self.sys.VERBOSEINFO, "Minimized JS files:" + fs)
 		self.sys.popdir()
-		self.sys.message(self.sys.CLIENTINFO, "Minimized " + str(len(self.options.jstominimize)) + " javascript files")
+		self.sys.message(self.sys.CLIENTINFO, "Minimized " + str(len(settings.jstominimize)) + " javascript files")
 
 
 	def borkifyHTML(self):
 		self.sys.pushdir()
-		os.chdir(self.options.targetpath)
+		os.chdir(settings.targetpath)
 
 		hfiles = self.sys.listFiles("**/*." + self.outputextension)
 		for f in hfiles:
 			lan = 32;
 			st = list()
 			GSLS = "__CQJ = CreateQuestionObj; function GSLS(c) {\n  var str = \"\";\n"
-			html = self.sys.readTextFile(f, self.options.outputencoding)
+			html = self.sys.readTextFile(f, settings.outputencoding)
 			# borkify the content
 			def dobork(m):
 				nonlocal st, lan
@@ -1406,7 +1407,7 @@ class Plugin(AbstractPlugin):
 
 			GSLS += "return str;}\n"
 			html = re.sub(r"__CQJ", "\n" + GSLS + "\n__CQJ", html, 1, re.S)
-			self.sys.writeTextFile(f, html, self.options.outputencoding)
+			self.sys.writeTextFile(f, html, settings.outputencoding)
 
 		self.sys.message(self.sys.CLIENTINFO, "Borkified " + str(len(hfiles)) + " " + self.outputextension + " files")
 		self.sys.popdir()
@@ -1452,8 +1453,8 @@ class Plugin(AbstractPlugin):
 		self.sys.pushdir()
 
 		# write the manifest file, including the file list
-		manifest = self.sys.readTextFile(self.options.template_scorm12manifest, self.options.stdencoding)
-		os.chdir(self.options.targetpath)
+		manifest = self.sys.readTextFile(settings.template_scorm12manifest, settings.stdencoding)
+		os.chdir(settings.targetpath)
 		p = subprocess.Popen(["find", "."], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
 		(output, err) = p.communicate()
 		if p.returncode != 0:
@@ -1474,7 +1475,7 @@ class Plugin(AbstractPlugin):
 		manif = "<resource adlcp:scormtype=\"sco\" href=\"" + self.entryfile + "\" type=\"webcontent\" identifier=\"xml_index.html\">\n" + manif + "</resource>\n"
 
 		manifest = re.sub(r"</resources>", manif + "</resources>", manifest, 1, re.S)
-		self.sys.writeTextFile("imsmanifest.xml", manifest, self.options.outputencoding)
+		self.sys.writeTextFile("imsmanifest.xml", manifest, settings.outputencoding)
 
 		self.sys.message(self.sys.CLIENTINFO, "SCORM 1.2: " + str(fc) + " files added to package, " + str(nfc) + " non-files excluded in manifest")
 		self.sys.popdir()
