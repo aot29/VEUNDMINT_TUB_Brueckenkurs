@@ -17,6 +17,7 @@
 #
 #  \author Alvaro Ortiz for TU Berlin
 from tex2x.Settings import ve_settings as settings
+from tex2x.System import ve_system as sys
 
 class PageFactory(object):
 	"""
@@ -32,9 +33,6 @@ class PageFactory(object):
 		@param interface undocumented data structure (Daniel Haase)
 		@param outputplugin Plugin (object implementing AbstractPlugin)		
 		"""
-		## @var sys
-		#  Simplify access to the interface options member (Daniel Haase) - refactor
-		self.sys = interface['system']
 		
 		## @var data
 		#  simplify access to the interface data member (Daniel Haase) 

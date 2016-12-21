@@ -34,7 +34,6 @@ class HTMLParser( AbstractParser ):
 		Constructor.
 		
 		@param options - Object encapsulating all the options necessary to run the tex2x converter. 
-		@param sys - "A module exposing a class System" (Daniel Haase) 
 		"""
 		## @var parser
 		#  An HTML parser that is configured to return lxml.html Element

@@ -44,11 +44,7 @@ class LinkDecorator( AbstractGenerator ):
 		## @var options
 		# simplify access to the interface options member (Daniel Haase) - refactor
 		self.options = generator.options
-		
-		## @var sys
-		#  Simplify access to the interface options member (Daniel Haase) - refactor
-		self.sys = generator.sys
-		
+				
 
 	def generate(self, *args, **kwargs):
 		"""

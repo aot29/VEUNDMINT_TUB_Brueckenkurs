@@ -30,6 +30,7 @@ import socket
 import glob2
 import base64
 import platform
+from tex2x.Settings import ve_settings as settings
 
 class System(object):
 
@@ -51,13 +52,12 @@ class System(object):
 	BASHCOLORRESET = "\033[0m"
 
 
-	def __init__(self, options):
-		self.logFilename = os.path.join(options.currentDir, options.logFilename)
-		self.doEncodeASCII = options.consoleascii
-		self.doColors = options.consolecolors
-		self.doVerbose = options.doverbose
-		self.beQuiet = options.quiet
-		self.options = options
+	def __init__(self):
+		self.logFilename = os.path.join(settings.currentDir, settings.logFilename)
+		self.doEncodeASCII = settings.consoleascii
+		self.doColors = settings.consolecolors
+		self.doVerbose = settings.doverbose
+		self.beQuiet = settings.quiet
 
 		self.dirstack = []
 
@@ -70,7 +70,7 @@ class System(object):
 			log.write(s + "\n")
 			self._encode_print(s)
 
-		self.message(self.CLIENTINFO, "Using option object: " + options.description)
+		self.message(self.CLIENTINFO, "Using option object: " + settings.description)
 		self.message(self.VERBOSEINFO, "Host = " + socket.gethostname() + ", user = " + getpass.getuser())
 
 
@@ -277,8 +277,10 @@ class System(object):
 
 
 	# ends the program, returning the maximum error level reached during execution
-	def finish_program(self):
-		sys.exit(self.errorlevel)
+	def finish_program(self, errorlevel ):
+		if ( errorlevel is None ) : sys.exit(self.errorlevel)
+		else: sys.exit(errorlevel)
+
 
 	def copyFile(source, target, filename):
 		"""
@@ -328,3 +330,8 @@ class System(object):
 			
 	def makePath(self, path):
 		os.makedirs(path)
+
+	
+
+ve_system = System()
+

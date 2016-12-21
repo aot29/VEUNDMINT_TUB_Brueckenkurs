@@ -24,6 +24,7 @@ import json
 from lxml import etree
 
 from tex2x.Settings import ve_settings as settings
+from tex2x.System import ve_system as sys
 from tex2x.dispatcher.AbstractDispatcher import AbstractDispatcher, VerboseDispatcher, PreprocessorDispatcher, PluginDispatcher
 
 from tex2x.translators.AbstractTranslator import VerboseTranslator
@@ -64,16 +65,12 @@ class Dispatcher(AbstractDispatcher):
 	## SYSTEMFILE
 	# Path to the "System" file. This is a class which contains all manner of methods for handling files in Python.
 	SYSTEMFILE = "tex2x/System.py"
-	
-	## CURRDIR
-	#  Passed to Option
-	CURRDIR = ".."
-	
+		
 	def __init__( self, verbose, pluginName, override ):
 		"""
 		Constructor
 		Instantiated by tex2x.py
-		Calls initmodules() to read settings and self.sys.
+		Calls initModules to initialize preprocessors and output plugins
 		
 		@param verbose Boolean
 		@param pluginName - Name of the application to execute (default VEUNDMINT)
@@ -95,16 +92,6 @@ class Dispatcher(AbstractDispatcher):
 		#  Override options in the plugin's Option.py file, e.g. 'description=My Course' to change the course title
 		self.override = override
 		
-		## @var options
-		#  simplify access to the interface options member (Daniel Haase) - refactor
-		#  NOTE: settings is set in initOptionsModule
-		settings = None
-
-		## @var sys
-		#  Simplify access to the interface options member (Daniel Haase) - refactor
-		#  NOTE: self.sys is set in initOptionsModule
-		self.sys = None
-
 		# start processing some stuff that is required later (refactor)
 		self.initModules()
 
@@ -128,7 +115,7 @@ class Dispatcher(AbstractDispatcher):
 		preprocessorDispatcher.dispatch()
 
 		# 2. Run TTM translator, load XML
-		self.translator = TTMTranslator( settings, self.sys )
+		self.translator = TTMTranslator( settings )
 		self.translator = MathMLDecorator( self.translator, settings ) # Add MathML corrections
 		if self.verbose: self.translator = VerboseTranslator( self.translator, "Step 2: Converting Tex to XML (TTM)" )
 		self.data['rawxml'] = self.translator.translate( settings.sourceTEXStartFile, settings.sourceTEX ) # run TTM parser with default options
@@ -139,7 +126,7 @@ class Dispatcher(AbstractDispatcher):
 		xmltree_raw = html.parse( self.data['rawxml'] )
 		
 		# 4. Create TOC and content tree
-		self.generator = ContentGenerator( settings, self.sys )
+		self.generator = ContentGenerator( settings )
 		self.generator = LinkDecorator( self.generator )
 		self.generator = WikipediaDecorator( self.generator, settings.lang)
 		if self.verbose: self.generator = VerboseGenerator( self.generator, "Step 4: Creating the table of contents (TOC) and content tree" )
@@ -157,7 +144,7 @@ class Dispatcher(AbstractDispatcher):
 		if settings.cleanup == 1: self.clean_up();
 
 		# stop program execution and return proper error level as return value
-		# self.sys.finish_program()
+		# sys.finish_program()
 		# no way the application runs without errors
 
 
@@ -188,38 +175,8 @@ class Dispatcher(AbstractDispatcher):
 
 		# initializes "interface data members"
 		# Exceptions bubble-up to the main caller class
-		self.initOptionsModule()
-		self.initSystemModule()
 		self.initPreprocessors()
 		self.initOutputPlugins()
-		
-		
-	def initOptionsModule(self):
-		'''
-		options member: A module exposing a class "Option", linked modules must provide the class definition and may READ but not modify data exposed by this object reference
-		class Options must be under LGPL or GPL license
-		'''
-		#self.interface['options'] = None
-		#path = os.path.join( "plugins", self.pluginName, Dispatcher.OPTIONSFILE )
-		#if not os.path.isfile( path ):  raise Exception( "Option file not found at %s" % path )
-			
-		#module = imp.load_source( self.pluginName, path )
-		#self.interface['options'] = module.Option(Dispatcher.CURRDIR, self.override)
-		#self.interface['options'] = settings
-		#settings = self.interface['options']
-		pass
-
-
-	def initSystemModule(self):
-		'''
-		system member: A module exposing a class "System", linked modules may provide the class definition and may CALL functions exposed by this object reference
-		class System must be under GPL license
-		'''
-		if not os.path.isfile( Dispatcher.SYSTEMFILE ):  raise Exception( "System file not found at %s" % Dispatcher.SYSTEMFILE )
-		
-		module = imp.load_source(self.pluginName, Dispatcher.SYSTEMFILE)
-		self.interface['system'] = module.System(settings)			
-		self.sys = self.interface['system']
 
 
 	def initPreprocessors(self):
@@ -253,5 +210,5 @@ class Dispatcher(AbstractDispatcher):
 	
 	def clean_up(self):
 		print("Cleaning up: " + os.path.abspath(settings.sourcepath))
-		self.sys.removeTree(settings.sourcepath)
+		sys.removeTree(settings.sourcepath)
 

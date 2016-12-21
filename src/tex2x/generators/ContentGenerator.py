@@ -20,6 +20,7 @@
 from copy import deepcopy
 from lxml import etree
 from tex2x.generators.AbstractGenerator import AbstractGenerator
+from tex2x.System import ve_system as sys
 
 class ContentGenerator( AbstractGenerator ):
 	"""
@@ -27,21 +28,16 @@ class ContentGenerator( AbstractGenerator ):
 	Instantiated by the Dispatcher.	
 	Can be decorated with VerboseParser to enable performance logging.
 	"""
-	def __init__(self, options, sys ):
+	def __init__(self, options ):
 		"""
 		Constructor.
 		
 		@param options Object
-		@param sys - "A module exposing a class System" (Daniel Haase) 
 		"""
 		## @var options
 		# simplify access to the interface options member (Daniel Haase) - refactor
 		self.options = options
-		
-		## @var sys
-		#  Simplify access to the interface options member (Daniel Haase) - refactor
-		self.sys = sys
-		
+				
 
 	def generate( self, htmltree ):
 		"""
@@ -193,7 +189,7 @@ class ContentGenerator( AbstractGenerator ):
 						except:
 							print("Fehler beim Parsen der xcontent-Nummer")
 					else:
-						self.sys.message(self.sys.CLIENTWARN, "Dissection found class " + self.options.ModuleStructureClass + ", but without a number")
+						sys.message(sys.CLIENTWARN, "Dissection found class " + self.options.ModuleStructureClass + ", but without a number")
 
 
 

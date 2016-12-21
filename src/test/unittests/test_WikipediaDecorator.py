@@ -22,7 +22,7 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
-		self.mockGenerator = MockGenerator( settings, dispatcher.sys )
+		self.mockGenerator = MockGenerator( settings )
 
 	
 	def testCreate(self):

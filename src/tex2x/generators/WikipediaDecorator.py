@@ -48,11 +48,7 @@ class WikipediaDecorator( AbstractGenerator ):
 		## @var options
 		# simplify access to the interface options member (Daniel Haase) - refactor
 		self.options = generator.options
-		
-		## @var sys
-		#  Simplify access to the interface options member (Daniel Haase) - refactor
-		self.sys = generator.sys
-		
+				
 		## @var lang
 		#  The language of the page ('de' or 'en')
 		self.lang = lang

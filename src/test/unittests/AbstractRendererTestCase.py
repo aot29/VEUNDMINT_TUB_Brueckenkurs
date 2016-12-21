@@ -13,6 +13,7 @@ from plugins.VEUNDMINT.Option import Option
 from tex2x.renderers.AbstractRenderer import *
 from tex2x.parsers.AbstractParser import *
 from tex2x.Settings import settings
+from tex2x.System import ve_system as sys
 
 class MockOptions(Option):
 	def __init__(self):
@@ -21,13 +22,11 @@ class MockOptions(Option):
 		
 
 class MockGenerator(AbstractParser):
-	def __init__(self, options, sys):
+	def __init__(self, options ):
 		'''
 		@param options Object
-		@param sys - "A module exposing a class System" (Daniel Haase) 
 		'''
 		self.options = options
-		self.sys = sys
 		
 	def generate(self, etree):
 		toc = None

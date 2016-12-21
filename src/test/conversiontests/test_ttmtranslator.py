@@ -14,6 +14,7 @@ from tex2x.System import System
 import mmap
 from unittest.case import skip
 from tex2x.Settings import ve_settings as settings
+from tex2x.System import ve_system as sys
 
 class TTMTranslatorTest(unittest.TestCase):
 
@@ -21,8 +22,7 @@ class TTMTranslatorTest(unittest.TestCase):
 		#print("setting up")
 		#self.s = System(Option('',['lang=de']))
 		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
-		self.sys = dispatcher.sys
-		self.translator = TTMTranslator( settings, self.sys )
+		self.translator = TTMTranslator( settings )
 
 		self.tex_test_file = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
 		self.tex_test_output = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
@@ -63,14 +63,14 @@ Ich stehe in der mitte
 		self.assertIsNotNone(ttm_process)
 
 		# parse unknown latex command and make parser exit with code 3
-		TTMTranslator( settings, self.sys )
+		TTMTranslator( settings )
 		with self.assertRaises(SystemExit) as cm:
 			self.isCorrectConversionTest(r'''\unknownlatexcommand''','', dorelease=1)
 
-		self.assertEqual(cm.exception.code, 3)
+		self.assertEqual( 3, cm.exception.code )
 
 		# make parser process exit with return code 3
-		new_ttm = TTMTranslator(settings, self.sys)
+		new_ttm = TTMTranslator(settings)
 		self.testTitle()
 		#new_ttm.translate(tex_start=self.tex_test_file, ttm_outfile=self.tex_test_output, sys=self.s)
 		#subprocess.run(ve_settings.ttmBin)

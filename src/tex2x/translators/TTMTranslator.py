@@ -22,6 +22,7 @@ import sys
 from tex2x.Settings import Settings
 from tex2x.Settings import ve_settings as settings
 from tex2x.translators.AbstractTranslator import AbstractTranslator
+from tex2x.System import ve_system as sys
 
 logger = logging.getLogger(__name__)
 
@@ -32,12 +33,11 @@ class TTMTranslator(AbstractTranslator):
 	Can be decorated with VerboseParser to enable performance logging.
 	"""
 
-	def __init__(self, options, sys, ttmBin=settings.ttmBin):
+	def __init__(self, options, ttmBin=settings.ttmBin):
 		"""
 		Constructor.
 		
 		@param options Object
-		@param sys - "A module exposing a class System" (Daniel Haase) 
 		@param ttmBin path to TTM binary
 		"""
 		## @var subprocess
@@ -47,10 +47,6 @@ class TTMTranslator(AbstractTranslator):
 		## @var options
 		#   Object encapsulating all the options necessary to run the tex2x converter. 
 		self.options = options
-
-		## @var sys
-		#  tex2x System object providing methods for handling files.
-		self.sys = sys
 		
 		## @var ttmBin
 		#  Path to TTM binary
@@ -82,7 +78,7 @@ class TTMTranslator(AbstractTranslator):
 			os.makedirs(self.options.targetpath)
 			
 		# TODO DH: Why exactly do we need this?
-		self.sys.pushdir() # AO: when this is removed, then the output plugin starts in the wrong dir
+		sys.pushdir() # AO: when this is removed, then the output plugin starts in the wrong dir
 		if not os.path.exists( sourceTEX ):
 			os.makedirs( sourceTEX )
 
@@ -99,7 +95,7 @@ class TTMTranslator(AbstractTranslator):
 
 		# don't catch exception here, fatal exceptions should be handled at outer level
 		finally:
-			self.sys.popdir()
+			sys.popdir()
 			pass
 
 		return xmlString
@@ -124,7 +120,7 @@ class TTMTranslator(AbstractTranslator):
 		@return boolean
 		"""
 		if (os.path.exists( sourceTEXStartFile ) ):
-			self.sys.copyFile( sourceTEXStartFile, ttmFile, "" )
+			sys.copyFile( sourceTEXStartFile, ttmFile, "" )
 			return True
 		else:
 			return False
@@ -156,7 +152,7 @@ class TTMTranslator(AbstractTranslator):
 		@param sourceTEXStartFile - path to source Tex file
 		@param dorelease - boolean, log a fatal error of unknown commands found
 		"""
-		if self.sys is not None and subprocess is not None:
+		if sys is not None and subprocess is not None:
 
 			(output, err) = subprocess.communicate()
 
@@ -195,4 +191,4 @@ class TTMTranslator(AbstractTranslator):
 				
 			if (cm > 0) and (dorelease == 1):
 				logger.log( logging.ERROR, "ttm found " + str(cm) + " unknown commands, refusing to continue on release version")
-				sys.exit(3)
+				sys.finish_program(3)
