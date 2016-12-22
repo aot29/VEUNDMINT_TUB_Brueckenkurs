@@ -32,7 +32,7 @@ from tex2x.AbstractPlugin import *
 from tex2x.Settings import ve_settings as settings
 from tex2x.System import ve_system as sys
 
-class Preprocessor(AbstractPreprocessor):
+class preprocessor_mintmodtex(AbstractPreprocessor):
 	
 	# Constructor parameters: log object reference and data storage for the plugin chain (dict), and options object reference
 	def __init__(self, interface):

@@ -41,8 +41,7 @@ from tex2x.renderers.PageFactory import PageFactory
 from tex2x.Settings import ve_settings as settings
 from tex2x.System import ve_system as sys
 
-class Plugin(AbstractPlugin):
-
+class html5_mintmodtex(AbstractPlugin):
 
 	def __init__(self, interface):
 		# initialize data which is global for each conversion

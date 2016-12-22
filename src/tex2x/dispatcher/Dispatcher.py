@@ -14,17 +14,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  \author Daniel Haase for KIT
 #  \author Alvaro Ortiz for TU Berlin
 
-import imp
-import os
-import time
-import json
-from lxml import etree
 
 from tex2x.Settings import ve_settings as settings
 from tex2x.System import ve_system as sys
+
+from tex2x.dispatcher.Pipeline import Pipeline
 from tex2x.dispatcher.AbstractDispatcher import AbstractDispatcher, VerboseDispatcher, PreprocessorDispatcher, PluginDispatcher
 
 from tex2x.translators.AbstractTranslator import VerboseTranslator
@@ -42,12 +38,14 @@ from tex2x.generators.WikipediaDecorator import WikipediaDecorator
 
 class Dispatcher(AbstractDispatcher):
 	"""
-	The dispatcher is the first class to be called by tex2x and sets the processing pipeline together.	
-	The dispatcher uses the template method pattern: 	
+	The dispatcher is the first class to be called by tex2x and sets the processing pipeline together.
+	The dispatcher executes the steps of defined in a "pipeline" in sequence. The steps of the pipeline are read from settings.
+	An example of another application of this pattern is Apache Cocoon (https://en.wikipedia.org/wiki/Apache_Cocoon).
+	
+	Each element in the pipeline can be seen as a template method, that is each method is wrapped in its own class:
 	"Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. 
 	Lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure." 
 	- Gamma, Helm, Johnson, Vlissides (1995) 'Design Patterns: Elements of Reusable Object-Oriented Software'
-	
 	so instead of packing everything into methods, each functionality is implemented in a separate class.
 	Each class implements a specific interface. Together, these interfaces specify a sequence of steps which are executed by the Dispatcher.dispatch() method.
 	The advantage are
@@ -55,7 +53,7 @@ class Dispatcher(AbstractDispatcher):
 	* different implementations of each step in the dispatch sequence are possible, while keeping the same dispatcher.
 	* the classes could be composed at runtime by configuration.
 	
-	The initModules() and subsequent method need refactoring.
+	@see https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Python%20API%20Documentation 
 	"""
 	
 	## OPTIONSFILE
@@ -76,6 +74,9 @@ class Dispatcher(AbstractDispatcher):
 		@param pluginName - Name of the application to execute (default VEUNDMINT)
 		@param override - Override options in the plugin's Option.py file
 		"""
+		
+		if not pluginName: raise Exception( "No plugin name given" )
+		
 		## @var requiredImages
 		#  deprecated
 		self.requiredImages = []
@@ -85,7 +86,7 @@ class Dispatcher(AbstractDispatcher):
 		self.verbose = verbose
 				
 		## @var pluginName
-		#  Name of the application to execute
+		#  Name of the application to execute. Set by the main entry script in tex2x.
 		self.pluginName = pluginName
 		
 		## @var override
@@ -94,6 +95,9 @@ class Dispatcher(AbstractDispatcher):
 		
 		# start processing some stuff that is required later (refactor)
 		self.initModules()
+
+		# read the pipeline containing the dispatcher steps from settings		
+		self.pipeline = Pipeline( self.pluginName, self.interface )
 
 
 	def dispatch(self):
@@ -105,38 +109,32 @@ class Dispatcher(AbstractDispatcher):
 		4. Generator: Create the table of contents (TOC) and content tree, correct links
 		5. Plugins: Output to static HTML files
 		"""
-				
-		if hasattr(settings, "overrides"):
-			for ov in settings.overrides: print( "tex2x called with override option: " + ov[0] + " -> " + ov[1])
 
 		# 1. Run pre-processing plugins
-		preprocessorDispatcher = PreprocessorDispatcher( self.preprocessors )
+		preprocessorDispatcher = PreprocessorDispatcher( self.pipeline.preprocessors )
 		if self.verbose: preprocessorDispatcher = VerboseDispatcher( preprocessorDispatcher, "Step 1: Preprocessing" )
 		preprocessorDispatcher.dispatch()
 
 		# 2. Run TTM translator, load XML
-		self.translator = TTMTranslator()
-		self.translator = MathMLDecorator( self.translator ) # Add MathML corrections
-		if self.verbose: self.translator = VerboseTranslator( self.translator, "Step 2: Converting Tex to XML (TTM)" )
-		self.data['rawxml'] = self.translator.translate() # run TTM parser with default options
+		translator = self.pipeline.translator
+		translator = MathMLDecorator( translator ) # Add MathML corrections
+		if self.verbose: translator = VerboseTranslator( translator, "Step 2: Converting Tex to XML (TTM)" )
+		self.data['rawxml'] = translator.translate() # run TTM parser with default options
 		
 		# 3. Parse HTML
-		html = HTMLParser()
+		html = self.pipeline.parser
 		if self.verbose: html = VerboseParser( html, "Step 3: Parsing to HTML" )
 		xmltree_raw = html.parse( self.data['rawxml'] )
 		
 		# 4. Create TOC and content tree
-		self.generator = ContentGenerator()
-		self.generator = LinkDecorator( self.generator )
-		self.generator = WikipediaDecorator( self.generator, settings.lang)
-		if self.verbose: self.generator = VerboseGenerator( self.generator, "Step 4: Creating the table of contents (TOC) and content tree" )
-		self.toc, content = self.generator.generate( xmltree_raw )
-		
-		#print( etree.tostring( xmltree_raw ) )
-		#print(self.content[2][2])
+		generator = self.pipeline.generator
+		generator = LinkDecorator( generator )
+		generator = WikipediaDecorator( generator, settings.lang )
+		if self.verbose: generator = VerboseGenerator( generator, "Step 4: Creating the table of contents (TOC) and content tree" )
+		self.toc, content = generator.generate( xmltree_raw )
 		
 		# 5. Start output plugin
-		plugin = PluginDispatcher( self.data, content, self.toc, self.requiredImages, self.interface['output_plugins'] )
+		plugin = PluginDispatcher( self.data, content, self.toc, self.requiredImages, self.pipeline.plugins )
 		if self.verbose: plugin = VerboseDispatcher( plugin, "Step 5: Output to static HTML files" )
 		plugin.dispatch()
 		
@@ -158,9 +156,7 @@ class Dispatcher(AbstractDispatcher):
 
 		As all the code is now GPL, these workarounds to allow only "linking" to certain stuff while obfuscating other are no more necessary.
 		"""
-		
-		if not self.pluginName: raise Exception( "No plugin name given" )
-		
+
 		## @var interface
 		# undocumented data structure (Daniel Haase)
 		self.interface = dict()
@@ -173,40 +169,6 @@ class Dispatcher(AbstractDispatcher):
 		# simplify access to the interface data member (Daniel Haase)
 		self.data = self.interface['data']
 
-		# initializes "interface data members"
-		# Exceptions bubble-up to the main caller class
-		self.initPreprocessors()
-		self.initOutputPlugins()
-
-
-	def initPreprocessors(self):
-		'''
-		preprocessor_plugins member: A list of modules exposing a class "Preprocessor" which has a function "preprocess"
-		'''
-		self.interface['preprocessor_plugins'] = []
-		for p in settings.usePreprocessorPlugins:
-			path = settings.pluginPath[p]
-			if not os.path.isfile( path ):  raise Exception( "Preprocessor file %s not found at %s" % (p, path) )
-			
-			module = imp.load_source(self.pluginName + "_preprocessor_" + p, path )
-			self.interface['preprocessor_plugins'].append(module.Preprocessor(self.interface))
-			
-		self.preprocessors = self.interface['preprocessor_plugins']
-
-
-	def initOutputPlugins(self):
-		'''
-		output_plugins member: A list of modules exposing a class "Plugin" which has a function "create_output"
-		'''
-		self.interface['output_plugins'] = []
-		for p in settings.useOutputPlugins:
-			module = imp.load_source( self.pluginName + "_output_" + p, settings.pluginPath[p] )
-			path = settings.pluginPath[p]
-			if not os.path.isfile( path ):  raise Exception( "Output plugin file %s not found at %s" % (p, path) )
-			
-			self.interface['output_plugins'].append(module.Plugin(self.interface))
-
-	# --------------------- END DEFINITION OF THE MODULE INTERFACE ------------------------------------------------------		
 	
 	def clean_up(self):
 		print("Cleaning up: " + os.path.abspath(settings.sourcepath))

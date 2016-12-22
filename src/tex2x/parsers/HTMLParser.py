@@ -25,6 +25,7 @@ from lxml import etree
 
 class HTMLParser( AbstractParser ):
 	"""
+	Calls lxml.HTMLParser to generate an etree from an XML string.
 	Can be decorated with VerboseParser to enable performance loging.
 	
 	@see http://lxml.de/api/lxml.etree.HTMLParser-class.html

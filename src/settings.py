@@ -38,3 +38,25 @@ ttmFile = os.path.join(sourceTEX, 'ttm_output.xml')
 #########################
 
 scorm2004testurl = BASE_URL + '/scorm2004testwrap.htm'
+
+#############################
+#### Dispatcher settings ####
+#############################
+
+## @var pipeline
+#  Pipeline lists the steps in the dispatcher.
+#  1. Preprocessors: Run pre-processing plugins
+#  2. Translator: Run TTM (convert Tex to XML), load XML file created by TTM, 
+#  3. Parser: Parse XML files into a HTML tree
+#  4. Generator: Create the table of contents (TOC) and content tree, correct links
+#  5. Plugins: Output to static HTML files
+#
+#  Steps 1 and 5 may have multiple classes.
+#  Steps 2,3,4 may be decorated.
+pipeline = {
+		"preprocessors": [ 'preprocessor_mintmodtex' ],
+		"translator": "TTMTranslator",
+		"parser": "HTMLParser",
+		"generator": "ContentGenerator",
+		"plugins": [ 'html5_mintmodtex' ]
+		}
