@@ -35,10 +35,10 @@ from tex2x.System import ve_system as sys
 class preprocessor_mintmodtex(AbstractPreprocessor):
 	
 	# Constructor parameters: log object reference and data storage for the plugin chain (dict), and options object reference
-	def __init__(self, interface):
+	def __init__(self, data):
 		
 		# copy interface member references
-		self.data = interface['data']
+		self.data = data
 		self.name = "MINTMODTEX"
 		self.version ="P0.1.0"
 		sys.message(sys.VERBOSEINFO, "Preprocessor " + self.name + " of version " + self.version + " constructed")

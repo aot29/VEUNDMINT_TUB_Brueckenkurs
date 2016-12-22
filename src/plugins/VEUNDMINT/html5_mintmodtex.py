@@ -43,15 +43,15 @@ from tex2x.System import ve_system as sys
 
 class html5_mintmodtex(AbstractPlugin):
 
-	def __init__(self, interface):
+	def __init__(self, data):
 		# initialize data which is global for each conversion
 		# copy interface member references
-		self.data = interface['data']
+		self.data = data
 		self.name = "HTML5_MINTMODTEX"
 		self.version ="P0.1.0"
 		self.outputextension = "html"
 		self.outputsubdir = self.outputextension
-		self.page = PageFactory(interface, self).getPage()
+		self.page = PageFactory( data, self ).getPage()
 		self.randcharstr = "0123456789,.;abcxysqrt()/*+-"
 		sys.message(sys.VERBOSEINFO, "Output plugin " + self.name + " of version " + self.version + " constructed")
 

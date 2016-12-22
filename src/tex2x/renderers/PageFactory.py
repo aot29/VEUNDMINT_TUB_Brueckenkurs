@@ -25,7 +25,7 @@ class PageFactory(object):
 	Enables having different Page objects, which can be instantiated according to some parameter in Option.py
 	"""
 
-	def __init__(self, interface, outputplugin):
+	def __init__(self, data, outputplugin):
 		"""
 		Constructor
 		Instantiated by Plugin class in html5_mintmodtex.py
@@ -35,8 +35,8 @@ class PageFactory(object):
 		"""
 		
 		## @var data
-		#  simplify access to the interface data member (Daniel Haase) 
-		self.data = interface['data']
+		#  data member, undocumented (Daniel Haase) 
+		self.data = data
 				
 		## @var outputplugin
 		#  Plugin (object implementing AbstractPlugin):

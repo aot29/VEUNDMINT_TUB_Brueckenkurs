@@ -93,11 +93,12 @@ class Dispatcher(AbstractDispatcher):
 		#  Override options in the plugin's Option.py file, e.g. 'description=My Course' to change the course title
 		self.override = override
 		
-		# start processing some stuff that is required later (refactor)
-		self.initModules()
+		## @var data
+		#  data member, undocumented (Daniel Haase) 
+		self.data = dict()
 
 		# read the pipeline containing the dispatcher steps from settings		
-		self.pipeline = Pipeline( self.pluginName, self.interface )
+		self.pipeline = Pipeline( self.pluginName, self.data )
 
 
 	def dispatch(self):
@@ -144,30 +145,6 @@ class Dispatcher(AbstractDispatcher):
 		# stop program execution and return proper error level as return value
 		# sys.finish_program()
 		# no way the application runs without errors
-
-
-	# --------------------- BEGIN DEFINITION OF THE MODULE INTERFACE ------------------------------------------------------
-
-	def initModules(self):
-		"""
-		INITIALIZE INTERFACE DATA MEMBER, WHICH SERVES AS THE SOLE COMMUNICATION INTERFACE TO LINKED MODULES
-		AS DESCRIBED IN THE tex2x LICENSE. LINKED MODULES (PLUGINS) MAY ONLY USE THE FOLLOWING DATA MEMBERS
-		FOR COMMUNICATION AND FUNCTION CALLS:
-
-		As all the code is now GPL, these workarounds to allow only "linking" to certain stuff while obfuscating other are no more necessary.
-		"""
-
-		## @var interface
-		# undocumented data structure (Daniel Haase)
-		self.interface = dict()
-
-		# data member: linked modules may READ/WRITE/CHANGE/DELETE elements of the data member,
-		# added elements must not contain functions or code of any kind.
-		self.interface['data'] = dict()
-		
-		## @var data
-		# simplify access to the interface data member (Daniel Haase)
-		self.data = self.interface['data']
 
 	
 	def clean_up(self):

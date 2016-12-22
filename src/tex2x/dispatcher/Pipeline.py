@@ -29,7 +29,7 @@ class Pipeline(object):
 	@see imp library https://docs.python.org/2/library/imp.html
 	"""
 	
-	def __init__( self, pluginName, interface ):
+	def __init__( self, pluginName, data ):
 		"""
 		Constructor. Instantiate in Dispatcher.
 		
@@ -38,7 +38,7 @@ class Pipeline(object):
 		"""
 
 		# refactor this out
-		self.interface = interface
+		self.data = data
 		
 		## @var pluginName
 		#  Name of the application to execute		
@@ -60,7 +60,7 @@ class Pipeline(object):
 		self.preprocessors = []
 		for name in settings.pipeline[ 'preprocessors' ]:
 			class_ = self.dynamicImport( name )
-			self.preprocessors.append( class_( self.interface ) )
+			self.preprocessors.append( class_( self.data ) )
 		
 		## @var translator
 		#  Class that can translate LaTeX source files to an XML file, including parsing MathML.
@@ -82,7 +82,7 @@ class Pipeline(object):
 		self.plugins = []
 		for name in settings.pipeline[ 'plugins' ]:
 			class_ = self.dynamicImport( name )
-			self.plugins.append( class_( self.interface ) )
+			self.plugins.append( class_( self.data ) )
 
 
 	def dynamicImport(self, name):
