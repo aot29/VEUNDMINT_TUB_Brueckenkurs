@@ -1,6 +1,9 @@
 '''
 Created on Jun 15, 2016
 
+cd src
+python3 -m unittest test.systemtests.test_tabs.TabsTest
+
 @author: alvaro
 '''
 import unittest

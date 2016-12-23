@@ -17,10 +17,6 @@
 """
 
 
-"""
-	This is the preprocessor object associated to the mintmod macro package, 
-	Version P0.1.0, needs to be consistent with mintmod.tex
-"""
 
 
 import re
@@ -28,130 +24,46 @@ import os.path
 import subprocess
 import fileinput
 import sys
-from tex2x.AbstractPlugin import *
+from tex2x.preprocessors.AbstractPreprocessor import AbstractPreprocessor
 from tex2x.Settings import ve_settings as settings
 from tex2x.System import ve_system as sys
 
-class preprocessor_mintmodtex(AbstractPreprocessor):
+class Preprocessor(AbstractPreprocessor):
 	
 	# Constructor parameters: log object reference and data storage for the plugin chain (dict), and options object reference
 	def __init__(self, data):
 		
 		# copy interface member references
 		self.data = data
-		self.name = "MINTMODTEX"
-		self.version ="P0.1.0"
-		sys.message(sys.VERBOSEINFO, "Preprocessor " + self.name + " of version " + self.version + " constructed")
-
-	def _prepareData(self):
-		# checks if needed data members are present or empty
-		if 'DirectRoulettes' in self.data:
-			sys.message(sys.CLIENTWARN, "Another Preprocessor is using DirectRoulettes")
-
-		else:
-			self.data['DirectRoulettes'] = {}
-
-		if 'macrotex' in self.data:
-			sys.message(sys.CLIENTWARN, "Using macrotex from an another preprocessor, hope it works out")
-			
-		else:
-			# read original code of the macro package
-			macrotex = sys.readTextFile(os.path.join(settings.converterDir, "tex", settings.macrofile), settings.stdencoding)
-
-			# read requested i18n file and concatenate macro files if present
-			try:
-				i18ntex = sys.readTextFile(os.path.join(settings.converterDir, "tex", settings.i18nfile), settings.stdencoding)
-				self.data['macrotex'] = i18ntex + macrotex
-				#self.data['macrotex'] = macrotex
-
-			# if no i18n file was given, then assume all the texts are in the mintmod file 
-			except AttributeError:
-				self.data['macrotex'] = macrotex
-			
-			if re.search(r"\\MPragma{mintmodversion;" + self.version + r"}", self.data['macrotex'], re.S):
-				sys.message(sys.VERBOSEINFO, "Macro package " + settings.macrofile + " checked, seems to be ok")
-			else:				
-				sys.message(sys.CLIENTERROR, "Macro package " + settings.macrofile + " does not provide macroset of preprocessor version")
-			
-		if 'modmacrotex' in self.data:
-			sys.message(sys.CLIENTWARN, "Using MODIFIED macrotex from an another preprocessor, hope it works out")
-			
-		else:
-			# use the original code for now
-			self.data['modmacrotex'] = self.data['macrotex']
-
-
-		# append signature values as LaTeX macros
-		self._addTeXMacro("MSignatureMain", settings.signature_main)
-		self._addTeXMacro("MSignatureVersion", settings.signature_version)
-		self._addTeXMacro("MSignatureLocalization", settings.signature_localization)
-		self._addTeXMacro("MSignatureVariant", settings.variant)
-		self._addTeXMacro("MSignatureDate", settings.signature_date)
-
-		if 'DirectHTML' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using DirectHTML, appending existing values")
-		else:
-			self.data['DirectHTML'] = []
-			
-		if 'directexercises' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using directexercises, appending existing values")
-		else:
-			self.data['directexercises'] = ""
-
-		if 'autolabels' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using autolabels, appending existing values")
-		else:
-			self.data['autolabels'] = []
-
-		if 'copyrightcollection' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using copyrightcollection, appending existing values")
-		else:
-			self.data['copyrightcollection'] = ""
-
-		if 'htmltikz' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using htmltikz, appending existing values")
-		else:
-			self.data['htmltikz'] = dict() # entries are created by tikz preprocessing and associate a filename (without extension) to CSS-stylescale
-		
-
-	def _autolabel(self):
-		# generate a label string which is unique in the entire module tree
-		j = len(self.data['autolabels'])
-		s = "L_SOURCEAUTOLABEL_" + str(j)
-		self.data['autolabels'].append(s)
-		return s
+		#self.name = "MINTMODTEX"
+		#self.version ="P0.1.0"
+		#sys.message(sys.VERBOSEINFO, "Preprocessor " + self.name + " of version " + self.version + " constructed")
+		# collect copyrightstatements and exerciseexports from this processing event and add them later to the global collection
 
 
 	# main function to be called from tex2x
 	def preprocess(self):
-		sys.timestamp("Starting preprocessor " + self.name)
+		"""
+		Start preprocessor.
+		Called from dispatcher.
+		"""		
+		#self.prepareWorkingFolder()
+		#self.createCopyrightTextFile()
+		#self.createMacrosAndStyles()
+		#self.initializeCourseVariant()
+		#self.createMainTexFile()
+		
+		fileList = self.getFileList()
+		self.fixI18nForPdfLatex( fileList )
+		self.doReleaseCheck( fileList )
+		
 
-		self._prepareData()
 
-		# collect copyrightstatements and exerciseexports from this processing event and add them later to the global collection
-		self.copyrightcollection = ""
-		self.directexercises = ""
 
-		# Prepare working folder
-		sys.emptyTree(settings.sourcepath)
-		sys.copyFiletree(settings.texCommonFiles, settings.sourceTEX, ".")
-		sys.copyFiletree(settings.sourcepath_original, settings.sourceTEX, ".")
-		sys.timestamp("Source and common tex files copied")
-		if os.path.isfile(settings.sourceTEXStartFile):
-			sys.message(sys.VERBOSEINFO, "Found main tex file " + settings.sourceTEXStartFile)
-		else:
-			sys.message(sys.FATALERROR, "Main tex file " + settings.sourceTEXStartFile + " not present in original source folder " + settings.sourcepath_original)
+	
 
-		# initialize course variant data
-		self.variant = settings.variant
-		sys.message(sys.CLIENTINFO, "Preprocessor uses course variant " + self.variant)
-		# modify macro package to variant (as a variable, not a file yet)
-		(self.data['modmacrotex'], k) = re.subn(r"\\variantstdtrue", "\\\\variant" + self.variant + "true % this string was added by tex2x VEUNDMINT preprocessor\n", self.data['modmacrotex'], 0, re.S)
-		if (k == 1):
-			sys.message(sys.VERBOSEINFO, "Preparing $macrofile for variant " + self.variant)
-		else:
-			sys.message(sys.CLIENTERROR, "Variant selection statement \\variantstdtrue found " + str(k) + " times in macro file")
-  
+
+	def getFileList(self):
 		# Preprocessing of each tex file in the folder and subfolders
 		pathLen = len(settings.sourceTEX) + 1
 		fileArray = []
@@ -163,11 +75,13 @@ class preprocessor_mintmodtex(AbstractPreprocessor):
 					fileArray.append([os.path.join(settings.sourceTEX, root, name), os.path.join(settings.sourcepath_original, root, name)])
 			for name in dirs:
 				continue
+		return fileArray
+	
 
-		sys.message(sys.VERBOSEINFO, "Preprocessor working on " + str(len(fileArray)) + " texfiles")
-
+	def doReleaseCheck(self, fileList):
+		sys.message(sys.VERBOSEINFO, "Preprocessor working on " + str(len(fileList)) + " texfiles")
 		nonpass = 0
-		for texfile in fileArray:
+		for texfile in fileList:
 			if re.match(".*" + settings.macrofilename  + "\\.tex", texfile[0]):
 				sys.message(sys.VERBOSEINFO, "Preprocessing and release check ignores macro file " + texfile[0])
 			else:
@@ -181,16 +95,21 @@ class preprocessor_mintmodtex(AbstractPreprocessor):
 			
 				tex = self.preprocess_texfile(texfile[0], tex)
 				sys.writeTextFile(texfile[0], tex, settings.stdencoding)
-
-
+				
+		sys.message(sys.CLIENTINFO, "Preparsing of " + str(len(fileList)) + " texfiles finished")
+		sys.message(sys.CLIENTINFO, str(nonpass) + " files did not pass the release test, see logfile for details")
+		sys.message(sys.CLIENTINFO, "A total of " + str(len(self.data['DirectHTML'])) + " DirectHTML blocks created")
+			
+				
+	def fixI18nForPdfLatex( self, fileList ):
 		# Remove the i18n localization \input commands from LaTeX, as the converter inserts them into the source code, 
 		# and the presence of both confuses pdflatex
 		pattern = re.compile(r"\\\input{.*}")
-		for texfile in fileArray:
+		for texfile in fileList:
 			#if re.match(".*" + settings.macrofilename  + "\\.tex", texfile[0]): continue
 			#if re.match(".*/veundmint_de.tex", texfile[0]): continue
 			#if re.match(".*/veundmint_en.tex", texfile[0]): continue
-			if re.match(".*/vbkm.*", texfile[0]):	
+			if re.match(".*/vbkm.*", texfile[0]):
 				file_handle = open(texfile[0], 'r')
 				file_string = file_handle.read()
 				file_handle.close()
@@ -203,39 +122,18 @@ class preprocessor_mintmodtex(AbstractPreprocessor):
 				file_handle = open(texfile[0], 'w')
 				file_handle.write(file_string)
 				file_handle.close()
-		
-		sys.message(sys.CLIENTINFO, "Preparsing of " + str(len(fileArray)) + " texfiles finished")
-		sys.message(sys.CLIENTINFO, str(nonpass) + " files did not pass the release test, see logfile for details")
-		sys.message(sys.CLIENTINFO, "A total of " + str(len(self.data['DirectHTML'])) + " DirectHTML blocks created")
-		
 
-		# Create copyright text file and exercise export
-		self.data['copyrightcollection'] = self.data['copyrightcollection'] + "\\begin{tabular}{llll}%\n" + self.copyrightcollection + "\\end{tabular}\n"
-		sys.writeTextFile(settings.copyrightFile, "% autogenerated by the tex2x VEUNDMINT plugin\n% do not modify\n" + self.data['copyrightcollection'], settings.stdencoding)
-		self.data['directexercises'] = self.data['directexercises'] + self.directexercises
-		sys.writeTextFile(settings.directexercisesFile, "% autogenerated by the tex2x VEUNDMINT plugin\n% do not modify\n" + self.data['directexercises'], settings.stdencoding)
 
-		# create macro and style files used for pdflatex and ttm processing
-		sys.pushdir()
-		os.chdir(settings.sourceTEX)
-		self._installPackages()
-		sys.popdir()
 		
-		# Create main file for HTML build, oh great line separator for python is the backslash
-		# \author and \title MUST NOT appear in the tex source, they generate h1 and h3 tags through ttm which confuse xml dissection
-		maintex = "% this file was autogenerated by tex2x VEUNDMINT preprocessor, do not modify!\n" \
-				 + "\\documentclass{book}\n" \
-				 + "\\input{" + settings.macrofile + "} % variant " + self.variant + "\n" \
-				 + "\\newcounter{MChaptersGiven}\\setcounter{MChaptersGiven}{1}\n" \
-				 + "\\begin{document}\n" \
-				 + "\\begin{html}<!-- variant;\\end{html}\\MVariant\\begin{html} //-->\\end{html}\n" \
-				 + sys.readTextFile(settings.sourceTEXStartFile, settings.stdencoding) + "\n" \
-				 + "\\end{document}\n"
-		sys.writeTextFile(settings.sourceTEXStartFile, maintex, settings.stdencoding)
-		sys.message(sys.VERBOSEINFO, "Generated main tex file for HTML conversion: " + settings.sourceTEXStartFile)
-		
-		sys.timestamp("Finished preprocessor " + self.name)
-				
+	
+
+
+	def _autolabel(self):
+		# generate a label string which is unique in the entire module tree
+		j = len(self.data['autolabels'])
+		s = "L_SOURCEAUTOLABEL_" + str(j)
+		self.data['autolabels'].append(s)
+		return s
 
 	# Checks if given tex code from file fname (original source!) is valid for a release version
 	# Return value: boolean True if release check passed
@@ -814,22 +712,8 @@ class preprocessor_mintmodtex(AbstractPreprocessor):
 		return
 
    
-	def _installPackages(self):
-		# installs modified local macro package and used style files in the current directory
-		# don't use a direct copy, always check and modify the encoding if needed
-		sys.writeTextFile(settings.macrofile, self.data['modmacrotex'], settings.stdencoding)
-		for f in settings.texstylefiles:
-			sys.writeTextFile(f, sys.readTextFile(os.path.join(settings.converterDir, "tex", f), settings.stdencoding), settings.stdencoding)
-		return
 
 
-	def _removePackages(self):
-		# removeslocal macro package and style files in the current directory
-		for f in settings.texstylefiles:
-			sys.removeFile(f)
-		sys.removeFile(settings.macrofile)
 
  
-	def _addTeXMacro(self, macro, tex):
-		self.data['modmacrotex'] += "\\newcommand{\\" + macro + "}{" + tex + "}\n"
 		

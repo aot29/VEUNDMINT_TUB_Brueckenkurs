@@ -1,6 +1,9 @@
 '''
 Created on Jun 16, 2016
 
+cd src
+python3 -m unittest test.systemtests.test_final.FinalTestTest
+
 @author: alvaro
 '''
 import unittest

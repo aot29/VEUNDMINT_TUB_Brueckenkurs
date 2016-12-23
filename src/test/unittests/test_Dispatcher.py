@@ -41,10 +41,10 @@ class test_Dispatcher(unittest.TestCase):
 		"""		
 		pipeline = Pipeline()
 		
-		# there's currently only one preprocessor in the default settings
-		self.assertEqual( 1, len( pipeline.preprocessors ) )
+		# there's currently two preprocessors in the default settings
+		self.assertEqual( 3, len( pipeline.preprocessors ) )
 		# the class name expected for VEUNDMINT
-		self.assertEqual( "Preprocessor", pipeline.preprocessors[0].__name__ )
+		self.assertEqual( "PrepareData", pipeline.preprocessors[0].__name__ )
 		
 		# the class name expected for the translator
 		self.assertEqual( "TTMTranslator", pipeline.translator.__name__ )
