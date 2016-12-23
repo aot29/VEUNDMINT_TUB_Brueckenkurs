@@ -39,7 +39,7 @@ class test_Dispatcher(unittest.TestCase):
 		"""
 		Check that the pipeline can be read from settings
 		"""		
-		pipeline = Pipeline( "VEUNDMINT", {'data': None} )
+		pipeline = Pipeline()
 		
 		# there's currently only one preprocessor in the default settings
 		self.assertEqual( 1, len( pipeline.preprocessors ) )

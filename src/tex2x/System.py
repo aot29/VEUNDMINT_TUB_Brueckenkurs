@@ -125,27 +125,6 @@ class System(object):
 		self.message(self.VERBOSEINFO, msg + " (relative time: " + str(reltimediff) + ", absolute time: " + str(abstimediff) + " [seconds])")
 
 
-	def openFile(self, path, attr):
-		"""
-		:param path: Pfad - Pfad zur Datei
-		:param attr: Attribut - Angabe des Modus zur Öffnung, z.B. rb, w, etc
-		:returns: Dateihandle - Handle der geöffneten Datei.
-
-		Öffnet die in **path** angegebene Datei.
-
-		.. note::
-			Nicht existierende Dateien und Pfade werden dabei neu angelegt!
-		"""
-		self.ensurePath(os.path.dirname(path))
-		return open(path,attr)
-
-
-	# creates a path if it does not exist, leaves it untouched otherwise
-	def ensureTree(self, path):
-		if not os.path.exists(path) and path != "":
-			os.makedirs(path)
-
-
 	# create a new empty tree, delete old one if present without further warning
 	def emptyTree(self, path):
 		if os.path.isdir(path):
@@ -316,12 +295,6 @@ class System(object):
 	def copyFiletree(self, source,target,path):
 		copy_tree(os.path.join(source,path),os.path.join(target,path),update=1)
 		
-	def removeTree(self, path):
-		if os.path.isdir(path):
-			shutil.rmtree(path)
-		else:
-			print("path ISNT A TREE")
-		
 	def removeFile(self, path):
 		if os.path.isfile(path):
 			os.remove(path)
@@ -330,8 +303,6 @@ class System(object):
 			
 	def makePath(self, path):
 		os.makedirs(path)
-
-	
 
 ve_system = System()
 

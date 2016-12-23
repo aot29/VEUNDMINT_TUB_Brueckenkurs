@@ -143,15 +143,6 @@ class Dispatcher(AbstractDispatcher):
 		if self.verbose: pluginDispatcher = VerboseDispatcher( pluginDispatcher, "Step 5: Output to static HTML files" )
 		pluginDispatcher.dispatch()
 		
-		# Clean up temporary files
-		if settings.cleanup == 1: self.clean_up();
-
 		# stop program execution and return proper error level as return value
 		# sys.finish_program()
 		# no way the application runs without errors
-
-	
-	def clean_up(self):
-		print("Cleaning up: " + os.path.abspath(settings.sourcepath))
-		sys.removeTree(settings.sourcepath)
-

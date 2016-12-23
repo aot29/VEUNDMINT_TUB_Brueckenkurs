@@ -43,89 +43,13 @@ class Preprocessor(AbstractPreprocessor):
 		self.version ="P0.1.0"
 		sys.message(sys.VERBOSEINFO, "Preprocessor " + self.name + " of version " + self.version + " constructed")
 
-	def _prepareData(self):
-		# checks if needed data members are present or empty
-		if 'DirectRoulettes' in self.data:
-			sys.message(sys.CLIENTWARN, "Another Preprocessor is using DirectRoulettes")
-
-		else:
-			self.data['DirectRoulettes'] = {}
-
-		if 'macrotex' in self.data:
-			sys.message(sys.CLIENTWARN, "Using macrotex from an another preprocessor, hope it works out")
-			
-		else:
-			# read original code of the macro package
-			macrotex = sys.readTextFile(os.path.join(settings.converterDir, "tex", settings.macrofile), settings.stdencoding)
-
-			# read requested i18n file and concatenate macro files if present
-			try:
-				i18ntex = sys.readTextFile(os.path.join(settings.converterDir, "tex", settings.i18nfile), settings.stdencoding)
-				self.data['macrotex'] = i18ntex + macrotex
-				#self.data['macrotex'] = macrotex
-
-			# if no i18n file was given, then assume all the texts are in the mintmod file 
-			except AttributeError:
-				self.data['macrotex'] = macrotex
-			
-			if re.search(r"\\MPragma{mintmodversion;" + self.version + r"}", self.data['macrotex'], re.S):
-				sys.message(sys.VERBOSEINFO, "Macro package " + settings.macrofile + " checked, seems to be ok")
-			else:				
-				sys.message(sys.CLIENTERROR, "Macro package " + settings.macrofile + " does not provide macroset of preprocessor version")
-			
-		if 'modmacrotex' in self.data:
-			sys.message(sys.CLIENTWARN, "Using MODIFIED macrotex from an another preprocessor, hope it works out")
-			
-		else:
-			# use the original code for now
-			self.data['modmacrotex'] = self.data['macrotex']
-
-
-		# append signature values as LaTeX macros
-		self._addTeXMacro("MSignatureMain", settings.signature_main)
-		self._addTeXMacro("MSignatureVersion", settings.signature_version)
-		self._addTeXMacro("MSignatureLocalization", settings.signature_localization)
-		self._addTeXMacro("MSignatureVariant", settings.variant)
-		self._addTeXMacro("MSignatureDate", settings.signature_date)
-
-		if 'DirectHTML' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using DirectHTML, appending existing values")
-		else:
-			self.data['DirectHTML'] = []
-			
-		if 'directexercises' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using directexercises, appending existing values")
-		else:
-			self.data['directexercises'] = ""
-
-		if 'autolabels' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using autolabels, appending existing values")
-		else:
-			self.data['autolabels'] = []
-
-		if 'copyrightcollection' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using copyrightcollection, appending existing values")
-		else:
-			self.data['copyrightcollection'] = ""
-
-		if 'htmltikz' in self.data:
-			sys.message(sys.CLIENTWARN, "Another plugin has been using htmltikz, appending existing values")
-		else:
-			self.data['htmltikz'] = dict() # entries are created by tikz preprocessing and associate a filename (without extension) to CSS-stylescale
-		
-
-	def _autolabel(self):
-		# generate a label string which is unique in the entire module tree
-		j = len(self.data['autolabels'])
-		s = "L_SOURCEAUTOLABEL_" + str(j)
-		self.data['autolabels'].append(s)
-		return s
-
 
 	# main function to be called from tex2x
 	def preprocess(self):
-		sys.timestamp("Starting preprocessor " + self.name)
-
+		"""
+		Start preprocessor.
+		Called from dispatcher.
+		"""
 		self._prepareData()
 
 		# collect copyrightstatements and exerciseexports from this processing event and add them later to the global collection
@@ -235,7 +159,84 @@ class Preprocessor(AbstractPreprocessor):
 		sys.message(sys.VERBOSEINFO, "Generated main tex file for HTML conversion: " + settings.sourceTEXStartFile)
 		
 		sys.timestamp("Finished preprocessor " + self.name)
-				
+
+	def _prepareData(self):
+		# checks if needed data members are present or empty
+		if 'DirectRoulettes' in self.data:
+			sys.message(sys.CLIENTWARN, "Another Preprocessor is using DirectRoulettes")
+
+		else:
+			self.data['DirectRoulettes'] = {}
+
+		if 'macrotex' in self.data:
+			sys.message(sys.CLIENTWARN, "Using macrotex from an another preprocessor, hope it works out")
+			
+		else:
+			# read original code of the macro package
+			macrotex = sys.readTextFile(os.path.join(settings.converterDir, "tex", settings.macrofile), settings.stdencoding)
+
+			# read requested i18n file and concatenate macro files if present
+			try:
+				i18ntex = sys.readTextFile(os.path.join(settings.converterDir, "tex", settings.i18nfile), settings.stdencoding)
+				self.data['macrotex'] = i18ntex + macrotex
+				#self.data['macrotex'] = macrotex
+
+			# if no i18n file was given, then assume all the texts are in the mintmod file 
+			except AttributeError:
+				self.data['macrotex'] = macrotex
+			
+			if re.search(r"\\MPragma{mintmodversion;" + self.version + r"}", self.data['macrotex'], re.S):
+				sys.message(sys.VERBOSEINFO, "Macro package " + settings.macrofile + " checked, seems to be ok")
+			else:				
+				sys.message(sys.CLIENTERROR, "Macro package " + settings.macrofile + " does not provide macroset of preprocessor version")
+			
+		if 'modmacrotex' in self.data:
+			sys.message(sys.CLIENTWARN, "Using MODIFIED macrotex from an another preprocessor, hope it works out")
+			
+		else:
+			# use the original code for now
+			self.data['modmacrotex'] = self.data['macrotex']
+
+
+		# append signature values as LaTeX macros
+		self._addTeXMacro("MSignatureMain", settings.signature_main)
+		self._addTeXMacro("MSignatureVersion", settings.signature_version)
+		self._addTeXMacro("MSignatureLocalization", settings.signature_localization)
+		self._addTeXMacro("MSignatureVariant", settings.variant)
+		self._addTeXMacro("MSignatureDate", settings.signature_date)
+
+		if 'DirectHTML' in self.data:
+			sys.message(sys.CLIENTWARN, "Another plugin has been using DirectHTML, appending existing values")
+		else:
+			self.data['DirectHTML'] = []
+			
+		if 'directexercises' in self.data:
+			sys.message(sys.CLIENTWARN, "Another plugin has been using directexercises, appending existing values")
+		else:
+			self.data['directexercises'] = ""
+
+		if 'autolabels' in self.data:
+			sys.message(sys.CLIENTWARN, "Another plugin has been using autolabels, appending existing values")
+		else:
+			self.data['autolabels'] = []
+
+		if 'copyrightcollection' in self.data:
+			sys.message(sys.CLIENTWARN, "Another plugin has been using copyrightcollection, appending existing values")
+		else:
+			self.data['copyrightcollection'] = ""
+
+		if 'htmltikz' in self.data:
+			sys.message(sys.CLIENTWARN, "Another plugin has been using htmltikz, appending existing values")
+		else:
+			self.data['htmltikz'] = dict() # entries are created by tikz preprocessing and associate a filename (without extension) to CSS-stylescale
+		
+
+	def _autolabel(self):
+		# generate a label string which is unique in the entire module tree
+		j = len(self.data['autolabels'])
+		s = "L_SOURCEAUTOLABEL_" + str(j)
+		self.data['autolabels'].append(s)
+		return s
 
 	# Checks if given tex code from file fname (original source!) is valid for a release version
 	# Return value: boolean True if release check passed
