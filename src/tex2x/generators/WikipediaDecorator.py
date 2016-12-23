@@ -16,6 +16,7 @@
 #
 #  \author Alvaro Ortiz for TU Berlin
 
+from tex2x.Settings import ve_settings as settings
 from lxml import etree
 from tex2x.generators.AbstractGenerator import AbstractGenerator
 from urllib.parse import urlencode
@@ -33,7 +34,7 @@ class WikipediaDecorator( AbstractGenerator ):
 	@see https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Verkn%C3%BCpfung-mit-Wikipedia
 	"""
 		
-	def __init__(self, generator, lang='de' ):
+	def __init__(self, generator, lang=settings.lang ):
 		"""
 		Constructor.
 		

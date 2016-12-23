@@ -1,5 +1,5 @@
 ## @package tex2x.dispatcher.Dispatcher
-#  The pipeline dynamically loads the classes required by the dispatcher.
+#  The pipeline dynamically loads the classes required by the dispatcher by reading the settings.pipeline parameter from the global settings file or from the plugin Option file.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
 #  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de
@@ -25,83 +25,101 @@ class Pipeline(object):
 	"""
 	Load the classes required by the Dispatcher (preprocessors, translator, parser, generator, outputPlugins). 
 	These classes are specified in settings.pipeline and loaded dynamically.
+	The pipeline dynamically loads the classes required by the dispatcher by reading the settings.pipeline parameter 
+	from the global settings file or from the plugin Option file.
 	
-	@see imp library https://docs.python.org/2/library/imp.html
+	@see settings.py
+	@see plugins/.../Option.py
+	@see imp library https://docs.python.org/2/library/imp.html (loading classs dynamically at runtime)
 	"""
 	
-	def __init__( self, pluginName, data ):
+	def __init__( self ):
 		"""
-		Constructor. Instantiate in Dispatcher.
-		
-		@param pluginName Name of the application to execute
-		@param interface dict undocumented (Daniel Haase)
+		Constructor. Instantiate in Dispatcher.		
 		"""
-
-		# refactor this out
-		self.data = data
-		
-		## @var pluginName
-		#  Name of the application to execute		
-		self.pluginName = pluginName
-
-		## @ar pluginPath
-		#  Array of paths to directories that should be searched for modules to load. 
-		#  This array should contain the plugin directory as well as the tex2x subdirectories.
-		self.pluginPath = [ 
-							os.path.join( settings.converterDir, "plugins", self.pluginName ),
-							os.path.join( settings.converterDir, "tex2x", "generators" ),
-							os.path.join( settings.converterDir, "tex2x", "parsers" ),
-							os.path.join( settings.converterDir, "tex2x", "renderers" ),
-							os.path.join( settings.converterDir, "tex2x", "translators" )
-						]
 	
 		## @var preprocessors
 		#  List of preprocessor objects
 		self.preprocessors = []
 		for name in settings.pipeline[ 'preprocessors' ]:
-			class_ = self.dynamicImport( name )
-			self.preprocessors.append( class_( self.data ) )
+			self.preprocessors.append( self.dynamicImport( name ) )
 		
 		## @var translator
 		#  Class that can translate LaTeX source files to an XML file, including parsing MathML.
-		class_ = self.dynamicImport( settings.pipeline[ 'translator' ] )
-		self.translator = class_()
+		self.translator = self.dynamicImport( settings.pipeline[ 'translator' ] )
+		
+		## @var translatorDecorators
+		#  List of decorators for the translator
+		self.translatorDecorators = []
+		for name in settings.pipeline[ 'translatorDecorators' ]:
+			self.translatorDecorators.append( self.dynamicImport( name ) )
 
 		## @var parser
 		#  Parsers take a string or text file and return the result of the parsing process.
-		class_ = self.dynamicImport( settings.pipeline[ 'parser' ] )
-		self.parser = class_()
+		self.parser = self.dynamicImport( settings.pipeline[ 'parser' ] )
+		
+		## @var parserDecorators
+		#  List of decorators for the parser
+		self.parserDecorators = []
+		for name in settings.pipeline[ 'parserDecorators' ]:
+			self.parserDecorators.append( self.dynamicImport( name ) )
 		
 		## @var generator
 		#  Generators create the table of contents (TOC) and the content tree.
-		class_ = self.dynamicImport( settings.pipeline[ 'generator' ] )
-		self.generator = class_()
+		self.generator = self.dynamicImport( settings.pipeline[ 'generator' ] )
+		
+		## @var generatorDecorators
+		#  List of generatorDecorators for the parser
+		self.generatorDecorators = []
+		for name in settings.pipeline[ 'generatorDecorators' ]:
+			self.generatorDecorators.append( self.dynamicImport( name ) )
 		
 		## @var plugins
 		#  List of plugin objects
 		self.plugins = []
 		for name in settings.pipeline[ 'plugins' ]:
-			class_ = self.dynamicImport( name )
-			self.plugins.append( class_( self.data ) )
+			self.plugins.append( self.dynamicImport( name ) )
 
 
 	def dynamicImport(self, name):
 		"""
 		Dynamically instantiate objects from class names given in the names array (at runtime).
 		
-		@param names class name
+		@param name qualified class name, including the module and the package
 		@return object created instantiated from class name
 		"""
+
+		# Put the complete class path here, so for example: 
+		# if you have a plugin called VEUNDMINT and a file called preprocessor_mintmodtex.py which holds a class called Preprocessor, 
+		# then the path is plugins.VEUNDMINT.preprocessor_mintmodtex.Preprocessor.
+		substr = name.split('.')
+		if len( substr ) < 3: raise Exception( "Incomplete path %s" % name )
+		
+		# get the name of the Python class
+		className = substr.pop()
+
+		# get the name of the module, i.e. the file name (without the .py extension)
+		moduleName = substr.pop( 2 )
+
+		# get the package name, i.e. the path to the file,
+		# relative to the src or to the plugins directory
+		packageName = substr[:2]
+		
+		#  Array of paths to directories that should be searched for modules to load. 
+		#  This array should contain the plugins and the src directory (the converterDir).
+		#  Append the packageName path to the default search paths (using the splat operator, as this is a list).
+		pluginPath = [ os.path.join( settings.converterDir, *packageName ) ]
+				
 		# search for the file containing the module 
-		f, filename, description = imp.find_module( name, self.pluginPath )
+		f, filename, description = imp.find_module( moduleName, pluginPath )
 		
 		try:
 			# load the module
-			module = imp.load_module( name, f, filename, description)
+			module = imp.load_module( moduleName, f, filename, description)
 
 			# get the module class and instantiate it.
 			# By convention, the module file should contain a class of the same name.
-			class_ = getattr( module, name )
+			class_ = getattr( module, className )
 			
 		finally:
 			f.close()

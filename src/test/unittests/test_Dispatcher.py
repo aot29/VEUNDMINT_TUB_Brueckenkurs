@@ -44,21 +44,34 @@ class test_Dispatcher(unittest.TestCase):
 		# there's currently only one preprocessor in the default settings
 		self.assertEqual( 1, len( pipeline.preprocessors ) )
 		# the class name expected for VEUNDMINT
-		self.assertEqual( "preprocessor_mintmodtex", pipeline.preprocessors[0].__class__.__name__ )
+		self.assertEqual( "Preprocessor", pipeline.preprocessors[0].__name__ )
 		
 		# the class name expected for the translator
-		self.assertEqual( "TTMTranslator", pipeline.translator.__class__.__name__ )
+		self.assertEqual( "TTMTranslator", pipeline.translator.__name__ )
+		
+		# there's currently only one translator decorator in the default settings
+		self.assertEqual( 1, len( pipeline.translatorDecorators ) )
+		# the class name expected for the translator decorator
+		self.assertEqual( "MathMLDecorator", pipeline.translatorDecorators[0].__name__ )
 		
 		# the class name expected for the parser
-		self.assertEqual( "HTMLParser", pipeline.parser.__class__.__name__ )
+		self.assertEqual( "HTMLParser", pipeline.parser.__name__ )
+		# there's currently no parser decorator in the default settings
+		self.assertEqual( 0, len( pipeline.parserDecorators ) )
 	
 		# the class name expected for the generator
-		self.assertEqual( "ContentGenerator", pipeline.generator.__class__.__name__ )
+		self.assertEqual( "ContentGenerator", pipeline.generator.__name__ )
+		
+		# there are currently two generator decorators in the default settings
+		self.assertEqual( 2, len( pipeline.generatorDecorators ) )
+		# the class names expected for the generator decorator
+		self.assertEqual( "LinkDecorator", pipeline.generatorDecorators[0].__name__ )
+		self.assertEqual( "WikipediaDecorator", pipeline.generatorDecorators[1].__name__ )
 		
 		# there's currently only one plug-in in the default settings
 		self.assertEqual( 1, len( pipeline.plugins ) )
 		# the class name expected for VEUNDMINT
-		self.assertEqual( "html5_mintmodtex", pipeline.plugins[0].__class__.__name__ )
+		self.assertEqual( "Plugin", pipeline.plugins[0].__name__ )
 
 	
 if __name__ == '__main__':

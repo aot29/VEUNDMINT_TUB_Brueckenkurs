@@ -97,8 +97,9 @@ class Dispatcher(AbstractDispatcher):
 		#  data member, undocumented (Daniel Haase) 
 		self.data = dict()
 
+		## @var pipeline
 		# read the pipeline containing the dispatcher steps from settings		
-		self.pipeline = Pipeline( self.pluginName, self.data )
+		self.pipeline = Pipeline()
 
 
 	def dispatch(self):
@@ -112,32 +113,35 @@ class Dispatcher(AbstractDispatcher):
 		"""
 
 		# 1. Run pre-processing plugins
-		preprocessorDispatcher = PreprocessorDispatcher( self.pipeline.preprocessors )
+		preprocessorDispatcher = PreprocessorDispatcher( self.data, self.pipeline.preprocessors )
 		if self.verbose: preprocessorDispatcher = VerboseDispatcher( preprocessorDispatcher, "Step 1: Preprocessing" )
 		preprocessorDispatcher.dispatch()
 
 		# 2. Run TTM translator, load XML
-		translator = self.pipeline.translator
-		translator = MathMLDecorator( translator ) # Add MathML corrections
-		if self.verbose: translator = VerboseTranslator( translator, "Step 2: Converting Tex to XML (TTM)" )
+		translator = self.pipeline.translator()
+		for decorator in self.pipeline.translatorDecorators: # decorate the translator with the decorators defined in settings.pipeline
+			translator = decorator( translator )
+		if self.verbose: translator = VerboseTranslator( translator, "Step 2: Converting Tex to XML (TTM)" ) # if verbose is on, decorate with verbose decorator
 		self.data['rawxml'] = translator.translate() # run TTM parser with default options
 		
 		# 3. Parse HTML
-		html = self.pipeline.parser
-		if self.verbose: html = VerboseParser( html, "Step 3: Parsing to HTML" )
-		xmltree_raw = html.parse( self.data['rawxml'] )
+		parser = self.pipeline.parser()
+		for decorator in self.pipeline.parserDecorators: # decorate the parser with the decorators defined in settings.pipeline
+			parser = decorator( parser )
+		if self.verbose: html = VerboseParser( parser, "Step 3: Parsing to HTML" ) # if verbose is on, decorate with verbose decorator
+		xmltree_raw = parser.parse( self.data['rawxml'] ) # parse the xml data
 		
 		# 4. Create TOC and content tree
-		generator = self.pipeline.generator
-		generator = LinkDecorator( generator )
-		generator = WikipediaDecorator( generator, settings.lang )
-		if self.verbose: generator = VerboseGenerator( generator, "Step 4: Creating the table of contents (TOC) and content tree" )
-		self.toc, content = generator.generate( xmltree_raw )
+		generator = self.pipeline.generator()
+		for decorator in self.pipeline.generatorDecorators: # decorate the generator with the decorators defined in settings.pipeline
+			generator = decorator( generator )
+		if self.verbose: generator = VerboseGenerator( generator, "Step 4: Creating the table of contents (TOC) and content tree" )  # if verbose is on, decorate with verbose decorator
+		self.toc, content = generator.generate( xmltree_raw ) # generate TOC and content from etree
 		
 		# 5. Start output plugin
-		plugin = PluginDispatcher( self.data, content, self.toc, self.requiredImages, self.pipeline.plugins )
-		if self.verbose: plugin = VerboseDispatcher( plugin, "Step 5: Output to static HTML files" )
-		plugin.dispatch()
+		pluginDispatcher = PluginDispatcher( self.data, content, self.toc, self.requiredImages, self.pipeline.plugins )
+		if self.verbose: pluginDispatcher = VerboseDispatcher( pluginDispatcher, "Step 5: Output to static HTML files" )
+		pluginDispatcher.dispatch()
 		
 		# Clean up temporary files
 		if settings.cleanup == 1: self.clean_up();
