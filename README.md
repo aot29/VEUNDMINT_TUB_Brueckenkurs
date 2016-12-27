@@ -94,7 +94,7 @@ You need permissions to do so, as long as the code has not been published on a p
 Familiarize yourself with thes system by reading [How does the conversion LaTeX -> HTML work?](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/How%20does%20the%20conversion%20latex%20-%3E%20html%20work)
 and [Expanding the system using the Python API](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Python%20API%20Documentation).
 
-# Manual installatin instructions
+# Manual installation instructions
 If the above instructions don't work as expected on your system, please proceed as follows:
 
 Instructions to install the system manually. This package is build in **Python3**. First clone this repository
