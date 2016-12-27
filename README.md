@@ -1,7 +1,7 @@
 # VEUNDMINT
 VEUNDMINT is a repository that enables users to build their own Online Learning Environments
 from Latex files. It will convert latex input to html / css / js output and includes many custom
-features such as exercises, tests, glossary, etc. It is easily extendable.
+features such as exercises, tests, glossary, etc.
 
 ### build status
 * branch: dev_TUB_software [![build status](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/badges/dev_TUB_software/build.svg)](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/commits/dev_TUB_software)
@@ -10,7 +10,7 @@ features such as exercises, tests, glossary, etc. It is easily extendable.
 Install these packages using your package manager:
 
 ```
-libxml2, libxml2-dev, libxslt1-dev, lib32z1, tidy,php-cli, nodejs, doxygen
+libxml2, libxml2-dev, libxslt1-dev, lib32z1, nodejs, doxygen
 ```
 If the nodejs version provided for your distribution is < 4.x, then see [here](https://nodejs.org/en/download/package-manager/)
 
@@ -88,14 +88,30 @@ make update
 * https://git-scm.com/book/en/v2/Git-Tools-Submodules
 * http://stackoverflow.com/questions/1777854/git-submodules-specify-a-branch-tag
 
-# Manual Installation
+# If you want to participate
+You need permissions to do so, as long as the code has not been published on a public repo. If you want to participate, send us a request.
 
-Following, you will find installation instructions to get you started. This package is build in **Python3**. To get you started, first clone this repository
+Familiarize yourself with thes system by reading [How does the conversion LaTeX -> HTML work?](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/How%20does%20the%20conversion%20latex%20-%3E%20html%20work)
+and [Expanding the system using the Python API](https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Python%20API%20Documentation).
+
+# Manual installatin instructions
+If the above instructions don't work as expected on your system, please proceed as follows:
+
+Instructions to install the system manually. This package is build in **Python3**. First clone this repository
 ```
-git clone git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT
-cd VEUNDMINT
+git clone --single-branch -b dev_TUB_software git@gitlab.tubit.tu-berlin.de:stefan.born/VEUNDMINT_TUB_Brueckenkurs.git VEUNDMINT_DEV
+cd VEUNDMINT_DEV
 ```
-You need permissions, to do so, as long as we are still developing. If you want to participate, send us a request.
+and **choose the course you want to work with** by passing the name of the content branch. 
+
+To install the maths course, do:
+```
+make install  branch=dev_VBKM_content
+```
+Alternatively, to install the physics course, do:
+```
+make install branch=dev_Physik_content
+```
 
 ### Virtual Environment
 
@@ -130,8 +146,13 @@ bower install
 
 ```
 ### start make script that will kick off the converter and run gulp afterwards
+Make changes, then build the course. To build the **maths course**, do:
 ```
-make -f tools/makefiles/multilang
+make all
+```
+Alternatively, to build the **physics course**, do: 
+```
+make all course=PhysikBK
 ```
 ### run development server
 ```
