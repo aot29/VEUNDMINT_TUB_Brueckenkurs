@@ -183,3 +183,5 @@ class SeleniumTest(unittest.TestCase):
 			return r.getcode()
 		except:
 			return 404
+		finally:
+			r.close()

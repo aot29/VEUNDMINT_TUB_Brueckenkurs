@@ -59,7 +59,9 @@ scorm2004testurl = BASE_URL + '/scorm2004testwrap.htm'
 pipeline = {
 		"preprocessors": [ 'tex2x.preprocessors.PrepareData.PrepareData', 
 						   'tex2x.preprocessors.PrepareWorkingFolder.PrepareWorkingFolder',
-						   'tex2x.preprocessors.preprocessor_mintmodtex.Preprocessor' ],
+						   'tex2x.preprocessors.FixI18nForPdfLatex.FixI18nForPdfLatex',
+						   'tex2x.preprocessors.preprocessor_mintmodtex.Preprocessor',
+   						   'tex2x.preprocessors.ReleaseCheck.ReleaseCheck' ],
 		
 		"translator": "tex2x.translators.TTMTranslator.TTMTranslator",
 

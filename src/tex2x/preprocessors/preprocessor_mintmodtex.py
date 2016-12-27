@@ -15,30 +15,21 @@
 	You should have received a copy of the GNU Lesser General Public License
 	along with the VEUNDMINT plugin package. If not, see http://www.gnu.org/licenses/.
 """
-
-
-
-
 import re
 import os.path
 import subprocess
 import fileinput
-import sys
+#import sys
 from tex2x.preprocessors.AbstractPreprocessor import AbstractPreprocessor
 from tex2x.Settings import ve_settings as settings
 from tex2x.System import ve_system as sys
 
 class Preprocessor(AbstractPreprocessor):
 	
-	# Constructor parameters: log object reference and data storage for the plugin chain (dict), and options object reference
 	def __init__(self, data):
 		
 		# copy interface member references
 		self.data = data
-		#self.name = "MINTMODTEX"
-		#self.version ="P0.1.0"
-		#sys.message(sys.VERBOSEINFO, "Preprocessor " + self.name + " of version " + self.version + " constructed")
-		# collect copyrightstatements and exerciseexports from this processing event and add them later to the global collection
 
 
 	# main function to be called from tex2x
@@ -47,86 +38,14 @@ class Preprocessor(AbstractPreprocessor):
 		Start preprocessor.
 		Called from dispatcher.
 		"""		
-		#self.prepareWorkingFolder()
-		#self.createCopyrightTextFile()
-		#self.createMacrosAndStyles()
-		#self.initializeCourseVariant()
-		#self.createMainTexFile()
-		
 		fileList = self.getFileList()
-		self.fixI18nForPdfLatex( fileList )
-		self.doReleaseCheck( fileList )
-		
-
-
-
-	
-
-
-	def getFileList(self):
-		# Preprocessing of each tex file in the folder and subfolders
-		pathLen = len(settings.sourceTEX) + 1
-		fileArray = []
-		for root,dirs,files in os.walk(settings.sourceTEX):				
-			root = root[pathLen:]
-			for name in files:
-				if (name[-4:] == ".tex"):
-					# store path to source copy and original source file
-					fileArray.append([os.path.join(settings.sourceTEX, root, name), os.path.join(settings.sourcepath_original, root, name)])
-			for name in dirs:
-				continue
-		return fileArray
-	
-
-	def doReleaseCheck(self, fileList):
-		sys.message(sys.VERBOSEINFO, "Preprocessor working on " + str(len(fileList)) + " texfiles")
-		nonpass = 0
+#		sys.message(sys.VERBOSEINFO, "Preprocessor working on " + str(len(fileList)) + " texfiles")
+#		nonpass = 0
 		for texfile in fileList:
-			if re.match(".*" + settings.macrofilename  + "\\.tex", texfile[0]):
-				sys.message(sys.VERBOSEINFO, "Preprocessing and release check ignores macro file " + texfile[0])
-			else:
-				tex = sys.readTextFile(texfile[0], settings.stdencoding)
-				if not self.checkRelease(tex, texfile[1]):
-					nonpass += 1
-					sys.message(sys.VERBOSEINFO, "Original tex-file " + texfile[1] + " did not pass release check");
-					if (settings.dorelease == 1):
-						sys.message(sys.FATALERROR, "Refusing to continue with dorelease=1 after checkRelease failed, see logfile for details")
-
-			
-				tex = self.preprocess_texfile(texfile[0], tex)
-				sys.writeTextFile(texfile[0], tex, settings.stdencoding)
+			tex = sys.readTextFile(texfile[0], settings.stdencoding)
+			tex = self.preprocess_texfile(texfile[0], tex)
+			sys.writeTextFile(texfile[0], tex, settings.stdencoding)
 				
-		sys.message(sys.CLIENTINFO, "Preparsing of " + str(len(fileList)) + " texfiles finished")
-		sys.message(sys.CLIENTINFO, str(nonpass) + " files did not pass the release test, see logfile for details")
-		sys.message(sys.CLIENTINFO, "A total of " + str(len(self.data['DirectHTML'])) + " DirectHTML blocks created")
-			
-				
-	def fixI18nForPdfLatex( self, fileList ):
-		# Remove the i18n localization \input commands from LaTeX, as the converter inserts them into the source code, 
-		# and the presence of both confuses pdflatex
-		pattern = re.compile(r"\\\input{.*}")
-		for texfile in fileList:
-			#if re.match(".*" + settings.macrofilename  + "\\.tex", texfile[0]): continue
-			#if re.match(".*/veundmint_de.tex", texfile[0]): continue
-			#if re.match(".*/veundmint_en.tex", texfile[0]): continue
-			if re.match(".*/vbkm.*", texfile[0]):
-				file_handle = open(texfile[0], 'r')
-				file_string = file_handle.read()
-				file_handle.close()
-				
-				# Use RE package to allow for replacement (also allowing for (multiline) REGEX)
-				file_string = (re.sub(pattern, "", file_string))
-				
-				# Write contents to file.
-				# Using mode 'w' truncates the file.
-				file_handle = open(texfile[0], 'w')
-				file_handle.write(file_string)
-				file_handle.close()
-
-
-		
-	
-
 
 	def _autolabel(self):
 		# generate a label string which is unique in the entire module tree
@@ -134,56 +53,6 @@ class Preprocessor(AbstractPreprocessor):
 		s = "L_SOURCEAUTOLABEL_" + str(j)
 		self.data['autolabels'].append(s)
 		return s
-
-	# Checks if given tex code from file fname (original source!) is valid for a release version
-	# Return value: boolean True if release check passed
-	def checkRelease(self, tex, orgname):
-		reply = True
-		
-		# check desired tex file properties
-		p = subprocess.Popen(["file", orgname], stdout = subprocess.PIPE, shell = False, universal_newlines = True)
-		(output, err) = p.communicate()
-
-		fm = re.match(re.escape(orgname) + ": (LaTeX|TeX) document,(.*)", output, re.S)
-		if fm:
-			if "with very long lines" in fm.group(2):
-				sys.message(sys.VERBOSEINFO, "tex file has very long lines, but ok for now")
-			if "with CRLF line terminators" in fm.group(2):
-				sys.message(sys.VERBOSEINFO, "tex file has windows-like CRLF line terminators, but ok for now")
-		else:
-			# does not prevent release, but should be mentioned, happens for example if texfile consists of input commands only
-			sys.message(sys.VERBOSEINFO, "File " + orgname + " is not recognized as a TeX file by file command")
-	
-		# no Mtikzexternalize in a comment
-		if re.search(r"\%([ \t]*)\\Mtikzexternalize", tex, re.S):
-				sys.message(sys.CLIENTWARN, "Mtikzexternalize found in a comment")
-				reply = False
-	
-		# no experimental environments
-		if (re.search(r"\\begin\{MExperimental\}", tex, re.S)):
-			sys.message(sys.VERBOSEINFO, "MExperimental found in tex file");
-			reply = False
-		if (re.search(r"\% TODO", tex, re.S)):
-			sys.message(sys.VERBOSEINFO, "TODO comment found in tex file");
-			reply = False
-			
-		# MSContent is no longer valid
-		def scontent(m):
-			nonlocal reply
-			reply = False
-			sys.message(sys.VERBOSEINFO, "MSContent found but no longer supported: " + m.group(1))
-		re.sub(r"\\begin\{MSContent\}\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}(.*?)\\end\{MSContent\}", scontent, tex, 0, re.S)
-
-		# each MXContent must have a unique content id
-		def xcontent(m):
-			nonlocal reply
-			xm = re.search(r"\\MDeclareSiteUXID\{([^\}]*)\}", m.group(4), re.S)
-			if not xm:
-				reply = False
-				sys.message(sys.VERBOSEINFO, "MXContent found without unique id declaration: " + m.group(1))
-		re.sub(r"\\begin\{MXContent\}\{([^\}]*)\}\{([^\}]*)\}\{([^\}]*)\}(.*?)\\end\{MXContent\}", xcontent, tex, 0, re.S)
-		
-		return reply
 
 
 	# Preprocess a tex file (given name and content as unicode strings)
