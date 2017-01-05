@@ -22,18 +22,9 @@ from tex2x.System import ve_system as sys
 
 from tex2x.dispatcher.Pipeline import Pipeline
 from tex2x.dispatcher.AbstractDispatcher import AbstractDispatcher, VerboseDispatcher, PreprocessorDispatcher, PluginDispatcher
-
-from tex2x.translators.AbstractTranslator import VerboseTranslator
-from tex2x.translators.TTMTranslator import TTMTranslator
-from tex2x.translators.MathMLDecorator import MathMLDecorator
-
-from tex2x.parsers.AbstractParser import VerboseParser
-from tex2x.parsers.HTMLParser import HTMLParser
-
-from tex2x.generators.AbstractGenerator import VerboseGenerator
-from tex2x.generators.ContentGenerator import ContentGenerator
-from tex2x.generators.LinkDecorator import LinkDecorator
-from tex2x.generators.WikipediaDecorator import WikipediaDecorator
+from tex2x.AbstractTranslator import VerboseTranslator
+from tex2x.AbstractParser import VerboseParser
+from tex2x.AbstractGenerator import VerboseGenerator
 
 
 class Dispatcher(AbstractDispatcher):

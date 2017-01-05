@@ -19,7 +19,7 @@
 
 from lxml import etree
 import re
-from tex2x.renderers.AbstractRenderer import *
+from tex2x.AbstractRenderer import *
 from tex2x.Settings import ve_settings as settings
 
 class PageXmlRenderer(AbstractXmlRenderer):

@@ -17,7 +17,7 @@
 #  \author Daniel Haase for KIT
 #  \author Alvaro Ortiz for TU Berlin
 
-from tex2x.generators.AbstractGenerator import AbstractGenerator
+from tex2x.AbstractGenerator import AbstractGenerator
 
 class LinkDecorator( AbstractGenerator ):
 	"""

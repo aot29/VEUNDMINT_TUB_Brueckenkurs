@@ -20,7 +20,7 @@
 import requests
 import json
 import os
-from tex2x.annotators.AbstractAnnotator import *
+from tex2x.AbstractAnnotator import *
 import settings
 import re
 

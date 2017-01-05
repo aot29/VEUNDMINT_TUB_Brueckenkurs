@@ -20,7 +20,7 @@ import os.path
 import subprocess
 import fileinput
 #import sys
-from tex2x.preprocessors.AbstractPreprocessor import AbstractPreprocessor
+from tex2x.AbstractPreprocessor import AbstractPreprocessor
 from tex2x.Settings import ve_settings as settings
 from tex2x.System import ve_system as sys
 

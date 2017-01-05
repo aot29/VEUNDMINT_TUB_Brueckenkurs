@@ -1,15 +1,15 @@
 """
 Activate Python venv if necessary, then run with:
 > cd src
-> python3 -m unittest test.conversiontests.test_ttmparser.TTMParserTest
+> python3 -m unittest test.conversiontests.test_ttmtranslator.TTMTranslatorTest
 """
 import unittest
 import os
 import subprocess
-from tex2x.translators.TTMTranslator import TTMTranslator
+from plugins.VEUNDMINT_TUB.translators.TTMTranslator import TTMTranslator
 from tex2x.Settings import Settings, ve_settings
 from tex2x.dispatcher.Dispatcher import Dispatcher
-from plugins.VEUNDMINT.Option import Option
+from plugins.VEUNDMINT_TUB.Option import Option
 from tex2x.System import System
 import mmap
 from unittest.case import skip

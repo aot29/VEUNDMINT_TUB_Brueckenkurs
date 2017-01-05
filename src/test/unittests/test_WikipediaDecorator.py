@@ -12,8 +12,8 @@ import sys
 import unittest
 from lxml import etree
 from tex2x.dispatcher.Dispatcher import Dispatcher
-from tex2x.annotators.WikipediaAnnotator import WikipediaAnnotator
-from tex2x.generators.WikipediaDecorator import WikipediaDecorator
+from plugins.VEUNDMINT_TUB.annotators.WikipediaAnnotator import WikipediaAnnotator
+from plugins.VEUNDMINT_TUB.generators.WikipediaDecorator import WikipediaDecorator
 from test.unittests.AbstractRendererTestCase import *
 from tex2x.Settings import ve_settings as settings
 

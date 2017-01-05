@@ -10,7 +10,7 @@ Activate Python venv if necessary, then run with:
 import os
 import sys
 import unittest
-from tex2x.preprocessors.AbstractPreprocessor import *
+from tex2x.AbstractPreprocessor import *
 
 
 class MockPreprocessor( AbstractPreprocessor ):

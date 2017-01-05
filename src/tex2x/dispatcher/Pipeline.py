@@ -92,24 +92,25 @@ class Pipeline(object):
 		# Put the complete class path here, so for example: 
 		# if you have a plugin called VEUNDMINT and a file called preprocessor_mintmodtex.py which holds a class called Preprocessor, 
 		# then the path is plugins.VEUNDMINT.preprocessor_mintmodtex.Preprocessor.
-		substr = name.split('.')
-		if len( substr ) < 3: raise Exception( "Incomplete path %s" % name )
 		
+		substr = name.split('.') # example: VEUNDMINT.preprocessors.PrepareData.PrepareData
+		if len( substr ) < 3: raise Exception( "Incomplete path %s" % name )
+				
 		# get the name of the Python class
-		className = substr.pop()
+		className = substr.pop() # example: PrepareData
 
 		# get the name of the module, i.e. the file name (without the .py extension)
-		moduleName = substr.pop( 2 )
-
+		moduleName = substr.pop() # PrepareData
+		
 		# get the package name, i.e. the path to the file,
 		# relative to the src or to the plugins directory
-		packageName = substr[:2]
+		packageName = substr # example: VEUNDMINT.preprocessors
 		
 		#  Array of paths to directories that should be searched for modules to load. 
 		#  This array should contain the plugins and the src directory (the converterDir).
-		#  Append the packageName path to the default search paths (using the splat operator, as this is a list).
-		pluginPath = [ os.path.join( settings.converterDir, *packageName ) ]
-				
+		#  Append the packageName path to the default search paths (using the splat operator "*", as this is a list).
+		pluginPath = [ os.path.join( settings.converterDir, *packageName ) ] # example: ['/store/cosmetix/datastore/ortiz/VEUNDMINT_DEV/src/plugins/VEUNDMINT']
+		
 		# search for the file containing the module 
 		f, filename, description = imp.find_module( moduleName, pluginPath )
 		

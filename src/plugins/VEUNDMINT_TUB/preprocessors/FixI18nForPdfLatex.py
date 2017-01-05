@@ -1,5 +1,5 @@
 import re
-from tex2x.preprocessors.AbstractPreprocessor import AbstractPreprocessor
+from tex2x.AbstractPreprocessor import AbstractPreprocessor
 from tex2x.Settings import ve_settings as settings
 
 class FixI18nForPdfLatex(AbstractPreprocessor):

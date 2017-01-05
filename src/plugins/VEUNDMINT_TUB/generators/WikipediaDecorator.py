@@ -18,9 +18,9 @@
 
 from tex2x.Settings import ve_settings as settings
 from lxml import etree
-from tex2x.generators.AbstractGenerator import AbstractGenerator
+from tex2x.AbstractGenerator import AbstractGenerator
 from urllib.parse import urlencode
-from tex2x.annotators.WikipediaAnnotator import WikipediaAnnotator
+from plugins.VEUNDMINT_TUB.annotators.WikipediaAnnotator import WikipediaAnnotator
 
 class WikipediaDecorator( AbstractGenerator ):
 	"""

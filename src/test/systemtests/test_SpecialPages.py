@@ -1,10 +1,10 @@
 '''
 Created on Aug 22, 2016
 
-@author: ortiz
+@author: Alvaro Ortiz for TU Berlin
 '''
 import unittest
-from tex2x.renderers.AbstractRenderer import AbstractXmlRenderer
+from tex2x.AbstractRenderer import AbstractXmlRenderer
 from test.systemtests.SeleniumTest import SeleniumTest
 
 class SpecialPages( SeleniumTest ):

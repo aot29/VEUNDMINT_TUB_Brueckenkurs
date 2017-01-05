@@ -4,8 +4,8 @@ Created on Aug 4, 2016
 @author: ortiz
 '''
 import unittest
-from plugins.VEUNDMINT.tcontent import TContent
-from tex2x.renderers.AbstractRenderer import AbstractHtmlRenderer
+from plugins.VEUNDMINT_TUB.tcontent import TContent
+from tex2x.AbstractRenderer import AbstractHtmlRenderer
 from lxml import etree
 
 class test_AbstractHtmlRenderer(unittest.TestCase):

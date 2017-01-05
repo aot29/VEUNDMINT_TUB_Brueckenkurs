@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from tex2x.Settings import ve_settings as settings
-from tex2x.renderers.AbstractRenderer import AbstractXmlRenderer
+from tex2x.AbstractRenderer import AbstractXmlRenderer
 
 class SeleniumTest(unittest.TestCase):
 	# Most xpaths assume you are starting from the root element (e.g. using self.driver).

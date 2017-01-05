@@ -8,10 +8,10 @@ import os
 from lxml import etree
 
 import unittest
-from plugins.VEUNDMINT.tcontent import TContent
-from plugins.VEUNDMINT.Option import Option
-from tex2x.renderers.AbstractRenderer import *
-from tex2x.parsers.AbstractParser import *
+from plugins.VEUNDMINT_TUB.tcontent import TContent
+from plugins.VEUNDMINT_TUB.Option import Option
+from tex2x.AbstractRenderer import *
+from tex2x.AbstractParser import *
 from tex2x.Settings import settings
 from tex2x.System import ve_system as sys
 		

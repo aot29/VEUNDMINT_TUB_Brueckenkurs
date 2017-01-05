@@ -18,7 +18,7 @@
 #  \author Alvaro Ortiz for TU Berlin
 
 import os
-from tex2x.parsers.AbstractParser import AbstractParser
+from tex2x.AbstractParser import AbstractParser
 from tex2x.Settings import ve_settings as settings
 from lxml import html
 from lxml import etree

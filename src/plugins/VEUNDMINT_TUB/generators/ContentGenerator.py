@@ -19,7 +19,7 @@
 
 from copy import deepcopy
 from lxml import etree
-from tex2x.generators.AbstractGenerator import AbstractGenerator
+from tex2x.AbstractGenerator import AbstractGenerator
 from tex2x.System import ve_system as sys
 from tex2x.Settings import ve_settings as settings
 

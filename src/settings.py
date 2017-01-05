@@ -57,24 +57,24 @@ scorm2004testurl = BASE_URL + '/scorm2004testwrap.htm'
 # if you have a plugin called VEUNDMINT and a file called preprocessor_mintmodtex.py which holds a class called Preprocessor,
 # then the path is plugins.VEUNDMINT.preprocessor_mintmodtex.Preprocessor.
 pipeline = {
-		"preprocessors": [ 'tex2x.preprocessors.PrepareData.PrepareData', 
-						   'tex2x.preprocessors.PrepareWorkingFolder.PrepareWorkingFolder',
-						   'tex2x.preprocessors.FixI18nForPdfLatex.FixI18nForPdfLatex',
-						   'tex2x.preprocessors.preprocessor_mintmodtex.Preprocessor',
-   						   'tex2x.preprocessors.ReleaseCheck.ReleaseCheck' ],
+		"preprocessors": [ 'plugins.VEUNDMINT_TUB.preprocessors.PrepareData.PrepareData', 
+						   'plugins.VEUNDMINT_TUB.preprocessors.PrepareWorkingFolder.PrepareWorkingFolder',
+						   'plugins.VEUNDMINT_TUB.preprocessors.FixI18nForPdfLatex.FixI18nForPdfLatex',
+						   'plugins.VEUNDMINT_TUB.preprocessors.preprocessor_mintmodtex.Preprocessor',
+   						   'plugins.VEUNDMINT_TUB.preprocessors.ReleaseCheck.ReleaseCheck' ],
 		
-		"translator": "tex2x.translators.TTMTranslator.TTMTranslator",
+		"translator": "plugins.VEUNDMINT_TUB.translators.TTMTranslator.TTMTranslator",
 
-		"translatorDecorators": [ "tex2x.translators.MathMLDecorator.MathMLDecorator" ],
+		"translatorDecorators": [ "plugins.VEUNDMINT_TUB.translators.MathMLDecorator.MathMLDecorator" ],
 		
-		"parser": "tex2x.parsers.HTMLParser.HTMLParser",
+		"parser": "plugins.VEUNDMINT_TUB.parsers.HTMLParser.HTMLParser",
 
 		"parserDecorators": [],
 		
-		"generator": "tex2x.generators.ContentGenerator.ContentGenerator",
+		"generator": "plugins.VEUNDMINT_TUB.generators.ContentGenerator.ContentGenerator",
 
-		"generatorDecorators": [ "tex2x.generators.LinkDecorator.LinkDecorator", 
-								 "tex2x.generators.WikipediaDecorator.WikipediaDecorator" ],
+		"generatorDecorators": [ "plugins.VEUNDMINT_TUB.generators.LinkDecorator.LinkDecorator", 
+								 "plugins.VEUNDMINT_TUB.generators.WikipediaDecorator.WikipediaDecorator" ],
 		
-		"plugins": [ 'plugins.VEUNDMINT.html5_mintmodtex.Plugin' ]
+		"plugins": [ 'plugins.VEUNDMINT_TUB.html5_mintmodtex.Plugin' ]
 	}

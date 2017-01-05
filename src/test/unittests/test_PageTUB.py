@@ -9,15 +9,15 @@ import unittest
 import os
 from lxml import etree
 
-from plugins.VEUNDMINT.tcontent import TContent
-from tex2x.renderers.PageXmlRenderer import *
-from tex2x.renderers.TocRenderer import TocRenderer
-from tex2x.renderers.PageTUB import PageTUB
+from plugins.VEUNDMINT_TUB.tcontent import TContent
+from plugins.VEUNDMINT_TUB.renderers.PageXmlRenderer import *
+from plugins.VEUNDMINT_TUB.renderers.TocRenderer import TocRenderer
+from plugins.VEUNDMINT_TUB.renderers.PageTUB import PageTUB
 from tex2x.Settings import ve_settings as settings
 
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
-from tex2x.renderers.AbstractRenderer import *
-from tex2x.annotators.AbstractAnnotator import Annotation
+from tex2x.AbstractRenderer import *
+from tex2x.AbstractAnnotator import Annotation
 
 class test_PageTUB(AbstractRendererTestCase):
 	

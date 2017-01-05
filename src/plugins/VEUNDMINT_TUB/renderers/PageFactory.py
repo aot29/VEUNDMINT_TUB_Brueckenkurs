@@ -54,9 +54,9 @@ class PageFactory(object):
 		if ( not  settings.bootstrap ): raise Exception( 'Only Bootstrap Page renderer is supported in this version' )
 		
 		# When using bootstrap, use the Page object by TUB
-		from tex2x.renderers.PageTUB import PageTUB
-		from tex2x.renderers.TocRenderer import TocRenderer
-		from tex2x.renderers.PageXmlRenderer import PageXmlRenderer, QuestionDecorator, RouletteDecorator 
+		from .PageTUB import PageTUB
+		from .TocRenderer import TocRenderer
+		from .PageXmlRenderer import PageXmlRenderer, QuestionDecorator, RouletteDecorator 
 
 		# get a basic page renderer
 		xmlRenderer = PageXmlRenderer()

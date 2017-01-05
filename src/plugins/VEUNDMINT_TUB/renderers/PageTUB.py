@@ -18,8 +18,8 @@
 from lxml import etree
 import os
 import re
-from tex2x.renderers.AbstractRenderer import *
-from tex2x.renderers.PageXmlRenderer import *
+from tex2x.AbstractRenderer import *
+from .PageXmlRenderer import *
 from tex2x.Settings import ve_settings as settings
 
 

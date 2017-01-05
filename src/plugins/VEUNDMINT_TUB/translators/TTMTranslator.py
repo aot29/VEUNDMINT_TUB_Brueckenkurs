@@ -21,7 +21,7 @@ import os, subprocess, logging, re
 import sys
 from tex2x.Settings import Settings
 from tex2x.Settings import ve_settings as settings
-from tex2x.translators.AbstractTranslator import AbstractTranslator
+from tex2x.AbstractTranslator import AbstractTranslator
 from tex2x.System import ve_system as sys
 
 logger = logging.getLogger(__name__)
