@@ -20,7 +20,7 @@
 import requests
 import json
 import os
-from tex2x.annotators.AbstractAnnotator import *
+from tex2x.AbstractAnnotator import *
 import settings
 import re
 
@@ -57,7 +57,7 @@ class WikipediaAnnotator(AbstractAnnotator):
 		* Entries where the title is less than 3 letters will be filtered out (as they result in too many false positives).
 		
 		@param lang - language code
-		@return array of [word, Wikipedia lemma] items, e.g. ['Operator', 'Operator (Mathematik)']
+		@return array<Annotation>
 		"""
 		resp = []
 		

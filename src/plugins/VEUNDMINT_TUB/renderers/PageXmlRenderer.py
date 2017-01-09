@@ -19,31 +19,28 @@
 
 from lxml import etree
 import re
-from tex2x.renderers.AbstractRenderer import *
+from tex2x.AbstractRenderer import *
+from tex2x.Settings import settings
 
 class PageXmlRenderer(AbstractXmlRenderer):
 	"""
-	Create a XML tree for a page. 
+	Create a XML tree for a page.
 	As page contents rendered by TTM are non-valid HTML, only a placeholder element is added here.
 	Actual page contents are added in PageTUB.
 	"""
 
-	def __init__(self, options):
+	def __init__( self ):
 		"""
 		Constructor.
 		Please do not instantiate directly, use PageFactory instead (except for unit tests).
-		
-		@param options - Options.py object
 		"""
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = options
-		
-		
-	def generateXML( self, tc ):
+		pass
+
+
+	def renderXML( self, tc ):
 		"""
 		Create a XML document representing a page from a TContent object
-		
+
 		@param tc - a TContent object encapsulating page data and content
 		@return an etree element
 		"""
@@ -52,7 +49,7 @@ class PageXmlRenderer(AbstractXmlRenderer):
 
 		#self._generateIds( tc )
 		#lang - String ISO-639-1 language code ("de" or "en")
-		xml.set( 'lang', self.options.lang )
+		xml.set( 'lang', settings.lang )
 		# site ID
 		#xml.set( 'siteId', tc.siteId )
 		# UX ID
@@ -63,7 +60,7 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		xml.set( 'docName', tc.docname )
 		# full name (URL)
 		xml.set( 'fullName', tc.fullname )
-		
+
 		# title
 		title = etree.Element( 'title' )
 		title.text = tc.title
@@ -72,14 +69,14 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		# content
 		content = etree.Element( 'content' )
 		xml.append( content )
-		
+
 		return xml
 
 
 	def _generateIds(self, tc):
 		"""
 		compute number of chapters and section numbers
-		
+
 		@param tc - a TContent object encapsulating page data and content
 		"""
 		siteId = ""
@@ -93,60 +90,62 @@ class PageXmlRenderer(AbstractXmlRenderer):
 			else:
 				siteId = "%s.%s" % ( currentTc.pos, siteId )
 			currentTc = currentTc.parent
-			
+
 		tc.siteId = siteId
 		tc.sectionId = sectionId
 
 
-class RouletteDecorator( PageXmlDecorator ):
+class RouletteDecorator( AbstractXmlRenderer ):
 	"""
 	Adds roulette-exercises to page xml.
 	Implements the decorator pattern.
 	"""
-	
+
 	def __init__(self, renderer, data, i18strings):
 		"""
 		Constructor.
 		Instantiated by PageFactory.
-		
+
 		@param renderer - an object implementing AbstractXmlRenderer
 		@param data - a dict containing the DirectRoulettes key
 		"""
-		super().__init__(renderer)
+		## @var renderer
+		#  An object implementing AbstractXmlRenderer
+		self.renderer = renderer
 
 		## @var data
-		#  simplify access to the interface data member (Daniel Haase) 
+		#  simplify access to the interface data member (Daniel Haase)
 		self.data = data
-				
+
 		## @var i18strings
 		#  Deserialized JSON object containeing localized UI strings. Loaded in Options.py.
 		self.i18strings = i18strings
-	
-	
-	def generateXML(self, tc):
+
+
+	def renderXML(self, tc):
 		"""
 		Move the roulette questions wrapped in rouletteexc_start and rouletteexc-stop comments to the page header
-		
+
 		@param tc - a TContent object encapsulating page data and content
 		@return an etree element
 		"""
 		# call the method from the superclass
-		xml = super().generateXml( tc )
-		
+		xml = self.renderer.renderXML( tc )
+
 		# skip on special pages
 		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml
-		
+
 		# find the roulette questions hidden in the content
 		roulettes = etree.Element( 'roulettes' )
 
 		def droul(m):
 			"""
-			forked from PageKIT by Daniel Haase. 
+			forked from PageKIT by Daniel Haase.
 			Refactor this.
 			This creates a json dictionary which html5_mintmod.py stores in a file if it's large enough.
 			Then mintscripts_bootstrap loads it.
 			There are several problems:
-			* All 300 JSON objects get preloaded, which is silly. There should be a backend service that provides them one by one. 
+			* All 300 JSON objects get preloaded, which is silly. There should be a backend service that provides them one by one.
 			* There is HTML in this Python class, which is no no (see below for generating XML)
 			* html5_mintmod.py has its own problems, see comments there
 			"""
@@ -156,7 +155,7 @@ class RouletteDecorator( PageXmlDecorator ):
 			if rid in self.data['DirectRoulettes']:
 				maxid = self.data['DirectRoulettes'][rid]
 			else:
-				
+
 				raise Exception("Could not find roulette id " + rid)
 			bt = "<button type=\"button\" class=\"btn btn-success roulettebutton\" onclick=\"rouletteClick('%s',%s,%s);\">%s</button>" % ( rid, myid, maxid, self.i18strings['roulette_new'] )
 			# take care not to have any " in the string, as it will be passed as a string to js
@@ -176,17 +175,17 @@ class RouletteDecorator( PageXmlDecorator ):
 
 
 		"""
-		Use the following code as a base for refactoring. This produces XML with the roulette exercises. 
+		Use the following code as a base for refactoring. This produces XML with the roulette exercises.
 		This XML could be used to store the exercises in a JSON file, or perhaps write a JSON file directly?
 		Whatever, exercises should be loaded from the backend dynamically, not stored in a browser-side javascript array, all 300 of them.
 		"""
 #		def droulXML_for_refactoring( match ):
 #			"""
 #			Generates XML and placeholders when a roulette is found in the content
-#			
+#
 #			@param match - a match object from re.sub
 #			@returns string containing a placeholder for the first roulette in each group
-#			"""			
+#			"""
 #			# Process the match found in the page
 #			rid = match.group(1) # name of the roulette exercise, e.g. VBKM01_FRACTIONTRAINING
 #			myid = int( match.group(2) ) # Index of the roulette on the roulette group, e.g. 54
@@ -196,21 +195,21 @@ class RouletteDecorator( PageXmlDecorator ):
 #			else:
 #				raise Exception( "Roulette not found" )
 #
-#			# create a XML-roulette element			
+#			# create a XML-roulette element
 #			roulette = etree.Element( 'roulette' )
 #			roulette.set( 'rid', str( rid ) )
 #			roulette.set( 'myid', str( myid ) )
 #			roulette.set( 'maxid', str( maxid ) )
 #			roulette.text = exercise
 #			roulettes.append( roulette )
-			
+
 #			# generate placeholder div
 #			response = ''
 #			if myid == 0:
 #				response = exercise
-#				
+#
 #			return response
-		
+
 		# find the roulette questions in the content and replace them with placeholders
 		#tc.content = re.sub(r"\<!-- rouletteexc-start;(.+?);(.+?); //--\>(.+?)\<!-- rouletteexc-stop;\1;\2; //--\>\n*", droulXML, tc.content, 0, re.S)
 
@@ -218,34 +217,36 @@ class RouletteDecorator( PageXmlDecorator ):
 		#xml.append( roulettes )
 
 		return xml
-	
 
-class QuestionDecorator(PageXmlDecorator):
+
+class QuestionDecorator(AbstractXmlRenderer):
 	"""
 	Adds questions to page xml.
 	Implements the decorator pattern.
 	"""
-	
+
 	def __init__(self, renderer):
 		"""
 		Constructor.
 		Instantiated by PageFactory.
-		
+
 		@param renderer - an object implementing AbstractXmlRenderer
 		"""
-		super().__init__(renderer)
+		## @var renderer
+		#  An object implementing AbstractXmlRenderer
+		self.renderer = renderer
 
-	
-	def generateXML(self, tc):
+
+	def renderXML(self, tc):
 		"""
 		Move the questions wrapped in onloadstart and onloadstop comments to the page header
-		
+
 		@param tc - a TContent object encapsulating page data and content
 		@return an etree element
 		"""
 		# call the method from the superclass
-		xml = super().generateXml(tc)
-		
+		xml = self.renderer.renderXML(tc)
+
 		# skip on special pages
 		if AbstractXmlRenderer.isSpecialPage( tc ) : return xml
 
@@ -257,13 +258,8 @@ class QuestionDecorator(PageXmlDecorator):
 			question.text = found
 			questions.append( question )
 
-		# remove the question object comments from the content			
+		# remove the question object comments from the content
 		tc.content = re.sub( "\<!-- onloadstart //--\>(.*?)\<!-- onloadstop //--\>", '', tc.content )
-		
+
 		xml.append( questions )
 		return xml
-
-
-
-
-			

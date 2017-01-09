@@ -34,12 +34,11 @@ from copy import deepcopy
 from random import randint
 
 from tex2x.AbstractPlugin import *
+
+from plugins.VEUNDMINT_TUB.tcontent import TContent
+from plugins.VEUNDMINT_TUB.renderers.PageFactory import PageFactory
+
 from tex2x.Settings import settings
-
-from plugins.VEUNDMINT.tcontent import TContent
-from tex2x.renderers.PageFactory import PageFactory
-
-from tex2x.Settings import ve_settings as settings
 from tex2x.System import ve_system as sys
 
 class Plugin(AbstractPlugin):
@@ -119,9 +118,9 @@ class Plugin(AbstractPlugin):
 			sys.message(sys.CLIENTERROR, "No exercise server declared in options")
 
 
-		self.template_redirect_basic = sys.readTextFile(os.path.join(settings.BASE_DIR, 'src', settings.template_redirect_basic), settings.stdencoding)
+		self.template_redirect_basic = sys.readTextFile(settings.template_redirect_basic, settings.stdencoding)
 		#self.template_redirect_multi = sys.readTextFile(settings.template_redirect_multi, settings.stdencoding)
-		self.template_redirect_scorm = sys.readTextFile(os.path.join(settings.BASE_DIR, 'src', settings.template_redirect_scorm), settings.stdencoding)
+		self.template_redirect_scorm = sys.readTextFile(settings.template_redirect_scorm, settings.stdencoding)
 
 		self.siteredirects = dict() # consists of pairs [ redirectfilename, redirectarget ]
 		for t in settings.sitetaglist:

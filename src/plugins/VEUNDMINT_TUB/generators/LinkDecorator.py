@@ -17,9 +17,9 @@
 #  \author Daniel Haase for KIT
 #  \author Alvaro Ortiz for TU Berlin
 
-from tex2x.parsers.AbstractParser import AbstractParser
+from tex2x.AbstractGenerator import AbstractGenerator
 
-class LinkDecorator( AbstractParser ):
+class LinkDecorator( AbstractGenerator ):
 	"""
 	Add methods to correct where the links in the content point to.
 	This class is meant to decorate TOCParser.
@@ -30,36 +30,28 @@ class LinkDecorator( AbstractParser ):
 	#  Prefix to add to links and image sources
 	PATH_PREFIX = "../"
 	
-	def __init__(self, parser ):
+	def __init__(self, generator ):
 		"""
 		Constructor
 		
-		@param options Object
-		@param sys - "A module exposing a class System" (Daniel Haase) 
+		@param generator Object extending AbstractGenerator
 		"""
-		## @var parser
-		#  Parser (object extending AbstractParser, in this case TOCParser)
-		self.parser = parser
 		
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = parser.options
-		
-		## @var sys
-		#  Simplify access to the interface options member (Daniel Haase) - refactor
-		self.sys = parser.sys
-		
+		## @var generator
+		#  Generator (object extending AbstractParser, in this case ContentGenerator)
+		self.generator = generator
+						
 
-	def parse(self, *args, **kwargs):
+	def generate(self, *args, **kwargs):
 		"""
-		Call the TOCParser (the decorated class) and correct the links in the TOC and in the content tree.
+		Call the ContentGenerator (the decorated class) and correct the links in the TOC and in the content tree.
 		Links, inage sources, embedded video sources and iframe sources are corrected by adding the PATH_PREFIX.
 		
 		@param content - a list of [toc_node, content_node] items
 		@return toc, content - two trees as returned by TOCParser
 		"""
 		# call the decorated class' parse method
-		tempTOC, tempContent = self.parser.parse(*args, **kwargs)
+		tempTOC, tempContent = self.generator.generate(*args, **kwargs)
 		
 		tempContent = self.correct_path_to_linked_files( tempContent )
 		tempTOC = self.correct_path_to_linked_files( tempTOC )

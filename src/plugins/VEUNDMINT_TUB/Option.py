@@ -27,7 +27,6 @@ from git import Repo
 import sys
 import platform
 
-
 class Option(object):
 	"""
 	Tex2x lässt sich vielfältig konfigurieren. Da eine Konfiguration über Kommandozeilen-Parameter den Rahmen
@@ -64,6 +63,8 @@ class Option(object):
 		self.currentDir = new_settings.BASE_DIR
 		self.converterDir = os.path.join(self.currentDir, "src")
 		self.converterCommonFiles = os.path.join(self.converterDir, "files")
+		self.pluginsDir = os.path.join(self.converterDir, "plugins")
+		self.pluginName = "VEUNDMINT"
 
 		## @var output
 		#  Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
@@ -171,6 +172,7 @@ class Option(object):
 		self.copyrightFile = os.path.join(self.sourceTEX, "copyrightcollection.tex")
 		self.directexercisesFile = os.path.join(self.sourcepath, "directexercises.tex")
 		self.convinfofile = "convinfo.js"
+
 
 	def setConversionFlags(self):
 		"""

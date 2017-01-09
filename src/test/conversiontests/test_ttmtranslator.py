@@ -1,20 +1,21 @@
 """
 Activate Python venv if necessary, then run with:
 > cd src
-> python3 -m unittest test.conversiontests.test_ttmparser.TTMParserTest
+> python3 -m unittest test.conversiontests.test_ttmtranslator.TTMTranslatorTest
 """
 import unittest
 import os
 import subprocess
-from tex2x.parsers.TTMParser import TTMParser
 from tex2x.Settings import settings
+from plugins.VEUNDMINT_TUB.translators.TTMTranslator import TTMTranslator
 from tex2x.dispatcher.Dispatcher import Dispatcher
-from plugins.VEUNDMINT.Option import Option
+from plugins.VEUNDMINT_TUB.Option import Option
 from tex2x.System import System
 import mmap
 from unittest.case import skip
+from tex2x.System import ve_system as sys
 
-class TTMParserTest(unittest.TestCase):
+class TTMTranslatorTest(unittest.TestCase):
 
 	def setUp(self):
 		#print("setting up")
@@ -22,10 +23,10 @@ class TTMParserTest(unittest.TestCase):
 		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
 		self.options = dispatcher.options
 		self.sys = dispatcher.sys
-		self.parser = TTMParser( self.options, self.sys )
-		self.tex_test_file = os.path.join(settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
-		print('tex_test_file %s', self.tex_test_file)
-		self.tex_test_output = os.path.join(settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
+		self.translator = TTMTranslator()
+
+		self.tex_test_file = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
+		self.tex_test_output = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
 
 	def testTitle(self):
 		"""
@@ -54,26 +55,27 @@ Ich stehe in der mitte
 		"""
 		Test some special cases with the ttm binary
 		"""
-		ttm_process = self.parser.getParserProcess()
+		ttm_process = self.translator.getProcess()
 		self.assertIsNone(ttm_process)
 
 		# kick off parser to get a ttm_process
 		self.testTitle()
-		ttm_process = self.parser.getParserProcess()
+		ttm_process = self.translator.getProcess()
 		self.assertIsNotNone(ttm_process)
 
 		# parse unknown latex command and make parser exit with code 3
-		TTMParser( self.options, self.sys )
+		TTMTranslator()
 		with self.assertRaises(SystemExit) as cm:
 			self.isCorrectConversionTest(r'''\unknownlatexcommand''','', dorelease=1)
 
-		self.assertEqual(cm.exception.code, 3)
+		self.assertEqual( 3, cm.exception.code )
 
 		# make parser process exit with return code 3
-		new_ttm = TTMParser(self.options, self.sys)
+		new_ttm = TTMTranslator()
 		self.testTitle()
-		#new_ttm.parse(tex_start=self.tex_test_file, ttm_outfile=self.tex_test_output, sys=self.s)
-		#subprocess.run(settings.ttmBin)
+
+		#new_ttm.translate(tex_start=self.tex_test_file, ttm_outfile=self.tex_test_output, sys=self.s)
+		#subprocess.run(ve_settings.ttmBin)
 		fake_ttm_process = subprocess.Popen("ls", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, universal_newlines = True)
 		fake_ttm_process.wait()
 		#out = fake_ttm_process.communicate()
@@ -99,7 +101,7 @@ Ich stehe in der mitte
 			print(latex_string, file=tex_file)
 
 		# kick off the parser
-		self.parser.parse(sourceTEXStartFile=self.tex_test_file, ttmFile=self.tex_test_output, dorelease=dorelease )
+		self.translator.translate(sourceTEXStartFile=self.tex_test_file, ttmFile=self.tex_test_output, dorelease=dorelease )
 
 		# check for occurence of the html_string in the generated file
 		with open(self.tex_test_output, 'rb', 0) as file:

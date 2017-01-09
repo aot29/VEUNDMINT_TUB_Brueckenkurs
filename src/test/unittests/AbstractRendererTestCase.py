@@ -8,28 +8,22 @@ import os
 from lxml import etree
 
 import unittest
-from plugins.VEUNDMINT.tcontent import TContent
-from plugins.VEUNDMINT.Option import Option
-from tex2x.renderers.AbstractRenderer import *
-from tex2x.parsers.AbstractParser import *
+from plugins.VEUNDMINT_TUB.tcontent import TContent
+from plugins.VEUNDMINT_TUB.Option import Option
+from tex2x.AbstractRenderer import *
+from tex2x.AbstractParser import *
 from tex2x.Settings import settings
-
-class MockOptions(Option):
-	def __init__(self):
-		super().__init__(".", "")
-		self.lang = "en"
+from tex2x.System import ve_system as sys
 		
 
-class MockParser(AbstractParser):
-	def __init__(self, options, sys):
+class MockGenerator(AbstractParser):
+	def __init__(self, options ):
 		'''
 		@param options Object
-		@param sys - "A module exposing a class System" (Daniel Haase) 
 		'''
 		self.options = options
-		self.sys = sys
 		
-	def parse(self, etree):
+	def generate(self, etree):
 		toc = None
 		content = []
 		return toc, content
@@ -43,10 +37,6 @@ class AbstractRendererTestCase(unittest.TestCase):
 	tplPath = os.path.join(settings.BASE_DIR, "src/templates_xslt")
 
 	def setUp(self):
-		self.lang = "en"
-		self.data = None
-		self.i18strings = dict({"roulette_new": "New exercise"})
-		self.options = MockOptions()
 		self.data = None
 		
 		# Setup a tc object for testing

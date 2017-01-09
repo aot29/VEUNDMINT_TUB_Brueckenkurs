@@ -30,6 +30,7 @@ import socket
 import glob2
 import base64
 import platform
+from tex2x.Settings import settings
 
 class System(object):
 
@@ -51,13 +52,13 @@ class System(object):
 	BASHCOLORRESET = "\033[0m"
 
 
-	def __init__(self, options):
-		self.logFilename = os.path.join(options.currentDir, options.logFilename)
-		self.doEncodeASCII = options.consoleascii
-		self.doColors = options.consolecolors
-		self.doVerbose = options.doverbose
-		self.beQuiet = options.quiet
-		self.options = options
+	def __init__(self):
+		print ('current dir is', settings.currentDir);
+		self.logFilename = os.path.join(settings.currentDir, settings.logFilename)
+		self.doEncodeASCII = settings.consoleascii
+		self.doColors = settings.consolecolors
+		self.doVerbose = settings.doverbose
+		self.beQuiet = settings.quiet
 
 		self.dirstack = []
 
@@ -70,7 +71,7 @@ class System(object):
 			log.write(s + "\n")
 			self._encode_print(s)
 
-		self.message(self.CLIENTINFO, "Using option object: " + options.description)
+		self.message(self.CLIENTINFO, "Using option object: " + settings.description)
 		self.message(self.VERBOSEINFO, "Host = " + socket.gethostname() + ", user = " + getpass.getuser())
 
 
@@ -123,27 +124,6 @@ class System(object):
 		abstimediff = myTime - self.startTime
 		self.checkTime = myTime
 		self.message(self.VERBOSEINFO, msg + " (relative time: " + str(reltimediff) + ", absolute time: " + str(abstimediff) + " [seconds])")
-
-
-	def openFile(self, path, attr):
-		"""
-		:param path: Pfad - Pfad zur Datei
-		:param attr: Attribut - Angabe des Modus zur Öffnung, z.B. rb, w, etc
-		:returns: Dateihandle - Handle der geöffneten Datei.
-
-		Öffnet die in **path** angegebene Datei.
-
-		.. note::
-			Nicht existierende Dateien und Pfade werden dabei neu angelegt!
-		"""
-		self.ensurePath(os.path.dirname(path))
-		return open(path,attr)
-
-
-	# creates a path if it does not exist, leaves it untouched otherwise
-	def ensureTree(self, path):
-		if not os.path.exists(path) and path != "":
-			os.makedirs(path)
 
 
 	# create a new empty tree, delete old one if present without further warning
@@ -277,19 +257,21 @@ class System(object):
 
 
 	# ends the program, returning the maximum error level reached during execution
-	def finish_program(self):
-		sys.exit(self.errorlevel)
+	def finish_program(self, errorlevel ):
+		if ( errorlevel is None ) : sys.exit(self.errorlevel)
+		else: sys.exit(errorlevel)
+
 
 	def copyFile(source, target, filename):
 		"""
 		:param source: Pfad - Pfad zum Quellverzeichnis
 		:param target: Pfad - Pfad zum Zielverzeichnis
 		:param filename: Pfad - Dateiname, kann zusätzlich zu **source** bzw. **target** relative Unterverzeichnisse angeben
-		
+
 		Kopiert die Datei **filename** vom Verzeichnis **source** in das Verzeichnis **target**.
-		
+
 		.. note::
-			In **source** und **target** identische Unterordner vor **filename** können auch in den **filename**-Parameter eingetragen werden, um Redundante angaben zu vermeiden. 
+			In **source** und **target** identische Unterordner vor **filename** können auch in den **filename**-Parameter eingetragen werden, um Redundante angaben zu vermeiden.
 		"""
 		mkpath(target)
 		mkpath(os.path.dirname(os.path.join(target, filename)))
@@ -299,7 +281,7 @@ class System(object):
 	def showFilesInPath(self, path):
 		pathLen=len(path)+1
 		fileArray=[]
-		for root,dirs,files in os.walk(path):				
+		for root,dirs,files in os.walk(path):
 			root=root[pathLen:] #i don't like it, but it works
 			for name in files:
 				if name.count("svn")==0  and root.count("svn")==0:
@@ -308,23 +290,19 @@ class System(object):
 				if name.count("svn")!=0:
 					continue
 		return fileArray
-	
-	#def copyFilesInDir(path):#NOT RECURSIVE	
-		
+
+	#def copyFilesInDir(path):#NOT RECURSIVE
+
 	def copyFiletree(self, source,target,path):
 		copy_tree(os.path.join(source,path),os.path.join(target,path),update=1)
-		
-	def removeTree(self, path):
-		if os.path.isdir(path):
-			shutil.rmtree(path)
-		else:
-			print("path ISNT A TREE")
-		
+
 	def removeFile(self, path):
 		if os.path.isfile(path):
 			os.remove(path)
 		else:
 			print("Datei existiert nicht: " + path)
-			
+
 	def makePath(self, path):
 		os.makedirs(path)
+
+ve_system = System()

@@ -15,7 +15,6 @@
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						<xsl:if test="$disableLogin=0">
 
 							<!-- Show these when not logged in -->
 							<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
@@ -52,8 +51,6 @@
 									</li>
 								</ul>
 							</li>
-
-						</xsl:if>
 					</ul>
 
 					<!-- rendered in js (veundmint.js) note: even though its later in dom its rendered first

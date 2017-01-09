@@ -26,6 +26,12 @@ class AbstractDispatcher(object):
 	Lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure." 
 	- Gamma, Helm, Johnson, Vlissides (1995) 'Design Patterns: Elements of Reusable Object-Oriented Software'
 	"""
+	def __init(self):
+		"""
+		This class is abstract, so cannot be instantiated.
+		"""
+		raise NotImplementedError
+	
 	def dispatch(self):
 		"""
 		The dispatch method is called by classes implementing the AbstractDispatcher class.
@@ -84,15 +90,20 @@ class PreprocessorDispatcher( AbstractDispatcher ):
 	Run pre-processors of the "plugin". Pre-processors can be configured in Option.py, using the field usePreprocessorPlugins and following fields.
 	Can be decorated with VerboseDecorator for performance logs.
 	"""
-	def __init__(self, plugins):
+	def __init__(self, data, plugins ):
 		"""
 		Constructor
 		
+		@param data - an undocumented data structure (Daniel Haase)
 		@param plugins - list of "Preprocessor modules" (Daniel Haase)
 		"""
 		## @var plugins
 		#  list of "Preprocessor modules" (Daniel Haase)
 		self.plugins = plugins
+		
+		## @var data
+		#  an undocumented data structure (Daniel Haase)
+		self.data = data
 		
 	
 	def dispatch(self):
@@ -102,7 +113,7 @@ class PreprocessorDispatcher( AbstractDispatcher ):
 		Check them in plugins/VEUNDMINT/preprocessor_mintmodtex.py
 		"""
 		for pp in self.plugins:
-			pp.preprocess()
+			pp( self.data ).preprocess()
 
 
 class PluginDispatcher( AbstractDispatcher ):
@@ -157,7 +168,7 @@ class PluginDispatcher( AbstractDispatcher ):
 
 		#activate pre-processing from plugins
 		for op in self.plugins:
-			op.create_output()
+			op( self.data ).create_output()
 
 
 	

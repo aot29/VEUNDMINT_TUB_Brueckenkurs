@@ -1,5 +1,5 @@
 ## @package tex2x.renderers.PageFactory
-#  The page factory is used to create page objects. Avoids unnecessary coupling and 
+#  The page factory is used to create page objects. Avoids unnecessary coupling and
 #  potentially opens the way to having alternative page objects.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
@@ -16,6 +16,8 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #  \author Alvaro Ortiz for TU Berlin
+from tex2x.Settings import settings
+from tex2x.System import ve_system as sys
 
 class PageFactory(object):
 	"""
@@ -23,26 +25,19 @@ class PageFactory(object):
 	Enables having different Page objects, which can be instantiated according to some parameter in Option.py
 	"""
 
-	def __init__(self, interface, outputplugin):
+	def __init__(self, data, outputplugin):
 		"""
 		Constructor
 		Instantiated by Plugin class in html5_mintmodtex.py
-		
+
 		@param interface undocumented data structure (Daniel Haase)
-		@param outputplugin Plugin (object implementing AbstractPlugin)		
+		@param outputplugin Plugin (object implementing AbstractPlugin)
 		"""
-		## @var sys
-		#  Simplify access to the interface options member (Daniel Haase) - refactor
-		self.sys = interface['system']
-		
+
 		## @var data
-		#  simplify access to the interface data member (Daniel Haase) 
-		self.data = interface['data']
-		
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = interface['options']
-		
+		#  data member, undocumented (Daniel Haase)
+		self.data = data
+
 		## @var outputplugin
 		#  Plugin (object implementing AbstractPlugin):
 		self.outputplugin = outputplugin
@@ -52,33 +47,31 @@ class PageFactory(object):
 		"""
 		Instantiate a Page object. All Page objects should extend AbstractHtmlRenderer.
 		Which Page object is instantiated depends on options set in Option.py
-		
+
 		@return object implementing AbstractHtmlRenderer
 		"""
-		
-		if ( not  self.options.bootstrap ): raise Exception( 'Only Bootstrap Page renderer is supported in this version' )
-		
+
+		if ( not  settings.bootstrap ): raise Exception( 'Only Bootstrap Page renderer is supported in this version' )
+
 		# When using bootstrap, use the Page object by TUB
-		from tex2x.renderers.PageTUB import PageTUB
-		from tex2x.renderers.TocRenderer import TocRenderer
-		from tex2x.renderers.PageXmlRenderer import PageXmlRenderer, QuestionDecorator, RouletteDecorator 
+		from .PageTUB import PageTUB
+		from .TocRenderer import TocRenderer
+		from .PageXmlRenderer import PageXmlRenderer, QuestionDecorator, RouletteDecorator
 
 		# get a basic page renderer
-		xmlRenderer = PageXmlRenderer( self.options )
-		
+		xmlRenderer = PageXmlRenderer()
+
 		# decorate with questions and roulette exercises
 		# the order is important, as roulette adds questions
 		xmlRenderer =   RouletteDecorator(
-							QuestionDecorator( xmlRenderer ), 
-							self.data, self.options.strings
+							QuestionDecorator( xmlRenderer ),
+							self.data, settings.strings
 						)
 
-		# get a table of contents renderer			
-		tocRenderer = TocRenderer( self.options )
+		# get a table of contents renderer
+		tocRenderer = TocRenderer()
 
 		# get a page HTML renderer
-		page = PageTUB( xmlRenderer, tocRenderer, self.options, self.data )
+		page = PageTUB( xmlRenderer, tocRenderer, self.data )
 
-		return page 
-
-
+		return page

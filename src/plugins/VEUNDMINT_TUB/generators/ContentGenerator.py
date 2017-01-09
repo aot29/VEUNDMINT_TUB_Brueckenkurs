@@ -19,31 +19,24 @@
 
 from copy import deepcopy
 from lxml import etree
-from tex2x.parsers.AbstractParser import AbstractParser
+from tex2x.AbstractGenerator import AbstractGenerator
+from tex2x.System import ve_system as sys
+from tex2x.Settings import settings
 
-class TOCParser( AbstractParser ):
+class ContentGenerator( AbstractGenerator ):
 	"""
-	Run the TOC parser to create the table of contents and the content tree.
-	Instantiated by the Dispatcher.	
+	Run the ContentGenerator to create the table of contents and the content tree.
+	Instantiated by the Dispatcher.
 	Can be decorated with VerboseParser to enable performance logging.
 	"""
-	def __init__(self, options, sys ):
+	def __init__(self ):
 		"""
-		Constructor.
-		
-		@param options Object
-		@param sys - "A module exposing a class System" (Daniel Haase) 
+		Constructor. Needs to overrides the constructor of the abstract base class.
 		"""
-		## @var options
-		# simplify access to the interface options member (Daniel Haase) - refactor
-		self.options = options
-		
-		## @var sys
-		#  Simplify access to the interface options member (Daniel Haase) - refactor
-		self.sys = sys
-		
+		pass
 
-	def parse( self, htmltree ):
+
+	def generate( self, htmltree ):
 		"""
 		Create the table of contents (TOC) and the content tree.
 
@@ -62,7 +55,7 @@ class TOCParser( AbstractParser ):
 		also, dass die Referenzen auf die Knoten zu diesem Zweck weitergereicht werden und nicht
 		etwa tiefe Kopien. Plugins sollten daher auf keinen Fall die Objekte am Ende der Referenz
 		manipulieren. In menschenlesbarer Form würde der Inhalt von self.tocxml so aussehen:
-	
+
 		\<tableOfContents\>
 		  \<h1 name="1"\>Rechengesetze
 			  \<h2 name="1.1"\>Ungleichungen
@@ -78,8 +71,8 @@ class TOCParser( AbstractParser ):
 			  \<\/h2\>
 		  \<\/h1\>
 		\<\/tableOfContents\>
-	
-	
+
+
 		Inhalte:
 		self.content ist eine Liste aller Inhaltsabschnitte. Mit Inhaltsabschnitt ist hier gemeint,
 		was in VEMINT bspw. die Hinführung wäre (modgenetisch). Mehrere Inhaltsabschnitte ergeben
@@ -89,27 +82,27 @@ class TOCParser( AbstractParser ):
 		Ein Element aus der Liste self.content ist also wieder eine Liste und ist wie folgt aufgebaut:
 		[toc_node, inhaltsabschnitt, lösung1, lösung2, ... lösungN]
 		Dabei ist jedes Element vom Typ etree.Element
-	
+
 		(Es kann auch sein, dass keine Lösungen enthalten waren, dann wäre das obige Listenbeispiel nur
 		zwei Elemente lang)
-	
+
 		Die Reihenfolge der Inhaltsabschnitte in self.content entspricht dabei lediglich der
 		Reihenfolge der Abschnitte aus der XML-Vorlage.
-	
-	
+
+
 		Benötigte Inhalte (derzeit Bilder, Interaktionen, swf-Files, adobe-Files):
 		Nach dem Zerschneiden, werden die Inhaltsabschnitte nach verlinkten Dateien durchsucht.
 		Diese finden sich aufgelistet in den Attributen get_required_X (X entsprechend ersetzen).
 		Ein Listenelement besteht wieder aus einer Liste, nach dem Schema: [toc_node, Dateiname]
 		Also analog zu self.content.
-		
+
 		@param htmltree - an etree containing parsed HTML
 		@return two trees (see explanation in German )
 		@author Daniel Haase for KIT
 		"""
 
 		#Kopie, um Schreibweise zu verkürzen
-		contentStructure = self.options.ContentStructure
+		contentStructure = settings.ContentStructure
 
 		root = htmltree
 		body = root.find("body")
@@ -183,17 +176,17 @@ class TOCParser( AbstractParser ):
 			if level == -1:
 				#Es wurde ein zugehöriges Modul gefunden
 				#Modul wird gespeichert mit zugehörigem Knoten aus dem Inhaltsverzeichnis
-				if node.get("class") != None and self.options.ModuleStructureClass in node.get("class") and node.get("class").index(self.options.ModuleStructureClass) == 0:
+				if node.get("class") != None and settings.ModuleStructureClass in node.get("class") and node.get("class").index(settings.ModuleStructureClass) == 0:
 					#Jetzt sehen wir uns die Zahl an, die in der Klasse mit angegeben wird
 					number = ""
-					if (len(node.get("class")) > len(self.options.ModuleStructureClass)):
+					if (len(node.get("class")) > len(settings.ModuleStructureClass)):
 						try:
-							int(node.get("class")[len(self.options.ModuleStructureClass):])#Test auf Integer
-							number = node.get("class")[len(self.options.ModuleStructureClass):]#wir benutzen die Nummer anschließend als String weiter
+							int(node.get("class")[len(settings.ModuleStructureClass):])#Test auf Integer
+							number = node.get("class")[len(settings.ModuleStructureClass):]#wir benutzen die Nummer anschließend als String weiter
 						except:
 							print("Fehler beim Parsen der xcontent-Nummer")
 					else:
-						self.sys.message(self.sys.CLIENTWARN, "Dissection found class " + self.options.ModuleStructureClass + ", but without a number")
+						sys.message(sys.CLIENTWARN, "Dissection found class " + settings.ModuleStructureClass + ", but without a number")
 
 
 
@@ -214,7 +207,7 @@ class TOCParser( AbstractParser ):
 	def _checkContentStructure(self, node, tag):
 		"""
 		check if node tag belongs to the content structure from options AND if it is structure tag generated by ttm
-		
+
 		@author Daniel Haase
 		"""
 		if (node.tag == tag):

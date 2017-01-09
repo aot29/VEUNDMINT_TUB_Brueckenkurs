@@ -9,26 +9,26 @@ import unittest
 import os
 from lxml import etree
 
-from plugins.VEUNDMINT.tcontent import TContent
-from tex2x.renderers.PageXmlRenderer import *
-from tex2x.renderers.TocRenderer import TocRenderer
-from tex2x.renderers.PageTUB import PageTUB
-from tex2x.Settings import settings
+from plugins.VEUNDMINT_TUB.tcontent import TContent
+from plugins.VEUNDMINT_TUB.renderers.PageXmlRenderer import *
+from plugins.VEUNDMINT_TUB.renderers.TocRenderer import TocRenderer
+from plugins.VEUNDMINT_TUB.renderers.PageTUB import PageTUB
+from tex2x.Settings import ve_settings as settings
 
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
-from tex2x.renderers.AbstractRenderer import *
-from tex2x.annotators.AbstractAnnotator import Annotation
+from tex2x.AbstractRenderer import *
+from tex2x.AbstractAnnotator import Annotation
 
 class test_PageTUB(AbstractRendererTestCase):
 	
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 		
-		contentRenderer = PageXmlRenderer( self.options )
-		tocRenderer = TocRenderer( self.options )
-		self.page = PageTUB( contentRenderer, tocRenderer, self.options, self.data )
+		contentRenderer = PageXmlRenderer()
+		tocRenderer = TocRenderer()
+		self.page = PageTUB( contentRenderer, tocRenderer, self.data )
 		# generate HTML element using the tc mock-up
-		self.page.generateHTML( self.tc )
+		self.page.renderHTML( self.tc )
 
 
 	def testLoadSpecialPage(self):
@@ -44,14 +44,14 @@ class test_PageTUB(AbstractRendererTestCase):
 			self.assertTrue( '<!-- mdeclaresiteuxidpost;;%s;; //-->' % key in self.tc.content )
 
 
-	def testGenerateHTML_for_special_pages(self):
+	def testRenderHTML_for_special_pages(self):
 		for key in AbstractXmlRenderer.specialPagesUXID.keys():
 
 			if key == 'VBKM_MISCSEARCH' : continue
 
 			# Can the page be generated from template?
 			self.tc.uxid = key
-			self.page.generateHTML( self.tc )
+			self.page.renderHTML( self.tc )
 			self.assertTrue( '<!-- mdeclaresiteuxidpost;;%s;; //-->' % key in self.tc.html, "UXID Tag not found in %s" % key )
 			# navbar present?
 			self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
@@ -101,11 +101,11 @@ class test_PageTUB(AbstractRendererTestCase):
 		#encoding
 		self.assertTrue( "utf-8" in self.tc.html, "Wrong or missing encoding in HTML" )
 		# language
-		self.assertTrue( 'html lang="%s"' % self.lang in self.tc.html, "Wrong or missing language code in HTML" )
+		self.assertTrue( 'html lang="%s"' % settings.lang in self.tc.html, "Wrong or missing language code in HTML" )
 		# MathJax got loaded
 		self.assertTrue( 'MathJax.js' in self.tc.html, "Missing external MathJax in HTML" )
 		# i18n points to the right locale
-		self.assertTrue( "$.i18n().load( { '%s' :" % self.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
+		self.assertTrue( "$.i18n().load( { '%s' :" % settings.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
 		# navbar
 		self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
 		
@@ -151,7 +151,7 @@ class test_PageTUB(AbstractRendererTestCase):
 	def testPrevNextLInks(self):
 		# Create the XML output for a page with left and right neighbors
 		siblings = self.tc.children
-		xml = self.page.contentRenderer.generateXML( siblings[1] )
+		xml = self.page.contentRenderer.renderXML( siblings[1] )
 		self.assertTrue( len( siblings ) >= 3 )
 		# add links to next and previous entries
 		self.page._addPrevNextLinks(xml, siblings[1] )
@@ -164,8 +164,8 @@ class test_PageTUB(AbstractRendererTestCase):
 		# An annotations array
 		annotations = [ Annotation( word='Operator', title='Operator (Mathematik)', url='https://de.wikipedia.org/wiki/Operator_(Mathematik)' )]
 		# get a basic page renderer
-		xmlRenderer = PageXmlRenderer( self.options )
-		xml = xmlRenderer.generateXML( self.tc )
+		xmlRenderer = PageXmlRenderer()
+		xml = xmlRenderer.renderXML( self.tc )
 		# add annotations array to xml
 		self.page._addAnnotations( xml, annotations )
 		self.assertEqual( 'Operator', xml.xpath('annotations/annotation/@word')[0], "Wrong annotation word" )

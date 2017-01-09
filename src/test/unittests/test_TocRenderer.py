@@ -6,16 +6,16 @@ Created on Aug 4, 2016
 import unittest
 from lxml import etree
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
-from tex2x.renderers.TocRenderer import TocRenderer
-from tex2x.renderers.AbstractRenderer import *
+from plugins.VEUNDMINT_TUB.renderers.TocRenderer import TocRenderer
+from tex2x.AbstractRenderer import *
 
 class test_TocRenderer(AbstractRendererTestCase):
 	
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
 
-		self.tocRenderer = TocRenderer( self.options )
-		self.xml = self.tocRenderer.generateXML( self.tc )
+		self.tocRenderer = TocRenderer()
+		self.xml = self.tocRenderer.renderXML( self.tc )
 	
 	
 	def  test_makeCaptionWithUmlaut(self):

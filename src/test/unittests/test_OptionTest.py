@@ -8,7 +8,7 @@ Run with:
 @author: ortiz
 '''
 import unittest
-from plugins.VEUNDMINT.Option import Option
+from plugins.VEUNDMINT_TUB.Option import Option
 
 class test_OptionTest(unittest.TestCase):
 	
