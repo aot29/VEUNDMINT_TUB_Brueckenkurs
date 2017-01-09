@@ -53,7 +53,6 @@ class System(object):
 
 
 	def __init__(self):
-		print ('current dir is', settings.currentDir);
 		self.logFilename = os.path.join(settings.currentDir, settings.logFilename)
 		self.doEncodeASCII = settings.consoleascii
 		self.doColors = settings.consolecolors
