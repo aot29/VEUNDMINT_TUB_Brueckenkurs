@@ -91,9 +91,6 @@ deploy_staging:
   script:
     - "cd $CI_PROJECT_DIR"
     - "rsync -avr --exclude public/* /home/gitlab-runner/gitlab-ci"
-    - "source venv/bin/activate"
-    - "python src/server/veundmint/manage.py migrate"
-    - "python src/server/veundmint/manage.py runserver"
   environment:
     name: staging
     url: http://guest43.mulf.tu-berlin.de/gitlab-ci-test/
