@@ -90,7 +90,13 @@ deploy_staging:
   stage: deploy_staging
   script:
     - "cd $CI_PROJECT_DIR"
-    - "rsync -avr --exclude public/* /home/gitlab-runner/gitlab-ci"
+    # copy all files to the gitlab-ci folder which will be served at /gitlab-ci(-test)
+    - "rsync -avr public/* /home/gitlab-runner/gitlab-ci"
+    # copy all django relevant files to django which is made available as an apache wsgi mod
+    - "rsync -avr src/server/veundmint/* /home/gitlab-runner/django"#
+    # and apply django migrations (if available)
+    - "source venv/bin/activate"
+    - "python src/server/veundmint/manage.py migrate"
   environment:
     name: staging
     url: http://guest43.mulf.tu-berlin.de/gitlab-ci-test/
