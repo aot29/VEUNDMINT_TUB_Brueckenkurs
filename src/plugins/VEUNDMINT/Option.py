@@ -178,6 +178,17 @@ class Option(object):
 		"""
 
 		self.testonly = ( lambda override: 1 if 'testonly=1' in override else 0 ) ( self.override )
+<<<<<<< HEAD
+		self.disableLogin = 0	# =1 login buttons will be disabled
+		self.scormlogin = 0		# =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
+		self.nosols =  0		# =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
+		self.doscorm = 0		# =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden
+		self.doscorm12 = 0		# =0: Kein SCORM, =1- > SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 1.2 verwendet werden
+		self.qautoexport = 0	# =1 Alle MExercise-Umgebungen werden auch als Export verpackt
+		self.diaok = 0			# =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
+		self.cleanup = 0		# =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
+=======
+>>>>>>> dev_TUB_software
 
 		## @var disableLogin
 		# =1 login buttons will be disabled

@@ -113,9 +113,6 @@ class Pipeline(object):
 
 		pluginPath = [ os.path.join( settings.converterDir, *packageName ) ] # example: ['/store/cosmetix/datastore/ortiz/VEUNDMINT_DEV/src/plugins/VEUNDMINT']
 
-
-		print('PLUGIN_____PATH', pluginPath)
-
 		# search for the file containing the module
 		f, filename, description = imp.find_module( moduleName, pluginPath )
 

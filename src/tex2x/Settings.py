@@ -75,8 +75,6 @@ class Settings(dict, metaclass=Singleton):
 
 		if custom_settings is not None:
 
-			print('custom settings is', custom_settings)
-
 			is_module = False
 
 			#convert module instance to dict

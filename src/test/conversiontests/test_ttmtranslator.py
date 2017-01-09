@@ -21,12 +21,10 @@ class TTMTranslatorTest(unittest.TestCase):
 		#print("setting up")
 		#self.s = System(Option('',['lang=de']))
 		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
-		self.options = dispatcher.options
-		self.sys = dispatcher.sys
 		self.translator = TTMTranslator()
 
-		self.tex_test_file = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
-		self.tex_test_output = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
+		self.tex_test_file = os.path.join(settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
+		self.tex_test_output = os.path.join(settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
 
 	def testTitle(self):
 		"""
