@@ -91,6 +91,7 @@ deploy_staging:
   script:
     - "cd $CI_PROJECT_DIR"
     - "rsync -avr --exclude public/* /home/gitlab-runner/gitlab-ci"
+    - "source venv/bin/activate"
     - "python src/server/veundmint/manage.py migrate"
     - "python src/server/veundmint/manage.py runserver"
   environment:
