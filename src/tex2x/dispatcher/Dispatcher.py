@@ -142,7 +142,6 @@ class Dispatcher(AbstractDispatcher):
 			if self.verbose: pluginDispatcher = VerboseDispatcher( pluginDispatcher, "Step 5: Create output" )
 			pluginDispatcher.dispatch()
 		
-
 		# stop program execution and return proper error level as return value
 		# sys.finish_program()
 		# no way the application runs without errors

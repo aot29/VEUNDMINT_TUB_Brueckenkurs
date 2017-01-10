@@ -493,7 +493,7 @@ class Option(object):
 
 		## @var template_precss
 		# PHP precss
-		self.template_precss = "precss"
+		#self.template_precss = "precss"
 
 		## @var template_scorm12manifest
 		# SCORM templates
@@ -502,6 +502,7 @@ class Option(object):
 		## @var template_redirect_scorm
 		# SCORM templates
 		self.template_redirect_scorm = os.path.join(self.converterTemplates, "html5_redirect_scorm.html")
+		#pass
 
 
 	def setTTM(self):

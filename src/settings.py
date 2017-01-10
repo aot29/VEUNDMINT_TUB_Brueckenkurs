@@ -36,7 +36,8 @@ DJANGO_SERVER_URL = 'http://localhost:8000'
 #### Renderer Options ####
 ##########################
 
-TEMPLATE_PATH = os.path.join(s().BASE_DIR, 'src/templates_xslt')
+TEMPLATE_PATH = os.path.join(s().BASE_DIR, 'src/plugins/VEUNDMINT_TUB/templates')
+template_redirect_basic = os.path.join(TEMPLATE_PATH, "html5_redirect_basic.html")
 
 #####################
 #### TTM Options ####
@@ -96,6 +97,7 @@ scorm2004testurl = s().BASE_URL + '/scorm2004testwrap.htm'
 # Put the complete class path here, so for example:
 # if you have a plugin called VEUNDMINT and a file called preprocessor_mintmodtex.py which holds a class called Preprocessor,
 # then the path is plugins.VEUNDMINT.preprocessor_mintmodtex.Preprocessor.
+"""
 pipeline = {
 		"preprocessors": [ 'plugins.basic.preprocessing.BasicPreprocessor' ],
 		
@@ -113,3 +115,4 @@ pipeline = {
 		
 		"plugins": [ 'plugins.basic.basic.Plugin' ]
 	}
+"""

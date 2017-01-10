@@ -37,7 +37,7 @@ class Pipeline(object):
 		"""
 		Constructor. Instantiate in Dispatcher.
 		"""
-
+		
 		## @var preprocessors
 		#  List of preprocessor objects
 		if self.has( 'preprocessors' ):

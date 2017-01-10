@@ -118,9 +118,11 @@ class Plugin(AbstractPlugin):
 			sys.message(sys.CLIENTERROR, "No exercise server declared in options")
 
 
+		print(settings.template_redirect_basic)
 		self.template_redirect_basic = sys.readTextFile(settings.template_redirect_basic, settings.stdencoding)
+		
 		#self.template_redirect_multi = sys.readTextFile(settings.template_redirect_multi, settings.stdencoding)
-		self.template_redirect_scorm = sys.readTextFile(settings.template_redirect_scorm, settings.stdencoding)
+		#self.template_redirect_scorm = sys.readTextFile(settings.template_redirect_scorm, settings.stdencoding)
 
 		self.siteredirects = dict() # consists of pairs [ redirectfilename, redirectarget ]
 		for t in settings.sitetaglist:

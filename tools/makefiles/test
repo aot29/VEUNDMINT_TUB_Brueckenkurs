@@ -31,8 +31,8 @@ export PYTHONPATH:=$PYTHONPATH:${CURDIR}
 #
 all: 
 	echo "Running unit tests on ${STAGING_URL}"
-	$(eval BASE_URL := ${STAGING_URL})
-	echo "Running system tests run on ${BASE_URL}"
+	$(eval VE_BASE_URL := ${STAGING_URL})
+	echo "Running system tests run on ${VE_BASE_URL}"
 	$(checkServer_cmd)
 	$(systest_cmd)
 
@@ -44,8 +44,8 @@ all:
 localhost: 
 	#Running unit tests on localhost
 	#Make sure you start the server first by doing: npm run watch
-	$(eval BASE_URL := ${LOCALHOST_URL})
-	echo "Running system tests run on ${BASE_URL}"
+	$(eval VE_BASE_URL := ${LOCALHOST_URL})
+	echo "Running system tests run on ${VE_BASE_URL}"
 	$(checkServer_cmd)
 	$(systest_cmd)
 
@@ -58,7 +58,7 @@ localhost:
 quick:
 	echo "=== Building using the test tree ==="
 	$(MAKE) -f tools/makefiles/testonly
-	$(eval BASE_URL := ${LOCALHOST_URL})
+	$(eval VE_BASE_URL := ${LOCALHOST_URL})
 	$(checkServer_cmd)
 	$(quicktest_cmd)
 	
@@ -70,7 +70,7 @@ quick_testonly:
 # Check if the server is running
 #
 define checkServer_cmd
-	@ping -c 3 `echo ${BASE_URL}  | awk -F/ '{print $$3}' | awk -F: '{print $$1}' - ` > /dev/null 2>&1 || echo "Server at ${BASE_URL} not running"
+	@ping -c 3 `echo ${VE_BASE_URL}  | awk -F/ '{print $$3}' | awk -F: '{print $$1}' - ` > /dev/null 2>&1 || echo "Server at ${VE_BASE_URL} not running"
 endef
 
 
@@ -78,7 +78,7 @@ endef
 # Run all tests (except quicktests) and gather test coverage data
 #	
 define systest_cmd
-	export BASE_URL=${BASE_URL} && cd src && green -s1 -vvvr test
+	export VE_BASE_URL=${VE_BASE_URL} && cd src && green -s1 -vvvr test
 endef
 
 
@@ -86,5 +86,5 @@ endef
 # Run QUICK tests
 #	
 define quicktest_cmd
-	export BASE_URL=${BASE_URL} && cd src && green -vvv test --file-pattern quick*.py
+	export BASE_URL=${VE_BASE_URL} && cd src && green -vvv test --file-pattern quick*.py
 endef
