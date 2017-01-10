@@ -140,18 +140,27 @@
       var t = [];
       var si = [];
       for (k = 0; k < globalexpoints.length; k++) {
-        p[k] = 0; t[k] = 0; si[k] = 0;
+        pointsInChapter = 0; t[k] = 0; si[k] = 0;
 
 
-		//visitedModulesInChapter
-		var visitedModules = _.size(_.pickBy(userData.stats, function(site, key) {
+
+		//in chapter k get all sites as an Object
+		var visitedChapterModules = _.pickBy(userData.stats, function(site, key) {
 			var prefix = 'VBKM' + ("0" + (k+1)).slice(-2);
 			return key.startsWith(prefix);
-		}));
+		})
 
-		log.debug('visitedModules', visitedModules);
+		//numOfVisitedModulesInChapter k+1
+		var numOfVisitedModules = _.size(visitedChapterModules);
 
-		//test calculation
+		log.debug('numOfVisitedModules', numOfVisitedModules);
+
+		//exercise points in chapter k+1
+		var sitesInChapter = visitedChapterModules;
+		var pointsInChapterArray = _.map(visitedChapterModules, 'points');
+		var pointsInChapter = _.sum(pointsInChapterArray);
+
+		//test calculation for abschlusstest k+1
 		var prefix = 'VBKM' + ("0" + (k+1)).slice(-2);
 		var match = prefix + '_Abschlusstest';
 		var testSite = _.pickBy(userData.stats, function(site, key) {
@@ -160,22 +169,17 @@
 
 		var testScore = _.get(testSite,'points',0);
 
-		console.log('testScore on testSite', testScore, testSite);
-
-
         var j = 0;
-
-
         s += "<strong>Kapitel " + (k+1) + ": " + globalsections[k] + "</strong><br />";
 
-        var progressWidthGlobal = visitedModules / globalsitepoints[k] * 100;
+        var progressWidthGlobal = numOfVisitedModules / globalsitepoints[k] * 100;
 				console.log('aaa', $.i18n('msg-total-progress'));
-        s += $.i18n('msg-total-progress', visitedModules, globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
-        s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + visitedModules + "' aria-valuemax='" + globalsitepoints[k] + "' style='width: " + progressWidthGlobal + "%'><span class='sr-only'>" + progressWidthGlobal + "% Complete</span></div></div>";
+        s += $.i18n('msg-total-progress', numOfVisitedModules, globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
+        s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + numOfVisitedModules + "' aria-valuemax='" + globalsitepoints[k] + "' style='width: " + progressWidthGlobal + "%'><span class='sr-only'>" + progressWidthGlobal + "% Complete</span></div></div>";
 
-        var progressWidthEx = p[k] / globalexpoints[k] * 100;
-        s += $.i18n('msg-total-points', p[k], globalexpoints[k]) + "<br />";//"Insgesamt " + p[k] + " von " + globalexpoints[k] + " Punkten der Aufgaben erreicht.<br />";
-        s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + p[k] + "' aria-valuemax='" + globalexpoints[k] + "' style='width: " + progressWidthEx + "%'><span class='sr-only'>" + progressWidthEx + "% Complete</span></div></div>";
+        var progressWidthEx = pointsInChapter / globalexpoints[k] * 100;
+        s += $.i18n('msg-total-points', pointsInChapter, globalexpoints[k]) + "<br />";//"Insgesamt " + pointsInChapter + " von " + globalexpoints[k] + " Punkten der Aufgaben erreicht.<br />";
+        s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + pointsInChapter + "' aria-valuemax='" + globalexpoints[k] + "' style='width: " + progressWidthEx + "%'><span class='sr-only'>" + progressWidthEx + "% Complete</span></div></div>";
 
         var progressWidthTest = testScore / globaltestpoints[k] * 100;
         s += $.i18n( 'msg-total-test', testScore, globaltestpoints[k] ) + "<br />";//"Insgesamt " + t[k] + " von " + globaltestpoints[k] + " Punkten im Abschlusstest erreicht.<br />";
