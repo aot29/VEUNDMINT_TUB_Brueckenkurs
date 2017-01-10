@@ -18,7 +18,7 @@
 import os
 import re
 from tex2x.System import ve_system as sys
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 
 
 class AbstractPreprocessor(object):
@@ -26,16 +26,16 @@ class AbstractPreprocessor(object):
 	version ="P0.1.0"
 	copyrightcollection = ""
 	directexercises = ""
-	
+
 	## Class variable fileArray contains a list of all .tex files except the macrofile
 	fileArray = None
-		
+
 	def __init__(self):
 		raise NotImplementedError
 
 	def process(self):
 		raise NotImplementedError
-	
+
 	def _installPackages(self):
 		# installs modified local macro package and used style files in the current directory
 		# don't use a direct copy, always check and modify the encoding if needed
@@ -49,30 +49,29 @@ class AbstractPreprocessor(object):
 		for f in settings.texstylefiles:
 			sys.removeFile(f)
 		sys.removeFile(settings.macrofile)
-		
+
 	def getFileList(self):
 		"""
 		Class variable fileArray contains a list of all .tex files except the macrofile
 		"""
-		
+
 		if self.fileArray is not None: return self.fileArray
-		
+
 		# Preprocessing of each tex file in the folder and subfolders
 		pathLen = len(settings.sourceTEX) + 1
 		self.fileArray = []
-		for root,dirs,files in os.walk(settings.sourceTEX):				
+		for root,dirs,files in os.walk(settings.sourceTEX):
 			root = root[pathLen:]
 			for name in files:
 				if re.match(".*" + settings.macrofilename  + "\\.tex", name):
 					sys.message(sys.VERBOSEINFO, "Preprocessing and release check ignores macro file " + name)
 					continue
-					
+
 				if (name[-4:] == ".tex"):
 					# store path to source copy and original source file
 					self.fileArray.append([os.path.join(settings.sourceTEX, root, name), os.path.join(settings.sourcepath_original, root, name)])
-					
+
 			for name in dirs:
 				continue
-			
+
 		return self.fileArray
-	

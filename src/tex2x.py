@@ -19,6 +19,7 @@
 	@author Alvaro Ortiz for TU Berlin
 """
 import os
+from tex2x.Settings import settings
 from tex2x.dispatcher.Dispatcher import Dispatcher
 from tex2x.dispatcher.AbstractDispatcher import VerboseDispatcher
 import argparse
@@ -33,8 +34,9 @@ try:
 
 	if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
 	    raise Exception("tex2x must be called in its own directory")
-
-    #create dispatcher and start processing
+     
+	settings.to_javascript_settings(settings.JS_SETTINGS_FILE)
+	#create dispatcher and start processing
 	dispatcher = Dispatcher(args.verbose, args.plugin, args.override )
 	if args.verbose: dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
 	dispatcher.dispatch()

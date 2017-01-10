@@ -38,7 +38,7 @@ from tex2x.AbstractPlugin import *
 from plugins.VEUNDMINT_TUB.tcontent import TContent
 from plugins.VEUNDMINT_TUB.renderers.PageFactory import PageFactory
 
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 from tex2x.System import ve_system as sys
 
 class Plugin(AbstractPlugin):

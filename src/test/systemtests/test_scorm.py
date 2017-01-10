@@ -122,7 +122,7 @@ class ScormTest( SeleniumTest ):
 		self.assertEquals("Claude's SCORM 2004 Test Wrapper", studentName)
 
 		studentId = self.driver.execute_script('return scormBridge.getStudentId()')
-		self.assertEquals("123456-1223435-112334<trick>4-1133-5[345ae/+.{/]", studentId)
+		self.assertEquals("123456-1223435-112334", studentId)
 
 
 	def testScormUrlAvailable(self):

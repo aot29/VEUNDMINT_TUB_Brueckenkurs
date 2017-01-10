@@ -3,17 +3,21 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['exports', 'b'], function (exports) {
-      factory(root.scormBridge = exports);
+    define(['exports', 'veHelpers', 'loglevel'], function (exports, veHelpers, log) {
+      factory((root.scormBridge = exports), veHelpers, log);
     });
   } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
     // CommonJS
-    factory(exports);
+    factory(exports,
+      require('./veHelpers.js'),
+      require('loglevel'),
+      require('pipwerks-scorm-api-wrapper'),
+      require('lz-string'));
   } else {
     // Browser globals
-    factory(root.scormBridge = {});
+    factory((root.scormBridge = {}), root.veHelpers, root.log, root.pipwerks, root.LZString);
   }
-}(this, function (exports) {
+}(this, function (exports, veHelpers, log, pipwerks, LZString) {
 
   /*
   * Module scormBridge
@@ -28,7 +32,7 @@
   */
 
   //define relations between scorm 1.2 and 2004 api parameters.
-  //WARNINT: THE SET IS NOT COMPLETE. ONLY
+  //WARNING: THE SET IS NOT COMPLETE. ONLY
   //PARAMETERS USED BY VEUNDMINT ARE CURRENTLY LISTED HERE.
   //ADD NEW PARAMETERS HERE IF YOU
   //WANT TO USE THE GRACEFULLY FUNCTIONS BELOW.
@@ -40,7 +44,8 @@
       'cmi.core.score.min',
       'cmi.core.score.max',
       'cmi.core.lesson_status',
-      'cmi.core.lesson_location'
+      'cmi.core.lesson_location',
+      'cmi.suspend_data'
     ],
     '2004': [
       'cmi.learner_id',
@@ -49,7 +54,8 @@
       'cmi.score.min',
       'cmi.score.max',
       'cmi.completion_status',
-      'cmi.location'
+      'cmi.location',
+      'cmi.suspend_data'
     ]
   }
 
@@ -57,9 +63,12 @@
 
   //stores if we are in an scorm environment
   var isScormEnv = false;
+  var isCustomAPI = false;
 
   var scormVersion = null;
   var scormData = {};
+
+  var scormAPI = null;
 
   /**
   * Initializes the scormBridge only aftwards calling pipwerks API is safe.
@@ -73,12 +82,20 @@
   * writing our own API, which should be done. I hope that this will also work with SCORM 2004, maybe it
   * is just an issue of scorm 1.2 which is outdated anyway and only used by matet.
   */
-  function init() {
-    log.setLevel('debug');
+  function init(api) {
 
-    //search for the API first, here we have to use get because find did not set the API.isFound to true (no comment)
-    pipwerks.SCORM.API.handle = pipwerks.SCORM.API.get();
-
+    //a custom API (e.g. a mock from npm (scorm-local) was passed, some variables are changed)
+    if (typeof (api) !== "undefined" && api !== null) {
+      isCustomAPI = true;
+      scormVersion = "1.2";
+      scormAPI = api;
+    } else {
+      //use the pipwerks api
+      scormAPI = pipwerks.SCORM.API;
+      //search for the API first, here we have to use get because find did not set the API.isFound to true (no comment)
+      pipwerks.SCORM.API.handle = pipwerks.SCORM.API.get();
+    }
+    
 
     if (pipwerks.SCORM.API.isFound) {
       log.info('scormBridge.js init: SCORM API found');
@@ -91,26 +108,65 @@
       } else if (pipwerks.SCORM.version == '1.2') {
         initializedAgain = JSON.parse(pipwerks.SCORM.API.handle.LMSInitialize(""));
       }
-      
 
       pipwerks.SCORM.connection.isActive = true;
       scormVersion = pipwerks.SCORM.version;
-	  isScormEnv = true;
+      isScormEnv = true;
 
       if (initializedAgain == true) {
         log.info('scormBridge.js init: LMS connection was initialized and is now active');
-		returnToOldLessonLocation();
+        returnToOldLessonLocation();
       } else {
         log.info('scormBridge.js init: LMS connection was already active');
       }
 
+        //authenticate at server
+        //TODO should be changed to a refresh call instead of authenticate
+        var userCredentials = createOrGetUserCredentials();
+        dataService.authenticate(userCredentials).then(function(data) {
+            console.log('aaa', data); 
+        }, function(error) {
+            console.log('bbb', error);
+            if (typeof error.responseJSON !== 'undefined'
+                && typeof error.responseJSON.non_field_errors !== 'undefined'
+                && error.responseJSON.non_field_errors[0] == "Unable to login with provided credentials.") {
+                //user is not registered yet at django, so register them
+                userCredentials.password1 = userCredentials.password2 = userCredentials.password;
+                return dataService.registerUser(userCredentials);
+            }
+        });
 
-
-
+    } else if (isCustomAPI) {
+      scormAPI.LMSInitialize('');
     } else {
       log.info('scormBridge.js init: SCORM API NOT found');
       isScormEnv = false;
     }
+    
+  }
+  
+  /**
+   * This function creates or gets previously created user credentials that can be used to identify scorm users
+   * at a server. They should never change for a single scorm user even after scorm logout
+   */
+  function createOrGetUserCredentials() {
+      
+      //try to get previously created userCredentials, create them otherwise
+      try {
+        var userCredentials = getJSONData().userCredentials;
+        var username = userCredentials.username;
+      } catch (err) {
+        //create a loginname
+        var loginName = 'scorm_' + getStudentId();
+        //create a relatively secure password
+        var pw = Date.now().toString(36) + Math.random().toString(36);
+        var userCredentials = {username: loginName, password: pw};
+        var oldData = getJSONData() || {};
+        var newData = veHelpers.mergeRecursive(oldData, {userCredentials: userCredentials});
+        setJSONData(newData);
+      }
+      
+      return userCredentials;
   }
 
   /**
@@ -129,6 +185,10 @@
     return scormData;
   }
 
+  function isCustomAPIActive() {
+    return isCustomAPI;
+  }
+
   /**
   * Getter functions
   */
@@ -138,6 +198,34 @@
 
   function getStudentName() {
     return gracefullyGet('cmi.core.student_name');
+  }
+
+  /**
+   * Returns custom data which was stored to 'cmi.suspend_data'. There is a
+   * size limitation of 4k in this field. That is why the data is encoded before
+   * and must be docoded before it is returned
+   * @return {Object} The json user data
+   */
+  function getJSONData() {
+    var storedCompressedData = gracefullyGet('cmi.suspend_data');
+    if (typeof(storedCompressedData) === 'undefined' || storedCompressedData === "" || storedCompressedData === null) {
+        return;
+    }
+    var decompressed = LZString.decompressFromEncodedURIComponent(storedCompressedData);
+    var obj = JSON.parse(decompressed);
+    return obj;
+  }
+
+  /**
+   * Stores arbitrary json data to scorm. In order for this to succeed the data
+   * must be encoded to size < 4k as that is the limit in scorm 1.2 on the field
+   * 'cmi.suspend_data'
+   * @param {Object} data The data that should be stored
+   */
+  function setJSONData(data) {
+    var JSONstring = JSON.stringify(data);
+    var compressed = LZString.compressToEncodedURIComponent(JSONstring);
+    return gracefullySet('cmi.suspend_data', compressed);
   }
 
 
@@ -151,6 +239,8 @@
     var versionedParameter = getVersionedParameter(id);
     if (isScormEnv) {
       result = pipwerks.SCORM.get(versionedParameter);
+    } else if (isCustomAPI) {
+      result = scormAPI.LMSGetValue(versionedParameter);
     }
     return result;
   }
@@ -169,6 +259,8 @@
     var versionedParameter = getVersionedParameter(id);
     if (isScormEnv) {
       result = pipwerks.SCORM.set(versionedParameter, value);
+    } else if (isCustomAPI) {
+      result = scormAPI.LMSSetValue(versionedParameter, value);
     }
     return result;
   }
@@ -182,59 +274,59 @@
   function updateCourseScore(scoreObj) {
     log.debug( "scormBridge.js: updateCourseScore called with scoreObj:", scoreObj);
 
-	if (isScormEnv) {
-	
-		updateSuccessful = false;
+    if (isScormEnv) {
 
-		if (isScormEnv) {
-		log.debug( "Updating SCORM transfer object");
-		nmax = 0;
-		ngot = 0;
+      updateSuccessful = false;
 
-		//take all scores from exercices that were defined to
-		//be in tests (intest) and add them together.
-		for (j = 0; j < scoreObj.length; j++) {
-			if (scoreObj[j].intest) {
-			nmax += scoreObj[j].maxpoints;
-			ngot += scoreObj[j].points;
-			}
-		}
+      if (isScormEnv) {
+        log.debug( "Updating SCORM transfer object");
+        nmax = 0;
+        ngot = 0;
 
-		//update corresponding course data in SCORM
-		updateSuccessful = gracefullySet("cmi.core.score.raw", ngot);
-		log.debug( "SCORM set points to " + ngot + ": " + updateSuccessful);
+        //take all scores from exercices that were defined to
+        //be in tests (intest) and add them together.
+        for (j = 0; j < scoreObj.length; j++) {
+          if (scoreObj[j].intest) {
+            nmax += scoreObj[j].maxpoints;
+            ngot += scoreObj[j].points;
+          }
+        }
 
-		updateSuccessful &= gracefullySet("cmi.core.score.min", 0);
-		log.debug( "SCORM set min points to 0: " + updateSuccessful);
+        //update corresponding course data in SCORM
+        updateSuccessful = gracefullySet("cmi.core.score.raw", ngot);
+        log.debug( "SCORM set points to " + ngot + ": " + updateSuccessful);
 
-		updateSuccessful &= gracefullySet("cmi.core.score.max", nmax);
-		log.debug( "SCORM set max points to " + nmax + ": " + updateSuccessful);
+        updateSuccessful &= gracefullySet("cmi.core.score.min", 0);
+        log.debug( "SCORM set min points to 0: " + updateSuccessful);
 
-		var s = "not attempted";
-		if (ngot > 0) {
-			if (ngot == nmax) {
-			s = "completed";
-			} else {
-			s = "incomplete";
-			}
-		}
-		psres = gracefullySet("cmi.core.lesson_status", s);
-		log.debug( "SCORM set status to " + s + ": " + psres);
-		}
+        updateSuccessful &= gracefullySet("cmi.core.score.max", nmax);
+        log.debug( "SCORM set max points to " + nmax + ": " + updateSuccessful);
 
-		return Boolean(updateSuccessful);
-	} else {
-		log.debug('scormBridge.js updateCourseScore called when not in scorm environment');
-	}
+        var s = "not attempted";
+        if (ngot > 0) {
+          if (ngot == nmax) {
+            s = "completed";
+          } else {
+            s = "incomplete";
+          }
+        }
+        psres = gracefullySet("cmi.core.lesson_status", s);
+        log.debug( "SCORM set status to " + s + ": " + psres);
+      }
+
+      return Boolean(updateSuccessful);
+    } else {
+      log.debug('scormBridge.js updateCourseScore called when not in scorm environment');
+    }
   }
 
   /**
-   * [sendFinalTestResults description]
-   * @param  {[type]} nPoints    [description]
-   * @param  {[type]} nMinPoints [description]
-   * @param  {[type]} nMaxPoints [description]
-   * @return {[type]}            [description]
-   */
+  * [sendFinalTestResults description]
+  * @param  {[type]} nPoints    [description]
+  * @param  {[type]} nMinPoints [description]
+  * @param  {[type]} nMaxPoints [description]
+  * @return {[type]}            [description]
+  */
   function sendFinalTestResults(nPoints, nMinPoints, nMaxPoints) {
     log.trace("ENTRYTEST geht an SCORM");
     var mx = 0;
@@ -292,20 +384,20 @@
       return $.i18n("msg-transfered-result")+"\n"; // Die Punktzahl wurde zur statistischen Auswertung übertragen
     }
   }
-  
-  function setLessonLocation(location) {
-	  return gracefullySet('cmi.core.lesson_location', location);
-}
 
-//return to a saved lesson location. Should only be called when scorm is first initialized. Will work because
-//it will set the window location of the iframe.
-function returnToOldLessonLocation() {
-	var oldLessonLocation = gracefullyGet('cmi.core.lesson_location');
-	log.debug('scormBridge.js: returnToOldLessonLocation', oldLessonLocation);
-	if (oldLessonLocation !== "" && oldLessonLocation !== null && typeof oldLessonLocation !== 'undefined') {
-		window.location.href = oldLessonLocation;
-	}
-}
+  function setLessonLocation(location) {
+    return gracefullySet('cmi.core.lesson_location', location);
+  }
+
+  //return to a saved lesson location. Should only be called when scorm is first initialized. Will work because
+  //it will set the window location of the iframe.
+  function returnToOldLessonLocation() {
+    var oldLessonLocation = gracefullyGet('cmi.core.lesson_location');
+    log.debug('scormBridge.js: returnToOldLessonLocation', oldLessonLocation);
+    if (oldLessonLocation !== "" && oldLessonLocation !== null && typeof oldLessonLocation !== 'undefined') {
+      window.location.href = oldLessonLocation;
+    }
+  }
 
 
   /*************************
@@ -354,6 +446,14 @@ function returnToOldLessonLocation() {
     }
     return versionedParameter;
   }
+  
+  function save() {
+      if (!isCustomAPI) {
+          return pipwerks.SCORM.save();
+    } else {
+        return scormAPI.LMSCommit('');
+    }
+  }
 
   // attach properties to the exports object to define
   // the exported module properties.
@@ -364,12 +464,14 @@ function returnToOldLessonLocation() {
   exports.gracefullySet = gracefullySet;
   exports.get = pipwerks.SCORM.get;
   exports.set = pipwerks.SCORM.set;
-  exports.save = pipwerks.SCORM.save;
+  exports.save = save;
+  exports.setJSONData = setJSONData;
+  exports.getJSONData = getJSONData;
   exports.getScormVersion = getScormVersion;
   exports.getStudentName = getStudentName;
   exports.getStudentId = getStudentId;
-exports.setLessonLocation = setLessonLocation;
+  exports.setLessonLocation = setLessonLocation;
   exports.updateCourseScore = updateCourseScore;
-
+  exports.isCustomAPI = isCustomAPIActive;
   exports.getVersionedParameter = getVersionedParameter;
 }));

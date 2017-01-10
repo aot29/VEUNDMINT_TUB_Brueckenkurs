@@ -14,13 +14,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#	@author Daniel Haase for KIT 
+#	@author Daniel Haase for KIT
 #	@author Niklas Plessing, Alvaro Ortiz for TU Berlin
 
 import os, subprocess, logging, re
 import sys
+from tex2x.Settings import settings
 from tex2x.Settings import Settings
-from tex2x.Settings import ve_settings as settings
 from tex2x.AbstractTranslator import AbstractTranslator
 from tex2x.System import ve_system as sys
 
@@ -36,44 +36,48 @@ class TTMTranslator(AbstractTranslator):
 	def __init__(self, ttmBin=settings.ttmBin):
 		"""
 		Constructor.
-		
+
 		@param ttmBin path to TTM binary
 		"""
 		## @var subprocess
 		#  Subprocess connecting to TTM input/output/error pipes and error codes
 		self.subprocess = None
-				
+
 		## @var ttmBin
 		#  Path to TTM binary
-		self.ttmBin = ttmBin
-		
+		self.ttmBin = settings.ttmBin
 
 	def translate(self, sourceTEXStartFile=settings.sourceTEXStartFile, sourceTEX=settings.sourceTEX, ttmFile=settings.ttmFile, dorelease = settings.dorelease ):
 		"""
 		Executes the TTM command and creates a XML-file from Tex sources.
 		Translates files from LaTeX to XML, uses the converterDir Option which is set to /src
 		WARNING: an external program is being called here, so this could theoretically be a security liability
-		
+
 		@param sourceTEXStartFile path to source Tex file
 		@param sourceTEX path to search for Tex input files
 		@param ttmFile path to output XML file
 		@param dorelease - deprecated, use unit tests and continuous integration instead.
 		@return: String - the XML as loaded from file as string
 		"""
-		if hasattr( settings, 'ttmExecute') and not settings.ttmExecute:
+
+		#print ('TTMParser called with options sourceTEXStartFile: %s, sourceTEX: %s, ttmFile: %s' % (sourceTEXStartFile, sourceTEX, ttmFile))
+		if hasattr(settings, 'ttmExecute') and not settings.ttmExecute:
+
 			# try to get the XML-file if it exists, otherwise generate it
 			if self.prepareXMLFile( sourceTEXStartFile, ttmFile ): return
 
 		# Check that TTM is executable
 		if not os.access( self.ttmBin, os.X_OK):
+			print(self.ttmBin)
 			raise Exception("ttm program file is not marked as executable, aborting")
 
 		# Check that output dir exists
 		if not os.path.exists( settings.targetpath ):
 			os.makedirs(settings.targetpath)
-			
-		# TODO DH: Why exactly do we need this?
+
+		# DH: Why exactly do we need this?
 		sys.pushdir() # AO: when this is removed, then the output plugin starts in the wrong dir
+
 		if not os.path.exists( sourceTEX ):
 			os.makedirs( sourceTEX )
 
@@ -84,7 +88,7 @@ class TTMTranslator(AbstractTranslator):
 				self.subprocess = subprocess.Popen([ self.ttmBin, '-p', sourceTEX ], stdout = outfile, stdin = infile, stderr = subprocess.PIPE, shell = True, universal_newlines = True)
 
 			self._logResults(self.subprocess, self.ttmBin, sourceTEXStartFile, dorelease )
-		
+
 			# if TTM worked, load the XML file
 			xmlString = self.loadXML( ttmFile )
 
@@ -100,7 +104,7 @@ class TTMTranslator(AbstractTranslator):
 		"""
 		Return a reference to the ttmParser Process, might return None, when called
 		before the parse function was called..
-		
+
 		@return subprocess - subprocess connecting to TTM input/output/error pipes and error codes
 		"""
 		return self.subprocess
@@ -108,8 +112,8 @@ class TTMTranslator(AbstractTranslator):
 
 	def prepareXMLFile(self, sourceTEXStartFile, ttmFile):
 		"""
-		If options.ttmExecute is False, verify that the XML-file exists, or return false
-		
+		If settings.ttmExecute is False, verify that the XML-file exists, or return false
+
 		@param sourceTEXStartFile path to source Tex file
 		@param ttmFile path to output XML file
 		@return boolean
@@ -119,29 +123,29 @@ class TTMTranslator(AbstractTranslator):
 			return True
 		else:
 			return False
-		
-		
+
+
 	def loadXML(self, ttmFile):
 		"""
 		Load the XML file, do some replacement to fix MathML and entities problems.
-		
+
 		@return: String - the XML as loaded from file
 		"""
 		xmlfile = open( ttmFile, "rb")
 		try:
 			xmltext = xmlfile.read().decode( 'utf8', 'ignore' ) # force utf8 here, otherwise it won't build
-			
+
 		finally:
 			if xmlfile: xmlfile.close()
-		
+
 		return xmltext
-		
-		
+
+
 	def _logResults( self, subprocess, ttmBin, sourceTEXStartFile, dorelease=0 ):
 		"""
 		Log the output from ttm_process in a human readable form. Is still using the system class. It
 		might be good to use logging.Logger instead(?)
-		
+
 		@param subprocess - subprocess connecting to TTM input/output/error pipes and error codes
 		@param ttmBin path to TTM binary
 		@param sourceTEXStartFile - path to source Tex file
@@ -183,7 +187,7 @@ class TTMTranslator(AbstractTranslator):
 
 			if anl > 0:
 				logger.log( logging.INFO, "ttm found " + str(anl) + " abnormal newlines")
-				
+
 			if (cm > 0) and (dorelease == 1):
 				logger.log( logging.ERROR, "ttm found " + str(cm) + " unknown commands, refusing to continue on release version")
 				sys.finish_program(3)

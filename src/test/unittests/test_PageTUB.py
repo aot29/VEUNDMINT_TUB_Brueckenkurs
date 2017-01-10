@@ -13,17 +13,17 @@ from plugins.VEUNDMINT_TUB.tcontent import TContent
 from plugins.VEUNDMINT_TUB.renderers.PageXmlRenderer import *
 from plugins.VEUNDMINT_TUB.renderers.TocRenderer import TocRenderer
 from plugins.VEUNDMINT_TUB.renderers.PageTUB import PageTUB
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
 from tex2x.AbstractRenderer import *
 from tex2x.AbstractAnnotator import Annotation
 
 class test_PageTUB(AbstractRendererTestCase):
-	
+
 	def setUp(self):
 		AbstractRendererTestCase.setUp(self)
-		
+
 		contentRenderer = PageXmlRenderer()
 		tocRenderer = TocRenderer()
 		self.page = PageTUB( contentRenderer, tocRenderer, self.data )
@@ -66,30 +66,30 @@ class test_PageTUB(AbstractRendererTestCase):
 		<br>The following expressions are terms:
 		<ul>
 		<li>x·(y+z)-1: for x=1, y=2, and z=0 one obtains, for example, the value 1.
-		
+
 		</li>
 		<li>sin(α)+cos(α): for α= 0∘ and β= 0∘ one obtains, for example, the value 1 (for the calculation of sine and cosine refer to (VERWEIS)).
-		
+
 		</li>
 		<li>1+2+3+4: no variables occur, however this is a term (which always gives the value 10).
-		
+
 		</li>
 		<li>α+β 1+γ : for example, α=1, β=2, and γ=3 give the value 3 4 . But γ=-1 is not allowed.
-		
+
 		</li>
 		<li>sin(π(x+1)): this term, for example, always gives the value zero, if x is substituted with an integer number.
-		
+
 		</li>
 		<li>z: a single variable is also a term.
-		
+
 		</li>
 		<li>1+2+3+…+(n-1)+n is a term, in which the variable n occurs in the term itself and defines its length as well.
-		
+
 		</li>
 		</ul>
 		</div>"""
 
-		
+
 
 	def test_generateHTML(self):
 		'''
@@ -97,7 +97,7 @@ class test_PageTUB(AbstractRendererTestCase):
 		'''
 		#print(self.tc.html)
 		# HTML is stored in tc.html
-		self.assertTrue( "<title>%s</title>" % self.tc.title in self.tc.html, "Title not found in HTML" )		
+		self.assertTrue( "<title>%s</title>" % self.tc.title in self.tc.html, "Title not found in HTML" )
 		#encoding
 		self.assertTrue( "utf-8" in self.tc.html, "Wrong or missing encoding in HTML" )
 		# language
@@ -108,11 +108,11 @@ class test_PageTUB(AbstractRendererTestCase):
 		self.assertTrue( "$.i18n().load( { '%s' :" % settings.lang in self.tc.html, "i18n is missing or points to the wrong locale in HTML" )
 		# navbar
 		self.assertTrue( 'id="navbarTop"' in self.tc.html, "Navbar is missing in HTML" )
-		
+
 		#
 		# TOC
 		#
-		
+
 		self.assertTrue( 'id="toc"' in self.tc.html, "TOC is missing in HTML" )
 
 		# Siblings in TOC (basePath is expected to be ../, as set in page.xslt)
@@ -122,12 +122,12 @@ class test_PageTUB(AbstractRendererTestCase):
 
 				# TOC entry captions present
 				self.assertTrue( sibling.caption in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.caption )
-				
+
 				#print(self.tc.html)
 
 				# TOC entry links present
 				self.assertTrue( 'href="../%s"' % sibling.fullname in self.tc.html, "TOC entry is missing in HTML. Expected %s" % sibling.fullname )
-					
+
 		# children and grand children
 		children = self.tc.children
 		for child in children:
@@ -135,19 +135,19 @@ class test_PageTUB(AbstractRendererTestCase):
 			grandChildren = child.children
 			for gc in grandChildren:
 				self.assertTrue( gc.caption in self.tc.html )
-				
-		
+
+
 		#legend
-		self.assertTrue( 'id="legend"' in self.tc.html, "Legend is missing in HTML" )		
-		
+		self.assertTrue( 'id="legend"' in self.tc.html, "Legend is missing in HTML" )
+
 		#tabs or lauch button (self.tc is a module overview page)
 		self.assertTrue( 'btn btn-primary' in self.tc.html, "Launch button is missing in HTML" )
 		self.assertFalse( 'nav nav-tabs' in self.tc.html, "Tabs are rendered when they shouldn't in HTML" )
-		
+
 		# questions
 		self.assertTrue( 'CreateQuestionObj("LSFF3",1,"(3-x)*(x+1)","QFELD_1.3.5.QF1",4,"10;x;5;1",4,0,1);' in self.tc.html, "Missing question javascript" )
-		
-	
+
+
 	def testPrevNextLInks(self):
 		# Create the XML output for a page with left and right neighbors
 		siblings = self.tc.children
@@ -184,8 +184,6 @@ class test_PageTUB(AbstractRendererTestCase):
 		self.assertEquals("../..", self.page.getBasePath( self.tc ))
 		self.tc.level = SUBSECTION_LEVEL
 		self.assertEquals("../..", self.page.getBasePath( self.tc ))
-		
+
 if __name__ == '__main__':
 	unittest.main()
-
-		

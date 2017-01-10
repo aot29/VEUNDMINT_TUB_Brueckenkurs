@@ -26,7 +26,6 @@ import locale
 from git import Repo
 import sys
 import platform
-import settings as new_settings
 
 class Option(object):
 	"""
@@ -45,10 +44,12 @@ class Option(object):
 		"""
 		Constructor
 		Instantiated in tex2x.dispatcher.Dispatcher
-		
+
 		@param currentDir - string path to the dir where tex2x is executed (is set in the Dispatcher), one level above location of tex2x.py.
 		@param override - string key value pairs override options
 		"""
+
+		import settings as new_settings
 
 		#Debugging
 		self.DEBUG = False
@@ -56,7 +57,7 @@ class Option(object):
 		#
 		# common vars on which the other vars depend. Set constructor.
 		#
-		
+
 		## @var currentDir
 		#  string path to the dir where tex2x is executed (is set in the Dispatcher), one level above location of tex2x.py.
 		self.currentDir = new_settings.BASE_DIR
@@ -67,12 +68,12 @@ class Option(object):
 
 		## @var output
 		#  Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
-		self.output = "build" 
-		
+		self.output = "build"
+
 		## @var source
 		#  Quellverzeichnis, platziert in Ebene ueber tex2x.py
 		self.source = os.path.join("content_submodule", "content")
-		
+
 		## @var outtmp
 		# Temporaeres Verzeichnis im cleanup-Teil des Ausgabeverzeichnisses fuer Erstellungsprozesse fuer mconvert.pl und conv.pl
 		self.outtmp = "_tmp"
@@ -82,7 +83,7 @@ class Option(object):
 
 		# always call setLocale first
 		self.setLocale()
-		
+
 		## @var module
 		#  Tree depends on language requested
 		self.module = ( lambda locale: "tree_en.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "tree_de.tex" ) (self.locale)
@@ -167,7 +168,7 @@ class Option(object):
 		else:
 			self.locale = ( lambda lang: "de_DE.utf8" if lang == 'de' else 'en_GB.utf8' ) ( self.lang )
 		locale.setlocale(locale.LC_ALL, self.locale)
-		
+
 		## @var i18nfile
 		#  localization file to use in LATEX
 		self.i18nfile = ( lambda locale: "english.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "deutsch.tex" ) ( self.locale)
@@ -175,18 +176,18 @@ class Option(object):
 		## @var i18nFiles
 		# localization file to use in JS
 		self.i18nFiles = os.path.join( self.converterCommonFiles, "i18n") # localization / internationalization files
-		
+
 		# load localization files into an Option parameter
 		i18nPath = os.path.join( self.i18nFiles, self.lang + ".json" )
 		f = open( i18nPath )
-		
+
 		## @var strings
 		#  load localization files into an Option parameter
 		self.strings = json.load( f )
-		
+
 		f.close()
 
-	
+
 	def setConverterVars(self):
 		"""
 		Variables used by the OSS converter
@@ -194,20 +195,20 @@ class Option(object):
 		"""
 		self.parserName = "lxml"
 		self.texCommonFiles = os.path.join(self.converterDir, "tex")
-		
+
 		## @var sourcepath_original
 		# directory to original source (strictly read only, except if amendsource is active)
-		self.sourcepath_original = os.path.join(self.currentDir, self.source) 
-		
+		self.sourcepath_original = os.path.join(self.currentDir, self.source)
+
 		## @var sourcepath
 		#  Pfad in dem gearbeitet wird
 		self.sourcepath = os.path.join(self.currentDir, self.outtmp)
-		
+
 		## @var sourceTEX
 		# Teilpfad in dem die LaTeX-Quellenkopien liegen
 		self.sourceTEX = os.path.join(self.sourcepath, "tex")
 		self.sourceTEXStartFile = os.path.join(self.sourceTEX, self.module)
-		
+
 		## @var targetpath
 		# Pfad in den der generierte Kurs kommt
 		self.targetpath = os.path.join(self.currentDir, self.output)
@@ -220,120 +221,120 @@ class Option(object):
 		"""
 		VE&MINT conversion flags, using values 0 and 1 (integers)
 		"""
-		
+
 		self.testonly = ( lambda override: 1 if 'testonly=1' in override else 0 ) ( self.override )
-		
+
 		## @var disableLogin
 		# =1 login buttons will be disabled
-		self.disableLogin = 1	
-		
+		self.disableLogin = 1
+
 		## @var scormlogin
 		# =1: No implicit user management, user-loginname is constructed from a SCORM string and immediately pulled from database
-		self.scormlogin = 0		
-		
+		self.scormlogin = 0
+
 		## @var nosols
 		# =0: Alle Loesungsumgebungen uebersetzen, =1: Loesungsumgebungen nicht uebersetzen wenn SolutionSelect-Pragma aktiviert ist
 		self.nosols =  0
-		
+
 		## @var doscorm
 		# =0: Kein SCORM, =1 -> SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 4 verwendet werden
-		self.doscorm = 0		
-		
+		self.doscorm = 0
+
 		## @var doscorm12
 		# =0: Kein SCORM, =1- > SCORM-Manifest und Definitionsdateien miterzeugen, html-Baum kann dann als SCORM-Lernmodul Version 1.2 verwendet werden
-		self.doscorm12 = 0		
-		
+		self.doscorm12 = 0
+
 		## @var qautoexport
 		# =1 Alle MExercise-Umgebungen werden auch als Export verpackt
-		self.qautoexport = 0	
-		
+		self.qautoexport = 0
+
 		## @var diaok
 		# =1 dia/convert-Kette durchfueren, wenn im Programmablauf auf 0 gesetzt wird dia/convert fuer alle files nicht mehr ausgefuehrt
-		self.diaok = 0			
-		
+		self.diaok = 0
+
 		## @var cleanup
 		# =1 -> trunk-Verzeichnis wird nach Erstellung entfernt (fuer Releases unbedingt aktivieren)
-		self.cleanup = 0		
-		
+		self.cleanup = 0
+
 		## @var localjax
 		# =1 -> lokales MathJax-Verzeichnis wird eingerichtet (andernfalls ist netservice-Flag in conv.pl erforderlich)
 		# Achtung, MathJax hat 33988 Dateien. Wenn die Option lokales MathJax gesetzt ist, kann das zu Problemen mit der Inodes-Quote fuehren!
-		self.localjax = 0		
+		self.localjax = 0
 
 		## @var borkify
 		# =1 html und js-Dateien werden borkifiziert
-		self.borkify = 0		
-		
+		self.borkify = 0
+
 		## @var dorelease
 		# In Release-Versionen werden Flag-Kombinationen erzwungen und Logmeldungen unterdrueckt
-		self.dorelease = 0		
-		
+		self.dorelease = 0
+
 		## @var doverbose
 		# Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
-		self.doverbose = 0		
-		
+		self.doverbose = 0
+
 		## @var docollections
 		# Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
-		self.docollections = 0	
-		
+		self.docollections = 0
+
 		## @var dopdf
 		# =1 -> PDF wird erstellt und Downloadbuttons erzeugt
-		self.dopdf =  0		   	
-		
+		self.dopdf =  0
+
 		## @var dotikz
 		# =1 -> TikZ wird aufgerufen um Grafiken zu exportieren, diese werden sofort in den Kurs eingebunden
-		self.dotikz = 0		   	
-		
+		self.dotikz = 0
+
 		## @var dozip
 		# =1 -> html-Baum wird als zip-Datei geliefert (Name muss in output stehen)
-		self.dozip = 0			
-		
+		self.dozip = 0
+
 		## @var consolecolors
 		# =1 -> Ausgabe der Meldungen auf der Konsole wird eingefaerbt
-		self.consolecolors = 1	
-		
+		self.consolecolors = 1
+
 		## @var consoleascii
 		# =1 -> Only us-ascii strings are printed to the console (or pipes), does not affect written files
-		self.consoleascii = 0	
-		
+		self.consoleascii = 0
+
 		## @var forceyes
 		# =1 -> Questions asked interactively (like if a directory should be overwritten) will be assumed to be answered with "yes"
-		self.forceyes = 1		
-		
+		self.forceyes = 1
+
 		## @var symbolexplain
 		# =1 -> Short list explaining symbols is added to table of contents
-		self.symbolexplain = 1	
-		
+		self.symbolexplain = 1
+
 		## @var forceoffline
 		# =1 -> code acts as if no internet connection to anything is present (excluding direct links from content and MathJax loads)
-		self.forceoffline = 0	
-		
+		self.forceoffline = 0
+
 		## @var quiet
 		# =1 -> Absolutely no print messages, caller must deduce outcome by return value of sys.exit
-		self.quiet = 1			
-		
+		self.quiet = 1
+
 		## @var bootstrap
 		# Use Bootstrap for responsive layout
-		self.bootstrap = 1	  	
+		self.bootstrap = 1
 
 		## @var nolinkcorrection
 		# optimization options
 		self.nolinkcorrection = 1
-		
+
 		## @var keepequationtables
 		# optimization options
 		self.keepequationtables = 1
 
 		## @var generate_pdf
 		# dict der Form tex-name: Bezeichnung (ohne Endung)
-		self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" } 
+		self.generate_pdf = { "veundmintkurs": "GesamtPDF Onlinekurs" }
 
 
 	def setTest(self):
 		"""
 		Calling tex2x with testonly=1 will use the test tree instead of the real tree
 		"""
-		if self.testonly: 
+		if self.testonly:
 			# If testing, use test tree instead of tree defined above
 			self.module = "tree_test.tex"
 
@@ -344,70 +345,70 @@ class Option(object):
 		"""
 		self.macrofilename = "mintmod"
 		self.macrofile = "mintmod.tex"
-		
+
 		## @var stdencoding
 		# Presumed encoding of tex files and templates, utf8 well be accepted too but with a warning
-		self.stdencoding = "utf-8"						
-		
+		self.stdencoding = "utf-8"
+
 		## @var outputencoding
 		# encoding of generated html files
-		self.outputencoding = "utf-8"						
+		self.outputencoding = "utf-8"
 
 		## @var description
 		# Bezeichnung des erstellen Kurses
-		self.description = "Onlinebrückenkurs Mathematik"	
-		
+		self.description = "Onlinebrückenkurs Mathematik"
+
 		## @var author
 		# Offizieller Autor des Kurses
-		self.author = "Projekt VEUNDMINT"					
-		
+		self.author = "Projekt VEUNDMINT"
+
 		## @var contentlicense
 		# Lizenz des Kursinhalts
-		self.contentlicense = "CC BY-SA 3.0"				
-		
+		self.contentlicense = "CC BY-SA 3.0"
+
 		## @var moduleprefix
 		# Wird vor Browser-Bookmarks gesetzt
-		self.moduleprefix = "Onlinebrückenkurs Mathematik"  
-		
+		self.moduleprefix = "Onlinebrückenkurs Mathematik"
+
 		## @var variant
 		# zu erzeugende Varianten der HTML-files, "std" ist die Hauptvariante, waehlt Makropakete fuer Mathematikumsetzung aus, Alternative ist "unotation"
-		self.variant = "std"								
-		
+		self.variant = "std"
+
 		## @var accessflags
 		# linux access flag preset for the entire output directory
-		self.accessflags = "777"							
+		self.accessflags = "777"
 
 		## @var mathjaxtgz
 		# only used if localjax=1
-		self.mathjaxtgz = "mathjax26complete.tgz"			
-		
+		self.mathjaxtgz = "mathjax26complete.tgz"
+
 		## @var scorm12tgz
 		# only used if doscorm12=1
-		self.scorm12tgz = "scorm12_xsd.tgz"				  	
-		
+		self.scorm12tgz = "scorm12_xsd.tgz"
+
 		## @var scorm4tgz
 		# only used if doscorm=1
-		self.scorm4tgz = ""								  	
-		
+		self.scorm4tgz = ""
+
 		## @var texstylefiles
 		# style files needed in local directories for local pdflatex compilation
-		self.texstylefiles = ["bibgerm.sty", "maxpage.sty"] 
-		
-		## @var 
+		self.texstylefiles = ["bibgerm.sty", "maxpage.sty"]
+
+		## @var
 		# scaling factor used for tikz-png scaling, can be overridden by pragmas
-		self.htmltikzscale = 1.3							
-		
+		self.htmltikzscale = 1.3
+
 		## @var autotikzcopyright
 		# includes tikz externalized images in copyright list
-		self.autotikzcopyright = 1						   	
-		
+		self.autotikzcopyright = 1
+
 		## @var displaycopyrightlinks
 		# add copyright links to images in the entire course
-		self.displaycopyrightlinks = 0					   	
-		
+		self.displaycopyrightlinks = 0
+
 		## @var maxsitejsonlength
 		# the maximal number of string characters allowed for an internal json site object, will be stored in a different file if limit is exceeded
-		self.maxsitejsonlength = 255						
+		self.maxsitejsonlength = 255
 
 
 	def setSignature(self):
@@ -415,19 +416,19 @@ class Option(object):
 		Course signature, course part
 		Don't use underscores in the course signature, as otherwise pdf2latex will convert this to math.
 		"""
-		
+
 		## @var signature_main
 		#Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
-		self.signature_main = "MFR-TUB" 
+		self.signature_main = "MFR-TUB"
 		# self.signature_main = "OBMLGAMMA9" # "OBMLGAMMA5_SCORM12_UKS_m" # "OBMLGAMMA5" # OBM_LGAMMA_0 "OBM_PTEST8", "OBM_VEUNDMINT"		 # Identifizierung des Kurses, die drei signature-Teile machen den Kurs eindeutig
-		
+
 		## @var signature_version
 		# Versionsnummer, nicht relevant fuer localstorage-userget!
-		self.signature_version = "10000"			  
-		
+		self.signature_version = "10000"
+
 		## @var signature_localization
 		# Lokalversion des Kurses, hier die bundesweite MINT-Variante
-		self.signature_localization = "DE-MINT"	   
+		self.signature_localization = "DE-MINT"
 		self.signature_date = "09/2016"
 
 
@@ -461,18 +462,18 @@ class Option(object):
 		"""
 		VE&MINT course parameters, defining values used by the online course
 		"""
-		
+
 		## @var do_feedback
 		# Feedbackfunktionen aktivieren? DOPPLUNG MIT FLAGS
-		self.do_feedback = "0"						
-		
+		self.do_feedback = "0"
+
 		## @var do_export
 		# Aufgabenexport aktivieren? DOPPLUNG MIT FLAGS
-		self.do_export = "0"						  
-		
+		self.do_export = "0"
+
 		## @var reply_mail
 		# Wird in mailto vom Admin-Button eingesetzt
-		self.reply_mail = "brueckenkurs@innocampus.tu-berlin.de"	  
+		self.reply_mail = "brueckenkurs@innocampus.tu-berlin.de"
 
 		self.data_server = self.server
 		self.exercise_server = self.server
@@ -483,13 +484,13 @@ class Option(object):
 
 	def setTemplates(self):
 		"""
-		Set template XSLT directory, template for PHP preprocessing and SCORM-manifest template 
+		Set template XSLT directory, template for PHP preprocessing and SCORM-manifest template
 		"""
 		## @var converterTemplates
 		# Only templates_bootstrap is supported to render HTML files
 		self.converterTemplates = os.path.join( self.pluginDir, "templates" )
 		self.template_redirect_basic = os.path.join(self.converterTemplates, "html5_redirect_basic.html")
-		
+
 		## @var template_precss
 		# PHP precss
 		self.template_precss = "precss"
@@ -497,7 +498,7 @@ class Option(object):
 		## @var template_scorm12manifest
 		# SCORM templates
 		self.template_scorm12manifest = os.path.join(self.converterTemplates, "scorm12_moodle_manifest.xml")
-		
+
 		## @var template_redirect_scorm
 		# SCORM templates
 		self.template_redirect_scorm = os.path.join(self.converterTemplates, "html5_redirect_scorm.html")
@@ -516,10 +517,10 @@ class Option(object):
 		"""
 		Content Structure: which Header level to use for what (h1, h2, h3, ... )
 		"""
-		
+
 		## @var contentlevel
 		# level used by tcontent objects from subsubsections (MXContent)
-		self.contentlevel = 4 
+		self.contentlevel = 4
 		self.ContentStructure=[]
 		self.ContentStructure.append("h1") # the whole course
 		self.ContentStructure.append("h2") # a section in the course, a MSection according to MINTMOD
@@ -545,7 +546,7 @@ class Option(object):
 			"PRE_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "preprocessor_mintmodtex.py"),
 			"HTML5_MINTMODTEX": os.path.join(self.converterDir, "plugins", "VEUNDMINT", "html5_mintmodtex.py")
 		}
-		
+
 
 	def overrideValues(self):
 		"""
@@ -584,7 +585,7 @@ class Option(object):
 			else:
 				print("Invalid self.override string: " + ov)
 
-				
+
 	def checkConsistency(self):
 		"""
 		Checks if given option values (including self.overrides) are consistent
@@ -610,8 +611,7 @@ class Option(object):
 			if self.doscorm == 0 and self.doscorm12 == 0:
 				print("FATAL ERROR: Option scormlogin is detrimental if doscorm or doscorm12 is not active, aborting with error code 1")
 				sys.exit(1)
-		
+
 		if self.bootstrap != 1:
 				print("FATAL ERROR: Only bootstrap version is supported")
 				sys.exit(1)
-			

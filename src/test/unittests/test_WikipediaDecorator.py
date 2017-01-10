@@ -15,7 +15,7 @@ from tex2x.dispatcher.Dispatcher import Dispatcher
 from plugins.VEUNDMINT_TUB.annotators.WikipediaAnnotator import WikipediaAnnotator
 from plugins.VEUNDMINT_TUB.generators.WikipediaDecorator import WikipediaDecorator
 from test.unittests.AbstractRendererTestCase import *
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 
 class test_WikipediaDecorator(AbstractRendererTestCase):
 
@@ -24,7 +24,7 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
 		self.mockGenerator = MockGenerator( settings )
 
-	
+
 	def testCreate(self):
 		'''
 		Check if a WikipediaDecorator can be created at all
@@ -41,13 +41,13 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		xml = etree.fromstring( rawxml )
 		wd = WikipediaDecorator( self.mockGenerator )
 		toc, content = wd.generate( xml )
-		
+
 		# content is an array
 		# each element has 3 elements. The 3. are the annotations
 		for p in content:
 			self.assertIsNotNone( p[3] )
-		
-			
+
+
 	def testListMathWikipedia(self):
 		"""
 		List the entries of the maths category in Wikipedia
@@ -55,7 +55,7 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		annotator = WikipediaAnnotator( )
 		mathWords = annotator.generate( 'de' )
 		self.assertTrue( len( mathWords ) > 0 )
-		
+
 
 	def testListMathWikipediaEN(self):
 		"""
@@ -77,11 +77,11 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		Find words to link to Wikipedia in the text
 		"""
 		rawxml = """
-		<div>Eine <b>Variable</b><!-- mpreindexentry;;Variable;;1;;1;;1;;1;;9; //--> 
-		ist ein Symbol (typischerweise ein Buchstabe), das als Platzhalter f&#252;r einen unbestimmten Wert\neingesetzt wird. 
-		Ein <b>Term</b><!-- mpreindexentry;;Term;;1;;1;;1;;1;;10; //--> ist ein mathematischer Ausdruck, der Variablen, 
-		Rechenoperationen und weitere Symbole enthalten kann,\nund der nach Einsetzung von Zahlen f&#252;r die Variablen einen konkreten Zahlenwert 
-		ergibt. Terme k&#246;nnen zu Gleichungen bzw. Ungleichungen\nkombiniert oder in Funktionsbeschreibungen eingesetzt werden, 
+		<div>Eine <b>Variable</b><!-- mpreindexentry;;Variable;;1;;1;;1;;1;;9; //-->
+		ist ein Symbol (typischerweise ein Buchstabe), das als Platzhalter f&#252;r einen unbestimmten Wert\neingesetzt wird.
+		Ein <b>Term</b><!-- mpreindexentry;;Term;;1;;1;;1;;1;;10; //--> ist ein mathematischer Ausdruck, der Variablen,
+		Rechenoperationen und weitere Symbole enthalten kann,\nund der nach Einsetzung von Zahlen f&#252;r die Variablen einen konkreten Zahlenwert
+		ergibt. Terme k&#246;nnen zu Gleichungen bzw. Ungleichungen\nkombiniert oder in Funktionsbeschreibungen eingesetzt werden,
 		dazu sp&#228;ter mehr.\n</div>
 		"""
 		lang = 'de'
@@ -104,9 +104,9 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		Find words to link to Wikipedia in the English text
 		"""
 		rawxml = """
-		<div>A variable is a symbol (typically a letter) used as a placeholder for an indeterminate value. 
-		A term is a mathematical expression that can contain variables, arithmetic operations and further symbols and, 
-		after substituting variables with numbers, can be evaluated to a specific value. Terms can be combined into equations 
+		<div>A variable is a symbol (typically a letter) used as a placeholder for an indeterminate value.
+		A term is a mathematical expression that can contain variables, arithmetic operations and further symbols and,
+		after substituting variables with numbers, can be evaluated to a specific value. Terms can be combined into equations
 		and inequalities, respectively, or they can be inserted into function descriptions, as we shall see later.</div>
 		"""
 		lang = 'en'
@@ -121,8 +121,8 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		self.assertTrue( 'Variable' in words )
 		self.assertTrue( 'Term' in words )
 		self.assertTrue( 'Equation' in words )
-	
-	
+
+
 	def testLoadWikipediaCategories(self):
 		"""
 		Load category names from json file
@@ -131,8 +131,7 @@ class test_WikipediaDecorator(AbstractRendererTestCase):
 		annotator = WikipediaAnnotator()
 		categories = annotator.loadCategoryNames(lang)
 		self.assertTrue( len( categories ) > 0 )
-		
-	
+
+
 if __name__ == '__main__':
 	unittest.main()
-	

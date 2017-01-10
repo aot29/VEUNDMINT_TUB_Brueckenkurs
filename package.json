@@ -4,11 +4,13 @@
   "description": "ve und mint package tu berlin",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": " ./node_modules/mocha/bin/_mocha src/test/js/",
+    "test:nyan": "npm run test -- --reporter nyan",
     "bower_install": "bower install",
     "gulp": "gulp",
     "postinstall": "bower install",
-    "serve": "light-server --config ./gulpfile.js/lightserverConf.json"
+    "serve": "light-server --config ./gulpfile.js/lightserverConf.json",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha src/test/js/ --dir ./coverage-js || true"
   },
   "repository": {
     "type": "git",
@@ -17,10 +19,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bower": "^1.7.9"
+    "bower": "^1.7.9",
+    "pipwerks-scorm-api-wrapper": "^0.1.2",
+    "request": "^2.75.0",
+    "request-promise": "^4.1.1",
+    "scorm-api-wrapper": "0.0.2"
   },
   "devDependencies": {
     "browser-sync": "^2.14.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chai-things": "^0.2.0",
     "del": "^2.2.1",
     "escape-string-regexp": "^1.0.5",
     "gulp": "^3.9.1",
@@ -49,13 +58,24 @@
     "gulp-watch": "^4.3.9",
     "gulp-zip": "^3.2.0",
     "gutil": "^1.6.4",
+    "istanbul": "^0.4.5",
+    "jquery": "^3.1.1",
+    "jsdom": "^9.8.3",
     "jshint": "^2.9.3",
     "light-server": "^1.1.7",
+    "lodash": "^4.17.2",
+    "loglevel": "^1.4.1",
+    "lz-string": "^1.4.4",
     "main-bower-files": "^2.13.1",
+    "mocha": "^3.1.2",
+    "mocha-jsdom": "^1.1.0",
+    "najax": "^0.7.1",
     "open": "0.0.5",
     "phantomjs": "2.1.3",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.2.2",
+    "scorm-local": "^0.1.1",
+    "sinon": "^1.17.6",
     "sortablejs": "^1.5.0-rc1"
   }
 }

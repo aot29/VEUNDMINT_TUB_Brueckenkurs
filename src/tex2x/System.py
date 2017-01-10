@@ -30,7 +30,7 @@ import socket
 import glob2
 import base64
 import platform
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 
 class System(object):
 
@@ -266,11 +266,11 @@ class System(object):
 		:param source: Pfad - Pfad zum Quellverzeichnis
 		:param target: Pfad - Pfad zum Zielverzeichnis
 		:param filename: Pfad - Dateiname, kann zusätzlich zu **source** bzw. **target** relative Unterverzeichnisse angeben
-		
+
 		Kopiert die Datei **filename** vom Verzeichnis **source** in das Verzeichnis **target**.
-		
+
 		.. note::
-			In **source** und **target** identische Unterordner vor **filename** können auch in den **filename**-Parameter eingetragen werden, um Redundante angaben zu vermeiden. 
+			In **source** und **target** identische Unterordner vor **filename** können auch in den **filename**-Parameter eingetragen werden, um Redundante angaben zu vermeiden.
 		"""
 		mkpath(target)
 		mkpath(os.path.dirname(os.path.join(target, filename)))
@@ -280,7 +280,7 @@ class System(object):
 	def showFilesInPath(self, path):
 		pathLen=len(path)+1
 		fileArray=[]
-		for root,dirs,files in os.walk(path):				
+		for root,dirs,files in os.walk(path):
 			root=root[pathLen:] #i don't like it, but it works
 			for name in files:
 				if name.count("svn")==0  and root.count("svn")==0:
@@ -289,20 +289,19 @@ class System(object):
 				if name.count("svn")!=0:
 					continue
 		return fileArray
-	
-	#def copyFilesInDir(path):#NOT RECURSIVE	
-		
+
+	#def copyFilesInDir(path):#NOT RECURSIVE
+
 	def copyFiletree(self, source,target,path):
 		copy_tree(os.path.join(source,path),os.path.join(target,path),update=1)
-		
+
 	def removeFile(self, path):
 		if os.path.isfile(path):
 			os.remove(path)
 		else:
 			print("Datei existiert nicht: " + path)
-			
+
 	def makePath(self, path):
 		os.makedirs(path)
 
 ve_system = System()
-

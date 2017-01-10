@@ -6,14 +6,13 @@ Activate Python venv if necessary, then run with:
 import unittest
 import os
 import subprocess
+from tex2x.Settings import settings
 from plugins.VEUNDMINT_TUB.translators.TTMTranslator import TTMTranslator
-from tex2x.Settings import Settings, ve_settings
 from tex2x.dispatcher.Dispatcher import Dispatcher
 from plugins.VEUNDMINT_TUB.Option import Option
 from tex2x.System import System
 import mmap
 from unittest.case import skip
-from tex2x.Settings import ve_settings as settings
 from tex2x.System import ve_system as sys
 
 class TTMTranslatorTest(unittest.TestCase):
@@ -24,8 +23,8 @@ class TTMTranslatorTest(unittest.TestCase):
 		dispatcher = Dispatcher(True, "VEUNDMINT", "" )
 		self.translator = TTMTranslator()
 
-		self.tex_test_file = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
-		self.tex_test_output = os.path.join(ve_settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
+		self.tex_test_file = os.path.join(settings.BASE_DIR, 'src/test/files/test_ttm_input.tex')
+		self.tex_test_output = os.path.join(settings.BASE_DIR, 'src/test/files/test_ttm_output.html')
 
 	def testTitle(self):
 		"""
@@ -72,6 +71,7 @@ Ich stehe in der mitte
 		# make parser process exit with return code 3
 		new_ttm = TTMTranslator()
 		self.testTitle()
+
 		#new_ttm.translate(tex_start=self.tex_test_file, ttm_outfile=self.tex_test_output, sys=self.s)
 		#subprocess.run(ve_settings.ttmBin)
 		fake_ttm_process = subprocess.Popen("ls", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, universal_newlines = True)
@@ -79,7 +79,7 @@ Ich stehe in der mitte
 		#out = fake_ttm_process.communicate()
 		fake_ttm_process.returncode = 3
 
-		new_ttm._logResults(subprocess=fake_ttm_process, ttmBin=ve_settings.ttmBin, sourceTEXStartFile='test.tex')
+		new_ttm._logResults(subprocess=fake_ttm_process, ttmBin=settings.ttmBin, sourceTEXStartFile='test.tex')
 
 	def isCorrectConversionTest(self, latex_string, html_string, dorelease = 0 ):
 		"""Checks for correct tex to html conversion

@@ -17,6 +17,18 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+					<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+					<div class="modal-body">
+					...
+					</div>
+		    </div>
+		  </div>
+		</div>
 		<xsl:comment>End page footer</xsl:comment>
 	</xsl:template>
 

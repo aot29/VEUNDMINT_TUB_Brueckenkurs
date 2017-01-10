@@ -18,26 +18,26 @@
 
 import imp
 import os
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 
 
 class Pipeline(object):
 	"""
-	Load the classes required by the Dispatcher (preprocessors, translator, parser, generator, outputPlugins). 
+	Load the classes required by the Dispatcher (preprocessors, translator, parser, generator, outputPlugins).
 	These classes are specified in settings.pipeline and loaded dynamically.
-	The pipeline dynamically loads the classes required by the dispatcher by reading the settings.pipeline parameter 
+	The pipeline dynamically loads the classes required by the dispatcher by reading the settings.pipeline parameter
 	from the global settings file or from the plugin Option file.
-	
+
 	@see settings.py
 	@see plugins/.../Option.py
 	@see imp library https://docs.python.org/2/library/imp.html (loading classs dynamically at runtime)
 	"""
-	
+
 	def __init__( self ):
 		"""
-		Constructor. Instantiate in Dispatcher.		
+		Constructor. Instantiate in Dispatcher.
 		"""
-	
+
 		## @var preprocessors
 		#  List of preprocessor objects
 		if self.has( 'preprocessors' ):
@@ -108,29 +108,30 @@ class Pipeline(object):
 		then the path is plugins.VEUNDMINT.preprocessor_mintmodtex.Preprocessor.
 		@return object created instantiated from class name
 		"""
-
 		
 		substr = name.split('.') # example: VEUNDMINT.preprocessors.PrepareData.PrepareData
 		if len( substr ) < 3: raise Exception( "Incomplete path %s" % name )
-				
+
 		# get the name of the Python class
 		className = substr.pop() # example: PrepareData
 
 		# get the name of the module, i.e. the file name (without the .py extension)
 		moduleName = substr.pop() # PrepareData
-		
+
 		# get the package name, i.e. the path to the file,
 		# relative to the src or to the plugins directory
 		packageName = substr # example: VEUNDMINT.preprocessors
-		
-		#  Array of paths to directories that should be searched for modules to load. 
+
+		#  Array of paths to directories that should be searched for modules to load.
 		#  This array should contain the plugins and the src directory (the converterDir).
 		#  Append the packageName path to the default search paths (using the splat operator "*", as this is a list).
+
+
 		pluginPath = [ os.path.join( settings.converterDir, *packageName ) ] # example: ['/store/cosmetix/datastore/ortiz/VEUNDMINT_DEV/src/plugins/VEUNDMINT']
-		
-		# search for the file containing the module 
+
+		# search for the file containing the module
 		f, filename, description = imp.find_module( moduleName, pluginPath )
-		
+
 		try:
 			# load the module
 			module = imp.load_module( moduleName, f, filename, description)
@@ -138,9 +139,8 @@ class Pipeline(object):
 			# get the module class and instantiate it.
 			# By convention, the module file should contain a class of the same name.
 			class_ = getattr( module, className )
-			
+
 		finally:
 			f.close()
-			
+
 		return class_
-	

@@ -14,12 +14,12 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  \author Daniel Haase for KIT 
+#  \author Daniel Haase for KIT
 #  \author Alvaro Ortiz for TU Berlin
 
 import os
 from tex2x.AbstractParser import AbstractParser
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 from lxml import html
 from lxml import etree
 
@@ -27,7 +27,7 @@ class HTMLParser( AbstractParser ):
 	"""
 	Calls lxml.HTMLParser to generate an etree from an XML string.
 	Can be decorated with VerboseParser to enable performance loging.
-	
+
 	@see http://lxml.de/api/lxml.etree.HTMLParser-class.html
 	"""
 	def __init__( self ):
@@ -37,7 +37,7 @@ class HTMLParser( AbstractParser ):
 		## @var parser
 		#  An HTML parser that is configured to return lxml.html Element
 		self.parser = html.HTMLParser(remove_blank_text = False)
-						
+
 
 	def parse(self, xmlString):
 		"""
@@ -55,7 +55,7 @@ class HTMLParser( AbstractParser ):
 		durch HTML5 konforme Entitäten.
 
 		@param text: String -- Text, in welchem die HTML-Entitäten bearbeitet werden sollen
-		@return String -- Text mit bereinigten Entitäten		
+		@return String -- Text mit bereinigten Entitäten
 		@author - Daniel Haase (except for the try-finally part)
 		"""
 		#Liste Lesen und verarbeiten
@@ -66,18 +66,18 @@ class HTMLParser( AbstractParser ):
 			for line in line_list:
 				entity_list.append(line.split())
 				#entity_list[-1][0] = "&amp;" + entity_list[-1][0][1:]
-	
+
 			#entity_list enthält jetzt je listen Eintrag
 			#eine Liste mit zwei Strings
 			#erster beschreibt eine alte Entity, z.B.: &Ropf;
 			#zweiterer beschreibt den HTML5 Ersatz, z.B: &#8477;
-	
+
 			#Alles ersetzen
 			for line in entity_list:
 				text = text.replace(line[0], line[1])
-			
+
 		finally:
 			if fobj: fobj.close();
-			
+
 		#Bearbeiteten Text zurückgeben
 		return text

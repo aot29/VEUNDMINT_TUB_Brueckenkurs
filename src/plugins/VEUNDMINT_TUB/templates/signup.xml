@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 	<div>
 		<!-- mdeclaresiteuxidpost;;VBKM_MISCSETTINGS;; //-->
-		<i><span data-toggle="i18n" data-i18n="signup_text01" /></i>
+		<div class="logged_out_only">
+			<i><span data-toggle="i18n" data-i18n="signup_text01" /></i>
+		</div>
 
 		<div class="show_scorm" style="display:none">
 			<b><span data-toggle="i18n" data-i18n="signup_text02" /></b>
@@ -11,28 +13,33 @@
 			<!-- REGISTER NEW ACCOUNT -->
 			<div class="register_new">
 
-				<h1 id="pageTitle_logged_out" style="display:none"><span data-toggle="i18n" data-i18n="signup_text03" /></h1>
-				<h1 id="pageTitle_logged_in" style="display:none"><span data-toggle="i18n" data-i18n="signup_text04" /></h1>
-				<p><span data-toggle="i18n" data-i18n="signup_text05" /></p>
+				<div class="logged_in_only">
+					<h1 id="pageTitle_logged_in"><span data-toggle="i18n" data-i18n="signup_text04" /></h1>
+				</div>
+				<div class="logged_out_only">
+					<h1 id="pageTitle_logged_out" style="display:none"><span data-toggle="i18n" data-i18n="signup_text03" /></h1>
+				</div>
 
-				<form class="form-horizontal col-sm-6 col-md-8" style="padding-top: 2em;">
+				<p class="logged_out_only"><span data-toggle="i18n" data-i18n="signup_text05" /></p>
+
+				<form id="form-user-register" class="form-horizontal col-sm-6 col-md-8" style="padding-top: 2em;" data-toggle="validator" role="form">
 
 					<div class="form-group ">
 						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text06" /></p>
 
 						<label for="USER_VNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text07" /></label>
 						<div class="col-xs-6">
-							<input type="text" class="form-control" id="USER_VNAME"/>
+							<input type="text" class="form-control" id="USER_VNAME" name="first_name"/>
 						</div>
 
 						<label for="USER_SNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text08" /></label>
 						<div class="col-xs-6">
-							<input type="text" class="form-control" id="USER_SNAME"/>
+							<input type="text" class="form-control" id="USER_SNAME" name="last_name"/>
 						</div>
 
 						<label for="USER_EMAIL" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text09" /></label>
 						<div class="col-xs-6">
-							<input type="email" class="form-control" id="USER_EMAIL"/>
+							<input type="email" class="form-control" id="USER_EMAIL" name="email"/>
 						</div>
 					</div>
 
@@ -40,34 +47,48 @@
 						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text10" /></p>
 
 						<label for="USER_SGANG" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text11" /></label>
-						<div class="col-xs-6"><input type="text" class="form-control" id="USER_SGANG"/></div>
+						<div class="col-xs-6"><input type="text" class="form-control" id="USER_SGANG" name="study"/></div>
 
 						<label for="USER_SGANG" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text12" /></label>
 						<div class="col-xs-6">
-							<input type="text" class="form-control" id="USER_UNI"/>
+							<input type="text" class="form-control" id="USER_UNI" name="university"/>
 						</div>
 					</div>
 
 
-					<div class="form-group logged_out_only">
-						<p style="text-align: center"><span data-toggle="i18n" data-i18n="signup_text13" /></p>
-
-						<label for="USER_UNAME" class="control-label col-xs-6"><span data-toggle="i18n" data-i18n="signup_text14" /></label>
-						<div class="col-xs-5">
-							<input type="text" class="form-control" id="USER_UNAME" oninput="intersite.usercheck();" onkeyup="intersite.usercheck();" onpaste="intersite.usercheck();" onpropertychange="intersite.usercheck();" />
-						</div>
-						<div class="col-xs-1">
-							<span class="glyphicon glyphicon-question-sign" style="padding: 0;" id="checkuserimg" />
+					<div class="form-group has-feedback">
+						<label class="control-label col-sm-3" for="USER_UNAME"><span data-toggle="i18n" data-i18n="signup_text14" /></label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="USER_UNAME" name="username" aria-describedby="USER_UNAME_STATUS"></input>
+							<span id="USER_UNAME_ICON" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							<span id="USER_UNAME_STATUS" class="sr-only">(success)</span>
 						</div>
 					</div>
 
+					<div class="form-group has-feedback logged_out_only">
+						<label class="control-label col-sm-3" for="USER_PASS1"><span data-toggle="i18n" data-i18n="signup_pass1" /></label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="USER_PASS1" name="password1" aria-describedby="USER_PASS1_STATUS"></input>
+							<span id="USER_PASS1_ICON" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							<span id="USER_PASS1_STATUS" class="sr-only">(success)</span>
+						</div>
+					</div>
+					<div class="form-group has-feedback logged_out_only">
+						<label class="control-label col-sm-3" for="USER_PASS2"><span data-toggle="i18n" data-i18n="signup_pass2" /></label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="USER_PASS2" name="password2" aria-describedby="USER_PASS2_STATUS"></input>
+							<span id="USER_PASS2_ICON" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+							<span id="USER_PASS2_STATUS" class="sr-only">(success)</span>
+						</div>
+					</div>
 
 					<div id="ulreply_p" class="control-label col-xs-6"><span></span></div>
 					<div class="col-xs-6 logged_out_only">
-						<a id="newUserButton" class="std-button btn btn-primary btn-lg pull-right disabled" type="button" onclick="intersite.usercreatelocal_click(2);"><span data-toggle="i18n" data-i18n="signup_text15" /></a>
+						<a id="btn-register" class="std-button btn btn-primary btn-lg pull-right disabled" type="button"><span data-toggle="i18n" data-i18n="signup_text15" /></a>
 					</div>
 					<div class="col-xs-6 logged_in_only">
-						<a id="deleteAccountBtn" class="std-button btn btn-danger btn-lg pull-right" type="button" onclick="userdata.deleteAllUserData();"><span data-toggle="i18n" data-i18n="signup_delete_account" /></a>
+						<a id="btn-change-user-data" class="std-button btn btn-primary btn-lg pull-right" type="button"><span data-toggle="i18n" data-i18n="signup_text19" /></a>
+						<a id="deleteAccountBtn" class="std-button btn btn-danger btn-lg pull-right" type="button"><span data-toggle="i18n" data-i18n="signup_delete_account" /></a>
 					</div>
 
 				</form>
@@ -83,9 +104,4 @@
 			<b><span data-toggle="i18n" data-i18n="signup_text17" /></b>
 		</div>
 
-		<div class="show_noscorm" style="display:none">
-			<div class="xreply">
-				<p id="CHECKIS"><span data-toggle="i18n" data-i18n="signup_text18" /></p>
-			</div>
-		</div>
 	</div>

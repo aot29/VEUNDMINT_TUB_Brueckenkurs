@@ -11,28 +11,28 @@ from lxml import etree
 
 from plugins.VEUNDMINT_TUB.tcontent import TContent
 from plugins.VEUNDMINT_TUB.renderers.PageXmlRenderer import *
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 
 from test.unittests.AbstractRendererTestCase import AbstractRendererTestCase
 from tex2x.AbstractRenderer import *
 
 class test_PageXmlRenderer(AbstractRendererTestCase):
-    
+
     def setUp(self):
-        AbstractRendererTestCase.setUp(self)        
+        AbstractRendererTestCase.setUp(self)
         page = PageXmlRenderer()
         pageWithQuestions = QuestionDecorator( page )
         self.renderer = RouletteDecorator( pageWithQuestions, self.data, settings.strings )
-        
+
 
     def test_renderXML(self):
         '''
         Test that the XML contains all required elements and attributes
         '''
-        # create an XML element using the tc mock-up 
+        # create an XML element using the tc mock-up
         # (only for testing, i.r.l. you can skip this step and do page.renderHTML directly)
         self.xml = self.renderer.renderXML( self.tc )
-        
+
         #Title
         self.assertEqual( self.tc.title, self.xml.xpath('/page/title')[0].text, "Title is wrong in XML" )
         #Lang
@@ -42,7 +42,3 @@ class test_PageXmlRenderer(AbstractRendererTestCase):
         # found a roulette exercise in the sample content
         # this is disabled until RouletteDecorator is refactored
         #self.assertEquals( 1, len( self.xml.xpath( '/page/roulettes' ) ), "Expected a roulette exercise, but none or more than one found" )
-
-    
-
-        

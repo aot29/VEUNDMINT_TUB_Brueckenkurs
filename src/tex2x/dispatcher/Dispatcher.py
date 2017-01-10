@@ -16,8 +16,12 @@
 #
 #  \author Alvaro Ortiz for TU Berlin
 
+import imp
+import os
+import time
+import json
 
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 from tex2x.System import ve_system as sys
 
 from tex2x.dispatcher.Pipeline import Pipeline
@@ -32,10 +36,10 @@ class Dispatcher(AbstractDispatcher):
 	The dispatcher is the first class to be called by tex2x and sets the processing pipeline together.
 	The dispatcher executes the steps of defined in a "pipeline" in sequence. The steps of the pipeline are read from settings.
 	An example of another application of this pattern is Apache Cocoon (https://en.wikipedia.org/wiki/Apache_Cocoon).
-	
+
 	Each element in the pipeline can be seen as a template method, that is each method is wrapped in its own class:
-	"Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. 
-	Lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure." 
+	"Define the skeleton of an algorithm in an operation, deferring some steps to subclasses.
+	Lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure."
 	- Gamma, Helm, Johnson, Vlissides (1995) 'Design Patterns: Elements of Reusable Object-Oriented Software'
 	so instead of packing everything into methods, each functionality is implemented in a separate class.
 	Each class implements a specific interface. Together, these interfaces specify a sequence of steps which are executed by the Dispatcher.dispatch() method.
@@ -43,49 +47,49 @@ class Dispatcher(AbstractDispatcher):
 	* the class size is manageable.
 	* different implementations of each step in the dispatch sequence are possible, while keeping the same dispatcher.
 	* the classes could be composed at runtime by configuration.
-	
-	@see https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Python%20API%20Documentation 
+
+	@see https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/Python%20API%20Documentation
 	"""
-	
+
 	## OPTIONSFILE
 	# Path to the "Option" file. This is a class with options used while running the converter.
 	OPTIONSFILE = "Option.py"
-	
+
 	## SYSTEMFILE
 	# Path to the "System" file. This is a class which contains all manner of methods for handling files in Python.
 	SYSTEMFILE = "tex2x/System.py"
-		
+
 	def __init__( self, verbose, pluginName, override ):
 		"""
 		Constructor
 		Instantiated by tex2x.py
 		Calls initModules to initialize preprocessors and output plugins
-		
+
 		@param verbose Boolean
 		@param pluginName - Name of the application to execute (default VEUNDMINT)
 		@param override - Override options in the plugin's Option.py file
 		"""
-		
+
 		if not pluginName: raise Exception( "No plugin name given" )
-		
+
 		## @var verbose
 		#  Print debugging information
 		self.verbose = verbose
-				
+
 		## @var pluginName
 		#  Name of the application to execute. Set by the main entry script in tex2x.
 		self.pluginName = pluginName
-		
+
 		## @var override
 		#  Override options in the plugin's Option.py file, e.g. 'description=My Course' to change the course title
 		self.override = override
-		
+
 		## @var data
-		#  data member, undocumented (Daniel Haase) 
+		#  data member, undocumented (Daniel Haase)
 		self.data = dict()
 
 		## @var pipeline
-		# read the pipeline containing the dispatcher steps from settings		
+		# read the pipeline containing the dispatcher steps from settings
 		self.pipeline = Pipeline()
 
 
@@ -93,7 +97,7 @@ class Dispatcher(AbstractDispatcher):
 		"""
 		The dispatcher calls each step of the conversion pipeline.
 		1. Preprocessors: Run pre-processing plugins
-		2. Translator: Run TTM (convert Tex to XML), load XML file created by TTM, 
+		2. Translator: Run TTM (convert Tex to XML), load XML file created by TTM,
 		3. Parser: Parse XML files into a HTML tree
 		4. Generator: Create the table of contents (TOC) and content tree, correct links
 		5. Plugins: Output to static HTML files
@@ -138,6 +142,7 @@ class Dispatcher(AbstractDispatcher):
 			if self.verbose: pluginDispatcher = VerboseDispatcher( pluginDispatcher, "Step 5: Create output" )
 			pluginDispatcher.dispatch()
 		
+
 		# stop program execution and return proper error level as return value
 		# sys.finish_program()
 		# no way the application runs without errors

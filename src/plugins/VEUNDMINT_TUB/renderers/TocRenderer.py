@@ -20,13 +20,13 @@ from lxml import etree
 import re
 import html
 from tex2x.AbstractRenderer import *
-from tex2x.Settings import ve_settings as settings
+from tex2x.Settings import settings
 
 class TocRenderer( AbstractXmlRenderer ):
 	"""
 	Generates a table of contents for the selected page (the TContent tc object passed to renderXML)
-	"""	
-	
+	"""
+
 	def __init__(self):
 		"""
 		Constructor.
@@ -34,17 +34,17 @@ class TocRenderer( AbstractXmlRenderer ):
 		Needs to override constructor from parent abstract class.
 		"""
 		pass
-		
-	
+
+
 	def renderXML( self, tc ):
 		"""
 		Create XML for the table of contents
-		
+
 		@param tc - a TContent object encapsulating page data and content
 		@return an etree element representing the TOC
 		"""
 		toc = etree.Element( 'toc' )
-		
+
 		# skip on special pages
 		if AbstractXmlRenderer.isSpecialPage( tc ) : return toc
 
@@ -68,10 +68,10 @@ class TocRenderer( AbstractXmlRenderer ):
 				sibling = siblings[i]
 				# add the new entry to the entries element
 				entries.append( self.generateTocEntryXML( sibling, moduleId, pageId ) )
-		
+
 		# add the entries to the toc element
 		toc.append( entries )
-		
+
 		#print( AbstractXmlRenderer.toString( toc ) )
 
 		return toc
@@ -80,7 +80,7 @@ class TocRenderer( AbstractXmlRenderer ):
 	def generateTocEntryXML(self, sibling, moduleId, pageId ):
 		"""
 		Create XML for the table of contents
-		
+
 		@param sibling - a TContent object encapsulating a TOC entry
 		@param moduleId -  - int id of the currently selected module
 		@param pageId - int id of the currently selected page
@@ -89,7 +89,7 @@ class TocRenderer( AbstractXmlRenderer ):
 		entry = self.generateSingleEntryXML( sibling, moduleId )
 
 		# check if module is selected
-		if sibling.myid == moduleId: 
+		if sibling.myid == moduleId:
 			# if entry selected, append its children
 			entry.append( self.generateTocEntryChildrenXML( sibling, pageId ) )
 
@@ -99,12 +99,12 @@ class TocRenderer( AbstractXmlRenderer ):
 	def generateTocEntryChildrenXML( self, sibling, selectedId ):
 		"""
 		Create XML for the table of contents
-		
+
 		@param sibling - a TContent object encapsulating a TOC entry
 		@param selectedId - int the id of the currently selected page
 		@return an etree element representing the children of this TOC entry.
 		"""
-		childrenElement = etree.Element( 'children' )		
+		childrenElement = etree.Element( 'children' )
 		for child in sibling.children:
 			childEl = self.generateSingleEntryXML( child, selectedId )
 
@@ -112,22 +112,22 @@ class TocRenderer( AbstractXmlRenderer ):
 			if hasattr(child, 'children') and child.children is not None:
 				children2 = self.generateTocEntryChildrenXML( child, selectedId )
 				childEl.append( children2 )
-	
+
 			childrenElement.append( childEl )
-			
+
 		return childrenElement
 
 
 	def generateSingleEntryXML(self, child, selectedId):
 		"""
 		Create XML for single entries or children of entries in the table of contents
-		
+
 		@param child - a TContent object encapsulating a TOC entry
 		@param selectedId - int the id of the currently selected page
 		@return an etree element representing a TOC entry.
-		"""		
+		"""
 		childEl = etree.Element( 'entry' )
-		
+
 		# Set link for TOC entry
 		# Sections don't have links, as there are actually only modules and subsections
 		# In PageKIT, these are redirects to the first subsection
@@ -135,7 +135,7 @@ class TocRenderer( AbstractXmlRenderer ):
 
 		if ( child.level != SECTION_LEVEL ):
 			childEl.set( 'href', child.fullname )
-		
+
 		# status is an attribute (optional)
 		if hasattr( child, 'tocsymb' ) and child.tocsymb is not None:
 			childEl.set( 'status', child.tocsymb )
@@ -148,50 +148,49 @@ class TocRenderer( AbstractXmlRenderer ):
 			childEl.set( 'selected', 'True' )
 		else:
 			childEl.set( 'selected', 'False' )
-	
+
 		# caption is an element, as it could contain HTML-tags
 		caption = etree.Element( "caption" )
 		caption.text = self._makeCaption( child )
 		childEl.append( caption )
-		
+
 		return childEl
-	
-	
+
+
 	def _makeCaption(self, tc):
 		"""
 		Make the caption to be displayed for each TOC entry.
 		The caption is the text displayed for each toc entry.
-		
+
 		@param tc - a TContent object encapsulating a TOC entry
 		@return - String, the text to be displayed for this entry in the TOC.
 		"""
 
 		# don't add section numbers to captions on the first page (imprint, course information etc.)
 		if not AbstractXmlRenderer.isCoursePage(tc): return tc.caption
-		
+
 		pageIndex = tc.title
 		# For module captions, remove the first digit and point
 		if tc.level == MODULE_LEVEL:
 			match = re.search('(?<=\d\.)\w+', tc.title)
 			if match:
 				pageIndex = match.group(0) + '.'
-				
+
 		# section captions are not numbered, so get the number from the link (the 2 last digits from the folder name)
 		elif tc.level == SECTION_LEVEL:
 			match = re.search( '(?<=\d\.)\d+\.\d+', tc.fullname)
 			if match:
 				pageIndex = match.group(0) + '.'
-			
+
 		# match at least one digit followed by a point possibly followed by one or more digits etc
 		if tc.level == SUBSECTION_LEVEL:
-			match = re.search( '\d+\.\d*\.*\d*\.*', tc.title ) 
+			match = re.search( '\d+\.\d*\.*\d*\.*', tc.title )
 			if match:
 				pageIndex = match.group(0)
-				
-		response = "%s %s" % ( pageIndex, tc.caption ) 
-		
+
+		response = "%s %s" % ( pageIndex, tc.caption )
+
 		# Need to unescape to cope with different formats in LaTeX files.
 		# If umlaute are written as e.g. "a in LaTeX, they get converted to unicode entities, such as &#228;
 		# which in turn get escaped as &amp;228; during XSL transformation.
 		return html.unescape( response )
-		
