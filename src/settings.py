@@ -11,7 +11,8 @@ BASE_URL = 'http://guest43.mulf.tu-berlin.de/gitlab-ci-test'
 ## Set the project wide log level (can be overridden in files)
 LOG_LEVEL = logging.DEBUG
 
-converterDir = 'defaultConverterDirSetting'
+currentDir = BASE_DIR
+converterDir = os.path.join( currentDir, "src" )
 
 
 #####################
@@ -39,11 +40,12 @@ ttmFile = os.path.join(sourceTEX, 'ttm_output.xml')
 
 scorm2004testurl = BASE_URL + '/scorm2004testwrap.htm'
 
-#############################
-#### Dispatcher settings ####
-#############################
+#####################################
+#### Dispatcher default settings ####
+#####################################
 
 ##  Pipeline lists the steps in the dispatcher.
+## The default plugin is in: plugins/basic
 #  1. Preprocessors: Run pre-processing plugins
 #  2. Translator: Run TTM (convert Tex to XML), load XML file created by TTM, 
 #  3. Parser: Parse XML files into a HTML tree
@@ -57,24 +59,19 @@ scorm2004testurl = BASE_URL + '/scorm2004testwrap.htm'
 # if you have a plugin called VEUNDMINT and a file called preprocessor_mintmodtex.py which holds a class called Preprocessor,
 # then the path is plugins.VEUNDMINT.preprocessor_mintmodtex.Preprocessor.
 pipeline = {
-		"preprocessors": [ 'plugins.VEUNDMINT_TUB.preprocessors.PrepareData.PrepareData', 
-						   'plugins.VEUNDMINT_TUB.preprocessors.PrepareWorkingFolder.PrepareWorkingFolder',
-						   'plugins.VEUNDMINT_TUB.preprocessors.FixI18nForPdfLatex.FixI18nForPdfLatex',
-						   'plugins.VEUNDMINT_TUB.preprocessors.preprocessor_mintmodtex.Preprocessor',
-   						   'plugins.VEUNDMINT_TUB.preprocessors.ReleaseCheck.ReleaseCheck' ],
+		"preprocessors": [ 'plugins.basic.preprocessing.BasicPreprocessor' ],
 		
-		"translator": "plugins.VEUNDMINT_TUB.translators.TTMTranslator.TTMTranslator",
+		"translator": None,
 
-		"translatorDecorators": [ "plugins.VEUNDMINT_TUB.translators.MathMLDecorator.MathMLDecorator" ],
+		"translatorDecorators": None,
 		
-		"parser": "plugins.VEUNDMINT_TUB.parsers.HTMLParser.HTMLParser",
+		"parser": None,
 
 		"parserDecorators": [],
 		
-		"generator": "plugins.VEUNDMINT_TUB.generators.ContentGenerator.ContentGenerator",
+		"generator": None,
 
-		"generatorDecorators": [ "plugins.VEUNDMINT_TUB.generators.LinkDecorator.LinkDecorator", 
-								 "plugins.VEUNDMINT_TUB.generators.WikipediaDecorator.WikipediaDecorator" ],
+		"generatorDecorators": None,
 		
-		"plugins": [ 'plugins.VEUNDMINT_TUB.html5_mintmodtex.Plugin' ]
+		"plugins": [ 'plugins.basic.basic.Plugin' ]
 	}

@@ -131,13 +131,13 @@ fix: fixRedirects
 	$(eval CURRENT_LANG := de)
 	$(fixLinks_cmd)
 
-	# replace index.html with src/templates_xslt/html5_choose_language_simple.html to allow for choosing en or de version
-	cp src/templates_xslt/html5_choose_language_simple.html $(OUTPUT)/index.html
+	# replace index.html to allow for choosing en or de version
+	cp src/plugins/VEUNDMINT_TUB/templates/html5_choose_language_simple.html $(OUTPUT)/index.html
 
 
 useScormIndex:
-	# replace public/index.html with src/templates_xslt/html5_redirect_moodle
-	cp src/templates_xslt/html5_redirect_moodle.html public/index.html
+	# replace public/index.html for moodle
+	cp src/plugins/VEUNDMINT_TUB/templates/html5_redirect_moodle.html public/index.html
 
 
 #

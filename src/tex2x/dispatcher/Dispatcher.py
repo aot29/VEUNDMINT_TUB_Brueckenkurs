@@ -68,10 +68,6 @@ class Dispatcher(AbstractDispatcher):
 		
 		if not pluginName: raise Exception( "No plugin name given" )
 		
-		## @var requiredImages
-		#  deprecated
-		self.requiredImages = []
-				
 		## @var verbose
 		#  Print debugging information
 		self.verbose = verbose
@@ -104,35 +100,43 @@ class Dispatcher(AbstractDispatcher):
 		"""
 
 		# 1. Run pre-processing plugins
-		preprocessorDispatcher = PreprocessorDispatcher( self.data, self.pipeline.preprocessors )
-		if self.verbose: preprocessorDispatcher = VerboseDispatcher( preprocessorDispatcher, "Step 1: Preprocessing" )
-		preprocessorDispatcher.dispatch()
+		if self.pipeline.has( 'preprocessors' ):
+			preprocessorDispatcher = PreprocessorDispatcher( self.data, self.pipeline.preprocessors )
+			if self.verbose: preprocessorDispatcher = VerboseDispatcher( preprocessorDispatcher, "Step 1: Preprocessing" )
+			preprocessorDispatcher.dispatch()
 
-		# 2. Run TTM translator, load XML
-		translator = self.pipeline.translator()
-		for decorator in self.pipeline.translatorDecorators: # decorate the translator with the decorators defined in settings.pipeline
-			translator = decorator( translator )
-		if self.verbose: translator = VerboseTranslator( translator, "Step 2: Converting Tex to XML (TTM)" ) # if verbose is on, decorate with verbose decorator
-		self.data['rawxml'] = translator.translate() # run TTM parser with default options
+		# 2. Run TTM translator, load XML as string
+		if self.pipeline.has( 'translator' ):
+			translator = self.pipeline.translator()
+			if self.pipeline.has( 'translatorDecorators' ):
+				for decorator in self.pipeline.translatorDecorators: # decorate the translator with the decorators defined in settings.pipeline
+					translator = decorator( translator )
+			if self.verbose: translator = VerboseTranslator( translator, "Step 2: Converting Tex to XML (TTM)" ) # if verbose is on, decorate with verbose decorator
+			self.data['rawxml'] = translator.translate() # run TTM parser with default options
 		
-		# 3. Parse HTML
-		parser = self.pipeline.parser()
-		for decorator in self.pipeline.parserDecorators: # decorate the parser with the decorators defined in settings.pipeline
-			parser = decorator( parser )
-		if self.verbose: html = VerboseParser( parser, "Step 3: Parsing to HTML" ) # if verbose is on, decorate with verbose decorator
-		xmltree_raw = parser.parse( self.data['rawxml'] ) # parse the xml data
+		# 3. Parse HTML to etree
+		if self.pipeline.has( 'parser' ):
+			parser = self.pipeline.parser()
+			if self.pipeline.has( 'parserDecorators' ):
+				for decorator in self.pipeline.parserDecorators: # decorate the parser with the decorators defined in settings.pipeline
+					parser = decorator( parser )
+			if self.verbose: html = VerboseParser( parser, "Step 3: Parsing to HTML" ) # if verbose is on, decorate with verbose decorator
+			xmltree_raw = parser.parse( self.data['rawxml'] ) # parse the xml data
 		
 		# 4. Create TOC and content tree
-		generator = self.pipeline.generator()
-		for decorator in self.pipeline.generatorDecorators: # decorate the generator with the decorators defined in settings.pipeline
-			generator = decorator( generator )
-		if self.verbose: generator = VerboseGenerator( generator, "Step 4: Creating the table of contents (TOC) and content tree" )  # if verbose is on, decorate with verbose decorator
-		self.toc, content = generator.generate( xmltree_raw ) # generate TOC and content from etree
+		if self.pipeline.has( 'generator' ):
+			generator = self.pipeline.generator()
+			if self.pipeline.has( 'generatorDecorators' ):
+				for decorator in self.pipeline.generatorDecorators: # decorate the generator with the decorators defined in settings.pipeline
+					generator = decorator( generator )
+			if self.verbose: generator = VerboseGenerator( generator, "Step 4: Creating the table of contents (TOC) and content tree" )  # if verbose is on, decorate with verbose decorator
+			toc, content = generator.generate( xmltree_raw ) # generate TOC and content from etree
 		
 		# 5. Start output plugin
-		pluginDispatcher = PluginDispatcher( self.data, content, self.toc, self.requiredImages, self.pipeline.plugins )
-		if self.verbose: pluginDispatcher = VerboseDispatcher( pluginDispatcher, "Step 5: Output to static HTML files" )
-		pluginDispatcher.dispatch()
+		if self.pipeline.has( 'plugins' ):
+			pluginDispatcher = PluginDispatcher( self.data, content, toc, self.pipeline.plugins )
+			if self.verbose: pluginDispatcher = VerboseDispatcher( pluginDispatcher, "Step 5: Create output" )
+			pluginDispatcher.dispatch()
 		
 		# stop program execution and return proper error level as return value
 		# sys.finish_program()

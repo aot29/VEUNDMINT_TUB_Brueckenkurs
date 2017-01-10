@@ -97,12 +97,6 @@ class test_OptionTest(unittest.TestCase):
 		self.assertEqual("test_exercise_server", option.exercise_server, "Unexpected default for override 'exercise_server'")
 
 
-	def testTemplates(self):
-		# Defaults
-		option = Option( self.currentDir, "" )
-		self.assertEqual("templates_xslt", option.converterTemplates, "Unexpected default for 'converterTemplates'")
-
-
 	def testPluginOptions(self):
 		# Defaults
 		option = Option( self.currentDir, "" )

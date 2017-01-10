@@ -40,58 +40,75 @@ class Pipeline(object):
 	
 		## @var preprocessors
 		#  List of preprocessor objects
-		self.preprocessors = []
-		for name in settings.pipeline[ 'preprocessors' ]:
-			self.preprocessors.append( self.dynamicImport( name ) )
+		if self.has( 'preprocessors' ):
+			self.preprocessors = []
+			for name in settings.pipeline[ 'preprocessors' ]:
+				self.preprocessors.append( self.dynamicImport( name ) )
 		
 		## @var translator
 		#  Class that can translate LaTeX source files to an XML file, including parsing MathML.
-		self.translator = self.dynamicImport( settings.pipeline[ 'translator' ] )
+		if self.has( 'translator' ):
+			self.translator = self.dynamicImport( settings.pipeline[ 'translator' ] )
 		
 		## @var translatorDecorators
 		#  List of decorators for the translator
-		self.translatorDecorators = []
-		for name in settings.pipeline[ 'translatorDecorators' ]:
-			self.translatorDecorators.append( self.dynamicImport( name ) )
+		if self.has( 'translatorDecorators' ):
+			self.translatorDecorators = []
+			for name in settings.pipeline[ 'translatorDecorators' ]:
+				self.translatorDecorators.append( self.dynamicImport( name ) )
 
 		## @var parser
 		#  Parsers take a string or text file and return the result of the parsing process.
-		self.parser = self.dynamicImport( settings.pipeline[ 'parser' ] )
+		if self.has( 'parser' ):
+			self.parser = self.dynamicImport( settings.pipeline[ 'parser' ] )
 		
 		## @var parserDecorators
 		#  List of decorators for the parser
-		self.parserDecorators = []
-		for name in settings.pipeline[ 'parserDecorators' ]:
-			self.parserDecorators.append( self.dynamicImport( name ) )
+		if self.has( 'parserDecorators' ):
+			self.parserDecorators = []
+			for name in settings.pipeline[ 'parserDecorators' ]:
+				self.parserDecorators.append( self.dynamicImport( name ) )
 		
 		## @var generator
 		#  Generators create the table of contents (TOC) and the content tree.
-		self.generator = self.dynamicImport( settings.pipeline[ 'generator' ] )
+		if self.has( 'generator' ):
+			self.generator = self.dynamicImport( settings.pipeline[ 'generator' ] )
 		
 		## @var generatorDecorators
 		#  List of generatorDecorators for the parser
-		self.generatorDecorators = []
-		for name in settings.pipeline[ 'generatorDecorators' ]:
-			self.generatorDecorators.append( self.dynamicImport( name ) )
+		if self.has( 'generatorDecorators' ):
+			self.generatorDecorators = []
+			for name in settings.pipeline[ 'generatorDecorators' ]:
+				self.generatorDecorators.append( self.dynamicImport( name ) )
 		
 		## @var plugins
 		#  List of plugin objects
-		self.plugins = []
-		for name in settings.pipeline[ 'plugins' ]:
-			self.plugins.append( self.dynamicImport( name ) )
+		if self.has( 'plugins' ):
+			self.plugins = []
+			for name in settings.pipeline[ 'plugins' ]:
+				self.plugins.append( self.dynamicImport( name ) )
 
+
+	def has(self, key ):
+		"""
+		Check that settings.pipeline has a value for the key
+		
+		@param key the name of the settings.pipeline key to check
+		@return bool
+		"""
+		return key in settings.pipeline and settings.pipeline[ key ] is not None
+	
 
 	def dynamicImport(self, name):
 		"""
 		Dynamically instantiate objects from class names given in the names array (at runtime).
 		
-		@param name qualified class name, including the module and the package
+		@param name qualified class name, including the module and the package. Put the complete class path here, so for example: 
+		if you have a plugin called VEUNDMINT and a file called preprocessor_mintmodtex.py which holds a class called Preprocessor, 
+		then the path is plugins.VEUNDMINT.preprocessor_mintmodtex.Preprocessor.
 		@return object created instantiated from class name
 		"""
 
-		# Put the complete class path here, so for example: 
-		# if you have a plugin called VEUNDMINT and a file called preprocessor_mintmodtex.py which holds a class called Preprocessor, 
-		# then the path is plugins.VEUNDMINT.preprocessor_mintmodtex.Preprocessor.
 		
 		substr = name.split('.') # example: VEUNDMINT.preprocessors.PrepareData.PrepareData
 		if len( substr ) < 3: raise Exception( "Incomplete path %s" % name )

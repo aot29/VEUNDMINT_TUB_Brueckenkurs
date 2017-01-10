@@ -121,14 +121,13 @@ class PluginDispatcher( AbstractDispatcher ):
 	Run plugins.
 	Can be decorated with VerboseDecorator to enable performance logging.
 	"""
-	def __init__(self, data, content, tocxml, requiredImages=None, plugins=None):
+	def __init__(self, data, content, tocxml, plugins=None):
 		"""
 		Constructor
 		
 		@param data - an undocumented data structure (Daniel Haase)
 		@param content - a list of [toc_node, content_node] items
 		@param tocxml - etree containing the table of contents 
-		@param requiredImages - deprecated, images are now handled by the build scripts.
 		@param plugins - a list of "plugins" (this is a misnomer for designating the actual application) 
 		"""
 		## @var data
@@ -142,10 +141,6 @@ class PluginDispatcher( AbstractDispatcher ):
 		## @var tocxml
 		#  etree containing the table of contents (of the whole course)
 		self.tocxml = tocxml
-		
-		## @var requiredImages
-		#  deprecated
-		self.requiredImages = requiredImages
 		
 		## @var plugins
 		#  a list of "plugins" (this is a misnomer for designating the actual application)

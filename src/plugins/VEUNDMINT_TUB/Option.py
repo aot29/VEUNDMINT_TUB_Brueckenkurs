@@ -62,9 +62,9 @@ class Option(object):
 		self.currentDir = new_settings.BASE_DIR
 		self.converterDir = os.path.join(self.currentDir, "src")
 		self.converterCommonFiles = os.path.join(self.converterDir, "files")
-		self.pluginsDir = os.path.join(self.converterDir, "plugins")
-		self.pluginName = "VEUNDMINT"
-		
+		self.pluginName = "VEUNDMINT_TUB"
+		self.pluginDir = os.path.join(self.converterDir, "plugins", self.pluginName)
+
 		## @var output
 		#  Zielverzeichnis, platziert in Ebene ueber tex2x.py, wird neu erzeugt, WIRD BEI AUTOPUBLISH UEBERSCHRIEBEN
 		self.output = "build" 
@@ -88,6 +88,7 @@ class Option(object):
 		self.module = ( lambda locale: "tree_en.tex" if locale == 'en_GB.utf8' or locale == 'en_GB.UTF-8' else "tree_de.tex" ) (self.locale)
 
 		self.overrideValues() # need to call overrideValues before AND after, as some values are put together, e.g. in setConverterVars
+		self.setDispatcherPipeline()
 		self.setConversionFlags()
 		self.setTest()
 		self.setSourceOutputDirs()
@@ -103,6 +104,48 @@ class Option(object):
 		self.overrideValues() # need to call overrideValues before AND after, as some values are put together, e.g. in setConverterVars
 
 		self.checkConsistency() # call checkConsistency LAST
+
+
+	def setDispatcherPipeline(self):
+		"""
+		Dispatcher settings
+		
+		  Pipeline lists the steps in the dispatcher.
+		  1. Preprocessors: Run pre-processing plugins
+		  2. Translator: Run TTM (convert Tex to XML), load XML file created by TTM, 
+		  3. Parser: Parse XML files into a HTML tree
+		  4. Generator: Create the table of contents (TOC) and content tree, correct links
+		  5. Plugins: Output to static HTML files
+		
+		  Steps 1 and 5 may have multiple classes.
+		  Steps 2,3,4 may be decorated.
+		
+		 Put the complete class path here, so for example:
+		 if you have a plug-in called VEUNDMINT and a file called preprocessor_mintmodtex.py which holds a class called Preprocessor,
+		 then the path is plugins.VEUNDMINT.preprocessor_mintmodtex.Preprocessor.
+		"""
+		self.pipeline = {
+				"preprocessors": [ 'plugins.VEUNDMINT_TUB.preprocessors.PrepareData.PrepareData', 
+								   'plugins.VEUNDMINT_TUB.preprocessors.PrepareWorkingFolder.PrepareWorkingFolder',
+								   'plugins.VEUNDMINT_TUB.preprocessors.FixI18nForPdfLatex.FixI18nForPdfLatex',
+								   'plugins.VEUNDMINT_TUB.preprocessors.preprocessor_mintmodtex.Preprocessor',
+		   						   'plugins.VEUNDMINT_TUB.preprocessors.ReleaseCheck.ReleaseCheck' ],
+				
+				"translator": "plugins.VEUNDMINT_TUB.translators.TTMTranslator.TTMTranslator",
+		
+				"translatorDecorators": [ "plugins.VEUNDMINT_TUB.translators.MathMLDecorator.MathMLDecorator" ],
+				
+				"parser": "plugins.VEUNDMINT_TUB.parsers.HTMLParser.HTMLParser",
+		
+				"parserDecorators": [],
+				
+				"generator": "plugins.VEUNDMINT_TUB.generators.ContentGenerator.ContentGenerator",
+		
+				"generatorDecorators": [ "plugins.VEUNDMINT_TUB.generators.LinkDecorator.LinkDecorator", 
+										 "plugins.VEUNDMINT_TUB.generators.WikipediaDecorator.WikipediaDecorator" ],
+				
+				"plugins": [ 'plugins.VEUNDMINT_TUB.html5_mintmodtex.Plugin' ]
+			}
 
 
 	def setLocale(self):
@@ -430,21 +473,21 @@ class Option(object):
 		## @var reply_mail
 		# Wird in mailto vom Admin-Button eingesetzt
 		self.reply_mail = "brueckenkurs@innocampus.tu-berlin.de"	  
-		
+
 		self.data_server = self.server
 		self.exercise_server = self.server
 		self.feedback_service = self.server + "/feedback.php" # Absolute Angabe
 		self.data_server_description = "Server guest 6 (Standort TU Berlin)"
 		self.data_server_user = self.server + "/userdata.php"  # Absolute Angabe
 
-		
+
 	def setTemplates(self):
 		"""
 		Set template XSLT directory, template for PHP preprocessing and SCORM-manifest template 
 		"""
 		## @var converterTemplates
 		# Only templates_bootstrap is supported to render HTML files
-		self.converterTemplates = ( lambda bootstrap: 'templates_xslt' if bootstrap else '' ) ( self.bootstrap )
+		self.converterTemplates = os.path.join( self.pluginDir, "templates" )
 		self.template_redirect_basic = os.path.join(self.converterTemplates, "html5_redirect_basic.html")
 		
 		## @var template_precss

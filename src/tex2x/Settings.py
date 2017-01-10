@@ -1,6 +1,6 @@
 import sys
 import settings as global_settings
-from plugins.VEUNDMINT.Option import Option as VEUNDMINTOption
+from plugins.VEUNDMINT_TUB.Option import Option as VEUNDMINTOption
 
 class Settings(object):
 

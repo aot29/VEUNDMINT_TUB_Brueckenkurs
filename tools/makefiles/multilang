@@ -143,8 +143,8 @@ fix: fixRedirects
 	$(eval CURRENT_LANG := en)
 	$(fixLinks_cmd)
 
-	# replace index.html with src/templates_xslt/html5_choose_language_simple.html to allow for choosing en or de version
-	cp src/templates_xslt/html5_choose_language_simple.html $(OUTPUT)/index.html
+	# replace index.html to allow for choosing en or de version
+	cp src/plugins/VEUNDMINT_TUB/templates/html5_choose_language_simple.html $(OUTPUT)/index.html
 
 
 ############################################################

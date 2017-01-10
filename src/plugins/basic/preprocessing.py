@@ -17,23 +17,25 @@
 """
 
 
-from plugins.basic import System
-from plugins.basic import Option as opt
+from tex2x.System import ve_system as sys
+from tex2x.Settings import ve_settings as settings
 import os
+from tex2x.AbstractPreprocessor import AbstractPreprocessor
 
-#print("aaa")
+class BasicPreprocessor(AbstractPreprocessor):
 
-
-options = opt.Option(os.path.join(".."));
-
-#print(os.path.abspath(os.path.join("..", "..")))
-print(os.path.abspath(os.path.join(options.sourcepath_original,"files")))
-print(os.path.abspath(os.path.join(options.sourcepath, "files")))
-#print(os.path.abspath(os.path.join(os.path.join( "..", "..", "tmp_input"))))
-
-
-System.copyFiletree(options.sourcepath_original, options.sourcepath, "files")
-System.copyFiletree(options.sourcepath_original, options.sourcepath, "tex")
-System.copyFiletree(options.sourcepath_original, options.sourcepath, "basic-HTML")
-System.copyFiletree(options.sourcepath_original, options.sourcepath, "basic-SCORM")
-
+	def __init__(self, data = None):
+		#options = opt.Option(os.path.join(".."));
+		
+		#print(os.path.abspath(os.path.join("..", "..")))
+		#print(os.path.abspath(os.path.join(options.sourcepath_original,"files")))
+		#print(os.path.abspath(os.path.join(options.sourcepath, "files")))
+		#print(os.path.abspath(os.path.join(os.path.join( "..", "..", "tmp_input"))))
+		pass
+	
+	def preprocess(self):
+		sys.copyFiletree(settings.converterDir, settings.sourcepath, "files")
+		sys.copyFiletree(settings.converterDir, settings.sourcepath, "tex")
+	#	sys.copyFiletree(settings.converterDir, settings.sourcepath, "basic-HTML")
+	#	sys.copyFiletree(settings.converterDir, settings.sourcepath, "basic-SCORM")
+	
