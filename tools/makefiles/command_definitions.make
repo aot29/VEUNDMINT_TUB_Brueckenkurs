@@ -51,13 +51,13 @@ endef
 # This should be dealt with in mintmod
 define fixSpecialPages_cmd
 	# Remove the single-language special pages	
-	-rm $(OUTPUT)/html/$(CURRENT_LANG)/data.html
-	-rm $(OUTPUT)/html/$(CURRENT_LANG)/signup.html
-	-rm $(OUTPUT)/html/$(CURRENT_LANG)/login.html
-	-rm $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
-	-rm $(OUTPUT)/html/$(CURRENT_LANG)/search.html
-	-rm $(OUTPUT)/html/$(CURRENT_LANG)/favorites.html
-	-rm $(OUTPUT)/html/$(CURRENT_LANG)/test.html
+	#-rm $(OUTPUT)/html/$(CURRENT_LANG)/data.html
+	#-rm $(OUTPUT)/html/$(CURRENT_LANG)/signup.html
+	#-rm $(OUTPUT)/html/$(CURRENT_LANG)/login.html
+	#-rm $(OUTPUT)/html/$(CURRENT_LANG)/logout.html
+	#-rm $(OUTPUT)/html/$(CURRENT_LANG)/search.html
+	#-rm $(OUTPUT)/html/$(CURRENT_LANG)/favorites.html
+	#-rm $(OUTPUT)/html/$(CURRENT_LANG)/test.html
 
 	# Move special pages to their definitive location (for the current language)
 	-cd $(OUTPUT)/html/$(CURRENT_LANG) && find . -name '*.html' -type f -print | xargs grep '<!-- mdeclaresiteuxidpost;;VBKM_MISCCOURSEDATA;; //-->' -l | xargs -I '{}' cp '{}' data.html
