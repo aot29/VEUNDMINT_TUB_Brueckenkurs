@@ -91,7 +91,7 @@ deploy_staging:
     # copy all files to the gitlab-ci folder which will be served at /gitlab-ci(-test)
     - "rsync -avr public/* /home/gitlab-runner/gitlab-ci"
     # copy all django relevant files (-db) to django which is made available as an apache wsgi mod
-    - "rsync -avr --exclude='veundmint/db.sqlite3' --exclude='veundmint/veundmint/settings.py' src/server/veundmint/* /home/gitlab-runner/django/veundmint"
+    - "rsync -avr --exclude='veundmint/db.sqlite3' --exclude='veundmint/settings.py' src/server/veundmint/* /home/gitlab-runner/django/veundmint"
     # and apply django migrations (if available)
     - "source venv/bin/activate"
     - "python src/server/veundmint/manage.py migrate"
