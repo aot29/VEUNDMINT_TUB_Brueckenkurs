@@ -24,6 +24,7 @@ setup_python:
   only:
     - dev_TUB_software
     - develop_gulp
+    - dev_VBKM_content
   script:
     - "echo installing python dependencies in virtual environment"
     - "[ ! -d venv ] && virtualenv -p python3 venv"
@@ -36,6 +37,7 @@ gulp_build_multilang:
   only:
     - develop_gulp
     - dev_TUB_software
+    - dev_VBKM_content
   script:
     # install npm and all required packages
     - "git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`"
@@ -104,6 +106,7 @@ deploy_staging:
     url: http://guest43.mulf.tu-berlin.de/gitlab-ci-test/
   only:
     - dev_TUB_software
+    - dev_VBKM_content
 
 gulp_all_tests:
   stage: test
@@ -125,6 +128,8 @@ gulp_all_tests:
 
 deploy_prod:
   stage: deploy_prod
+  only:
+    - dev_TUB_software
   script:
     - "cd $CI_PROJECT_DIR"
     # copy to production server without coverage and doc
@@ -133,5 +138,3 @@ deploy_prod:
     name: production
     url: https://guest6.mulf.tu-berlin.de/mfr_test/
   when: manual
-  only:
-    - dev_TUB_software
