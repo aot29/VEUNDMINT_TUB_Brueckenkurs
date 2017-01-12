@@ -1,7 +1,17 @@
 # Change Log
 All notable changes to this project should be documented in this file.
 
-## 25.10 - present
+
+## 01.01.17 - present
+### Added
+ - Merged the long developed version that includes a new django server and a new dataservice that serves and syncs all user data to all conected storages (we use a js cache, localstorage and django)
+ - Continous integration now works for content branches as well, (dev_Physik_content -> guest43.../physikbk/, dev_VBKM_content -> guest43.../gitlab-ci-test
+
+### Fixed
+ - Course data page
+ - Login / Register page
+
+## 25.10 - 01.01.17
 ### Added
  - Split the course into a content and a software tier. It is now possible to build different courses using the same software. See README for details.
  - Rewrote the top-level entry script (tex2x.py) using the dispatcher pattern (tex2x/Dispatcher.py)
