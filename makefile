@@ -32,7 +32,7 @@ ifeq ($(course),PhysikBK)
 	# forward to the first page
 	-rm $(CURDIR)/public/index.html
 	cp $(CURDIR)/src/plugins/VEUNDMINT_TUB/templates/html5_redirect_basic.html $(CURDIR)/public/index.html
-	find $(CURDIR)/public -maxdepth 1 -name 'index.html' -type f -exec sed -i "s|\$$url|/html/de/sectionx2.1.0.html|g" {} \;
+	find $(CURDIR)/public -maxdepth 1 -name 'index.html' -type f -exec sed -i "s|\$$url|html/de/sectionx2.1.0.html|g" {} \;
 else
 	$(MAKE) -f tools/makefiles/multilang
 endif
