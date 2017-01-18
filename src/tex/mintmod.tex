@@ -43,6 +43,7 @@
 \usepackage{amstext}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{cancel}
 \usepackage[ngerman,english]{varioref}
 \usepackage{framed}
 \usepackage{supertabular}
@@ -115,7 +116,7 @@
 % Verhindert dass die subsection-nummer doppelt in der toccaption auftaucht (sollte ggf. in toccaption gefixt werden so dass diese Ueberschreibung nicht notwendig ist)
 \renewcommand{\thesubsection}{}
 % Kommandos die ttm nicht kennt
-\newcommand{\binomial}[2]{{#1 \choose #2}} %  Binomialkoeffizienten
+
 \newcommand{\eur}{\begin{html}&euro;\end{html}}
 \newcommand{\square}{\begin{html}&square;\end{html}}
 \newcommand{\glqq}{"'}  \newcommand{\grqq}{"'}
@@ -131,6 +132,12 @@
 
 % Umsetzung von mathbb im HTML
 \renewcommand{\mathbb}[1]{\begin{html}<mo>&#1opf;</mo>\end{html}}
+\fi
+
+\ifttm
+\newcommand{\binomial}[2]{{#1 \choose #2}} %  Binomialkoeffizienten
+\else
+\newcommand{\binomial}[2]{\binom[#1][#2]}
 \fi
 
 %---------------------- Strukturierung ----------------------------------------------------------------------------------------------------------------------
