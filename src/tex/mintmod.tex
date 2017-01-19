@@ -29,7 +29,8 @@
 \usepackage{etex}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
-\usepackage[ngerman,english]{babel}
+% english auf babel rausgenommen damit die umlaute im pdf auch angezeigt werden ( das aus "a umlaut wird)
+\usepackage[ngerman]{babel}
 \usepackage[pdftex]{color}
 \usepackage{xcolor}
 \usepackage{graphicx}
@@ -44,7 +45,8 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{cancel}
-\usepackage[ngerman,english]{varioref}
+% english auf varioref rausgenommen damit die umlaute im pdf auch angezeigt werden ( das aus "a umlaut wird)
+\usepackage[ngerman]{varioref}
 \usepackage{framed}
 \usepackage{supertabular}
 \usepackage{longtable}
@@ -1095,7 +1097,7 @@ $\phantom{\MForLoop{#1}{b}}$
 % not needed yet so f. it
 }
 \else%
-\newcommand{\MQuestionRadiobox}[4]{
+\newcommand{\MQuestionRadiobox}[5]{
 \ifnum\value{QBoxFlag}=1\fbox{$\phantom{X}$}\else$\phantom{X}$\fi%
 }
 \fi%
