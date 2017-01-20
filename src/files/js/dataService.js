@@ -36,7 +36,7 @@
   var storageServicesMap = {};
   var syncStrategies = ['timer', 'onunload'];
   var syncUpExcludes = [];
-  
+
   var justLoggedOut = false;
 
   //the 'cache' for all userData
@@ -72,12 +72,14 @@
     */
     function init( options ) {
 
-    var importUserDataResult = importUserData();
+			savePageInUserHistory();
 
-    //send feedback / log if data was imported
-    if (importUserDataResult && importUserDataResult.imported) {
-      sendUserFeedback({'importUserData': importUserDataResult});
-    }
+    	var importUserDataResult = importUserData();
+
+	    //send feedback / log if data was imported
+	    if (importUserDataResult && importUserDataResult.imported) {
+	      sendUserFeedback({'importUserData': importUserDataResult});
+	    }
     }
 
   /**
@@ -170,16 +172,16 @@
     if (storageServices.length === 0) {
       return Promise.resolve('dataService: synDown called without subscribers, will do nothing.');
     }
-    
+
     //if we want data from the given service, use that, else use the data from the service
     //with latest timestamp
     var dataPromise;
-      
+
 	//return the promise if syncDown was already called
 	if (typeof promiseCache[defaults.SYNC_DOWN_CACHE_KEY] !== "undefined") {
 		return promiseCache[defaults.SYNC_DOWN_CACHE_KEY];
 	}
-	
+
 	log.debug('dataService: syncDown is calling getAllDataTimestamps');
 	dataPromise = getAllDataTimestamps().then(function (successAllTimestamps) {
 
@@ -201,7 +203,7 @@
 			return Promise.reject(new TypeError('getAllDataTimestamps did not return an Array.'));
 		}
 	});
-	
+
 
     var userDataPromise = dataPromise.then(function(latestData) {
       objCache = latestData || {};
@@ -513,7 +515,30 @@ function logout() {
     return result;
   }
 
+/**
+ * Save the currently visited page in the history obj in objCache
+ * @return {Object} The updated history object
+ */
+function savePageInUserHistory() {
+	getUserData().then(function(userData) {
 
+		if (typeof(userData) !== "undefined" && typeof(userData.history) !== "undefined") {
+			var history = userData.history;
+			if (typeof(history['0']) === "undefined" || SITE_UXID !== history['0'].uxid) {
+				history['4'] = history['3'];
+				history['3'] = history['2'];
+				history['2'] = history['1'];
+				history['1'] = history['0'];
+				history['0'] = {
+					url: window.location.href,
+					title:document.title,
+					uxid: SITE_UXID
+				};
+				return updateUserData({history:history});
+			}
+		}
+	});
+}
 
 /**
  * Imports old userdata (which was stored under a different key or had a different datastructure)
@@ -742,6 +767,7 @@ exports.mockLocalStorage = mockLocalStorage;
 exports.sendUserFeedback = sendUserFeedback;
 exports.importUserData = importUserData;
 exports.updateScore = updateScore;
+exports.savePageInUserHistory = savePageInUserHistory;
 
 //TODO these functions should be moved to own authservice
 exports.usernameAvailable = usernameAvailable;
