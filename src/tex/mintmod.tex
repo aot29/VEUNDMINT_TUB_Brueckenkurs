@@ -29,7 +29,8 @@
 \usepackage{etex}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
-\usepackage[ngerman,english]{babel}
+% english auf babel rausgenommen damit die umlaute im pdf auch angezeigt werden ( das aus "a umlaut wird)
+\usepackage[ngerman]{babel}
 \usepackage[pdftex]{color}
 \usepackage{xcolor}
 \usepackage{graphicx}
@@ -43,7 +44,9 @@
 \usepackage{amstext}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage[ngerman,english]{varioref}
+\usepackage{cancel}
+% english auf varioref rausgenommen damit die umlaute im pdf auch angezeigt werden ( das aus "a umlaut wird)
+\usepackage[ngerman]{varioref}
 \usepackage{framed}
 \usepackage{supertabular}
 \usepackage{longtable}
@@ -115,7 +118,7 @@
 % Verhindert dass die subsection-nummer doppelt in der toccaption auftaucht (sollte ggf. in toccaption gefixt werden so dass diese Ueberschreibung nicht notwendig ist)
 \renewcommand{\thesubsection}{}
 % Kommandos die ttm nicht kennt
-\newcommand{\binomial}[2]{{#1 \choose #2}} %  Binomialkoeffizienten
+
 \newcommand{\eur}{\begin{html}&euro;\end{html}}
 \newcommand{\square}{\begin{html}&square;\end{html}}
 \newcommand{\glqq}{"'}  \newcommand{\grqq}{"'}
@@ -131,6 +134,12 @@
 
 % Umsetzung von mathbb im HTML
 \renewcommand{\mathbb}[1]{\begin{html}<mo>&#1opf;</mo>\end{html}}
+\fi
+
+\ifttm
+\newcommand{\binomial}[2]{{#1 \choose #2}} %  Binomialkoeffizienten
+\else
+\newcommand{\binomial}[2]{\binom[#1][#2]}
 \fi
 
 %---------------------- Strukturierung ----------------------------------------------------------------------------------------------------------------------
@@ -1088,7 +1097,7 @@ $\phantom{\MForLoop{#1}{b}}$
 % not needed yet so f. it
 }
 \else%
-\newcommand{\MQuestionRadiobox}[4]{
+\newcommand{\MQuestionRadiobox}[5]{
 \ifnum\value{QBoxFlag}=1\fbox{$\phantom{X}$}\else$\phantom{X}$\fi%
 }
 \fi%

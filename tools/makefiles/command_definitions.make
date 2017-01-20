@@ -39,6 +39,19 @@ define pdf_cmd
 endef
 
 #
+# Generate PDF of whole course
+# @see: https://gitlab.tubit.tu-berlin.de/stefan.born/VEUNDMINT_TUB_Brueckenkurs/wikis/pdf
+#
+define pdf_cmd_physik
+	# now building PDFs, this can take a while...
+	cd _tmp/tex && pdflatex -interaction nonstopmode -halt-on-error -file-line-error tree1_physik_bk.tex >> convert.log
+	cd _tmp/tex && makeindex  -q tree1_physik_bk
+	cd _tmp/tex && pdflatex -interaction nonstopmode -halt-on-error -file-line-error tree1_physik_bk.tex >> convert.log
+	mkdir $(OUTPUT)_$(CURRENT_LANG)/pdf
+	cp _tmp/tex/tree1_physik_bk.pdf $(OUTPUT)_$(CURRENT_LANG)/pdf/
+endef
+
+#
 # Don't use Unix softlinks here (ln -s),
 # as the output should also work on non-Unixes.
 #

@@ -38,7 +38,7 @@ DEFAULT_LANG = de
 # Build everything for the bootstrap version
 # Including PDFs
 #
-all: | cleanupBefore buildDE fix startGulp movePDF docs cleanupAfter
+all: | cleanupBefore convert_with_pdf merge fixRedirects fix fixSpecialPages startGulp movePDF docs cleanupAfter
 	echo "ready"
 
 buildDE: 
@@ -73,7 +73,7 @@ convert_with_pdf:
 	# set CURRENT_LANG at runtime.
 	$(eval CURRENT_LANG := de)
 	$(convert_cmd)
-	$(pdf_cmd)
+	$(pdf_cmd_physik)
 
 
 #
