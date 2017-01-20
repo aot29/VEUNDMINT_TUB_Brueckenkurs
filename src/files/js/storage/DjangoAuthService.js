@@ -167,7 +167,7 @@
 
         if (userCredentials === null || typeof userCredentials === "undefined"
         || typeof userCredentials.token === "undefined" ) {
-          
+
           return Promise.reject(new TypeError('not authenticated'));
         }
         return Promise.resolve(
@@ -212,7 +212,14 @@
    * @return {Promise<Object>} resolves with the changed user data
    */
   function changeUserData(userData) {
-    return authAjaxRequest(settings.URL_CHANGE_USER, userData, true, 'PUT');
+    return authAjaxRequest(settings.URL_CHANGE_USER, userData, true, 'PUT').then(function (changedUserData) {
+			var oldUserCredentials = getUserCredentials();
+			var newUserCredentials = {
+				token: oldUserCredentials.token,
+				user: changedUserData
+			}
+			return storeUserCredentials(newUserCredentials);
+		});
   }
 
   /**

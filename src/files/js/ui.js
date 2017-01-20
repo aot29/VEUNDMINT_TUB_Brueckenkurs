@@ -76,7 +76,7 @@
     $('#btn-change-user-data').on('click', function(event) {
       var userCredentials = $('#form-user-register').serializeObject();
       dataService.changeUserData(userCredentials).then(function(userData) {
-        console.log('successfully changed data to', userData);
+        toastr.success($.i18n('change_user_data_success'));
       }, function (error) {
         console.log(error);
       });
