@@ -58,8 +58,17 @@
       dataService.authenticate(userCredentials).then(function(userData) {
         console.log('successfully signed in', userData);
         opensite('index.html');
+				toastr.success($.i18n('login_success01', veSettings.DJANGO_SERVER_URL));
       }, function (error) {
-        console.log('error loggin in', error);
+				console.log(error);
+				switch(error.status) {
+					case 0:
+						toastr.error($.i18n('login_error01', veSettings.DJANGO_SERVER_URL));
+						break;
+					case 400:
+						toastr.error($.i18n('login_error02', veSettings.DJANGO_SERVER_URL));
+						break;
+					}
       })
     });
 
@@ -81,7 +90,7 @@
       }, function (error) {
         log.debug('error logging out', error);
       });
-      opensite(linkPath + '/index.html');
+      opensite(window.location.href);
     });
 
     //set the body class to logged_in if logged in else set it to logged_out
