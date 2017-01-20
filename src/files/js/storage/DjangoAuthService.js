@@ -27,6 +27,9 @@
 
   var doAsyncCalls = true;
 
+	var languageString = $('html').attr('lang') || 'de';
+	languageString += '-' + languageString;
+
   function initJquery(jqueryRef) {
     $ = jqueryRef;
   }
@@ -118,7 +121,10 @@
         method: 'GET',
         data: data,
         dataType: 'json',
-        contentType: 'application/json; charset=utf-8'
+        contentType: 'application/json; charset=utf-8',
+				headers: {
+					'Accept-Language': languageString
+				}
       })
     );
   }
@@ -130,13 +136,17 @@
    * @return {Object}      The returned (json) data
    */
   function ajaxPOST (url, data, async) {
+
     return Promise.resolve(
       $.ajax({
         url: url,
         method: 'POST',
         data: JSON.stringify(data),
         dataType: 'json',
-        contentType: 'application/json; charset=utf-8'
+        contentType: 'application/json; charset=utf-8',
+				headers: {
+					'Accept-Language': languageString
+				}
       })
     );
   }
@@ -170,6 +180,7 @@
 
           return Promise.reject(new TypeError('not authenticated'));
         }
+
         return Promise.resolve(
           $.ajax({
             url: url,
@@ -179,7 +190,8 @@
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             headers: {
-              'Authorization': 'JWT ' + userCredentials.token
+              'Authorization': 'JWT ' + userCredentials.token,
+							'Accept-Language': languageString
             }
           })
         );
