@@ -24,7 +24,10 @@ BASEDIR = src
 
 # Name of the output dir to be created
 OUTPUT = build
+# path to latex source files
 SOURCE=content_submodule/content
+# path to static files (logo)
+STATIC=content_submodule/static
 
 # Language the index.html will point to by default,
 # possible values: de, en
