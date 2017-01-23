@@ -17,6 +17,7 @@
 #  \author Alvaro Ortiz for TU Berlin
 
 from lxml import etree
+import os
 import re
 import html
 from tex2x.AbstractRenderer import *
@@ -51,8 +52,15 @@ class TocRenderer( AbstractXmlRenderer ):
 		pageId = tc.myid
 		# add a parameter to the tree: the currently selected page
 		toc.set( 'forPage', str( pageId ) )
+		
 		# course description
 		toc.set( 'description', settings.description )
+		
+		# logo if present in static folder
+		logoSourcePath = os.path.join( os.pardir, 'content_submodule', 'static', 'logo.png' )
+		logoURL = os.path.join( 'images', 'logo.png' )
+		if os.path.exists( logoSourcePath ):
+			toc.set( 'logo', logoURL )
 
 		# the TOC entries tree
 		entries = etree.Element( 'entries' )
