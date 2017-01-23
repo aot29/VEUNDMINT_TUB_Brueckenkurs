@@ -40,7 +40,7 @@ class Option(object):
 	Diese Angaben beziehen sich auf die Structure-Klasse. Da eingebundene Plug-ins unter anderen Lizenzen als der GPL veröffentlicht werden können, darf hier kein Austausch stattfinden.
 	"""
 
-	def __init__(self, currentDir, override):
+	def __init__(self, currentDir="", override=None):
 		"""
 		Constructor
 		Instantiated in tex2x.dispatcher.Dispatcher
@@ -394,7 +394,7 @@ class Option(object):
 		# style files needed in local directories for local pdflatex compilation
 		self.texstylefiles = ["bibgerm.sty", "maxpage.sty"]
 
-		## @var
+		## @var htmltikzscale
 		# scaling factor used for tikz-png scaling, can be overridden by pragmas
 		self.htmltikzscale = 1.3
 
@@ -490,10 +490,6 @@ class Option(object):
 		# Only templates_bootstrap is supported to render HTML files
 		self.converterTemplates = os.path.join( self.pluginDir, "templates" )
 		self.template_redirect_basic = os.path.join(self.converterTemplates, "html5_redirect_basic.html")
-
-		## @var template_precss
-		# PHP precss
-		#self.template_precss = "precss"
 
 		## @var template_scorm12manifest
 		# SCORM templates
