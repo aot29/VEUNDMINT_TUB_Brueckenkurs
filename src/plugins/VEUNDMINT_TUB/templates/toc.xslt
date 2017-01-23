@@ -7,7 +7,7 @@
 			<div id="toc" class="panel-group">
 				<!-- Add TOC title -->
 				<h3>
-					<xsl:apply-templates select="toc/@logo" />
+					<xsl:apply-templates select="." mode="logo" />
 					<xsl:value-of select="toc/@description"/>
 				</h3>
 				<xsl:apply-templates select="toc/entries/entry" />
@@ -20,9 +20,8 @@
 	</xsl:template>
 
 
-	<xsl:template match="toc/@logo">
-		<xsl:param name="basePath" />
-		<img src="{$basePath}/../images/{.}" style="float:left;margin-right: 4px; width: 60px;" />
+	<xsl:template match="page" mode="logo">
+		<img src="{@basePath}/../images/{toc/@logo}" style="float:left;margin-right: 4px; width: 60px;" />
 	</xsl:template>
 
 	<!-- Switch between selected and unselected entries -->
