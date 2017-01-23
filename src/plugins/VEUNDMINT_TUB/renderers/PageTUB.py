@@ -174,6 +174,11 @@ class PageTUB( AbstractHtmlRenderer ):
 		tc.content = tc.content.replace( '<br clear="all"></br>\n<br clear="all"></br>', breakStr )
 		tc.content = tc.content.replace( '\t', ' ' )
 		tc.content = tc.content.replace( '\n', ' ' )
+		# make sure punctuation flow is rendered correctly in exercises and equations
+		tc.content = tc.content.replace( '%s .<br/>' % breakStr, '.<br/>' )
+		tc.content = tc.content.replace( '%s . %s' % (breakStr, breakStr), '.<br/>' )
+		tc.content = tc.content.replace( '%s .  %s' % (breakStr, breakStr), '.<br/>' )
+		tc.content = tc.content.replace( '%s , %s' % (breakStr, breakStr), ',<br/>' )
 
 		tc.content = tc.content.replace( '<a class="MINTERLINK" href="', '<a class="MINTERLINK" href="%s/' % basePath )
 
