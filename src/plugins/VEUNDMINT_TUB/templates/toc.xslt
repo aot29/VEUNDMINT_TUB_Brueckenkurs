@@ -21,7 +21,8 @@
 
 
 	<xsl:template match="toc/@logo">
-		<img src="{@basePath}/{.}" style="float:left;margin-right: 4px; width: 60px;" />
+		<xsl:param name="basePath" />
+		<img src="{$basePath}/../images/{.}" style="float:left;margin-right: 4px; width: 60px;" />
 	</xsl:template>
 
 	<!-- Switch between selected and unselected entries -->

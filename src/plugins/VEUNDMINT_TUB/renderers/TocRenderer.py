@@ -58,9 +58,9 @@ class TocRenderer( AbstractXmlRenderer ):
 		
 		# logo if present in static folder
 		logoSourcePath = os.path.join( os.pardir, 'content_submodule', 'static', 'logo.png' )
-		logoURL = os.path.join( 'images', 'logo.png' )
+		logoFile = os.path.join( 'logo.png' )
 		if os.path.exists( logoSourcePath ):
-			toc.set( 'logo', logoURL )
+			toc.set( 'logo', logoFile )
 
 		# the TOC entries tree
 		entries = etree.Element( 'entries' )
