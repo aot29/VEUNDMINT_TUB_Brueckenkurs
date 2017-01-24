@@ -311,7 +311,7 @@ class Option(object):
 
 		## @var quiet
 		# =1 -> Absolutely no print messages, caller must deduce outcome by return value of sys.exit
-		self.quiet = 1
+		self.quiet = 0
 
 		## @var bootstrap
 		# Use Bootstrap for responsive layout
