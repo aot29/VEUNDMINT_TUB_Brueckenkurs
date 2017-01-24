@@ -7,6 +7,7 @@
 			<div id="toc" class="panel-group">
 				<!-- Add TOC title -->
 				<h3>
+					<xsl:apply-templates select="." mode="logo" />
 					<xsl:value-of select="toc/@description"/>
 				</h3>
 				<xsl:apply-templates select="toc/entries/entry" />
@@ -18,6 +19,10 @@
 		<xsl:comment>End TOC side bar</xsl:comment>
 	</xsl:template>
 
+
+	<xsl:template match="page" mode="logo">
+		<img src="{@basePath}/../images/{toc/@logo}" style="float:left;margin-right: 4px; width: 60px;" />
+	</xsl:template>
 
 	<!-- Switch between selected and unselected entries -->
 	<xsl:template match="entry">

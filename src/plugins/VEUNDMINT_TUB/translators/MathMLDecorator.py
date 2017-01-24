@@ -35,7 +35,7 @@ class MathMLDecorator( AbstractTranslator ):
 		@param translator - Translator (object extending AbstractTranslator, in this case TTMTranslator)
 		"""
 
-		## @var parser
+		## @var translator
 		#  Parser (object extending AbstractParser, in this case TTMParser)
 		self.translator = translator
 

@@ -113,7 +113,9 @@
     var $form = $('#form-user-register');
     if ($form.length) {
       dataService.getUserCredentials().then(function(data) {
-        $form.populateForm(data.user);
+				if (data !== null) {
+        	$form.populateForm(data.user);
+				}
       }, function(error) {
         log.debug('error populating form with user data');
       });

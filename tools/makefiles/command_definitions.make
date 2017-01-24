@@ -11,10 +11,10 @@ endef
 # Deploy all images and videos to the images directory
 #
 define deploy_img_cmd
-	# copy all math images
-	find ${SOURCE}/ -iname \*.png -print0 | xargs -I{} -0 cp {} $(OUTPUT)/images
+	# copy all math images (and logos)
+	find ${STATIC}/ -iname \*.png -print0 | xargs -I{} -0 cp {} $(OUTPUT)/images
 	find ${SOURCE}/ -iname \*.jpg -print0 | xargs -I{} -0 cp {} $(OUTPUT)/images
-	# copy logos
+	# copy partner logos
 	find src/files/images/ -iname logo_\*.png -print0 | xargs -I{} -0 cp {} $(OUTPUT)/images
 	# copy additional images
 	cp src/files/images/cclbysa.png $(OUTPUT)/images
