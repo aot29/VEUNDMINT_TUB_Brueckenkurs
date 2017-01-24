@@ -14,6 +14,12 @@ libxml2, libxml2-dev, libxslt1-dev, lib32z1, nodejs, doxygen
 ```
 If the nodejs version provided for your distribution is < 4.x, then see [here](https://nodejs.org/en/download/package-manager/)
 
+To be able to generate PDF output, install these packages
+```
+texlive texlive-lang-german texlive-lang-english texlive-doc-de texlive-latex-extra texlive-science
+```
+
+
 This page documents how to set up an environment to work on existing courses or build a new one. There are two ways you can work on a course. *Content developers* write texts and exercises, *Software developers* work on the conversion software. Choose the documentation which best suits your needs. If you intend to work on both, then choose *Software developers*.
 
 # Content developers

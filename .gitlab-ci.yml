@@ -56,7 +56,7 @@ gulp_build_multilang:
     # make settings fit for staging
     - "export VE_DJANGO_SERVER_URL=http://guest43.mulf.tu-berlin.de/django"
     # build everything
-    - "[ ! -d build ] && make -f tools/makefiles/multilang nopdf"
+    - "[ ! -d build ] && make -f tools/makefiles/multilang"
 
 deploy_staging:
   stage: deploy_staging
