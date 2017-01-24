@@ -1909,7 +1909,7 @@ function displayInputContent(id,latex) {
     log.debug( "mintscripts_bootstrap: ", activetooltip);
 
     var api = activetooltip.qtip("api");
-    api.set('content.title',"Formeleingabe");
+    api.set('content.title', $.i18n("msg-formula-entry")); // "Formeleingabe"
     api.set('content.text',content);
 
     log.debug('testtest', content);
