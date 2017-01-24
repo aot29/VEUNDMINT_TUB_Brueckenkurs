@@ -75,6 +75,8 @@ Alternatively, to build the **physics course**, do:
 ```
 make all course=PhysikBK
 ```
+This will build the HTML and the PDF versions of the course. You can skip PDFs by replacing "all" by "nopdf" in the above command.
+
 ## 4. Testing
 You can now start the webserver and see the result in a browser by calling (preferably in another console):
 ```
