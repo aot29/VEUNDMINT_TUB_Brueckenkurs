@@ -42,24 +42,36 @@ class Settings(dict, metaclass=Singleton):
 	#settings that were set in environment variables
 	env_settings = {}
 
-
 	def __init__(self, *args, **kwargs):
 
 		#print('init called with settings %s , %s, %s' % (default_settings, plugin_settings, cl_settings))
 
 		self.__dict__ = self
 
+		# 1. load the command line settings
 		if self.get_command_line_args() is not None:
 			self.load_settings(dict(k.split('=') for k in self.get_command_line_args().override))
 
+		# 2. load the environment settings (all ENV variables beginning with 'VE_')
 		self.load_settings(self.get_env_settings())
 
-		#TODO load the plugin / content settings here
+		#TODO 3. load the plugin settings here
 
+		# 4. load all the content settings
+		import importlib.util
+		repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+		content_dir = os.path.join(repo_root, 'content_submodule')
+		spec = importlib.util.spec_from_file_location("settings", os.path.join(content_dir, 'settings.py'))
+		settings_module = importlib.util.module_from_spec(spec)
+		spec.loader.exec_module(settings_module)
+		self.load_settings(settings_module, parent="content", verbose=True)
+
+		# 5. load the default settings from settings.py
 		import settings as default_settings
 		self.load_settings(default_settings)
 
-		#TODO loads the veundmint plugin options per default, this should be refactored later
+		#6. load the veundmint plugin options per default and transform them to settings
+		#TODO this should be refactored later as we do not want any old Option.py anymore!
 		from plugins.VEUNDMINT_TUB.Option import Option as VEUNDMINTOption
 		if self.get_command_line_args() is not None:
 			self.load_settings(VEUNDMINTOption('', self.get_command_line_args().override))
@@ -67,9 +79,9 @@ class Settings(dict, metaclass=Singleton):
 			self.load_settings(VEUNDMINTOption('', ''))
 
 
-	def load_settings(self, custom_settings, override=False):
+	def load_settings(self, custom_settings, parent=None, override=False, verbose=False):
 		"""
-		Loads settings from the supplied settings in custom_settings, which
+		Loads settings from the supplied settings file in custom_settings, which
 		can either be an object instance or a dict.
 		"""
 
@@ -95,6 +107,8 @@ class Settings(dict, metaclass=Singleton):
 					#do not override
 					if (self.get(setting) is None) or override is True:
 						self[setting] = loaded_settings[setting]
+						if verbose:
+							print ('setting %s: %s \n' % (setting,loaded_settings[setting]))
 
 
 	def is_overridden(self, attribute_name=None):

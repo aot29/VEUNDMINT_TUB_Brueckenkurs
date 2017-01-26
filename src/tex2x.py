@@ -34,12 +34,26 @@ try:
 
 	if (os.path.abspath(os.getcwd()) != os.path.abspath(os.path.dirname(__file__))):
 	    raise Exception("tex2x must be called in its own directory")
-     
+
 	settings.to_javascript_settings(settings.JS_SETTINGS_FILE)
-	#create dispatcher and start processing
+	# #create dispatcher and start processing
 	dispatcher = Dispatcher(args.verbose, args.plugin, args.override )
 	if args.verbose: dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
 	dispatcher.dispatch()
+	#
+	# create a dispatcher for all languages
+	# if (settings.languages is 'all'):
+	# 	print ('going for all languages')
+	# 	language_dirs = [name for name in os.listdir("./content_submodule") if os.path.isdir(os.path.join('./content_submodule',name)) and len(name) is 2]
+	# 	print(language_dirs)
+	# 	for language_dir in language_dirs:
+	# 		dispatcher = Dispatcher(args.verbose, args.plugin, "lang=%s" % language_dir)
+	# 		if args.verbose: dispatcher = VerboseDispatcher( dispatcher, "Total duration of conversion" )
+	# 		dispatcher.dispatch()
+	# elif (isinstance (settings.languages, list)):
+	# 	print('going for %s languages' % settings.languages)
+	# else:
+	# 	print('going for the 1 language %s' % settings.languages)
 
 except Exception:
 	# Handle exceptions at the highest level, not in the classes

@@ -25,6 +25,12 @@ lang = 'de'
 outtmp = '_tmp'
 
 ##########################
+#### Debug Settings ######
+##########################
+
+quiet = 1
+
+##########################
 #### Server Options   ####
 ##########################
 
@@ -100,19 +106,19 @@ scorm2004testurl = s().BASE_URL + '/scorm2004testwrap.htm'
 """
 pipeline = {
 		"preprocessors": [ 'plugins.basic.preprocessing.BasicPreprocessor' ],
-		
+
 		"translator": None,
 
 		"translatorDecorators": None,
-		
+
 		"parser": None,
 
 		"parserDecorators": [],
-		
+
 		"generator": None,
 
 		"generatorDecorators": None,
-		
+
 		"plugins": [ 'plugins.basic.basic.Plugin' ]
 	}
 """
