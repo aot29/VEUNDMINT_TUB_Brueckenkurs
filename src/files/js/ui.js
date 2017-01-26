@@ -169,7 +169,7 @@
 		//exercise points in chapter k+1
 		var sitesInChapter = visitedChapterModules;
 		var pointsInChapterArray = _.map(visitedChapterModules, 'points');
-		var pointsInChapter = _.sum(pointsInChapterArray);
+		var pointsInChapter = _.sum(pointsInChapterArray) || 0;
 
 		//test calculation for abschlusstest k+1
 		var prefix = 'VBKM' + ("0" + (k+1)).slice(-2);
@@ -184,7 +184,6 @@
         s += "<strong>Kapitel " + (k+1) + ": " + globalsections[k] + "</strong><br />";
 
         var progressWidthGlobal = numOfVisitedModules / globalsitepoints[k] * 100;
-				console.log('aaa', $.i18n('msg-total-progress'));
         s += $.i18n('msg-total-progress', numOfVisitedModules, globalsitepoints[k] ) + "<br />";//"Insgesamt " + si[k] + " von " + globalsitepoints[k] + " Lerneinheiten des Moduls besucht.";
         s += "<div class='progress'><div id='slidebar0_" + k + "' class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + numOfVisitedModules + "' aria-valuemax='" + globalsitepoints[k] + "' style='width: " + progressWidthGlobal + "%'><span class='sr-only'>" + progressWidthGlobal + "% Complete</span></div></div>";
 
