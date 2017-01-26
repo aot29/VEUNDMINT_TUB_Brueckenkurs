@@ -1,5 +1,5 @@
-## @package tex2x.renderers.TocRenderer
-#  Generates a table of contents for the selected page.
+## @package plugins.VEUNDMINT_TUB.renderers.PageTUB
+#  Render page by applying XSLT templates
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
 #  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de

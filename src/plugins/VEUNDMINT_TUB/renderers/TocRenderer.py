@@ -1,4 +1,4 @@
-## @package tex2x.renderers.TocRenderer
+## @package plugins.VEUNDMINT_TUB.renderers.TocRenderer
 #  Generates a table of contents for the selected page.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins

@@ -1,4 +1,4 @@
-## @package tex2x.dispatcher.Dispatcher
+## @package plugins.VEUNDMINT_TUB.translators.Option
 #	This is the Option object associated to the mintmod macro package,
 #	Version P0.1.0, needs to be consistent with mintmod.tex
 #	Options for the math online course

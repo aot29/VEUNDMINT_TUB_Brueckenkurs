@@ -1,4 +1,4 @@
-## @package tex2x.parsers.TOCParser
+## @package plugins.VEUNDMINT_TUB.generators.ContentGenerator
 #  Create the table of contents (TOC) and the content tree.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins

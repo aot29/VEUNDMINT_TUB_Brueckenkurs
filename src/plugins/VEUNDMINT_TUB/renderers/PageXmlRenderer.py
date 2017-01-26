@@ -1,4 +1,4 @@
-## @package tex2x.renderers.PageXmlRenderer
+## @package plugins.VEUNDMINT_TUB.renderers.PageXmlRenderer
 #  Contains PageXmlRenderer, RouletteDecorator and QuestionDecorator.
 #  Classes for handling XML tree for a page.
 #

@@ -1,4 +1,4 @@
-## @package tex2x.parsers.TTMParser
+## @package plugins.VEUNDMINT_TUB.translators.TTMParser
 #  Class that can parse LaTeX files to xml files. Relies on the 'ttm' binary.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins

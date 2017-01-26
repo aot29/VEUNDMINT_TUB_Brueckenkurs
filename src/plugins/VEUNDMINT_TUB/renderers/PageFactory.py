@@ -1,4 +1,4 @@
-## @package tex2x.renderers.PageFactory
+## @package plugins.VEUNDMINT_TUB.renderers.PageFactory
 #  The page factory is used to create page objects. Avoids unnecessary coupling and
 #  potentially opens the way to having alternative page objects.
 #
