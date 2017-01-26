@@ -58,13 +58,12 @@ class Settings(dict, metaclass=Singleton):
 		#TODO 3. load the plugin settings here
 
 		# 4. load all the content settings
-		import importlib.util
+		# all this is needed to load a module with an absolute path (higher than the python project root)
+		from importlib.machinery import SourceFileLoader
 		repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 		content_dir = os.path.join(repo_root, 'content_submodule')
-		spec = importlib.util.spec_from_file_location("settings", os.path.join(content_dir, 'settings.py'))
-		settings_module = importlib.util.module_from_spec(spec)
-		spec.loader.exec_module(settings_module)
-		self.load_settings(settings_module, parent="content")
+		content_settings_module = SourceFileLoader("settings.py", os.path.join(content_dir, 'settings.py')).load_module()
+		self.load_settings(content_settings_module, parent="content")
 
 		# 5. load the default settings from settings.py
 		import settings as default_settings
