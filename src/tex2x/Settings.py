@@ -62,8 +62,10 @@ class Settings(dict, metaclass=Singleton):
 		from importlib.machinery import SourceFileLoader
 		repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 		content_dir = os.path.join(repo_root, 'content_submodule')
-		content_settings_module = SourceFileLoader("settings.py", os.path.join(content_dir, 'settings.py')).load_module()
-		self.load_settings(content_settings_module, parent="content")
+		settings_file_path = os.path.join(content_dir, 'settings.py')
+		if os.path.isfile(settings_file_path):
+			content_settings_module = SourceFileLoader("settings.py", settings_file_path).load_module()
+			self.load_settings(content_settings_module, parent="content")
 
 		# 5. load the default settings from settings.py
 		import settings as default_settings
