@@ -64,7 +64,7 @@ class Settings(dict, metaclass=Singleton):
 		spec = importlib.util.spec_from_file_location("settings", os.path.join(content_dir, 'settings.py'))
 		settings_module = importlib.util.module_from_spec(spec)
 		spec.loader.exec_module(settings_module)
-		self.load_settings(settings_module, parent="content", verbose=True)
+		self.load_settings(settings_module, parent="content")
 
 		# 5. load the default settings from settings.py
 		import settings as default_settings
