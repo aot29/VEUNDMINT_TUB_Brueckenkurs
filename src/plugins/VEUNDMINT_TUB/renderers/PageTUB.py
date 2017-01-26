@@ -76,9 +76,10 @@ class PageTUB( AbstractHtmlRenderer ):
 		self.addFlags(xml, tc, basePath)
 
 		# Prepare a non-special page, otherwise skip TOC and FF-RW links
-		if not ( AbstractXmlRenderer.isSpecialPage( tc ) or AbstractXmlRenderer.isTestPage( tc ) )  :
-			# toc
-			xml.append( self.tocRenderer.renderXML( tc ) )
+		#if not ( AbstractXmlRenderer.isSpecialPage( tc ) or AbstractXmlRenderer.isTestPage( tc ) )  :
+		#	# toc
+		#	xml.append( self.tocRenderer.renderXML( tc ) )
+		xml.append( self.tocRenderer.renderXML( tc ) )
 
 		# add links to next and previous entries
 		self._addPrevNextLinks(xml, tc, basePath)

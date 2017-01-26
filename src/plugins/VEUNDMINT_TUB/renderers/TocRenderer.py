@@ -46,9 +46,6 @@ class TocRenderer( AbstractXmlRenderer ):
 		"""
 		toc = etree.Element( 'toc' )
 
-		# skip on special pages
-		if AbstractXmlRenderer.isSpecialPage( tc ) : return toc
-
 		pageId = tc.myid
 		# add a parameter to the tree: the currently selected page
 		toc.set( 'forPage', str( pageId ) )
@@ -62,6 +59,9 @@ class TocRenderer( AbstractXmlRenderer ):
 		if os.path.exists( logoSourcePath ):
 			toc.set( 'logo', logoFile )
 
+		# skip setting entries on special pages
+		if AbstractXmlRenderer.isSpecialPage( tc ) : return toc
+		
 		# the TOC entries tree
 		entries = etree.Element( 'entries' )
 
