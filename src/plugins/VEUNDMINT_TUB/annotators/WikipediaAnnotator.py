@@ -1,4 +1,4 @@
-## @package tex2x.annotators.WikipediaAnnotator
+## @package plugins.VEUNDMINT_TUB.annotators.WikipediaAnnotator
 #  Classes for collecting potentially interesting pages from Wikipedia, by using the MediaWiki API. 
 #  Used by the annotation functionality to link pages automatically to Wikipedia entries.
 #

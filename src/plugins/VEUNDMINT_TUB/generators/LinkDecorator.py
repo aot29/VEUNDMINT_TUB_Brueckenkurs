@@ -1,5 +1,5 @@
-## @package tex2x.parsers.LinkDecorator
-#  Create the table of contents (TOC) and the content tree.
+## @package plugins.VEUNDMINT_TUB.generators.LinkDecorator
+#  Correct links in the content tree.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
 #  Copyright (C) 2014  VEMINT-Konsortium - http://www.vemint.de

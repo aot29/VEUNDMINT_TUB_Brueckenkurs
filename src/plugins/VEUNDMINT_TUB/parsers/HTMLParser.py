@@ -1,4 +1,4 @@
-## @package tex2x.parsers.HTMLParser
+## @package plugins.VEUNDMINT_TUB.parsers.HTMLParser
 #  Calls lxml.HTMLParser to generate an etree from an XML string.
 #
 #  \copyright tex2x converter - Processes tex-files in order to create various output formats via plugins
