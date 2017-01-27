@@ -1,0 +1,408 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 6.2.9 Gebrochenrationale Funktionen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div></div>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>6.1. Grundlegendes zu Funktionen<ul>
+<li>
+<a href="../../html/1.6.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.1.2 Zuordnungen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.1/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.1.3 Mathe und Anwendungen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.1/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.1.4 Umkehrbarkeit</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>6.2. Lineare Funktionen und Polynome<ul>
+<li>
+<a href="../../html/1.6.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.2.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.2.2 Konstanten und Identität</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.2/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.2.3 Linear</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.2/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.2.4 Affin</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.2/xcontent4.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.2.5 Betrag</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.2/xcontent5.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.2.6 Monome</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.2/xcontent6.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.2.7 Nullstellen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.2/xcontent7.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.2.8 Hyperbeln</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.2/xcontent8.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">6.2.9 Gebrochenrational</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.2/xcontent9.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.2.10 Asymptoten</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>6.3. Potenzfunktionen<ul>
+<li>
+<a href="../../html/1.6.3/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.3.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.3/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.3.2 Wurzelfunktionen</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>6.4. Exponentialfunktion und Logarithmus<ul>
+<li>
+<a href="../../html/1.6.4/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.4.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.4/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.4.2 Inhalt</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.4/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.4.3 Eulersche Funktion</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.4/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.4.4 Logarithmus</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.4/xcontent4.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.4.5 Logarithmengesetze</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>6.5. Trigonometrische Funktionen<ul>
+<li>
+<a href="../../html/1.6.5/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.5.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.5/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.5.2 Die Sinusfunktion</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.5/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.5.3 Kosinus, Tangens und Kotangens</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>6.6. Eigenschaften und Konstruktion elementarer Funktionen<ul>
+<li>
+<a href="../../html/1.6.6/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.6.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.6/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.6.2 Symmetrie</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.6.6/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">6.6.3 Summen, Produkte, Verkettungen</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>6.7. Abschlusstest<ul><li>
+<a href="../../html/1.6.7/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">6.7.1 Abschlusstest zu Kapitel 6</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div></div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.6.2/xcontent7.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill "><a href="../../html/1.6.2/modstart.html">6.2.1 Einführung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.6.2/xcontent1.html">6.2.2 Konstanten und Identität</a></li>
+<li class="subtoc-pill "><a href="../../html/1.6.2/xcontent2.html">6.2.3 Linear</a></li>
+<li class="subtoc-pill "><a href="../../html/1.6.2/xcontent3.html">6.2.4 Affin</a></li>
+<li class="subtoc-pill "><a href="../../html/1.6.2/xcontent4.html">6.2.5 Betrag</a></li>
+<li class="subtoc-pill "><a href="../../html/1.6.2/xcontent5.html">6.2.6 Monome</a></li>
+<li class="subtoc-pill "><a href="../../html/1.6.2/xcontent6.html">6.2.7 Nullstellen</a></li>
+<li class="subtoc-pill "><a href="../../html/1.6.2/xcontent7.html">6.2.8 Hyperbeln</a></li>
+<li class="subtoc-pill active"><a href="../../html/1.6.2/xcontent8.html">6.2.9 Gebrochenrational</a></li>
+<li class="subtoc-pill "><a href="../../html/1.6.2/xcontent9.html">6.2.10 Asymptoten</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.6.2/xcontent9.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+        <h4><div class='label label-default'>Kapitel 6 Elementare Funktionen </div></h4><strong>Abschnitt 6.2  Lineare Funktionen und Polynome</strong><h1>6.2.9 Gebrochenrationale Funktionen</h1>   <a id="sec:gebrochen"> </a> <!-- mdeclaresiteuxidpost;;VBKM06_EinfacheFunktionen_GebrochenRational;; //--> Allgemeine gebrochenrationale Funktionen besitzen Abbildungsvorschriften, die aus dem Quotienten zweier Polynome bestehen. Hier einige Beispiele mit ihren Graphen. Natürlich müssen auch bei diesen Funktionen diejenigen Zahlen aus dem Definitionsbereich ausgeschlossen werden, für die der Nenner in der Abbildungsvorschrift gleich Null wird.  <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   6.2.15      </b> </h5></div><div class="panel-body">   <a id="einf_bsp_gebr_rat"> </a> <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>f</mi><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mo>ℝ</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>8</mn></mrow><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>1</mn></mrow></mfrac><mi> </mi><mo>,</mo></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/><br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>g</mi><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mo>-</mo><mn>4</mn><mo>,</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">}</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mo>-</mo><mn>18</mn><mi>x</mi><mo>+</mo><mn>3</mn></mrow><mrow><mn>2</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>5</mn><mi>x</mi><mo>-</mo><mn>12</mn></mrow></mfrac><mi> </mi><mo>,</mo></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/><br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>h</mi><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mo>-</mo><mn>1</mn><mo stretchy="false">}</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msup><mo>-</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mi>x</mi></mrow><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/><br style="margin-bottom: 2em" />    <a id="L_SOURCEAUTOLABEL_232"> </a> <!-- registerfile;;elfunktionenmtikzauto_41.4x.png;;VBKM06;;41; //--> <img class="mintmodimage" src="../../../images/elfunktionenmtikzauto_41.4x.png"/><!-- mfeedbackbutton;Abbildung;elfunktionenmtikzauto_41.4x.png;:localmaterial:/[[!-- mfileref;;41; //--]]; //--><br style="margin-bottom: 2em" />    <a id="L_SOURCEAUTOLABEL_233"> </a> <!-- registerfile;;elfunktionenmtikzauto_42.4x.png;;VBKM06;;42; //--> <img class="mintmodimage" src="../../../images/elfunktionenmtikzauto_42.4x.png"/><!-- mfeedbackbutton;Abbildung;elfunktionenmtikzauto_42.4x.png;:localmaterial:/[[!-- mfileref;;42; //--]]; //-->        <a id="L_SOURCEAUTOLABEL_234"> </a> <!-- registerfile;;elfunktionenmtikzauto_43.4x.png;;VBKM06;;43; //--> <img class="mintmodimage" src="../../../images/elfunktionenmtikzauto_43.4x.png"/><!-- mfeedbackbutton;Abbildung;elfunktionenmtikzauto_43.4x.png;:localmaterial:/[[!-- mfileref;;43; //--]]; //--><br style="margin-bottom: 2em" /> </div></div></div>   <!-- mfeedbackbutton;Example;0;6.2.15; //-->     <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_6.2.16"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 6.2.16 </b> </h5></div><div class="panel-body"> Gegeben ist die Funktion <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>ψ</mi><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><msub><mrow><mi>D</mi></mrow><mrow><mi>ψ</mi></mrow></msub></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mo>-</mo><mn>42</mn><mi>x</mi></mrow><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>π</mi></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/>  Bestimmen Sie den größtmöglichen Definitionsbereich <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>D</mi></mrow><mrow><mi>ψ</mi></mrow></msub><mo>⊂</mo><mo>ℝ</mo></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>ψ</mi></mrow></math>.   <button name="Name_MHint1" class="hintbutton_closed btn btn-default" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>   <div class="hint well" style="display:none" id="MHint1">  Die Nullstellen des Nenners ergeben sich durch <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>π</mi><mo>=</mo><mn>0</mn><mi>   </mi><mo>⇔</mo><mi>   </mi><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mi>π</mi><mi>   </mi><mo>⇔</mo><mi>   </mi><mi>x</mi><mo>=</mo><mo>±</mo><msqrt><mrow><mi>π</mi></mrow></msqrt><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/>  Damit ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>D</mi></mrow><mrow><mi>ψ</mi></mrow></msub><mo>=</mo><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mo>-</mo><msqrt><mrow><mi>π</mi></mrow></msqrt><mo>,</mo><msqrt><mrow><mi>π</mi></mrow></msqrt><mo stretchy="false">}</mo></mrow></math>. </div> </div></div></div><!--   mfeedbackbutton;Exercise;0;6.2.16; //-->      <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_6.2.17"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 6.2.17 </b> </h5></div><div class="panel-body"> Bestimmen Sie für die gebrochenrationalen Funktionen im einführenden Beispiel <a class="MINTERLINK" href="../../html/1.6.2/xcontent8.html#einf_bsp_gebr_rat">6.2.15</a> jeweils den Zähler- sowie den Nennergrad und berechnen Sie die Nullstellen des Zählers und des Nenners.   <button name="Name_MHint2" class="hintbutton_closed btn btn-default" id="MHint2_button" type="button" onclick="toggle_hint('MHint2');">Lösung</button>   <div class="hint well" style="display:none" id="MHint2">  Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> hat den Zählergrad <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn></mrow></math> und den Nennergrad <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math>. Es gibt keine Zählernullstelle (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>8</mn><mo>≠</mo><mn>0</mn></mrow></math>) und keine Nennernullstelle (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn></mrow></math> hat keine reelle Lösung).<br/> Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi></mrow></math> hat den Zählergrad <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math> und den Nennergrad <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math>. Die Zählernullstelle liegt bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>6</mn></mrow></mfrac></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>-</mo><mn>18</mn><mi>x</mi><mo>+</mo><mn>3</mn><mo>=</mo><mn>0</mn><mo>⇔</mo><mi>x</mi><mo>=</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>18</mn></mrow></mfrac></mrow></math>) und die Nennernullstellen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mo>-</mo><mn>4</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>=</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math> erhält man durch Lösen der quadratischen Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>5</mn><mi>x</mi><mo>-</mo><mn>12</mn><mo>=</mo><mn>0</mn></mrow></math>, zum Beispiel mit Hilfe der Mitternachtsformel.<br/> Die Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>h</mi></mrow></math> hat den Zählergrad <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn></mrow></math> und den Nennergrad <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math>. Die Nennernullstelle liegt einfach bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn><mo>⇔</mo><mi>x</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math>). Für die Zählernullstellen muss die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>3</mn></mrow></msup><mo>-</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math> gelöst werden. Nach Ausklammern von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> erhält man <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo stretchy="false">(</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> und folgert, dass eine Nullstelle bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></math> liegt. Schließlich muss noch die quadratische Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn></mrow></math> mit der Mitternachtsformel gelöst werden. Es ergibt sich hier allerdings eine negative Diskriminante von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Δ</mi><mo>=</mo><msup><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>4</mn><mo>·</mo><mn>1</mn><mo>·</mo><mn>1</mn><mo>=</mo><mo>-</mo><mn>3</mn></mrow></math>, so dass keine weitere reelle Lösung - und damit keine weitere Zählernullstelle - existiert. </div> </div></div></div><!--   mfeedbackbutton;Exercise;0;6.2.17; //-->      <br style="margin-bottom: 2em" /> Die Nullstellen einer gebrochenrationalen Funktion ergeben sich als die Zählernullstellen. So hat zum Beispiel die Funktion <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>j</mi><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mo>-</mo><mn>1</mn><mo>;</mo><mn>3</mn><mo stretchy="false">}</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>3</mn></mrow></mfrac></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/>  die einzige Nullstelle bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math>. Die Nennernullstellen gebrochenrationaler Funktionen, welche aus dem Definitionsbereich ausgeschlossen werden, müssen oft noch genauer untersucht werden. Vor allem ist von Interesse, wie die Graphen der Funktionen in der Nähe der Definitionslücken verlaufen. Die Nennernullstellen gebrochenrationaler Funktionen bezeichnet man auch als <b>Polstellen</b><!-- mindexentry;;Polstellen; //--><a class="label" name="ELI_SW170"></a>. Die folgenden Beispiele zeigen, dass es verschiedene Typen von Polstellen gibt.  <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   6.2.18      </b> </h5></div><div class="panel-body"> <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mn>2</mn><mo stretchy="false">}</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>3</mn></mrow><mrow><mi>x</mi><mo>-</mo><mn>2</mn></mrow></mfrac></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/><br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mo>-</mo><mn>3</mn><mo stretchy="false">}</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>2</mn></mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>3</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/><br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>3</mn></mrow></msub><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mn>1</mn><mo stretchy="false">}</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>1</mn></mrow><mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow></mfrac></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/><br style="margin-bottom: 2em" />    <a id="L_SOURCEAUTOLABEL_235"> </a> <!-- registerfile;;elfunktionenmtikzauto_44.4x.png;;VBKM06;;44; //--> <img class="mintmodimage" src="../../../images/elfunktionenmtikzauto_44.4x.png"/><!-- mfeedbackbutton;Abbildung;elfunktionenmtikzauto_44.4x.png;:localmaterial:/[[!-- mfileref;;44; //--]]; //--><br style="margin-bottom: 2em" />    <a id="L_SOURCEAUTOLABEL_236"> </a> <!-- registerfile;;elfunktionenmtikzauto_45.4x.png;;VBKM06;;45; //--> <img class="mintmodimage" src="../../../images/elfunktionenmtikzauto_45.4x.png"/><!-- mfeedbackbutton;Abbildung;elfunktionenmtikzauto_45.4x.png;:localmaterial:/[[!-- mfileref;;45; //--]]; //-->        <a id="L_SOURCEAUTOLABEL_237"> </a> <!-- registerfile;;elfunktionenmtikzauto_46.4x.png;;VBKM06;;46; //--> <img class="mintmodimage" src="../../../images/elfunktionenmtikzauto_46.4x.png"/><!-- mfeedbackbutton;Abbildung;elfunktionenmtikzauto_46.4x.png;:localmaterial:/[[!-- mfileref;;46; //--]]; //--></div></div></div>   <!-- mfeedbackbutton;Example;0;6.2.18; //-->     <br style="margin-bottom: 2em" /> Die Stellen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>3</mn></mrow></math> sind sogenannte echte Polstellen der Funktionen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math>, die Stelle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math> ist eine sogenannte hebbare Definitionslücke der Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>3</mn></mrow></msub></mrow></math>. Anhand der Graphen wird der Unterschied zwischen diesen Typen von Polstellen deutlich. Bei echten Polstellen wächst oder fällt der Graph in der Nähe der Polstelle unbeschränkt, und bei hebbaren Definitionslücken mündet er von links und rechts in das ,,Loch" im Graphen ein.   <br style="margin-bottom: 2em" /> Anhand der Abbildungsvorschriften der drei Funktionen kommt dieser Unterschied folgendermaßen zum Ausdruck: Die Werte <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>3</mn></mrow></math> sind Nennernullstellen, aber keine Zählernullstellen der Funktionen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> bzw. <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math>. Tatsächlich besitzen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math> gar keine Zählernullstellen. In einem solchen Fall sind die Nennernullstellen immer echte Polstellen.  <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_6.2.19"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 6.2.19 </b> </h5></div><div class="panel-body"> Ist die Nennernullstelle der Funktion <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>q</mi><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">}</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow></msup><mo>-</mo><mn>1</mn></mrow><mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></mfrac></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/>  eine echte Polstelle? Wenn ja, warum?   <button name="Name_MHint3" class="hintbutton_closed btn btn-default" id="MHint3_button" type="button" onclick="toggle_hint('MHint3');">Lösung</button>   <div class="hint well" style="display:none" id="MHint3">  Die Stelle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math> ist eine Nullstelle des Nenners: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mn>2</mn><mi>x</mi><mo>-</mo><mn>1</mn><mo>=</mo><mn>0</mn><mi>   </mi><mo>⇔</mo><mi>   </mi><mn>2</mn><mi>x</mi><mo>=</mo><mn>1</mn><mi>   </mi><mo>⇔</mo><mi>   </mi><mi>x</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/>  Aber für den Zähler gilt: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow></msup><mo>-</mo><mn>1</mn><mo>=</mo><mn>0</mn><mi>   </mi><mo>⇔</mo><mi>   </mi><msup><mrow><mi>x</mi></mrow><mrow><mn>4</mn></mrow></msup><mo>=</mo><mn>1</mn><mi>   </mi><mo>⇔</mo><mi>   </mi><mi>x</mi><mo>=</mo><mo>±</mo><mn>1</mn><mi> </mi><mo>,</mo></mrow></mstyle></math></center><br/>  womit die Zählernullstellen bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>1</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math> liegen und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math> keine Zählernullstelle ist. Damit ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math> eine echte Polstelle. </div> </div></div></div><!--   mfeedbackbutton;Exercise;0;6.2.19; //-->      <br style="margin-bottom: 2em" /> Ein weiterer Unterschied wird zwischen den beiden Polstellen von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math> deutlich. Bei der Polstelle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math> von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> findet ein Vorzeichenwechsel der Funktion statt. Der Graph von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> fällt links der Polstelle unbeschränkt ins Negative und wächst rechts der Polstelle (von rechts kommend) unbeschränkt ins Positive.<br/> Der Graph von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math> wächst auf beiden Seiten der Polstelle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>3</mn></mrow></math> (bei Annäherung an diese) ins Positive, es findet also kein Vorzeichenwechsel statt.   <br style="margin-bottom: 2em" /> In der Abbildungsvorschrift von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>f</mi></mrow><mrow><mn>3</mn></mrow></msub></mrow></math> hingegen kann man den Term, der dafür verantwortlich ist, dass man die Polstelle <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math> nicht einsetzen darf, herauskürzen. Dies ist bei gebrochenrationalen Funktionen, die eine hebbare Definitionslücke als Polstelle aufweisen, immer so.    <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_6.2.20"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 6.2.20 </b> </h5></div><div class="panel-body"> Bestimmen Sie alle Polstellen/Definitionslücken von <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>γ</mi><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><msub><mrow><mi>D</mi></mrow><mrow><mi>γ</mi></mrow></msub></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>3</mn><mi>x</mi><mo>+</mo><mn>6</mn></mrow><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>x</mi><mo>-</mo><mn>6</mn></mrow></mfrac></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/>  sowie deren Typ. Geben Sie den größtmöglichen Definitionsbereich <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>D</mi></mrow><mrow><mi>γ</mi></mrow></msub><mo>⊂</mo><mo>ℝ</mo></mrow></math> an.   <button name="Name_MHint4" class="hintbutton_closed btn btn-default" id="MHint4_button" type="button" onclick="toggle_hint('MHint4');">Lösung</button>   <div class="hint well" style="display:none" id="MHint4">  Die Nennernullstellen sind die Lösungen der quadratischen Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>x</mi><mo>-</mo><mn>6</mn><mo>=</mo><mn>0</mn></mrow></math>, also <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1,2</mn></mrow></msub><mo>=</mo><mfrac><mrow><mo>-</mo><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>±</mo><msqrt><mrow><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>4</mn><mo>·</mo><mo stretchy="false">(</mo><mo>-</mo><mn>6</mn><mo stretchy="false">)</mo><mo>·</mo><mn>1</mn></mrow></msqrt></mrow><mrow><mn>2</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn><mo>±</mo><mn>5</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>=</mo><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mn>3</mn></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mo>-</mo><mn>2</mn></mrow></mtd></mtr></mtable><mo/></mrow><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/>  Folglich ist der größtmögliche Definitionsbereich <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>D</mi></mrow><mrow><mi>γ</mi></mrow></msub><mo>=</mo><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>3</mn><mo stretchy="false">}</mo><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/>  Die Zählernullstelle ergibt sich durch <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mi>x</mi><mo>+</mo><mn>6</mn><mo>=</mo><mn>0</mn></mrow></math>, liegt also ebenfalls bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math>. Wir können damit die Abbildungsvorschrift von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>γ</mi></mrow></math> also für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>∈</mo><msub><mrow><mi>D</mi></mrow><mrow><mi>γ</mi></mrow></msub></mrow></math> folgendermaßen umformen: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>γ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mn>3</mn><mi>x</mi><mo>+</mo><mn>6</mn></mrow><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>x</mi><mo>-</mo><mn>6</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>3</mn><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>3</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mi>x</mi><mo>-</mo><mn>3</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/>  Damit lässt sich die Funktion auch als <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>γ</mi><mo>:</mo><mi>  </mi><mrow><mo>{</mo><mtable><mtr><mtd columnalign="right"><mrow><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>3</mn><mo stretchy="false">}</mo></mrow></mtd><mtd columnalign="center"><mrow><mo>→</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>ℝ</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>⟼</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>3</mn></mrow><mrow><mi>x</mi><mo>-</mo><mn>3</mn></mrow></mfrac></mrow></mtd></mtr></mtable><mo/></mrow></mrow></mstyle></math></center><br/>  schreiben und es liegt bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math> eine stetig hebbare Definitionslücke und bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>3</mn></mrow></math> eine echte Polstelle mit Vorzeichenwechsel vor. </div> </div></div></div><!--   mfeedbackbutton;Exercise;0;6.2.20; //-->     <br/><!-- mfeedbackbutton;Seite;0;6.2.9; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Diskriminante%20(Modulform)" target="_blank">Diskriminante</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Gleichung" target="_blank">Gleichung</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Grad%20(Winkel)" target="_blank">Grad</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Nullstelle" target="_blank">Nullstelle</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Polstelle" target="_blank">Polstelle</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Polynom" target="_blank">Polynom</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Rationale%20Funktion" target="_blank">Rationale Funktion</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Vorzeichenwechsel" target="_blank">Vorzeichenwechsel</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.6.2/xcontent7.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.6.2/xcontent9.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM06_EinfacheFunktionen_GebrochenRational";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "xcontent8";
+			var fullName = "html/1.6.2/xcontent8.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>

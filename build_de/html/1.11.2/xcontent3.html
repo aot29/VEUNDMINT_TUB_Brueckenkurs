@@ -1,0 +1,347 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 11.2.4 Stetige Verzinsung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>11.1. Begriffe und Sprechweisen<ul>
+<li>
+<a href="../../html/1.11.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.1.2 Rundung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.1/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.1.3 Bemerkungen</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.2. Häufigkeitsverteilungen und Prozentrechnung<ul>
+<li>
+<a href="../../html/1.11.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.2 Prozentrechnung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.3 Zinsrechnung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">11.2.4 Stetige Verzinsung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent4.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.5 Diagrammarten</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.3. Statistische Maßzahlen<ul>
+<li>
+<a href="../../html/1.11.3/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.3/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.2 Robuste Maßzahlen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.3/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.3 Streuungsmaße</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.4. Abschlusstest<ul><li>
+<a href="../../html/1.11.4/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">11.4.1 Abschlusstest Kapitel 11</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.11.2/xcontent2.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.2/modstart.html">11.2.1 Einführung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.2/xcontent1.html">11.2.2 Prozentrechnung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.2/xcontent2.html">11.2.3 Zinsrechnung</a></li>
+<li class="subtoc-pill active"><a href="../../html/1.11.2/xcontent3.html">11.2.4 Stetige Verzinsung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.2/xcontent4.html">11.2.5 Diagrammarten</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.11.2/xcontent4.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+        <h4><div class='label label-default'>Kapitel 11 Sprechweisen der Statistik </div></h4><strong>Abschnitt 11.2  Häufigkeitsverteilungen und Prozentrechnung</strong><h1>11.2.4 Stetige Verzinsung</h1> <!-- mdeclaresiteuxidpost;;VBKM_STOCH_2_4;; //-->  <br style="margin-bottom: 2em" /> Der Ausdruck <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></msub><mo>=</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>r</mi></mrow><mrow><mi>n</mi></mrow></mfrac><mo>)</mo></mrow><mrow><mi>n</mi></mrow></msup></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> lässt sich in Abhängigkeit von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>∈</mo><mo>ℕ</mo></mrow></math> auch auffassen als <a class="MINTERLINK" href="../../html/1.6.1/modstart.html#VBKM06_Abbildungen">Abbildung</a> <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>a</mi><mo>:</mo><mi>  </mi><mo>ℕ</mo><mi> </mi><mo>→</mo><mi> </mi><mo>ℝ</mo><mi>  </mi><mi>  </mi><mo>,</mo><mi>  </mi><mi>  </mi><mi>n</mi><mi> </mi><mo>⟼</mo><mi> </mi><mi>a</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><msub><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>r</mi></mrow><mrow><mi>n</mi></mrow></mfrac><mo>)</mo></mrow><mrow><mi>n</mi></mrow></msup><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Eine Abbildung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>ℕ</mo><mo>∋</mo><mi>n</mi><mo>→</mo><msub><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></msub><mo>∈</mo><mo>ℝ</mo></mrow></math> nennt man eine reelle <b>Zahlenfolge</b><!-- mindexentry;;Zahlenfolge; //--><a class="label" name="ELI_SW309"></a>. Die Paare <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><msub><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></msub><mo stretchy="false">)</mo></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>∈</mo><mo>ℕ</mo></mrow></math> lassen sich interpretieren als Punkte in der euklidischen Ebene. Im folgenden Bild ist die Folge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></msub><mo>=</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mn>0</mn><mo>.</mo><mn>4</mn></mrow><mrow><mi>n</mi></mrow></mfrac><mo>)</mo></mrow><mrow><mi>n</mi></mrow></msup></mrow></math> in diesem Sinn als Punktfolge in der euklidischen Ebene dargestellt:  <br style="margin-bottom: 2em" />  <div style="text-align:center"><!-- registerfile;;exp1.png;;VBKM_Stochastik;;4; //--> <img class="mintmodimage" src="../../../images/exp1.png"/><!-- mfeedbackbutton;Abbildung;exp1.png;:localmaterial:/[[!-- mfileref;;4; //--]]; //--><a id="G_VBKM_STOCH_EXP1"> </a> </div>  <br style="margin-bottom: 2em" /> An diesem Bild erkennt man zwei Eigenschaften dieser Folge:  <ul><li>Die Folge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></msub></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>∈</mo><mo>ℕ</mo></mrow></math>, ist monoton wachsend, d.h. aus <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi><mo>≤</mo><mi>j</mi></mrow></math> folgt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mi>i</mi></mrow></msub><mo>≤</mo><msub><mrow><mi>a</mi></mrow><mrow><mi>j</mi></mrow></msub></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>∈</mo><mo>ℕ</mo></mrow></math>. <br style="margin-bottom: 2em" /> </li>  <li>Die Folge nähert sich für wachsende <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>∈</mo><mo>ℕ</mo></mrow></math> beliebig genau einem Wert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> an. Diese Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> nennt man den Grenzwert der Folge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></msub></mrow></math> und man schreibt <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow></munder><msub><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mi>a</mi><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/><br style="margin-bottom: 2em" /> </li> </ul> In der Vorlesung Mathematik 1 wird die natürliche <a class="MINTERLINK" href="../../html/1.6.4/xcontent2.html#M06_e_fkt">Exponentialfunktion</a> <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>exp</mi><mo>:</mo><mi>  </mi><mo>ℝ</mo><mi> </mi><mo>→</mo><mi> </mi><mo>ℝ</mo><mi>  </mi><mi>  </mi><mo>,</mo><mi>  </mi><mi>  </mi><mi>x</mi><mi> </mi><mo>⟼</mo><mi> </mi><mi>exp</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi> </mi><mo>=</mo><mi>  </mi><msup><mrow><mi>e</mi></mrow><mrow><mi>x</mi></mrow></msup><br/></mrow></mstyle></math></center><br/>  vollständig eingeführt.  <br style="margin-bottom: 2em" />  <div style="text-align:center"><!-- registerfile;;exp2.png;;VBKM_Stochastik;;5; //--> <img class="mintmodimage" src="../../../images/exp2.png"/><!-- mfeedbackbutton;Abbildung;exp2.png;:localmaterial:/[[!-- mfileref;;5; //--]]; //--><a id="G_VBKM_STOCH_EXP2"> </a><br/> Die natürliche Exponentialfunktion. </div>  <br style="margin-bottom: 2em" /> Dort wird die folgende Aussage gezeigt:  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    11.2.18           </b> </h5></div><div class="panel-body"> <br/> Für beliebiges <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> gilt <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow></munder><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow></mfrac><mo>)</mo></mrow><mrow><mi>n</mi></mrow></msup><mi>  </mi><mo>=</mo><mi>  </mi><msup><mrow><mi>e</mi></mrow><mrow><mi>x</mi></mrow></msup><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Info;0;11.2.18; //-->     <br style="margin-bottom: 2em" /> Für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math> ergibt dieser Grenzwert die Eulersche Zahl, benannt nach dem Schweizer Mathematiker Leonhard Euler (1707 - 1783): <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow></munder><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac><mo>)</mo></mrow><mrow><mi>n</mi></mrow></msup><mi>  </mi><mo>=</mo><mi>  </mi><mi>e</mi><mi>  </mi><mo>≈</mo><mi>  </mi><mn>2,7182</mn><mo>…</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Man kann zeigen (schwierig), dass die Eulersche Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi></mrow></math> eine irrationale Zahl ist und sich daher nicht als Bruch schreiben lässt.  <br style="margin-bottom: 2em" /> Die Exponentialfunktion erfüllt die <a class="MINTERLINK" href="../../html/1.1.4/xcontent1.html#VBKM01_Potenzgesetze">Potenzgesetze</a> für beliebige reelle Zahlen als Exponenten:  <ul><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>exp</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mrow><mi>e</mi></mrow><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></msup><mo>=</mo><msup><mrow><mi>e</mi></mrow><mrow><mi>x</mi></mrow></msup><mo>·</mo><msup><mrow><mi>e</mi></mrow><mrow><mi>y</mi></mrow></msup><mo>=</mo><mi>exp</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>·</mo><mi>exp</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>∈</mo><mo>ℝ</mo></mrow></math>. <br style="margin-bottom: 2em" /> </li>  <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>exp</mi><mo stretchy="false">(</mo><mi>x</mi><mo>·</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mrow><mi>e</mi></mrow><mrow><mi>x</mi><mo>·</mo><mi>y</mi></mrow></msup><mo>=</mo><msup><mrow><mo>(</mo><msup><mrow><mi>e</mi></mrow><mrow><mi>x</mi></mrow></msup><mo>)</mo></mrow><mrow><mi>y</mi></mrow></msup><mo>=</mo><msup><mrow><mo>(</mo><msup><mrow><mi>e</mi></mrow><mrow><mi>y</mi></mrow></msup><mo>)</mo></mrow><mrow><mi>x</mi></mrow></msup></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>∈</mo><mo>ℝ</mo></mrow></math>. <br style="margin-bottom: 2em" /> </li> </ul><br style="margin-bottom: 2em" /> Mit Hilfe der Exponentialfunktion und dem Zusammenhang mit der Folge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow></mfrac><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mi>n</mi></mrow></msup></mrow></math> kann man Informationen über den Verzinsungsvorgang erhalten wenn die Anzahl der Zeitpunkte <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math> sehr groß wird: Das Kapital wird jährlich mit einem Faktor <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>r</mi></mrow><mrow><mi>n</mi></mrow></mfrac><mo>)</mo></mrow><mrow><mi>n</mi></mrow></msup></mrow></math> multipliziert, wenn die Zinsen mit der Rate <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mi>r</mi></mrow><mrow><mi>n</mi></mrow></mfrac></mrow></math> dem Anfangskapital <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>S</mi></mrow><mrow><mn>0</mn></mrow></msub></mrow></math> an <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math> verschiedenen Zeitpunkten des Jahres gutgeschrieben werden. Nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math> Jahren, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mo>∈</mo><mo>ℕ</mo></mrow></math>, ist das Kapital angewachsen auf <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>S</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>·</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>r</mi></mrow><mrow><mi>n</mi></mrow></mfrac><mo>)</mo></mrow><mrow><mi>n</mi><mo>·</mo><mi>t</mi></mrow></msup><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow></math> ergibt sich der Grenzwert <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><munder><mo>lim</mo><mrow><mi>n</mi><mo>→</mo><mi>∞</mi></mrow></munder><mrow><mo>(</mo><msub><mrow><mi>S</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>·</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>r</mi></mrow><mrow><mi>n</mi></mrow></mfrac><mo>)</mo></mrow><mrow><mi>n</mi><mo>·</mo><mi>t</mi></mrow></msup><mo>)</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><msub><mrow><mi>S</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>·</mo><msup><mrow><mi>e</mi></mrow><mrow><mi>r</mi><mo>·</mo><mi>t</mi></mrow></msup><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Bei wachsendem <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>∈</mo><mo>ℕ</mo></mrow></math> werden die Zinsen immer häufiger gutgeschrieben:  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    11.2.19           </b> </h5></div><div class="panel-body"> <br/> Den Grenzfall nennt man den Fall <b>stetiger Verzinsung</b><!-- mindexentry;;Zinsen (stetig); //--><a class="label" name="ELI_SW310"></a>. Die Formel <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>s</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><msub><mrow><mi>S</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>·</mo><msup><mrow><mi>e</mi></mrow><mrow><mi>r</mi><mo>·</mo><mi>t</mi></mrow></msup><br/></mrow></mstyle></math></center><br/>  gibt für positive reelle Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math> an, auf welchen Betrag ein Kapital <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>S</mi></mrow><mrow><mn>0</mn></mrow></msub></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math> Jahren bei stetiger Verzinsung angewachsen ist, wenn der jährliche Zinssatz <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi></mrow></math> ist. </div></div></div>   <!-- mfeedbackbutton;Info;0;11.2.19; //-->     <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   11.2.20      </b> </h5></div><div class="panel-body"> Ein Guthaben von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>5000</mn></mrow></math> EUR wird auf einem Konto bei einem jährlichen Zinssatz von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>9</mn><mi>%</mi></mrow></math> und stetiger Verzinsung angelegt. Nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mo>=</mo><mn>8</mn></mrow></math> Jahren ergibt sich dann ein Guthaben von <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mn>5000</mn><mo>·</mo><msup><mrow><mi>e</mi></mrow><mrow><mn>0,09</mn><mo>·</mo><mn>8</mn></mrow></msup><mi>  </mi><mo>=</mo><mi>  </mi><mn>5000</mn><mo>·</mo><msup><mrow><mi>e</mi></mrow><mrow><mn>0,72</mn></mrow></msup><mi>  </mi><mo>≈</mo><mi>  </mi><mn>10272,17</mn><mi>  </mi><mtext>EUR</mtext><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Example;0;11.2.20; //-->     <br style="margin-bottom: 2em" /> <br/><!-- mfeedbackbutton;Seite;0;11.2.4; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Euklid" target="_blank">Euklid</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Eulersche%20Zahl" target="_blank">Eulersche Zahl</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Exponentialfunktion" target="_blank">Exponentialfunktion</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Grenzwert%20(Funktion)" target="_blank">Grenzwert</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Mathematiker" target="_blank">Mathematiker</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Potenz%20(Geometrie)" target="_blank">Potenz</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Punkt%20(Geometrie)" target="_blank">Punkt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Satz%20(Mathematik)" target="_blank">Satz</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Stochastik" target="_blank">Stochastik</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.11.2/xcontent2.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.11.2/xcontent4.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM_STOCH_2_4";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "xcontent3";
+			var fullName = "html/1.11.2/xcontent3.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 4.4.2 Systeme mit freiem Parameter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>4.1. Was sind Lineare Gleichungssysteme?<ul>
+<li>
+<a href="../../html/1.4.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.1.2 Inhalt</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>4.2. LGS mit zwei Unbekannten<ul>
+<li>
+<a href="../../html/1.4.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.2.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.2.2 Einsetz- und Gleichsetzmethode</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.2/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.2.3 Additionsmethode</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.2/xcontent3.html" class="glyphicon glyphicon-file status2"><span class="entryText ">4.2.4 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>4.3. LGS mit drei Unbekannten<ul>
+<li>
+<a href="../../html/1.4.3/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.3.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.3/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.3.2 Lösbarkeit</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.3/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.3.3 Einsetzmethode</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.3/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.3.4 Additionsmethode</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.3/xcontent4.html" class="glyphicon glyphicon-file status2"><span class="entryText ">4.3.5 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>4.4. Allgemeinere Systeme<ul>
+<li>
+<a href="../../html/1.4.4/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.4.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.4/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">4.4.2 Systeme mit freiem Parameter</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.4/xcontent2.html" class="glyphicon glyphicon-file status2"><span class="entryText ">4.4.3 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>4.5. Abschlusstest<ul><li>
+<a href="../../html/1.4.5/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">4.5.1 Abschlusstest Modul 4</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div></div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.4.4/modstart.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill "><a href="../../html/1.4.4/modstart.html">4.4.1 Einführung</a></li>
+<li class="subtoc-pill active"><a href="../../html/1.4.4/xcontent1.html">4.4.2 Systeme mit freiem Parameter</a></li>
+<li class="subtoc-pill "><a href="../../html/1.4.4/xcontent2.html">4.4.3 Aufgaben</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.4.4/xcontent2.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+        <h4><div class='label label-default'>Kapitel 4 Lineare Gleichungssysteme </div></h4><strong>Abschnitt 4.4  Allgemeinere Systeme</strong><h1>4.4.2 Systeme mit freiem Parameter</h1> <!-- mdeclaresiteuxidpost;;VBKM04_FreieParameter;; //--> Am Anfang steht ein Beispiel, das zugegebenermaßen sehr einfach ist, aber dennoch auf einen, wenn nicht <b>den</b>, entscheidenden Punkt im Zusammenhang mit freien Parametern in Systemen linearer Gleichungen hinführen wird:                <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   4.4.1      </b> </h5></div><div class="panel-body"> Es soll nach der Lösungsmenge für das Lineare Gleichungssystem <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right"><mrow><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>:</mo></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="right"><mrow><mi>x</mi><mo>-</mo><mn>2</mn><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>3</mn><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo>:</mo></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="right"><mrow><mo>-</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>4</mn><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>α</mi></mrow></mtd></mtr></mtable><br/></mrow></mstyle></math></center><br/>  in Abhängigkeit von dem Parameter <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math> gesucht werden.  <br style="margin-bottom: 2em" /> Dazu multipliziert man Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> mit dem Faktor <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> durch und addiert Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math>: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mn>2</mn><mo>·</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn><mi>y</mi><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mo>-</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>4</mn><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mn>2</mn><mo>·</mo><mn>3</mn><mo>+</mo><mi>α</mi><mo>⇔</mo><mn>2</mn><mi>x</mi><mo>-</mo><mn>4</mn><mi>y</mi><mo>-</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>4</mn><mi>y</mi><mo>=</mo><mn>6</mn><mo>+</mo><mi>α</mi><mo>⇔</mo><mn>0</mn><mo>=</mo><mn>6</mn><mo>+</mo><mi>α</mi><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/><br style="margin-bottom: 2em" /> Nun müssen zwei Fälle unterschieden werden:  <br style="margin-bottom: 2em" /> <b>Fall A</b>: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>≠</mo><mo>-</mo><mn>6</mn></mrow></math>: Ist der vorgegebene freie Parameter <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math> ungleich <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>-</mo><mn>6</mn></mrow></math>, so stößt man auf einen Widerspruch. In diesem Fall besitzt das Lineare Gleichungssystem <b>keine Lösung</b>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mtext>∅</mtext></mrow></math>.  <br style="margin-bottom: 2em" /> <b>Fall B</b>: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mo>-</mo><mn>6</mn></mrow></math>: Ist der vorgegebene freie Parameter <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math> gleich <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>-</mo><mn>6</mn></mrow></math>, so ist die Gleichung identisch erfüllt (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn><mo>=</mo><mn>0</mn></mrow></math>). In der Tat sind in diesem Fall die beiden Ausgangsgleichungen gerade Vielfache voneinander, sodass nur eine von ihnen tatsächlich Information trägt. Dementsprechend ist jetzt die <b>Lösungsmenge unendlich mächtig</b> und kann beispielsweise folgendermaßen angegeben werden: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mn>3</mn><mo>+</mo><mn>2</mn><mi>t</mi><mo>;</mo><mi>y</mi><mo>=</mo><mi>t</mi><mo stretchy="false">)</mo><mi> </mi><mo>:</mo><mi> </mi><mi>t</mi><mo>∈</mo><mo>ℝ</mo><mo stretchy="false">}</mo></mrow></math>. </div></div></div>   <!-- mfeedbackbutton;Example;0;4.4.1; //-->    Das Beispiel zeigt, dass das Aussehen der Lösungsmenge sehr stark von der Wahl des freien Parameters abhängen kann.  <br style="margin-bottom: 2em" /> Ein solcher freier Parameter kann aber nicht nur auf einer der rechten Seiten des Linearen Gleichungssystems auftreten, sondern auch auf den linken Seiten, ja er kann auch mehrfach, in funktionalen Abwandlungen, sowohl links als auch rechts usw. vorkommen. Auch mehrere freie Parameter sind denkbar. Ein etwas komplizierteres Beispiel ist gegeben durch:                <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   4.4.2      </b> </h5></div><div class="panel-body"> Im Folgenden soll die Lösungsmenge des Linearen Gleichungssystems <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>α</mi><mi>z</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>x</mi><mo>+</mo><mi>α</mi><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>α</mi><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  studiert werden und zwar in Abhängigkeit von dem Wert des Parameters <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>.  <br style="margin-bottom: 2em" /> Dazu löst man beispielsweise die erste Gleichung nach der Unbekannten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> auf, <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>x</mi><mo>=</mo><mn>1</mn><mo>-</mo><mi>y</mi><mo>-</mo><mi>α</mi><mi>z</mi><mi>  </mi><mo>:</mo><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>1</mn><mo>'</mo><mo stretchy="false">)</mo><mi> </mi><mo>,</mo><br/></mrow></mstyle></math></center><br/>  und <b>setzt</b> das Ergebnis für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> in die zweite und in die dritte Gleichung <b>ein</b>: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mi>y</mi><mo>-</mo><mi>α</mi><mi>z</mi><mo stretchy="false">)</mo><mo>+</mo><mi>α</mi><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn></mrow></mtd><mtd columnalign="center"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="right"><mrow><mo>-</mo><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mi>α</mi><mo stretchy="false">)</mo><mi>y</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mi>α</mi><mo stretchy="false">)</mo><mi>z</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>0</mn></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="left"><mrow><mo>:</mo><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>2</mn><mo>'</mo><mo stretchy="false">)</mo><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>α</mi><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mi>y</mi><mo>-</mo><mi>α</mi><mi>z</mi><mo stretchy="false">)</mo><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn></mrow></mtd><mtd columnalign="center"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mi>α</mi><mo stretchy="false">)</mo><mi>y</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><msup><mrow><mi>α</mi></mrow><mrow><mn>2</mn></mrow></msup><mo stretchy="false">)</mo><mi>z</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn><mo>-</mo><mi>α</mi></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="left"><mrow><mo>:</mo><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>3</mn><mo>'</mo><mo stretchy="false">)</mo><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable><br/></mrow></mstyle></math></center><br/>  Es entsteht ein System aus <b>zwei</b> linearen Gleichungen in den <b>zwei</b> Unbekannten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>z</mi></mrow></math>. Diesem System sieht man sofort an, dass für den Wert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math> etwas Besonderes passiert. Man führt daher eine Fallunterscheidung durch:  <br style="margin-bottom: 2em" /> <b>Fall 1:</b> <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math>: In diesem Fall sind die beiden Gleichungen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>3</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></math> identisch erfüllt (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn><mo>=</mo><mn>0</mn></mrow></math>) und liefern keine weiteren Informationen; als einzige Beziehung zwischen den Unbekannten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>z</mi></mrow></math> verbleibt Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></math> bzw. Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>, die für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math><br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo>=</mo><mn>1</mn><mi>  </mi><mo>:</mo><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mover><mrow><mn>1</mn></mrow><mo>^</mo></mover><mo stretchy="false">)</mo><br/></mrow></mstyle></math></center><br/>  lautet. Daher besitzt die Lösungsmenge hier unendlich viele Elemente. Sie kann mit Hilfe <b>zweier freier Parameter</b> angegeben werden, z.B. <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>s</mi><mo>;</mo><mi>t</mi><mo>;</mo><mn>1</mn><mo>-</mo><mi>s</mi><mo>-</mo><mi>t</mi><mo stretchy="false">)</mo><mi> </mi><mo>:</mo><mi> </mi><mi>s</mi><mo>,</mo><mi>t</mi><mo>∈</mo><mo>ℝ</mo><mo stretchy="false">}</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Anschaulich gesprochen entspricht die Lösungsmenge gerade der durch Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mover><mrow><mn>1</mn></mrow><mo>^</mo></mover><mo stretchy="false">)</mo></mrow></math> beschriebenen Ebene.  <br style="margin-bottom: 2em" /> <b>Fall 2:</b> <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>≠</mo><mn>1</mn></mrow></math>: In diesem Fall kann man sowohl Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></math> als auch Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>3</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></math> durch <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></math> dividieren; man erhält unter Verwendung der 3. Binomischen Formel (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><msup><mrow><mi>α</mi></mrow><mrow><mn>2</mn></mrow></msup><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><mi>α</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></math>): <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right"><mrow><mo>-</mo><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>0</mn></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="left"><mrow><mo>:</mo><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>2</mn><mo>'</mo><mo>'</mo><mo stretchy="false">)</mo><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>y</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>α</mi><mo stretchy="false">)</mo><mi>z</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="left"><mrow><mo>:</mo><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>3</mn><mo>'</mo><mo>'</mo><mo stretchy="false">)</mo><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable><br/></mrow></mstyle></math></center><br/>  Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>'</mo><mo>'</mo><mo stretchy="false">)</mo></mrow></math> besagt, dass <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mi>z</mi></mrow></math> gilt; dies setzt man in Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>3</mn><mo>'</mo><mo>'</mo><mo stretchy="false">)</mo></mrow></math> ein: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>z</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>α</mi><mo stretchy="false">)</mo><mi>z</mi><mo>=</mo><mn>1</mn><mo>⇔</mo><mo stretchy="false">(</mo><mn>2</mn><mo>+</mo><mi>α</mi><mo stretchy="false">)</mo><mi>z</mi><mo>=</mo><mn>1</mn><mi>  </mi><mo>:</mo><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mo>☆</mo><mo stretchy="false">)</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Jetzt muss man nochmals vorsichtig sein und eine weitere Fallunterscheidung durchführen, da <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>≠</mo><mo>-</mo><mn>2</mn></mrow></math> unterschiedliche Konsequenzen nach sich ziehen:  <br style="margin-bottom: 2em" /> <b>Fall 2a:</b> <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math>: In diesem (Unter-)Fall lautet Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mo>☆</mo><mo stretchy="false">)</mo></mrow></math>: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn><mo>=</mo><mn>1</mn></mrow></math>. Somit tritt ein Widerspruch auf und das Lineare Gleichungssystem, von dem ausgegangen wurde, hat keine Lösung, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mtext>∅</mtext></mrow></math>.  <br style="margin-bottom: 2em" /> <b>Fall 2b:</b> <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>≠</mo><mo>-</mo><mn>2</mn></mrow></math>: In diesem (Unter-)Fall kann man die letzte Gleichung problemlos nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>z</mi></mrow></math> auflösen, <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>z</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mo>+</mo><mi>α</mi></mrow></mfrac><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/><br style="margin-bottom: 2em" /> Damit liegen auch <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mi>z</mi></mrow></math>) und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>1</mn><mo>-</mo><mi>y</mi><mo>-</mo><mi>α</mi><mi>z</mi></mrow></math>) fest; das ursprüngliche Lineare Gleichungssystem besitzt eine eindeutige Lösung, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mo>+</mo><mi>α</mi></mrow></mfrac><mo>;</mo><mi>y</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mo>+</mo><mi>α</mi></mrow></mfrac><mo>;</mo><mi>z</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mo>+</mo><mi>α</mi></mrow></mfrac><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow></math>. </div></div></div>   <!-- mfeedbackbutton;Example;0;4.4.2; //-->    Im Vorhergehenden wurde das Beispiel auch deshalb so ausführlich ausbuchstabiert, um eindringlich auf die Wichtigkeit einer sauberen und genauen Fallunterscheidung hinzuweisen. Je nachdem, ob <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math> oder <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>∈</mo><mo>ℝ</mo><mo>∖</mo><mo stretchy="false">{</mo><mo>-</mo><mn>2</mn><mo>;</mo><mn>1</mn><mo stretchy="false">}</mo></mrow></math> gilt, sieht die Lösungsmenge völlig verschieden aus! Im ersten Fall ist sie unendlich mächtig, im zweiten leer und im dritten besteht sie aus genau einem Element!  <br style="margin-bottom: 2em" /> Übrigens hätte man die Besonderheit des Falles <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math> auch direkt an dem ursprünglichen System ablesen können: Für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math> tritt dreimal dieselbe Gleichung, nämlich <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo>=</mo><mn>1</mn></mrow></math>, auf; d.h. zwei der drei Gleichungen im Ausgangssystem enthalten keinerlei neue Information und sind daher überflüssig; nur die Ebenengleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo>=</mo><mn>1</mn></mrow></math> stellt für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math> eine Beziehung zwischen den drei Unbekannten her. <br/><!-- mfeedbackbutton;Seite;0;4.4.2; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Element%20(Mathematik)" target="_blank">Element</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Gleichung" target="_blank">Gleichung</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Lineare%20Gleichung" target="_blank">Lineare Gleichung</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Menge%20(Mathematik)" target="_blank">Menge</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Parameter%20(Mathematik)" target="_blank">Parameter</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Parameter%20(Statistik)" target="_blank">Parameter</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Punkt%20(Geometrie)" target="_blank">Punkt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Unendlich%20(Mathematik)" target="_blank">Unendlich</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.4.4/modstart.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.4.4/xcontent2.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM04_FreieParameter";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "xcontent1";
+			var fullName = "html/1.4.4/xcontent1.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>

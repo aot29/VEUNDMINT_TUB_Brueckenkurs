@@ -1,0 +1,348 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 11.1.1 Einführung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>11.1. Begriffe und Sprechweisen<ul>
+<li>
+<a href="../../html/1.11.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">11.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.1.2 Rundung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.1/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.1.3 Bemerkungen</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.2. Häufigkeitsverteilungen und Prozentrechnung<ul>
+<li>
+<a href="../../html/1.11.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.2 Prozentrechnung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.3 Zinsrechnung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.4 Stetige Verzinsung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent4.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.5 Diagrammarten</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.3. Statistische Maßzahlen<ul>
+<li>
+<a href="../../html/1.11.3/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.3/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.2 Robuste Maßzahlen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.3/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.3 Streuungsmaße</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.4. Abschlusstest<ul><li>
+<a href="../../html/1.11.4/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">11.4.1 Abschlusstest Kapitel 11</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.10.3/modstart.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill active"><a href="../../html/1.11.1/modstart.html">11.1.1 Einführung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.1/xcontent1.html">11.1.2 Rundung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.1/xcontent2.html">11.1.3 Bemerkungen</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.11.1/xcontent1.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+        <h4><div class='label label-default'>Kapitel 11 Sprechweisen der Statistik </div></h4><strong>Abschnitt 11.1  Begriffe und Sprechweisen</strong><h1>11.1.1 Einführung</h1><div class="intro">    <a id="VBKM_STOCH_1_1"> </a> <!-- mdeclaresiteuxidpost;;VBKM_STOCHASTIK_1_1;; //-->  <br style="margin-bottom: 2em" /> Bei statistischen Untersuchungen (Erhebungen) werden an geeignet ausgewählten Untersuchungseinheiten (Beobachtungseinheiten, Versuchseinheiten) jeweils die Werte eines oder mehrerer Merkmale festgestellt. Dabei ist ein Merkmal eine zu untersuchende Größe der Beobachtungseinheit. Begriffe und Sprechweisen:  <ul><li>Die <b>Untersuchungseinheit</b><!-- mindexentry;;Untersuchungseinheit; //--><a class="label" name="ELI_SW281"></a> (auch: <b>Beobachtungseinheit</b><!-- mindexentry;;Beobachtungseinheit; //--><a class="label" name="ELI_SW282"></a> oder <b>Merkmalträger</b><!-- mindexentry;;Merkmalträger; //--><a class="label" name="ELI_SW283"></a>) ist die kleinste Einheit, an der Beobachtungen durchgeführt werden. <br style="margin-bottom: 2em" /> </li>  <li>Das <b>Merkmal</b><!-- mindexentry;;Merkmal; //--><a class="label" name="ELI_SW284"></a> ist die zu untersuchende Größe der Untersuchungseinheit. Merkmale werden meist mit großen lateinischen Buchstaben (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>Z</mi><mo>,</mo><mo>…</mo></mrow></math>) bezeichnet. <br style="margin-bottom: 2em" /> </li>  <li><b>Merkmalsausprägungen</b><!-- mindexentry;;Merkmalsausprägungen; //--><a class="label" name="ELI_SW285"></a> oder <b>Merkmalswerte</b><!-- mindexentry;;Merkmalswerte; //--><a class="label" name="ELI_SW286"></a> sind die Werte, die von Merkmalen angenommen werden können. Merkmalswerte werden meist mit kleinen, lateinischen Buchstaben (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mo>…</mo><mo>,</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>,</mo><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>,</mo><msub><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>,</mo><mo>…</mo></mrow></math>) bezeichnet. <br style="margin-bottom: 2em" /> </li>  <li>Die Menge der Untersuchungseinheiten, über die hinsichtlich eines interessierenden Merkmals eine Aussage gemacht werden soll, heißt <b>Grundgesamtheit</b><!-- mindexentry;;Grundgesamtheit; //--><a class="label" name="ELI_SW287"></a> oder auch <b>Population</b><!-- mindexentry;;Population; //--><a class="label" name="ELI_SW288"></a>. Sie ist die Menge aller denkbaren Untersuchungseinheiten einer Untersuchung. <br style="margin-bottom: 2em" /> </li>  <li>Eine <b>Stichprobe</b><!-- mindexentry;;Stichprobe; //--><a class="label" name="ELI_SW289"></a> ist eine „zufällig gewonnene“ endliche Teilmenge aus einer bestimmten, interessierenden Grundgesamtheit. Hat diese Teilmenge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math> Elemente, so spricht man von einer „Stichprobe vom Umfang <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math>“. <br style="margin-bottom: 2em" /> </li>  <li><b>Daten</b><!-- mindexentry;;Daten; //--><a class="label" name="ELI_SW290"></a> sind die beobachteten Werte (Ausprägungen) eines oder mehrerer Merkmale einer Stichprobe von Untersuchungseinheiten einer bestimmten Grundgesamtheit. <br style="margin-bottom: 2em" /> </li>  <li>Die <b>Urliste</b><!-- mindexentry;;Urliste; //--><a class="label" name="ELI_SW291"></a> ist das Protokoll, auf dem die Daten einer Untersuchung in der beobachteten Reihenfolge stehen. Die Urliste ist also ein <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math>-Tupel (bzw. Vektor, hier meist als Zeile statt Spalte geschrieben): <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>x</mi><mi>  </mi><mo>=</mo><mi>  </mi><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow></msub><mo stretchy="false">)</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  aus Daten. Oft nennt man auch dieses <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math>-Tupel eine „Stichprobe vom Umfang <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math>“. <br style="margin-bottom: 2em" /> </li> </ul><br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   11.1.1      </b> </h5></div><div class="panel-body"> Bei einer Tagesproduktion von Werkstücken werden <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>=</mo><mn>20</mn></mrow></math> Proben zu je <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>15</mn></mrow></math> Teilen entnommen und jeweils die Anzahl defekter Teile festgestellt. Dabei sei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mi>i</mi></mrow></msub></mrow></math> die Anzahl der defekten Teile in der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math>-ten Probe, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mo>…</mo><mo>,</mo><mn>20</mn></mrow></math>. Die Urliste (Stichprobe vom Umfang <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>=</mo><mn>20</mn></mrow></math>) sei <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>x</mi><mi>  </mi><mo>=</mo><mi>  </mi><mo stretchy="false">(</mo><mn>0,4</mn><mo>,</mo><mn>2,1</mn><mo>,</mo><mn>1,0</mn><mo>,</mo><mn>0,2</mn><mo>,</mo><mn>3,1</mn><mo>,</mo><mn>0,5</mn><mo>,</mo><mn>3,1</mn><mo>,</mo><mn>1,2</mn><mo>,</mo><mn>0,0</mn><mo>,</mo><mn>1,0</mn><mo stretchy="false">)</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  In der zweiten Probe wurden z.B. <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>=</mo><mn>4</mn></mrow></math> defekte Teile gefunden. Die Grundgesamtheit in diesem Beispiel wäre also die Menge aller <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>15</mn></mrow></math>-elementigen Teilmengen der Tagesproduktion. Das interessierende Merkmal ist <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>X</mi><mi>  </mi><mo>=</mo><mi>  </mi><mtext>Anzahl der defekten Werkstücke in einer Probe mit 15 Elementen</mtext><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Example;0;11.1.1; //-->     <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    11.1.2           </b> </h5></div><div class="panel-body"> <br/> Die bei einer statistischen Untersuchung beobachtbaren Größen heißen <b>Merkmale</b><!-- mindexentry;;Merkmal; //--><a class="label" name="ELI_SW292"></a>. Werte, die von Merkmalen angenommen werden können, heißen <b>Merkmalsausprägungen</b><!-- mindexentry;;Merkmalsausprägung; //--><a class="label" name="ELI_SW293"></a> oder <b>Merkmalswerte</b><!-- mindexentry;;Merkmalswert; //--><a class="label" name="ELI_SW294"></a>. </div></div></div>   <!-- mfeedbackbutton;Info;0;11.1.2; //-->     <br style="margin-bottom: 2em" /> Bei Merkmalen wird grob zwischen qualitativen (artmäßig erfassbaren) und quantitativen (in natürlicher Weise zahlenmäßig erfassbaren) Merkmalen unterschieden:  <ul><li><b>Qualitative Merkmale</b><!-- mindexentry;;Merkmal (qualitativ); //--><a class="label" name="ELI_SW295"></a>: <ul><li>Nominale Merkmale: Die Klassifizierung der Merkmalsausprägungen erfolgt nach rein qualitativen Gesichtspunkten.         Beispiele: Hautfarbe, Nationalität, Blutgruppe. <br style="margin-bottom: 2em" /> </li>  <li>Ordinale Merkmale: Eine natürliche Rangfolge der Merkmalsausprägungen ist vorhanden, man kann die Werte anordnen bzw. sortieren.         Beispiele: Schulnote, Dienstgrade, Nachnamen. <br style="margin-bottom: 2em" /> </li> </ul><br style="margin-bottom: 2em" /> </li>  <li><b>Quantitative Merkmale</b><!-- mindexentry;;Merkmal (quantitativ); //--><a class="label" name="ELI_SW296"></a>: <ul><li>Diskrete Merkmale: Die Merkmalsausprägungen sind isolierte Zahlwerte.         Beispiele: Anzahlen, Jahreszahlen, Alter in Jahren. <br style="margin-bottom: 2em" /> </li>  <li>Stetige Merkmale: Die Merkmalsausprägungen können (zumindestens prinzipiell) jeden Wert in einem Intervall annehmen.         Beispiele: Größe, Gewicht, Länge. <br style="margin-bottom: 2em" /> </li> </ul><br style="margin-bottom: 2em" /> </li> </ul><br style="margin-bottom: 2em" /> Der Übergang zwischen stetigen und diskreten Merkmalen ist durch Rundungsmöglichkeiten zum Teil fließend.  <br style="margin-bottom: 2em" /> </div><br/><!-- mfeedbackbutton;Seite;0;11.1.1; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Defekt%20(Mathematik)" target="_blank">Defekt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Element%20(Mathematik)" target="_blank">Element</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Grad%20(Winkel)" target="_blank">Grad</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Menge%20(Mathematik)" target="_blank">Menge</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Punkt%20(Geometrie)" target="_blank">Punkt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Rang%20(Mathematik)" target="_blank">Rang</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Rang%20(Statistik)" target="_blank">Rang</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Stochastik" target="_blank">Stochastik</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Tupel" target="_blank">Tupel</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Umfang%20(Geometrie)" target="_blank">Umfang</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Urliste" target="_blank">Urliste</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Vektor" target="_blank">Vektor</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.10.3/modstart.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.11.1/xcontent1.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM_STOCHASTIK_1_1";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "modstart";
+			var fullName = "html/1.11.1/modstart.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>

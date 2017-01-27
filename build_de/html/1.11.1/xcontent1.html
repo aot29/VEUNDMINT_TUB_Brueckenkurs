@@ -1,0 +1,348 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 11.1.2 Rundung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>11.1. Begriffe und Sprechweisen<ul>
+<li>
+<a href="../../html/1.11.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">11.1.2 Rundung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.1/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.1.3 Bemerkungen</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.2. Häufigkeitsverteilungen und Prozentrechnung<ul>
+<li>
+<a href="../../html/1.11.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.2 Prozentrechnung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.3 Zinsrechnung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.4 Stetige Verzinsung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent4.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.5 Diagrammarten</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.3. Statistische Maßzahlen<ul>
+<li>
+<a href="../../html/1.11.3/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.3/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.2 Robuste Maßzahlen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.3/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.3 Streuungsmaße</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.4. Abschlusstest<ul><li>
+<a href="../../html/1.11.4/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">11.4.1 Abschlusstest Kapitel 11</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.11.1/modstart.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.1/modstart.html">11.1.1 Einführung</a></li>
+<li class="subtoc-pill active"><a href="../../html/1.11.1/xcontent1.html">11.1.2 Rundung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.1/xcontent2.html">11.1.3 Bemerkungen</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.11.1/xcontent2.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+        <h4><div class='label label-default'>Kapitel 11 Sprechweisen der Statistik </div></h4><strong>Abschnitt 11.1  Begriffe und Sprechweisen</strong><h1>11.1.2 Rundung</h1> <!-- mdeclaresiteuxidpost;;VBKM_STOCHASTIK_1_2;; //--> Das <b>Runden</b><!-- mindexentry;;Rundung; //--><a class="label" name="ELI_SW297"></a> von Messergebnissen ist ein alltäglicher Vorgang.  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    11.1.3           </b> </h5></div><div class="panel-body"> <br/> Für Rundungsvorgänge gibt es prinzipiell drei Möglichkeiten:  <ul><li>Das (Ab)Runden mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mo>⌊</mo><mi>x</mi><mo>⌋</mo></mrow></mrow></math>, <br style="margin-bottom: 2em" /> </li>  <li>das (Auf)Runden mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mo>⌈</mo><mi>x</mi><mo>⌉</mo></mrow></mrow></math>, <br style="margin-bottom: 2em" /> </li>  <li>das Runden mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion, manchmal auch als <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>rnd</mtext></mrow></math>-Funktion bezeichnet. <br style="margin-bottom: 2em" /> </li> </ul></div></div></div>   <!-- mfeedbackbutton;Info;0;11.1.3; //-->     <br style="margin-bottom: 2em" /> Die <b><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion</b><!-- mindexentry;;floor-Funktion; //--><a class="label" name="ELI_SW298"></a> (engl. floor = Fußboden, Diele) ist definiert durch <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtext>floor</mtext><mo>:</mo><mi>  </mi><mo>ℝ</mo><mo>→</mo><mo>ℝ</mo><mi>  </mi><mi>  </mi><mo>,</mo><mi>  </mi><mi>  </mi><mi>x</mi><mi>  </mi><mo>⟼</mo><mi>  </mi><mtext>floor</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mrow><mo>⌊</mo><mi>x</mi><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mo>max</mo><mo stretchy="false">{</mo><mi>k</mi><mo>∈</mo><mo>ℤ</mo><mi> </mi><mo>:</mo><mi> </mi><mi>k</mi><mo>≤</mo><mi>x</mi><mo stretchy="false">}</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> eine reelle Zahl, so ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo>⌊</mo><mi>x</mi><mo>⌋</mo></mrow></mrow></math> die größte ganze Zahl, die kleiner oder gleich x ist. Sie entsteht durch Abrundung von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>. Schreibt man eine positive reelle Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> als Dezimalbruch, so ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mo>⌊</mo><mi>x</mi><mo>⌋</mo></mrow></mrow></math> die ganze Zahl vor dem Dezimalkomma: Die Abrundung schneidet die Nachkommastellen ab. Beispielsweise ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mo>⌊</mo><mn>3,142</mn><mo>⌋</mo></mrow><mo>=</mo><mn>3</mn></mrow></math>, aber <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mo>⌊</mo><mo>-</mo><mn>2,124</mn><mo>⌋</mo></mrow><mo>=</mo><mo>-</mo><mn>3</mn></mrow></math>. Die Floor-Funktion ist eine Treppenfunktion mit Sprungstellen in allen Punkten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>∈</mo><mo>ℤ</mo></mrow></math> der Sprunghöhe <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math>. Die Funktionswerte in den Sprungstellen liegen immer oben. Dies ist in dem folgenden Schaubild des Graphen angedeutet durch eingezeichnete Punkte:  <br style="margin-bottom: 2em" />  <div style="text-align:center"><!-- registerfile;;floor_400_0.png;;VBKM_Stochastik;;1; //--> <img class="mintmodimage" src="../../../images/floor_400_0.png"/><!-- mfeedbackbutton;Abbildung;floor_400_0.png;:localmaterial:/[[!-- mfileref;;1; //--]]; //--><br/> Graph der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion. </div>  <br style="margin-bottom: 2em" /> Gegeben sei eine reelle Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>≥</mo><mn>0</mn></mrow></math>, dargestellt als <a class="MINTERLINK" href="../../html/1.1.2/xcontent1.html#Mathematik_Grundlagen_UDB">Dezimalbruch</a> <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>a</mi><mi>  </mi><mo>=</mo><mi>  </mi><msub><mrow><mi>g</mi></mrow><mrow><mi>n</mi></mrow></msub><mi> </mi><msub><mrow><mi>g</mi></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mi> </mi><mo>…</mo><mi> </mi><msub><mrow><mi>g</mi></mrow><mrow><mn>1</mn></mrow></msub><mi> </mi><msub><mrow><mi>g</mi></mrow><mrow><mn>0</mn></mrow></msub><mi> </mi><mo>.</mo><mi> </mi><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><mi> </mi><msub><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msub><mi> </mi><msub><mrow><mi>a</mi></mrow><mrow><mn>3</mn></mrow></msub><mi> </mi><mo>…</mo><br/></mrow></mstyle></math></center><br/>  Will man mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi></mrow></math> Stellen (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi><mo>∈</mo><mo>ℕ</mo><msub><mi/><mrow><mn>0</mn></mrow></msub></mrow></math>) nach dem Komma runden, so bildet man <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mover><mrow><mi>a</mi></mrow><mo>~</mo></mover><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mi>r</mi></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><msup><mrow><mn>10</mn></mrow><mrow><mi>r</mi></mrow></msup><mo>·</mo><mi>a</mi><mo>⌋</mo></mrow><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Dieser Rundungsvorgang ist die Rundung durch Abschneiden nach der r-ten Nachkommastelle. Beim Rundungsverfahren mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion wird also grundsätzlich abgerundet.  <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   11.1.4      </b> </h5></div><div class="panel-body"> <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mn>2,3727</mn></mrow></math> wird mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion gerundet auf 2 Nachkommastellen zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo>~</mo></mover></mrow><mrow><mn>1</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>·</mo><mn>2,3727</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>237,27</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mn>237</mn><mi>  </mi><mo>=</mo><mi>  </mi><mo>=</mo><mn>2,37</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  oder einfach durch Abschneiden aller Nachkommastellen nach der zweiten Stelle (das geht aber nur, wenn die Zahl schon als Dezimalbruch vorliegt, was beispielsweise in einem Computerprogramm oft nicht der Fall ist). Die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>=</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>=</mo><mn>1,414213562</mn><mo>…</mo></mrow></math> wird mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion auf 4 Nachkommastellen zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo>~</mo></mover></mrow><mrow><mn>2</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup><mo>·</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>14142,1</mn><mo>…</mo><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mn>14142</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>1,4142</mn><br/></mrow></mstyle></math></center><br/>  gerundet. Die Kreiszahl <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>3</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mi>π</mi><mi>  </mi><mo>=</mo><mi>  </mi><mn>3,141592654</mn><mo>…</mo><br/></mrow></mstyle></math></center><br/>  wird mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion gerundet auf 2 Stellen nach dem Komma zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo>~</mo></mover></mrow><mrow><mn>3</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>·</mo><mi>π</mi><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>314,159</mn><mo>…</mo><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mn>314</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>3,14</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Example;0;11.1.4; //-->     <br style="margin-bottom: 2em" /> Das Rundungsverfahren mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion findet oft Anwendung bei der Bestimmung von Gesamtnoten in Zeugnissen („akademische Rundung“). Hat ein Studierender im Fach Mathematik z.B. die Einzelnoten  <br style="margin-bottom: 2em" />  <div style="text-align:center"> <table border="1"><tr><td align="center">Fach </td><td align="center">Note </td></tr><tr><td align="center">Mathematik 1 </td><td align="center"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1,3</mn></mrow></math></td></tr><tr><td align="center">Mathematik 2 </td><td align="center"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2,3</mn></mrow></math></td></tr><tr><td align="center">Mathematik 3 </td><td align="center"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2,0</mn></mrow></math></td></tr></table></div>  <br style="margin-bottom: 2em" /> so wird das arithmetische Mittel dieser drei Noten <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>1,3</mn><mo>+</mo><mn>2,3</mn><mo>+</mo><mn>2,0</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>5,6</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mn>1,8</mn><mover><mrow><mn>6</mn></mrow><mo stretchy="true">‾</mo></mover><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  gebildet. Die Rundung mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion auf eine Nachkommastelle würde die Gesamtnote Mathematik <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover><mrow><mi>a</mi></mrow><mo>~</mo></mover><mo>=</mo><mn>1,8</mn></mrow></math> ergeben. Die zur Bildung von Gesamtnoten verwendeten Rundungsverfahren müssen in den jeweiligen Prüfungsordnungen stets genau beschrieben sein. Das Gegenstück zur <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion ist die <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion:  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    11.1.5           </b> </h5></div><div class="panel-body"> <br/> Die <b><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion</b><!-- mindexentry;;ceil-Funktion; //--><a class="label" name="ELI_SW299"></a> (engl. ceil = Zimmerdecke, Decke) ist definiert durch <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtext>ceil</mtext><mo>:</mo><mi>  </mi><mo>ℝ</mo><mo>→</mo><mo>ℝ</mo><mi>  </mi><mi>  </mi><mo>,</mo><mi>  </mi><mi>  </mi><mi>x</mi><mi>  </mi><mo>⟼</mo><mi>  </mi><mtext>ceil</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mrow><mo>⌈</mo><mi>x</mi><mo>⌉</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mo>min</mo><mo stretchy="false">{</mo><mi>k</mi><mo>∈</mo><mo>ℤ</mo><mi> </mi><mo>:</mo><mi> </mi><mi>k</mi><mo>≥</mo><mi>x</mi><mo stretchy="false">}</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Info;0;11.1.5; //-->     <br style="margin-bottom: 2em" /> Ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>∈</mo><mo>ℝ</mo></mrow></math> eine reelle Zahl, so ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo>⌈</mo><mi>x</mi><mo>⌉</mo></mrow></mrow></math> die kleinste ganze Zahl, die größer oder gleich <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> ist. Die <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion ist eine Treppenfunktion mit Sprungstellen in allen Punkten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>∈</mo><mo>ℤ</mo></mrow></math> der Sprunghöhe <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math>. Die Funktionswerte in den Sprungstellen liegen immer unten. Dies ist in dem folgenden Schaubild des Graphen der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion angedeutet durch eingezeichnete Punkte:  <br style="margin-bottom: 2em" />  <div style="text-align:center"><!-- registerfile;;ceil_400_0.png;;VBKM_Stochastik;;2; //--> <img class="mintmodimage" src="../../../images/ceil_400_0.png"/><!-- mfeedbackbutton;Abbildung;ceil_400_0.png;:localmaterial:/[[!-- mfileref;;2; //--]]; //--><br/> Graph der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion. </div>  <br style="margin-bottom: 2em" /> Gegeben sei eine reelle Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>≥</mo><mn>0</mn></mrow></math>, dargestellt als <a class="MINTERLINK" href="../../html/1.1.2/xcontent1.html#Mathematik_Grundlagen_UDB">Dezimalbruch</a> <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>a</mi><mi>  </mi><mo>=</mo><mi>  </mi><msub><mrow><mi>g</mi></mrow><mrow><mi>n</mi></mrow></msub><mi> </mi><msub><mrow><mi>g</mi></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mi> </mi><mo>…</mo><mi> </mi><msub><mrow><mi>g</mi></mrow><mrow><mn>1</mn></mrow></msub><mi> </mi><msub><mrow><mi>g</mi></mrow><mrow><mn>0</mn></mrow></msub><mi> </mi><mo>.</mo><mi> </mi><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><mi> </mi><msub><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msub><mi> </mi><msub><mrow><mi>a</mi></mrow><mrow><mn>3</mn></mrow></msub><mi> </mi><mo>…</mo><br/></mrow></mstyle></math></center><br/>  Will man mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi></mrow></math> Stellen (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi><mo>∈</mo><mo>ℕ</mo><msub><mi/><mrow><mn>0</mn></mrow></msub></mrow></math>) nach dem Komma runden, so bildet man <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mover><mrow><mi>a</mi></mrow><mo>^</mo></mover><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mi>r</mi></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌈</mo><msup><mrow><mn>10</mn></mrow><mrow><mi>r</mi></mrow></msup><mo>·</mo><mi>a</mi><mo>⌉</mo></mrow><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Bei diesem Rundungsvorgang wird stets aufgerundet auf die nächsthöhere Dezimalstelle.  <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   11.1.6      </b> </h5></div><div class="panel-body"> Die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mn>2,3727</mn></mrow></math> wird mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion gerundet auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> Nachkommastellen zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo>^</mo></mover></mrow><mrow><mn>1</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌈</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>·</mo><mn>2,3727</mn><mo>⌉</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌈</mo><mn>237,27</mn><mo>⌉</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mn>238</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>2,38</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Analog wird <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>=</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>=</mo><mn>1,414213562</mn><mo>…</mo></mrow></math> mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>4</mn></mrow></math> Nachkommastellen zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo>^</mo></mover></mrow><mrow><mn>2</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌈</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup><mo>·</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>⌉</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌈</mo><mn>14142,1</mn><mo>…</mo><mo>⌉</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mn>14143</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>1,4143</mn><br/></mrow></mstyle></math></center><br/>  gerundet. Die Kreiszahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>3</mn></mrow></msub><mo>=</mo><mi>π</mi><mo>=</mo><mn>3,141592654</mn><mo>…</mo></mrow></math> wird mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion gerundet auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> Stellen nach dem Komma zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo>^</mo></mover></mrow><mrow><mn>3</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌈</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>·</mo><mi>π</mi><mo>⌉</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌈</mo><mn>314,15</mn><mo>…</mo><mo>⌉</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mn>315</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>3,15</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Example;0;11.1.6; //-->     <br style="margin-bottom: 2em" /> Rundungsverfahren mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion findet man z.B. häufig bei Handwerkerrechnungen. Ein Handwerker wird meistens nach Arbeitsstunden bezahlt. Dauert eine Reparatur 50 Minuten (das sind <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.8</mn><mover><mrow><mn>3</mn></mrow><mo stretchy="true">‾</mo></mover></mrow></math> Stunden im Dezimalsystem), so wird trotzdem aufgerundet und eine volle Arbeitsstunde berechnet. Spricht man umgangssprachlich von Runden, so ist meist die mathematische Rundung gemeint:  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    11.1.7           </b> </h5></div><div class="panel-body"> <br/> Die <b><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion</b><!-- mindexentry;;round-Funktion; //--><a class="label" name="ELI_SW300"></a> (oder mathematische Rundung) ist definiert durch <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtext>round</mtext><mo>:</mo><mi>  </mi><mo>ℝ</mo><mo>→</mo><mo>ℝ</mo><mi>  </mi><mi>  </mi><mo>,</mo><mi>  </mi><mi>  </mi><mi>x</mi><mi>  </mi><mo>⟼</mo><mi>  </mi><mtext>round</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mtext>floor</mtext><mrow><mo>(</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>)</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mrow><mo>⌊</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>⌋</mo></mrow><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Im Gegensatz zur Auf- und Abrundung beträgt die durch diese Rundung an der Zahl vorgenommene Veränderung höchstens <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0,5</mn></mrow></math>. </div></div></div>   <!-- mfeedbackbutton;Info;0;11.1.7; //-->     <br style="margin-bottom: 2em" /> Die <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion ist eine Treppenfunktion mit Sprungstellen in allen Punkten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>,</mo><mi>  </mi><mi>x</mi><mo>∈</mo><mo>ℤ</mo></mrow></math>, der Sprunghöhe <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math>. Die Funktionswerte in den Sprungstellen liegen immer oben. Dies ist in dem folgenden Schaubild des Graphen der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion angedeutet durch eingezeichnete Punkte:  <br style="margin-bottom: 2em" />  <div style="text-align:center"><!-- registerfile;;round_400_0.png;;VBKM_Stochastik;;3; //--> <img class="mintmodimage" src="../../../images/round_400_0.png"/><!-- mfeedbackbutton;Abbildung;round_400_0.png;:localmaterial:/[[!-- mfileref;;3; //--]]; //--><br/> Graph der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion. </div>  <br style="margin-bottom: 2em" /> Gegeben sei eine reelle Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>≥</mo><mn>0</mn></mrow></math>, dargestellt als <a class="MINTERLINK" href="../../html/1.1.2/xcontent1.html#Mathematik_Grundlagen_UDB">Dezimalbruch</a> <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>a</mi><mi>  </mi><mo>=</mo><mi>  </mi><msub><mrow><mi>g</mi></mrow><mrow><mi>n</mi></mrow></msub><mi> </mi><msub><mrow><mi>g</mi></mrow><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mi> </mi><mo>…</mo><mi> </mi><msub><mrow><mi>g</mi></mrow><mrow><mn>1</mn></mrow></msub><mi> </mi><msub><mrow><mi>g</mi></mrow><mrow><mn>0</mn></mrow></msub><mi> </mi><mo>.</mo><mi> </mi><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><mi> </mi><msub><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msub><mi> </mi><msub><mrow><mi>a</mi></mrow><mrow><mn>3</mn></mrow></msub><mi> </mi><mo>…</mo><br/></mrow></mstyle></math></center><br/>  Will man mit Hilfe der Round-Funktion die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi></mrow></math> (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>r</mi><mo>∈</mo><mo>ℕ</mo><msub><mi/><mrow><mn>0</mn></mrow></msub></mrow></math>) Stellen nach dem Komma runden, so bildet man <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mover><mrow><mi>a</mi></mrow><mo stretchy="true">‾</mo></mover><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mi>r</mi></mrow></msup></mrow></mfrac><mo>·</mo><mtext>round</mtext><mo stretchy="false">(</mo><msup><mrow><mn>10</mn></mrow><mrow><mi>r</mi></mrow></msup><mo>·</mo><mi>a</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mi>r</mi></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><msup><mrow><mn>10</mn></mrow><mrow><mi>r</mi></mrow></msup><mo>·</mo><mi>a</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>⌋</mo></mrow><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Dieser Rundungsvorgang entspricht dem üblichen sogenannten mathematischen Runden.  <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   11.1.8      </b> </h5></div><div class="panel-body"> Die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mn>1,49</mn></mrow></math> wird mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion auf eine Nachkommestelle gerundet zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><mrow><mn>1</mn></mrow></msub></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mrow><mstyle fontfamily="helvetica"><mi>round</mi></mstyle></mrow><mo stretchy="false">(</mo><mn>10</mn><mo>·</mo><mn>1,49</mn><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>10</mn><mo>·</mo><mn>1,49</mn><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>14,9</mn><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>15,4</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mn>15</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>1,5</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>=</mo><mn>1,52</mn></mrow></math> wird mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion auf eine Nachkommestelle gerundet zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><mrow><mn>2</mn></mrow></msub></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mrow><mstyle fontfamily="helvetica"><mi>round</mi></mstyle></mrow><mo stretchy="false">(</mo><mn>10</mn><mo>·</mo><mn>1,52</mn><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>10</mn><mo>·</mo><mn>1,52</mn><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>15,2</mn><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>15,7</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mn>15</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>1,5</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>3</mn></mrow></msub><mo>=</mo><mn>2,3727</mn></mrow></math> wird mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion gerundet auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> Nachkommastellen zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><mrow><mn>3</mn></mrow></msub></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mtext>round</mtext><mo stretchy="false">(</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>·</mo><mn>2,3727</mn><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>100</mn></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>100</mn><mo>·</mo><mn>2,3727</mn><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>100</mn></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>237,27</mn><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>100</mn></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>237,77</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>100</mn></mrow></mfrac><mo>·</mo><mn>237</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>2,37</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Die Zahl  <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>a</mi></mrow><mrow><mn>4</mn></mrow></msub><mo>=</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>=</mo><mn>1,414213562</mn><mo>…</mo></mrow></math> wird mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion gerundet auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>7</mn></mrow></math> Nachkommastellen zu <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><msub><mrow><mover><mrow><mi>a</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><mrow><mn>3</mn></mrow></msub></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>7</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mstyle fontfamily="helvetica"><mi>round</mi></mstyle></mrow><mo stretchy="false">(</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>7</mn></mrow></msup><mo>·</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>7</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>7</mn></mrow></msup><mo>·</mo><mn>1,414213562</mn><mo>…</mo><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>7</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>14142135,62</mn><mo>…</mo><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>7</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>14142136,12</mn><mo>…</mo><mo>⌋</mo></mrow></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>7</mn></mrow></msup></mrow></mfrac><mo>·</mo><mn>14142136</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>1,4142136</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Example;0;11.1.8; //-->     <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_11.1.9"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 11.1.9 </b> </h5></div><div class="panel-body"> Berechnen Sie mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion die Rundung von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>π</mi><mo>=</mo><mn>3,141592654</mn><mo>…</mo></mrow></math> auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>4</mn></mrow></math> Nachkommastellen: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover><mrow><mi>π</mi></mrow><mo stretchy="true">‾</mo></mover></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_11.1.3.QF1" id="QFELD_11.1.3.QF1" type="text" size="20" maxlength="20" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_11.1.3.QF1"/></span>   <br style="margin-bottom: 2em" /> .  <br style="margin-bottom: 2em" /><button name="Name_MHint1" class="hintbutton_closed btn btn-default" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>   <div class="hint well" style="display:none" id="MHint1">  <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mover><mrow><mi>π</mi></mrow><mo stretchy="true">‾</mo></mover></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mstyle fontfamily="helvetica"><mi>round</mi></mstyle></mrow><mo stretchy="false">(</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup><mo>·</mo><mi>π</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup><mo>·</mo><mn>3,141592654</mn><mo>…</mo><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>31415,92654</mn><mo>…</mo><mo>+</mo><mn>0,5</mn><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>31416,42654</mn><mo>…</mo><mo>⌋</mo></mrow><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>·</mo><mn>31416</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>3,1416</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/></div> </div></div></div><!--   mfeedbackbutton;Exercise;0;11.1.9; //-->      <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_11.1.10"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 11.1.10 </b> </h5></div><div class="panel-body"> Vorgegeben seien die Zahlen <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>a</mi><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>47</mn></mrow><mrow><mn>17</mn></mrow></mfrac><mi>  </mi><mi>  </mi><mtext>und</mtext><mi>  </mi><mi>  </mi><mi>b</mi><mi>  </mi><mo>=</mo><mi>  </mi><mn>3,7861</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/><ol type="1"><li>Runden Sie die Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math> mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion auf jeweils <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> Nachkommastellen:<br/>Die Rundungen ergeben <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover><mrow><mi>a</mi></mrow><mo>~</mo></mover></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_11.1.3.QF2" id="QFELD_11.1.3.QF2" type="text" size="10" maxlength="10" onfocus="handlerFocus(2);" onblur="handlerBlur(2);" onkeyup="handlerChange(2,0);" onpaste="handlerChange(2,0);" oninput="handlerChange(2,0);" onpropertychange="handlerChange(2,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_11.1.3.QF2"/></span>   <br style="margin-bottom: 2em" />  sowie <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover><mrow><mi>b</mi></mrow><mo>~</mo></mover></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_11.1.3.QF3" id="QFELD_11.1.3.QF3" type="text" size="10" maxlength="10" onfocus="handlerFocus(3);" onblur="handlerBlur(3);" onkeyup="handlerChange(3,0);" onpaste="handlerChange(3,0);" oninput="handlerChange(3,0);" onpropertychange="handlerChange(3,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_11.1.3.QF3"/></span>   .<br/> </li>  <li>Runden Sie die Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math> mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Funktion auf jeweils <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> Nachkommastellen:<br/>Die Rundungen ergeben <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover><mrow><mi>a</mi></mrow><mo>^</mo></mover></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_11.1.3.QF4" id="QFELD_11.1.3.QF4" type="text" size="10" maxlength="10" onfocus="handlerFocus(4);" onblur="handlerBlur(4);" onkeyup="handlerChange(4,0);" onpaste="handlerChange(4,0);" oninput="handlerChange(4,0);" onpropertychange="handlerChange(4,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_11.1.3.QF4"/></span>   <br style="margin-bottom: 2em" />  sowie <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover><mrow><mi>b</mi></mrow><mo>^</mo></mover></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_11.1.3.QF5" id="QFELD_11.1.3.QF5" type="text" size="10" maxlength="10" onfocus="handlerFocus(5);" onblur="handlerBlur(5);" onkeyup="handlerChange(5,0);" onpaste="handlerChange(5,0);" oninput="handlerChange(5,0);" onpropertychange="handlerChange(5,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_11.1.3.QF5"/></span>   .<br/> </li>  <li>Runden Sie die Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math> mit Hilfe der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-Funktion auf jeweils <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> Nachkommastellen:<br/>Die Rundungen ergeben <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover><mrow><mi>a</mi></mrow><mo stretchy="true">‾</mo></mover></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_11.1.3.QF6" id="QFELD_11.1.3.QF6" type="text" size="10" maxlength="10" onfocus="handlerFocus(6);" onblur="handlerBlur(6);" onkeyup="handlerChange(6,0);" onpaste="handlerChange(6,0);" oninput="handlerChange(6,0);" onpropertychange="handlerChange(6,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_11.1.3.QF6"/></span>   <br style="margin-bottom: 2em" />  sowie <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover><mrow><mi>b</mi></mrow><mo stretchy="true">‾</mo></mover></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_11.1.3.QF7" id="QFELD_11.1.3.QF7" type="text" size="10" maxlength="10" onfocus="handlerFocus(7);" onblur="handlerBlur(7);" onkeyup="handlerChange(7,0);" onpaste="handlerChange(7,0);" oninput="handlerChange(7,0);" onpropertychange="handlerChange(7,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_11.1.3.QF7"/></span>   .<br/> </li> </ol>  <br/><button name="Name_MHint2" class="hintbutton_closed btn btn-default" id="MHint2_button" type="button" onclick="toggle_hint('MHint2');">Lösung</button>   <div class="hint well" style="display:none" id="MHint2">  Wir formen den Bruch zunächst in eineb möglichst guteb Dezimalbruch um, indem wir sukzessive Division mit Rest durchführen und die Divisionsergebnisse als Stellen im Dezimalbruch einsetzen: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>47</mn></mrow><mrow><mn>17</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mn>2</mn><mo>+</mo><mfrac><mrow><mn>13</mn></mrow><mrow><mn>17</mn></mrow></mfrac><br/></mrow></mstyle></math></center><br/>  also haben wir eine <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> vor dem Dezimalkomma. Dann ist <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mn>2</mn><mo>+</mo><mfrac><mrow><mn>13</mn></mrow><mrow><mn>17</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mn>2</mn><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mfrac><mrow><mn>130</mn></mrow><mrow><mn>17</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mn>2</mn><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mo>·</mo><mrow><mo>(</mo><mn>7</mn><mo>+</mo><mfrac><mrow><mn>11</mn></mrow><mrow><mn>17</mn></mrow></mfrac><mo>)</mo></mrow><br/></mrow></mstyle></math></center><br/>  also erscheint eine <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>7</mn></mrow></math> als erste Nachkommastelle. Zerlegt man die Brüche weiter, so erhält man  <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mi>  </mi><mo>=</mo><mi>  </mi><mn>2,764705</mn><mo>…</mo></mrow></math> wobei für die gefragte Rundung nur drei Nachkommastellen benötigt werden. Die vollständige Rechnung mit der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>floor</mtext></mrow></math>-Funktion ergibt <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mover><mrow><mi>a</mi></mrow><mo>~</mo></mover><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>·</mo><mn>2,764705</mn><mo>…</mo><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><mn>276,4705</mn><mo>…</mo><mo>⌋</mo></mrow><mi>  </mi><mo>=</mo><mi>  </mi><mn>2,76</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Auf die Ergebnisse kommt man aber auch schneller durch einfaches Abrunden bzw. Abschneiden nach der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> Nachkommastelle: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mover><mrow><mi>a</mi></mrow><mo>~</mo></mover><mi>  </mi><mo>=</mo><mi>  </mi><mn>2,76</mn><mi>  </mi><mi>  </mi><mtext>und</mtext><mi>  </mi><mi>  </mi><mover><mrow><mi>b</mi></mrow><mo>~</mo></mover><mi>  </mi><mo>=</mo><mi>  </mi><mn>3,78</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Das ist in dieser Aufgabe aber nur erlaubt, weil <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math> nicht negativ sind. Durch einfaches Aufrunden nach der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> Nachkommastelle oder eine vollständige Rechnung erhalten wir für die <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ceil</mtext></mrow></math>-Rundungen <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mover><mrow><mi>a</mi></mrow><mo>^</mo></mover><mi>  </mi><mo>=</mo><mi>  </mi><mn>2,77</mn><mi>  </mi><mi>  </mi><mtext>und</mtext><mi>  </mi><mi>  </mi><mover><mrow><mi>b</mi></mrow><mo>^</mo></mover><mi>  </mi><mo>=</mo><mi>  </mi><mn>3,79</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Die <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>round</mtext></mrow></math>-basierte Rundung erhält man entweder durch die vollständige Rechnung wie in den Beispielen oder durch Rundung auf diejenige Zahl mit zwei Stellen hinter dem Dezimalkomma, die den geringsten Abstand zu den ursprünglichen Zahlen besitzt: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mover><mrow><mi>a</mi></mrow><mo stretchy="true">‾</mo></mover><mi>  </mi><mo>=</mo><mi>  </mi><mn>2,76</mn><mi>  </mi><mi>  </mi><mtext>und</mtext><mi>  </mi><mi>  </mi><mover><mrow><mi>b</mi></mrow><mo stretchy="true">‾</mo></mover><mi> </mi><mo>=</mo><mi>  </mi><mn>3,79</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div> </div></div></div><!--   mfeedbackbutton;Exercise;0;11.1.10; //-->      <br style="margin-bottom: 2em" /> <br/><!-- mfeedbackbutton;Seite;0;11.1.2; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Kreis" target="_blank">Kreis</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Punkt%20(Geometrie)" target="_blank">Punkt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Satz%20(Mathematik)" target="_blank">Satz</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Stochastik" target="_blank">Stochastik</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Treppenfunktion%20(reelle%20Funktion)" target="_blank">Treppenfunktion</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.11.1/modstart.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.11.1/xcontent2.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			CreateQuestionObj("STOCHROUND1",1,"3.1416","QFELD_11.1.3.QF1",3,"7",4,0,11);
+CreateQuestionObj("STOCHROUND2",2,"2.76","QFELD_11.1.3.QF2",3,"7",4,0,11);
+CreateQuestionObj("STOCHROUND3",3,"3.78","QFELD_11.1.3.QF3",3,"7",4,0,11);
+CreateQuestionObj("STOCHROUND4",4,"2.77","QFELD_11.1.3.QF4",3,"7",4,0,11);
+CreateQuestionObj("STOCHROUND5",5,"3.79","QFELD_11.1.3.QF5",3,"7",4,0,11);
+CreateQuestionObj("STOCHROUND6",6,"2.76","QFELD_11.1.3.QF6",3,"7",4,0,11);
+CreateQuestionObj("STOCHROUND7",7,"3.79","QFELD_11.1.3.QF7",3,"7",4,0,11);
+
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM_STOCHASTIK_1_2";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "xcontent1";
+			var fullName = "html/1.11.1/xcontent1.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>

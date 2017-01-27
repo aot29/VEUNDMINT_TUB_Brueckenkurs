@@ -1,0 +1,25 @@
+@media print {
+
+	/* Don't print these*/
+	#toc, #subtoc, #contentButtons, #sidebar {
+		display:none;
+	}
+	
+	/* Remove borders from page content */
+	#pageContents {
+		border-top: none;
+		border: none!important;
+	}
+	
+	/* Hide buttons */
+	.btn {
+		display:none;
+	}
+
+	/* Show solutions */	 
+	.hintbutton_closed, .hint {
+		display: block!important;
+		background-color: lightgrey!important;
+	}
+
+}

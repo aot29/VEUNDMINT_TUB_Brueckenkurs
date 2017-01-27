@@ -1,0 +1,353 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 4.2.2 Die Einsetzmethode und die Gleichsetzmethode</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>4.1. Was sind Lineare Gleichungssysteme?<ul>
+<li>
+<a href="../../html/1.4.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.1.2 Inhalt</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>4.2. LGS mit zwei Unbekannten<ul>
+<li>
+<a href="../../html/1.4.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.2.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">4.2.2 Einsetz- und Gleichsetzmethode</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.2/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.2.3 Additionsmethode</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.2/xcontent3.html" class="glyphicon glyphicon-file status2"><span class="entryText ">4.2.4 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>4.3. LGS mit drei Unbekannten<ul>
+<li>
+<a href="../../html/1.4.3/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.3.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.3/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.3.2 Lösbarkeit</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.3/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.3.3 Einsetzmethode</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.3/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.3.4 Additionsmethode</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.3/xcontent4.html" class="glyphicon glyphicon-file status2"><span class="entryText ">4.3.5 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>4.4. Allgemeinere Systeme<ul>
+<li>
+<a href="../../html/1.4.4/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.4.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.4/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">4.4.2 Systeme mit freiem Parameter</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.4.4/xcontent2.html" class="glyphicon glyphicon-file status2"><span class="entryText ">4.4.3 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>4.5. Abschlusstest<ul><li>
+<a href="../../html/1.4.5/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">4.5.1 Abschlusstest Modul 4</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div></div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.4.2/modstart.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill "><a href="../../html/1.4.2/modstart.html">4.2.1 Einführung</a></li>
+<li class="subtoc-pill active"><a href="../../html/1.4.2/xcontent1.html">4.2.2 Einsetz- und Gleichsetzmethode</a></li>
+<li class="subtoc-pill "><a href="../../html/1.4.2/xcontent2.html">4.2.3 Additionsmethode</a></li>
+<li class="subtoc-pill "><a href="../../html/1.4.2/xcontent3.html">4.2.4 Aufgaben</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.4.2/xcontent2.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+        <h4><div class='label label-default'>Kapitel 4 Lineare Gleichungssysteme </div></h4><strong>Abschnitt 4.2  LGS mit zwei Unbekannten</strong><h1>4.2.2 Die Einsetzmethode und die Gleichsetzmethode</h1> <!-- mdeclaresiteuxidpost;;VBKM04_Einsetzmethode;; //-->    <a id="M04_einsetz_gleichsetz"> </a> Bisher wurden Fragen der <b>Lösbarkeit</b><!-- mindexentry;;Lösbarkeit; //--><a class="label" name="ELI_SW82"></a> und der <b>graphischen Lösung</b> von Linearen Gleichungssystemen der Gestalt aus <a class="MINTERLINK" href="../../html/1.4.2/modstart.html#M04_2x2_system">4.2.1</a> untersucht.Eine rechnerische Behandlung solcher Systeme steht noch aus, was jetzt nachgeholt werden soll. Dazu betrachtet man ein weiteres Beispiel:                <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   4.2.6      </b> </h5></div><div class="panel-body"> Familie Müller hat für die Renovierung ihres Hauses zwei Kredite in einer Gesamthöhe von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>50</mn><mi> </mi><mn>000</mn></mrow></math> Euro aufnehmen müssen, für die sie pro Jahr zusammen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mi> </mi><mn>700</mn></mrow></math> Euro allein an Zinsen zu bezahlen hat. Für den einen Kreditvertrag fallen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>5</mn><mi>%</mi></mrow></math>, für den anderen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>8</mn><mi>%</mi></mrow></math> jährliche Zinsen an. Über welche Beträge laufen die einzelnen Kredite?  <br style="margin-bottom: 2em" /> Man bezeichnet die gesuchten Kredithöhen der beiden Verträge mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math>. Die Summe dieser beiden Beträge beläuft sich laut Aufgabentext auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>50</mn><mi> </mi><mn>000</mn></mrow></math> Euro, also lautet die erste Gleichung: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>:</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>x</mi><mo>+</mo><mi>y</mi><mo>=</mo><mn>50</mn><mi> </mi><mn>000</mn><mi>  </mi><mi>  </mi><mi>  </mi><mtext>(in Euro)</mtext><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Die Zinslast aus dem mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>5</mn><mi>%</mi></mrow></math> verzinsten Vertrag beträgt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.05</mn><mo>·</mo><mi>x</mi></mrow></math>, die aus dem anderen Vertrag  mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>8</mn><mi>%</mi></mrow></math> Zinsen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.08</mn><mo>·</mo><mi>y</mi></mrow></math>. Beide Lasten summieren sich gemäß Aufgabetext auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mi> </mi><mn>700</mn></mrow></math> Euro; dies liefert eine zweite Gleichung: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>:</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>0.05</mn><mi>x</mi><mo>+</mo><mn>0.08</mn><mi>y</mi><mo>=</mo><mn>3</mn><mi> </mi><mn>700</mn><mi>  </mi><mi>  </mi><mi>  </mi><mtext>(in Euro)</mtext><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Wiederum landet man bei einem Linearen Gleichungssystem vom Typ <a class="MINTERLINK" href="../../html/1.4.2/modstart.html#M04_2x2_system">4.2.1</a>.  <br style="margin-bottom: 2em" /> Für die rechnerische Lösung stellt man Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> um; es entsteht eine zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> äquivalente Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></math>: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>1</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="left"><mrow><mo>:</mo></mrow></mtd><mtd columnalign="left"><mrow><mi>y</mi><mo>=</mo><mn>50</mn><mi> </mi><mn>000</mn><mo>-</mo><mi>x</mi><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Diesen Ausdruck für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> kann man nun in Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math> für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math><b>einsetzen</b>, sodass die resultierende Gleichung nur noch <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> als Unbekannte enthält und dementsprechend aufgelöst werden kann: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mn>0.05</mn><mi>x</mi><mo>+</mo><mn>0.08</mn><mo stretchy="false">(</mo><mn>50</mn><mi> </mi><mn>000</mn><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>3</mn><mi> </mi><mn>700</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mn>0.05</mn><mi>x</mi><mo>+</mo><mn>4</mn><mi> </mi><mn>000</mn><mo>-</mo><mn>0.08</mn><mi>x</mi><mo>=</mo><mn>3</mn><mi> </mi><mn>700</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mn>0.03</mn><mi>x</mi><mo>=</mo><mn>300</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mi>x</mi><mo>=</mo><mn>10</mn><mi> </mi><mn>000</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Setzt man dieses Ergebnis für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> in Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></math> ein, so folgt: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mi>y</mi><mo>=</mo><mn>50</mn><mi> </mi><mn>000</mn><mo>-</mo><mn>10</mn><mi> </mi><mn>000</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mi>y</mi><mo>=</mo><mn>40</mn><mi> </mi><mn>000</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Die gesuchten Kreditvolumina betragen daher <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>10</mn><mi> </mi><mn>000</mn></mrow></math> Euro (Vertrag mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>5</mn><mi>%</mi></mrow></math> Verzinsung) und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>40</mn><mi> </mi><mn>000</mn></mrow></math> Euro (Vertrag mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>8</mn><mi>%</mi></mrow></math> Verzinsung). </div></div></div>   <!-- mfeedbackbutton;Example;0;4.2.6; //-->    Das voranstehende Beispiel demonstriert auf charakteristische Art und Weise das Vorgehen bei der sogenannten <b>Einsetzmethode</b>:                <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    4.2.7           </b> </h5></div><div class="panel-body"> <br/><a id="M04_einsetzmethode"> </a> Bei der <b>Einsetzmethode</b><!-- mindexentry;;Einsetzmethode; //--><a class="label" name="ELI_SW83"></a> wird eine der beiden linearen Gleichungen in einem ersten Schritt nach einer der Unbekannten - oder nach einem Vielfachen einer der Unbekannten - freigestellt; dieses Ergebnis wird im zweiten Schritt in die andere lineare Gleichung <b>eingesetzt</b>. Es können nun drei Fälle auftreten:  <ul><li>Die resultierende Gleichung enthält (nach dem Zusammenfassen gleichartiger Terme) noch die andere der beiden Unbekannten. Das Auflösen der resultierenden Gleichung nach dieser anderen Unbekannten liefert den ersten Teil des Ergebnisses; den zweiten Teil erhält man zum Beispiel, indem man das erste Teilergebnis in die Gleichung aus dem ersten Schritt einsetzt. Die Lösung ist eindeutig. (Gehört diese Lösung allerdings nicht zur Grundmenge, so muss sie ausgeschlossen werden.) <br style="margin-bottom: 2em" /> </li>  <li>Die resultierende Gleichung enthält die andere der beiden Unbekannten nicht mehr und stellt einen Widerspruch in sich dar. Dann besitzt das Lineare Gleichungssystem keine Lösung. <br style="margin-bottom: 2em" /> </li>  <li>Die resultierende Gleichung enthält die andere der beiden Unbekannten nicht mehr und ist automatisch immer gültig. Dann besitzt das Lineare Gleichungssystem unendlich viele Lösungen (wenn sich durch die zulässige Grundmenge keine Einschränkungen ergeben). <br style="margin-bottom: 2em" /> </li> </ul></div></div></div>   <!-- mfeedbackbutton;Info;0;4.2.7; //-->    Bei dieser Vorgehensweise bestehen gewisse Freiheiten. Es ist nicht festgelegt, welche der linearen Gleichungen des Systems nach welcher Unbekannten - oder Vielfachen davon - aufgelöst werden soll; solange es sich generell um Äquivalenzumformungen handelt, führt jeder der möglichen Wege zum selben Resultat. Die Bevorzugung eines bestimmten Lösungsweges ist zum Teil eine Frage des Geschmacks und zum Teil eine Frage der Geschicklichkeit: Einige Zwischenrechnungen können sich vereinfachen, wenn eine clevere Wahl getroffen wird.  <br style="margin-bottom: 2em" /> Im Zusammenhang mit der <b>Einsetzmethode</b> sollen die oben angesprochenen Fälle (ii) und (iii) noch an den Linearen Gleichungssystemen aus Beispiel <a class="MINTERLINK" href="../../html/1.4.2/modstart.html#M04_2x2_nicht_eindeutige_lsg">4.2.4</a> illustriert werden:                <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   4.2.8      </b> </h5></div><div class="panel-body"> Als Grundmenge bei beiden Linearen Gleichungssystemen legt man wiederum <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>ℝ</mo></mrow></math> fest.  <div style="text-align:center">  <table><tr><td align="center"><br/><table border="0" align="left"><tr><td/><td width="296">  <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right"><mrow><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>:</mo></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="right"><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>2</mn></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo>:</mo></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="right"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>1</mn></mrow></mtd></mtr></mtable><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Freistellen der Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> liefert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>2</mn><mo>-</mo><mi>y</mi></mrow></math>. Dies in Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math> eingesetzt ergibt: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mn>2</mn><mo stretchy="false">(</mo><mn>2</mn><mo>-</mo><mi>y</mi><mo stretchy="false">)</mo><mo>+</mo><mn>2</mn><mi>y</mi><mo>=</mo><mn>1</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>4</mn><mo>-</mo><mn>2</mn><mi>y</mi><mo>+</mo><mn>2</mn><mi>y</mi><mo>=</mo><mn>1</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>4</mn><mo>=</mo><mn>1</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Dies ist ein Widerspruch; das LGS besitzt <b>keine</b> Lösung.  </td></tr></table><!--vbox--><!--hbox--><br clear="all"/></td><td align="center"><table border="0"><tr><td/><td><table border="0"><tr><td/><td width="296">  <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right"><mrow><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>:</mo></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="right"><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>2</mn></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo>:</mo></mrow></mtd><mtd columnalign="center"><mrow/></mtd><mtd columnalign="right"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi></mrow></mtd><mtd columnalign="center"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>4</mn></mrow></mtd></mtr></mtable><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Freistellen der Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math> nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> liefert <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mn>2</mn><mo>-</mo><mi>x</mi></mrow></math>. Dies in Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math> eingesetzt ergibt: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mo stretchy="false">(</mo><mn>2</mn><mo>-</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>4</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>2</mn><mi>x</mi><mo>+</mo><mn>4</mn><mo>-</mo><mn>2</mn><mi>x</mi><mo>=</mo><mn>4</mn></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>4</mn><mo>=</mo><mn>4</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Dies ist immer wahr; das LGS besitzt <b>unendlich viele</b> Lösungen.  </td></tr></table><!--vbox--></td><td/></tr></table><!--hboxt--></td></tr></table></div></div></div></div>   <!-- mfeedbackbutton;Example;0;4.2.8; //-->    Die Einsetzmethode ist nicht das einzige Verfahren, um Lineare Gleichungssysteme rechnerisch zu lösen. Nachfolgend betrachtet man eine weitere Methode, die sehr eng mit der graphischen Lösung eines LGS verwandt ist.                <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    4.2.9           </b> </h5></div><div class="panel-body"> <br/><a id="M04_gleichsetzmethode"> </a> Bei der <b>Gleichsetzmethode</b><!-- mindexentry;;Gleichsetzmethode; //--><a class="label" name="ELI_SW84"></a> werden <b>beide</b> linearen Gleichungen in einem ersten Schritt nach einer der Unbekannten - oder nach einem Vielfachen einer der Unbekannten - freigestellt. Die beiden resultierenden neuen Gleichungen werden dann im zweiten Schritt <b>gleichgesetzt</b>. Es können dann abermals die drei im Zusammenhang mit der Einsetzmethode diskutierten Fälle auftreten. </div></div></div>   <!-- mfeedbackbutton;Info;0;4.2.9; //-->    Auch dieses Verfahren beinhaltet gewisse Freiheiten; so ist zum Beispiel nicht vorgeschrieben, nach welcher Unbekannten die linearen Gleichungen freigestellt werden sollen.  <br style="margin-bottom: 2em" /> Zur Demonstration wird das Eingangsbeispiel nochmals gelöst, jetzt mit Hilfe der Gleichsetzmethode:                <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   4.2.10      </b> </h5></div><div class="panel-body"> Das Lineare Gleichungssystem des einführenden Beispiels lautet: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>10</mn><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>13</mn><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  Man löst beide Gleichungen nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> auf, <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>10</mn><mo>-</mo><mi>y</mi><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mi>x</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>13</mn><mo>-</mo><mn>2</mn><mi>y</mi><mi> </mi><mo>,</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  und setzt die rechten Seiten der beiden Gleichungen gleich, <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mn>10</mn><mo>-</mo><mi>y</mi><mo>=</mo><mn>13</mn><mo>-</mo><mn>2</mn><mi>y</mi><mi> </mi><mo>,</mo><br/></mrow></mstyle></math></center><br/>  was auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mn>3</mn></mrow></math> führt. Dieses Ergebnis kann man in eine der beiden nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> aufgelösten Gleichungen einsetzen, um <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mn>7</mn></mrow></math> zu erhalten. </div></div></div>   <!-- mfeedbackbutton;Example;0;4.2.10; //-->               <div class="aufgabe" id="ADIV_4.2.11"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 4.2.11 </b> </h5></div><div class="panel-body"> Bestimmen Sie die Lösungsmenge für das Lineare Gleichungssystem <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mn>7</mn><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>14</mn><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mn>3</mn><mi>x</mi><mo>-</mo><mn>5</mn><mi>y</mi></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>6</mn></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  mit Hilfe der Gleichsetzmethode.  <br/><button name="Name_MHint1" class="hintbutton_closed btn btn-default" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>   <div class="hint well" style="display:none" id="MHint1">  Man löst beispielsweise beide Gleichungen nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> auf: dazu multipliziert man die erste Gleichung mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>7</mn></mrow></mfrac></mrow></math> und stellt nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> um, <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mn>14</mn></mrow><mrow><mn>7</mn></mrow></mfrac><mo>-</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>7</mn></mrow></mfrac><mi>y</mi><mo>⇔</mo><mi>x</mi><mo>=</mo><mn>2</mn><mo>-</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>7</mn></mrow></mfrac><mi>y</mi><mi>  </mi><mo>:</mo><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>1</mn><mo>'</mo><mo stretchy="false">)</mo><mi> </mi><mo>;</mo><br/></mrow></mstyle></math></center><br/>  die zweite Gleichung multipliziert man dagegen mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math>, bevor man nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> freistellt, <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mn>6</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi>y</mi><mo>⇔</mo><mi>x</mi><mo>=</mo><mn>2</mn><mo>+</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi>y</mi><mi>  </mi><mo>:</mo><mi> </mi><mtext>Gleichung</mtext><mi> </mi><mo stretchy="false">(</mo><mn>2</mn><mo>'</mo><mo stretchy="false">)</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Gleichsetzen der beiden rechten Seiten der Gleichungen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>'</mo><mo stretchy="false">)</mo></mrow></math> liefert: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mn>2</mn><mo>-</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>7</mn></mrow></mfrac><mi>y</mi><mo>=</mo><mn>2</mn><mo>+</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi>y</mi><mo>⇔</mo><mn>0</mn><mo>=</mo><mo stretchy="false">(</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>7</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo stretchy="false">)</mo><mi>y</mi><mo>⇔</mo><mi>y</mi><mo>=</mo><mn>0</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Mit diesem Ergebnis für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> ergibt z.B. die erste Gleichung: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mn>7</mn><mi>x</mi><mo>+</mo><mn>2</mn><mo>·</mo><mn>0</mn><mo>=</mo><mn>14</mn><mo>⇔</mo><mn>7</mn><mi>x</mi><mo>=</mo><mn>14</mn><mo>⇔</mo><mi>x</mi><mo>=</mo><mn>2</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Also ist das gegebene Lineare Gleichungssystem eindeutig lösbar und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mn>2</mn><mo>;</mo><mi>y</mi><mo>=</mo><mn>0</mn><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow></math>.  <br style="margin-bottom: 2em" /> Alternativ hätte man die beiden Gleichungen vor dem Gleichsetzen auch nach <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> auflösen können (oder nach einem Vielfachen von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> oder nach einem Vielfachen von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math>). Das Endresultat ist jedesmal dasselbe. </div> </div></div></div><!--   mfeedbackbutton;Exercise;0;4.2.11; //-->     <br/><!-- mfeedbackbutton;Seite;0;4.2.2; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Gleichung" target="_blank">Gleichung</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Lineare%20Gleichung" target="_blank">Lineare Gleichung</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Menge%20(Mathematik)" target="_blank">Menge</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Unendlich%20(Mathematik)" target="_blank">Unendlich</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.4.2/modstart.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.4.2/xcontent2.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM04_Einsetzmethode";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "xcontent1";
+			var fullName = "html/1.4.2/xcontent1.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>

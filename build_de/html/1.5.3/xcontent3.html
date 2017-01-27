@@ -1,0 +1,405 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 5.3.4 Kongruente und ähnliche Dreiecke</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div></div>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>5.1. Grundbegriffe der ebenen Geometrie<ul>
+<li>
+<a href="../../html/1.5.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.1.2 Punkte und Geraden</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.1/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.1.3 Strahlensätze</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.1/xcontent3.html" class="glyphicon glyphicon-file status2"><span class="entryText ">5.1.4 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>5.2. Winkel und Winkelmessung<ul>
+<li>
+<a href="../../html/1.5.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.2.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.2.2 Winkel</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.2/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.2.3 Winkelmessung</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>5.3. Rund um Dreiecke<ul>
+<li>
+<a href="../../html/1.5.3/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.3.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.3/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.3.2 Dreiecke</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.3/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.3.3 Pythagoras</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.3/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">5.3.4 Kongruenz</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.3/xcontent4.html" class="glyphicon glyphicon-file status2"><span class="entryText ">5.3.5 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>5.4. Vielecke, Flächeninhalt und Umfang<ul>
+<li>
+<a href="../../html/1.5.4/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.4.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.4/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.4.2 Vierecke</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.4/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.4.3 Vielecke</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.4/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.4.4 Umfang</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.4/xcontent4.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.4.5 Flächeninhalt</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.4/xcontent5.html" class="glyphicon glyphicon-file status2"><span class="entryText ">5.4.6 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>5.5. Elementargeometrische Körper<ul>
+<li>
+<a href="../../html/1.5.5/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.5.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.5/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.5.2 Elementargeometrische Körper</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.5/xcontent2.html" class="glyphicon glyphicon-file status2"><span class="entryText ">5.5.3 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>5.6. Winkelfunktionen: Sinus und Co.<ul>
+<li>
+<a href="../../html/1.5.6/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.6.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.6/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.6.2 Dreieck</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.6/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">5.6.3 Einheitskreis</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.5.6/xcontent3.html" class="glyphicon glyphicon-file status2"><span class="entryText ">5.6.4 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>5.7. Abschlusstest<ul><li>
+<a href="../../html/1.5.7/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">5.7.1 Abschlusstest Modul 5</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div></div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.5.3/xcontent2.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill "><a href="../../html/1.5.3/modstart.html">5.3.1 Einführung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.5.3/xcontent1.html">5.3.2 Dreiecke</a></li>
+<li class="subtoc-pill "><a href="../../html/1.5.3/xcontent2.html">5.3.3 Pythagoras</a></li>
+<li class="subtoc-pill active"><a href="../../html/1.5.3/xcontent3.html">5.3.4 Kongruenz</a></li>
+<li class="subtoc-pill "><a href="../../html/1.5.3/xcontent4.html">5.3.5 Aufgaben</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.5.3/xcontent4.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+        <h4><div class='label label-default'>Kapitel 5 Geometrie </div></h4><strong>Abschnitt 5.3  Rund um Dreiecke</strong><h1>5.3.4 Kongruente und ähnliche Dreiecke</h1> <!-- mdeclaresiteuxidpost;;VBKM05_Kongruenzsaetze_Content;; //-->  <br style="margin-bottom: 2em" /> Zu einem Dreieck gehören unter anderem drei Seitenlängen und drei Winkel.  Die Außenwinkel sind durch die Innenwinkel bereits festgelegt, sodass durch  diese sechs Größen die „Form“ eines Dreiecks bestimmt ist. Wenn  bei zwei Dreiecken alle diese Größen übereinstimmen, so sind diese Dreiecke  deckungsgleich oder <b>kongruent</b><!-- mindexentry;;kongruent (Dreieck); //--><a class="label" name="ELI_SW132"></a>.  Dabei spielt es keine  Rolle, wo sich die Dreiecke befinden. Kongruente Dreiecke können also durch  Drehung, Spiegelung und Verschiebung ineinander übergeführt werden.  <br style="margin-bottom: 2em" /> Kennt man vier von den sechs Größen, so ist das Dreieck eindeutig bestimmt  bis auf Spielgelung oder Drehung, das heißt bis auf die Lage des Dreiecks  im Raum. Alle Dreiecke, die man mit diesen Angaben erhält, sind dann kongruent. In einigen Fällen genügen sogar drei Angaben, um das Dreieck eindeutig  zu bestimmen. Sie werden in den <b>Kongruenzsätzen</b><!-- mindexentry;;Kongruenzsätze (Dreieck); //--><a class="label" name="ELI_SW133"></a>  beschrieben:  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Kongruenzsätze für Dreiecke    5.3.13           </b> </h5></div><div class="panel-body">   <a id="VBKM05_DreieckeKongruenzsaetze"> </a>Ein Dreieck ist bis auf seine Lage in der Ebene eindeutig bestimmt, wenn  eine der folgenden Situationen vorliegt:  <ul><li> Von den drei Winkeln und den drei Seitenlängen sind        mindestens vier Angaben gegeben. <br style="margin-bottom: 2em" /> </li>  <li> Alle drei Seitenlängen sind gegeben.        (Diesen Satz bezeichnet man gerne mit „sss“ für „Seite, Seite, Seite“.) <br style="margin-bottom: 2em" /> </li>  <li> Eine Seitenlänge und ihre Winkel zu den anderen Seiten sind gegeben        („wsw“ für „Winkel, Seite, Winkel“). <br style="margin-bottom: 2em" /> </li>  <li> Zwei Seitenlängen und der von den Seiten eingeschlossene Winkel         sind gegeben („sws“ für „Seite, Winkel, Seite“). <br style="margin-bottom: 2em" /> </li>  <li> Ein Winkel und zwei Seitenlängen sind so gegeben, dass nur eine der         Seiten auf einem Schenkel des Winkels liegt und die andere gegebene         Seite die längere der beiden gegebenen Seiten ist.  <br style="margin-bottom: 2em" />        (Diesen Satz bezeichnet man mit „Ssw“ für „Seite, Seite,         Winkel“,         wobei das groß geschriebene „S“ signalisieren soll, dass die         dem Winkel gegenüberliegende Seite die längere Seite darstellt.) <br style="margin-bottom: 2em" /> </li> </ul></div></div></div>   <!-- mfeedbackbutton;Info;0;5.3.13; //-->     <br style="margin-bottom: 2em" /> Wenn von einem Dreieck nur zwei oder drei Angaben gegeben sind, die  keinem der oben angegebenen Fälle entsprechen, so gibt es verschiedene Dreiecke, für die die Angaben zutreffen und die nicht deckungsgleich sind.  <br style="margin-bottom: 2em" /> Im Folgenden wird zuerst in einem Beispiel erläutert, wie mit den  Kongruenzsätzen ein Dreieck konstruiert werden kann. Danach wird ein Beispiel zu Dreiecken betrachtet, bei denen nur die Winkel  gegeben sind und somit keine der obigen Bedingungen erfüllt ist.  <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   5.3.14      </b> </h5></div><div class="panel-body">  <table><tr><td align="left"><br/><table border="0" align="left"><tr><td/><td width="395">  Gegeben seien die Seiten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi></mrow></math> und der Winkel <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>. Das Dreieck „sws“ erhält man, indem man zunächst eine Seite,  hier zum Beispiel die Seite <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi></mrow></math>, zeichnet und an der nach der  Bezeichnungskonvention passenden Ecke (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi></mrow></math>) den Winkel <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math> anfügt. Dann schlägt man um diese Ecke einen Kreis, dessen Radius der Länge der zweiten Seite (hier <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi></mrow></math>) entspricht. Der Schnittpunkt dieses Kreises mit dem zweiten Schenkel des Winkels bildet die dritte Ecke des Dreiecks (<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>C</mi></mrow></math>).  </td></tr></table><!--vbox--><!--hbox--><br clear="all"/></td><td align="right"><table border="0"><tr><td/><td><table border="0"><tr><td/><td width="276">     <a id="L_SOURCEAUTOLABEL_82"> </a> <!-- registerfile;;VBKM05mtikzauto_27.4x.png;;VBKM05;;27; //--> <img class="mintmodimage" src="../../../images/VBKM05mtikzauto_27.4x.png"/><!-- mfeedbackbutton;Abbildung;VBKM05mtikzauto_27.4x.png;:localmaterial:/[[!-- mfileref;;27; //--]]; //--></td></tr></table><!--vbox--></td><td/></tr></table><!--hboxt--></td></tr></table></div></div></div>   <!-- mfeedbackbutton;Example;0;5.3.14; //-->     <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_5.3.15"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 5.3.15 </b> </h5></div><div class="panel-body"> Konstruieren Sie ein Dreieck mit einer Seite <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi><mo>=</mo><mn>5</mn></mrow></math> und den Winkeln  <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mn>30</mn><msup><mrow/><mrow><mo>∘</mo></mrow></msup></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi><mo>=</mo><mn>120</mn><msup><mrow/><mrow><mo>∘</mo></mrow></msup></mrow></math>, wobei die oben eingeführte Notation verwendet wird.  <br style="margin-bottom: 2em" />   <button name="Name_MHint1" class="hintbutton_closed btn btn-default" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>   <div class="hint well" style="display:none" id="MHint1">   <table><tr><td align="left"><br/><table border="0" align="left"><tr><td/><td width="355">  Man zeichnet zuerst die gegebene Strecke <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi></mrow></math>. Dann trägt man an den beiden Enden der Strecke die zwei der Bezeichnungskonvention entsprechenden Winkel an. Der Schnittpunkt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>C</mi></mrow></math> der beiden neuen Schenkel ist die dritte Ecke des Dreiecks.  </td></tr></table><!--vbox--><!--hbox--><br clear="all"/></td><td align="right"><table border="0"><tr><td/><td><table border="0"><tr><td/><td width="276">     <a id="L_SOURCEAUTOLABEL_83"> </a> <!-- registerfile;;VBKM05mtikzauto_28.4x.png;;VBKM05;;28; //--> <img class="mintmodimage" src="../../../images/VBKM05mtikzauto_28.4x.png"/><!-- mfeedbackbutton;Abbildung;VBKM05mtikzauto_28.4x.png;:localmaterial:/[[!-- mfileref;;28; //--]]; //--></td></tr></table><!--vbox--></td><td/></tr></table><!--hboxt--></td></tr></table></div> </div></div></div><!--   mfeedbackbutton;Exercise;0;5.3.15; //-->      <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   5.3.16      </b> </h5></div><div class="panel-body">   <a id="VBKM05_BeispielAehnlichkeit"> </a>Gegeben seien nun die drei Winkel <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mn>77</mn><msup><mrow/><mrow><mo>∘</mo></mrow></msup></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi><mo>=</mo><mn>44</mn><msup><mrow/><mrow><mo>∘</mo></mrow></msup></mrow></math> und  <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>γ</mi><mo>=</mo><mn>59</mn><msup><mrow/><mrow><mo>∘</mo></mrow></msup></mrow></math>, deren Summe <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>180</mn><msup><mrow/><mrow><mo>∘</mo></mrow></msup></mrow></math> ist. Diese Auswahl von drei Winkeln ohne Angabe zu einer Seite findet man nicht bei  den Kongruenzsätzen <a class="MINTERLINK" href="../../html/1.5.3/xcontent3.html#VBKM05_DreieckeKongruenzsaetze">5.3.13</a>. Beispiele solcher Dreicke sind hier dargestellt:  <br style="margin-bottom: 2em" />  <div style="text-align:center"><a id="L_SOURCEAUTOLABEL_84"> </a> <!-- registerfile;;VBKM05mtikzauto_29.4x.png;;VBKM05;;29; //--> <img class="mintmodimage" src="../../../images/VBKM05mtikzauto_29.4x.png"/><!-- mfeedbackbutton;Abbildung;VBKM05mtikzauto_29.4x.png;:localmaterial:/[[!-- mfileref;;29; //--]]; //--></div>  <br style="margin-bottom: 2em" /> Es gibt sogar unendlich viele derartige Dreiecke, die die angegebenen Winkel  haben und die nicht kongruent zueinander sind, also nicht durch Drehung oder  Spiegelung ineinander übergeführt werden können. </div></div></div>   <!-- mfeedbackbutton;Example;0;5.3.16; //-->     <br style="margin-bottom: 2em" /> Allerdings sehen diese Dreiecke irgendwie ähnlich aus. Solche  <b>ähnlichen</b> Dreiecke erhält man auch, wenn man zum Beispiel die  Verhältnisse aller Seiten zueinander kennt.  Dies ergibt sich aus den Strahlensätzen, wie die folgende Zeichnung  verdeutlicht:   <br style="margin-bottom: 2em" />  <div style="text-align:center">    <a id="L_SOURCEAUTOLABEL_85"> </a> <!-- registerfile;;VBKM05mtikzauto_30.4x.png;;VBKM05;;30; //--> <img class="mintmodimage" src="../../../images/VBKM05mtikzauto_30.4x.png"/><!-- mfeedbackbutton;Abbildung;VBKM05mtikzauto_30.4x.png;:localmaterial:/[[!-- mfileref;;30; //--]]; //--></div>  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Ähnlichkeitssätze für Dreiecke    5.3.17           </b> </h5></div><div class="panel-body">   <a id="VBKM05_DreieckeAehnlichkeitssaetze"> </a> Zwei Dreiecke heißen zueinander <b>ähnlich</b><!-- mindexentry;;Ähnlich (Dreieck); //--><a class="label" name="ELI_SW134"></a>, wenn sie  <ul><li> in zwei (und damit wegen der Winkelsumme in drei)     Winkeln übereinstimmen, oder <br style="margin-bottom: 2em" /> </li>  <li> in allen <b>Verhältnissen</b> ihrer entsprechenden Seiten     übereinstimmen, oder <br style="margin-bottom: 2em" /> </li>  <li> in einem Winkel und im <b>Verhältnis</b> der anliegenden     Seiten übereinstimmen, oder <br style="margin-bottom: 2em" /> </li>  <li> im <b>Verhältnis</b> zweier Seiten und im Gegenwinkel der     größeren Seite übereinstimmen. <br style="margin-bottom: 2em" /> </li> </ul></div></div></div>   <!-- mfeedbackbutton;Info;0;5.3.17; //-->     <br style="margin-bottom: 2em" /> Eine Besonderheit gibt es bei dem rechten und dem linken Dreieck in Beispiel <a class="MINTERLINK" href="../../html/1.5.3/xcontent3.html#VBKM05_BeispielAehnlichkeit">5.3.16</a>:  Hier geht das eine Dreieck durch zentrische Streckung     <a id="Mathematik_ElementareGeometrie_zentrischeStreckung"> </a> mit dem  Streckzentrum <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>S</mi></mrow></math> und einem Streckfaktor <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>k</mi></mrow></math> in das andere über.  <br style="margin-bottom: 2em" />  <div style="text-align:center"><a id="L_SOURCEAUTOLABEL_86"> </a> <!-- registerfile;;VBKM05mtikzauto_31.4x.png;;VBKM05;;31; //--> <img class="mintmodimage" src="../../../images/VBKM05mtikzauto_31.4x.png"/><!-- mfeedbackbutton;Abbildung;VBKM05mtikzauto_31.4x.png;:localmaterial:/[[!-- mfileref;;31; //--]]; //--></div>  <br style="margin-bottom: 2em" /> <br/><!-- mfeedbackbutton;Seite;0;5.3.4; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Dreieck" target="_blank">Dreieck</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Element%20(Mathematik)" target="_blank">Element</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Geometrie" target="_blank">Geometrie</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Innenwinkel" target="_blank">Innenwinkel</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Kongruenz%20(Matrix)" target="_blank">Kongruenz</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Kreis" target="_blank">Kreis</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Punkt%20(Geometrie)" target="_blank">Punkt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Radius" target="_blank">Radius</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Raum%20(Mathematik)" target="_blank">Raum</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Satz%20(Mathematik)" target="_blank">Satz</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Schnittpunkt" target="_blank">Schnittpunkt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Strahl%20(Geometrie)" target="_blank">Strahl</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Strecke%20(Geometrie)" target="_blank">Strecke</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Unendlich%20(Mathematik)" target="_blank">Unendlich</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Winkel" target="_blank">Winkel</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Winkelsumme" target="_blank">Winkelsumme</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.5.3/xcontent2.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.5.3/xcontent4.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM05_Kongruenzsaetze_Content";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "xcontent3";
+			var fullName = "html/1.5.3/xcontent3.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>

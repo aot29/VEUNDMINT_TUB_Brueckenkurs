@@ -1,0 +1,342 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 2.1.5 Auflösen quadratischer Gleichungen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div></div>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>2.1. Einfache Gleichungen<ul>
+<li>
+<a href="../../html/1.2.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">2.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.2.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">2.1.2 Bedingungen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.2.1/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">2.1.3 Proportionalität</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.2.1/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">2.1.4 Auflösen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.2.1/xcontent4.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">2.1.5 Quadratische Gleichungen</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>2.2. Betragsgleichungen<ul>
+<li>
+<a href="../../html/1.2.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">2.2.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.2.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">2.2.2 Fallunterscheidungen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.2.2/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">2.2.3 Gemischte Gleichungen</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>2.3. Abschlusstest<ul><li>
+<a href="../../html/1.2.3/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">2.3.1 Abschlusstest Modul 2</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div></div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.2.1/xcontent3.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill "><a href="../../html/1.2.1/modstart.html">2.1.1 Einführung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.2.1/xcontent1.html">2.1.2 Bedingungen</a></li>
+<li class="subtoc-pill "><a href="../../html/1.2.1/xcontent2.html">2.1.3 Proportionalität</a></li>
+<li class="subtoc-pill "><a href="../../html/1.2.1/xcontent3.html">2.1.4 Auflösen</a></li>
+<li class="subtoc-pill active"><a href="../../html/1.2.1/xcontent4.html">2.1.5 Quadratische Gleichungen</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.2.2/modstart.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+        <h4><div class='label label-default'>Kapitel 2 Gleichungen in einer Unbekannten </div></h4><strong>Abschnitt 2.1  Einfache Gleichungen</strong><h1>2.1.5 Auflösen quadratischer Gleichungen</h1>    <a id="VBKM02_QuadratischeGleichungen"> </a> <!-- mdeclaresiteuxidpost;;VBKM02_Quadratische Gleichungen;; //-->                <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    2.1.20           </b> </h5></div><div class="panel-body"> <br/> Eine <b>quadratische Gleichung</b><!-- mindexentry;;Gleichung (quadratisch); //--><a class="label" name="ELI_SW52"></a> ist eine Gleichung, die sich in der Form <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>≠</mo><mn>0</mn></mrow></math>,oder in normierter Form <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mi>p</mi><mi>x</mi><mo>+</mo><mi>q</mi><mo>=</mo><mn>0</mn></mrow></math> schreiben lässt. Diese erhält man durch Division der gesamten Gleichung durch <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math>. <br/><br/> Für eine quadratische Gleichung in einer Variablen (hier <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>) gibt es nur drei Möglichkeiten:  <ul><li>Sie ist nicht lösbar: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">}</mo></mrow></math>, <br style="margin-bottom: 2em" /> </li>  <li>sie besitzt eine einzige Lösung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">}</mo></mrow></math>, <br style="margin-bottom: 2em" /> </li>  <li>sie besitzt zwei verschiedene Lösungen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>;</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">}</mo></mrow></math>. <br style="margin-bottom: 2em" /> </li> </ul></div></div></div>   <!-- mfeedbackbutton;Info;0;2.1.20; //-->     <br style="margin-bottom: 2em" /> Die Lösungen erhält man dabei über <b>quadratische Lösungsformeln</b><!-- mindexentry;;Lösungsformeln; //--><a class="label" name="ELI_SW53"></a>.   <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    2.1.21           </b> </h5></div><div class="panel-body"> <br/><a id="VBKM02_pqFormel"> </a> Die <b><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mi>q</mi></mrow></math>-Formel</b><!-- mindexentry;;pq-Formel; //--><a class="label" name="ELI_SW54"></a> für die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mi>p</mi><mi>x</mi><mo>+</mo><mi>q</mi><mo>=</mo><mn>0</mn></mrow></math> lautet <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1,2</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mo>-</mo><mfrac><mrow><mi>p</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo>±</mo><msqrt><mrow><msup><mrow><mo>(</mo><mfrac><mrow><mi>p</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo>)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>q</mi></mrow></msqrt><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Dabei besitzt die Gleichung  <ul><li>keine (reelle) Lösung, falls <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mo>(</mo><mfrac><mrow><mi>p</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo>)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>q</mi><mo>&lt;</mo><mn>0</mn></mrow></math> ist (dann darf man die Wurzel nicht ziehen), <br style="margin-bottom: 2em" /> </li>  <li>eine einzige Lösung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mo>-</mo><mfrac><mrow><mi>p</mi></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math>, falls <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mo>(</mo><mfrac><mrow><mi>p</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo>)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mi>q</mi></mrow></math> ist und die Wurzel verschwindet, <br style="margin-bottom: 2em" /> </li>  <li>zwei verschiedene Lösungen, falls der Ausdruck unter der Wurzel eine positive Zahl ist.  <br style="margin-bottom: 2em" /> </li> </ul> Der hierbei betrachtete Ausdruck unter der Wurzel, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>D</mi><mo>:</mo><mo>=</mo><msup><mrow><mo>(</mo><mfrac><mrow><mi>p</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo>)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>q</mi></mrow></math>, heißt <b>Diskriminante</b>. </div></div></div>   <!-- mfeedbackbutton;Info;0;2.1.21; //-->    Die Lösung einer quadratischen Gleichung wird häufig durch eine  alternative Formel beschrieben:                <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    2.1.22           </b> </h5></div><div class="panel-body"> <br/><a id="VBKM02_abcFormel"> </a> Für die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>≠</mo><mn>0</mn></mrow></math> lautet die <b><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mi>b</mi><mi>c</mi></mrow></math>-Formel</b><!-- mindexentry;;abc-Formel; //--><a class="label" name="ELI_SW55"></a> oder <b>Mitternachtsformel</b><!-- mindexentry;;Mitternachtsformel; //--><a class="label" name="ELI_SW56"></a> <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1,2</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mo>-</mo><mi>b</mi><mo>±</mo><msqrt><mrow><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Dabei besitzt die Gleichung  <ul><li>keine (reelle) Lösung, falls <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>4</mn><mi>a</mi><mi>c</mi><mo>&lt;</mo><mn>0</mn></mrow></math> ist (eine Quadratwurzel negativer Zahlen existiert im Reellen nicht), <br style="margin-bottom: 2em" /> </li>  <li>eine einzige Lösung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mo>-</mo><mfrac><mrow><mi>b</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></math>, falls <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></math> ist und die Wurzel verschwindet, <br style="margin-bottom: 2em" /> </li>  <li>zwei verschiedene Lösungen, falls der Ausdruck unter der Wurzel eine positive Zahl ist.  <br style="margin-bottom: 2em" /> </li> </ul> Auch der hierbei betrachtete Ausdruck unter der Wurzel, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>D</mi><mo>:</mo><mo>=</mo><msup><mrow><mi>b</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></math>, heißt <b>Diskriminante</b>. </div></div></div>   <!-- mfeedbackbutton;Info;0;2.1.22; //-->    Beide Formeln führen natürlich auf dieselben Lösungen. (Für die Anwendung der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mi>q</mi></mrow></math>-Formel ist die Gleichung durch den Vorfaktor <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> des quadratischen Terms zu dividieren.)  <br style="margin-bottom: 2em" /> <br/> Die drei unterschiedenen Situationen entsprechen den drei möglichen Schnitten, die der Graph einer (für der Fall der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mi>q</mi></mrow></math>-Formel) nach oben geöffneten Parabel der Form <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mi>p</mi><mi>x</mi><mo>+</mo><mi>q</mi></mrow></math> mit der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>-Achse haben kann:  <br style="margin-bottom: 2em" />  <div style="text-align:center">   <a id="L_SOURCEAUTOLABEL_10"> </a> <!-- registerfile;;VBKM02mtikzauto_1.4x.png;;VBKM02;;1; //--> <img class="mintmodimage" src="../../../images/VBKM02mtikzauto_1.4x.png"/><!-- mfeedbackbutton;Abbildung;VBKM02mtikzauto_1.4x.png;:localmaterial:/[[!-- mfileref;;1; //--]]; //--></div>  <br style="margin-bottom: 2em" /> Die drei Situationen: Kein Schnittpunkt, ein Schnittpunkt und zwei Schnittpunkte mit der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>-Achse.  <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   2.1.23      </b> </h5></div><div class="panel-body"> Die quadratische Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn></mrow></math> hat keine Lösung, denn in der <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mi>q</mi></mrow></math>-Formel ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac><msup><mrow><mi>p</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>q</mi><mo>=</mo><mo>-</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>4</mn></mrow></mfrac></mrow></math> negativ. Dagegen besitzt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo>=</mo><mn>0</mn></mrow></math> die beiden Lösungen <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>+</mo><msqrt><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>+</mo><mn>1</mn></mrow></msqrt><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><msqrt><mrow><mn>5</mn></mrow></msqrt><mo stretchy="false">)</mo><mi> </mi><mo>,</mo><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>-</mo><msqrt><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>+</mo><mn>1</mn></mrow></msqrt><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">(</mo><mn>1</mn><mo>-</mo><msqrt><mrow><mn>5</mn></mrow></msqrt><mo stretchy="false">)</mo><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Example;0;2.1.23; //-->     <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    2.1.24           </b> </h5></div><div class="panel-body"> <br/><a id="VBKM02_Scheitelpunktform"> </a> Der Funktionsausdruck einer Parabel liegt in <b>Scheitelpunktform</b><!-- mindexentry;;Scheitelpunktform; //--><a class="label" name="ELI_SW57"></a> vor, wenn er die Form <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>·</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mi>s</mi><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mi>d</mi></mrow></math> mit <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>≠</mo><mn>0</mn></mrow></math> besitzt. In dieser Situation ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>;</mo><mo>-</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></math> der <b>Scheitelpunkt</b><!-- mindexentry;;Scheitelpunkt (Parabel); //--><a class="label" name="ELI_SW58"></a> der Parabel. Die zugehörige quadratische Gleichung für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math> lautet dann <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>·</mo><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mi>s</mi><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mi>d</mi></mrow></math>.  <br style="margin-bottom: 2em" /> Dividiert man diese Gleichung durch <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math>, dann erhält man die äquivalente quadratische Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mi>s</mi><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mfrac><mrow><mi>d</mi></mrow><mrow><mi>a</mi></mrow></mfrac></mrow></math>. Da die linke Seite ein Quadrat eines reellen Ausdrucks ist, existieren nur Lösungen, wenn auch die rechte Seite nicht negativ ist, d.h. <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mi>d</mi></mrow><mrow><mi>a</mi></mrow></mfrac><mo>≥</mo><mn>0</mn></mrow></math> gilt. Durch Wurzelziehen unter Beachtung beider möglicher Vorzeichen folgt dann <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>-</mo><mi>s</mi><mo>=</mo><mo>±</mo><msqrt><mrow><mfrac><mrow><mi>d</mi></mrow><mrow><mi>a</mi></mrow></mfrac></mrow></msqrt></mrow></math>.  <br style="margin-bottom: 2em" /> Falls <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mi>d</mi></mrow><mrow><mi>a</mi></mrow></mfrac><mo>&gt;</mo><mn>0</mn></mrow></math> ist, gibt es damit die beiden Lösungen <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mi>s</mi><mo>-</mo><msqrt><mrow><mfrac><mrow><mi>d</mi></mrow><mrow><mi>a</mi></mrow></mfrac></mrow></msqrt><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub><mi>  </mi><mo>=</mo><mi>  </mi><mi>s</mi><mo>+</mo><msqrt><mrow><mfrac><mrow><mi>d</mi></mrow><mrow><mi>a</mi></mrow></mfrac></mrow></msqrt><br/></mrow></mstyle></math></center><br/>  der Gleichung; diese liegen symmetrisch um die <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>-Koordinate <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi></mrow></math> des Scheitelpunkts. Für <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>d</mi><mo>=</mo><mn>0</mn></mrow></math> gibt es nur eine Lösung.  <br style="margin-bottom: 2em" /> Das Vorzeichen von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> bestimmt, ob der Funktionsausdruck eine nach oben oder unten geöffnete Parabel beschreibt. So die Parabel für ein positives <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> nach oben und für ein negatives <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi></mrow></math> nach unten geöffnet.</div></div></div>   <!-- mfeedbackbutton;Info;0;2.1.24; //-->     <br style="margin-bottom: 2em" /> Die quadratische Gleichung hat nur eine einzige Lösung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi></mrow></math>, falls sie sich in die Form <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mi>s</mi><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>0</mn></mrow></math> bringen lässt.  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    2.1.25           </b> </h5></div><div class="panel-body"> <br/><a id="VBKM02_QuadratischErgaenzung"> </a> Beliebige quadratische Gleichungen kann man (ggf. Sortieren der Terme auf die linke Seite und Normieren) durch <b>quadratische Ergänzung</b><!-- mindexentry;;Quadratische Ergänzung; //--><a class="label" name="ELI_SW59"></a> in Scheitelpunktform bringen. Dazu wird auf beiden Seiten eine Konstante addiert, so dass links ein Term der Form <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>±</mo><mn>2</mn><mi>s</mi><mi>x</mi><mo>+</mo><msup><mrow><mi>s</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math> für die erste oder zweite binomische Formel entsteht. </div></div></div>   <!-- mfeedbackbutton;Info;0;2.1.25; //-->     <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   2.1.26      </b> </h5></div><div class="panel-body"> Die Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>4</mn><mi>x</mi><mo>+</mo><mn>2</mn><mo>=</mo><mn>0</mn></mrow></math> kann man durch Addieren der Konstanten <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> in die Form <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>4</mn><mi>x</mi><mo>+</mo><mn>4</mn><mo>=</mo><mn>2</mn></mrow></math> bzw. in die Scheitelpunktform <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>2</mn></mrow></math> bringen.  Aus ihr kann man die Lösungen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mn>2</mn><mo>-</mo><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mo>+</mo><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math> leicht ablesen. Andererseits besitzt die quadratische Gleichung <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mi>x</mi><mo>=</mo><mo>-</mo><mn>2</mn></mrow></math> keine Lösung, denn die quadratische Ergänzung führt auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>=</mo><mo>-</mo><mfrac><mrow><mn>7</mn></mrow><mrow><mn>4</mn></mrow></mfrac></mrow></math> bzw. <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mo>-</mo><mfrac><mrow><mn>7</mn></mrow><mrow><mn>4</mn></mrow></mfrac></mrow></math> mit negativer rechter Seite bei <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow></math>. </div></div></div>   <!-- mfeedbackbutton;Example;0;2.1.26; //-->     <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_2.1.27"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 2.1.27 </b> </h5></div><div class="panel-body"> Bestimmen Sie die Lösungen dieser quadratischen Gleichungen über quadratische Ergänzung, nachdem Sie die Terme auf die linke Seite sortiert und normiert (d.h. <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow></math> gewählt) haben:  <ol type="1"><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>8</mn><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> hat die Scheitelpunktform   <input mfieldtype="4" name="Name_QFELD_2.1.6.QF1" id="QFELD_2.1.6.QF1" type="text" size="20" maxlength="20" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_2.1.6.QF1"/></span>   <br style="margin-bottom: 2em" /> <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_2.1.6.QF2" id="QFELD_2.1.6.QF2" type="text" size="5" maxlength="5" onfocus="handlerFocus(2);" onblur="handlerBlur(2);" onkeyup="handlerChange(2,0);" onpaste="handlerChange(2,0);" oninput="handlerChange(2,0);" onpropertychange="handlerChange(2,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_2.1.6.QF2"/></span>   .<br/>Die Lösungsmenge ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_2.1.6.QF3" id="QFELD_2.1.6.QF3" type="text" size="30" maxlength="30" onfocus="handlerFocus(3);" onblur="handlerBlur(3);" onkeyup="handlerChange(3,0);" onpaste="handlerChange(3,0);" oninput="handlerChange(3,0);" onpropertychange="handlerChange(3,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_2.1.6.QF3"/></span>   .<br/> </li>  <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mo>+</mo><mn>2</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math> hat die Scheitelpunktform   <input mfieldtype="4" name="Name_QFELD_2.1.6.QF4" id="QFELD_2.1.6.QF4" type="text" size="20" maxlength="20" onfocus="handlerFocus(4);" onblur="handlerBlur(4);" onkeyup="handlerChange(4,0);" onpaste="handlerChange(4,0);" oninput="handlerChange(4,0);" onpropertychange="handlerChange(4,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_2.1.6.QF4"/></span>   <br style="margin-bottom: 2em" /> <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_2.1.6.QF5" id="QFELD_2.1.6.QF5" type="text" size="5" maxlength="5" onfocus="handlerFocus(5);" onblur="handlerBlur(5);" onkeyup="handlerChange(5,0);" onpaste="handlerChange(5,0);" oninput="handlerChange(5,0);" onpropertychange="handlerChange(5,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_2.1.6.QF5"/></span>   .<br/>Die Lösungsmenge ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_2.1.6.QF6" id="QFELD_2.1.6.QF6" type="text" size="30" maxlength="30" onfocus="handlerFocus(6);" onblur="handlerBlur(6);" onkeyup="handlerChange(6,0);" onpaste="handlerChange(6,0);" oninput="handlerChange(6,0);" onpropertychange="handlerChange(6,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_2.1.6.QF6"/></span>   .<br/> </li>  <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>6</mn><mi>x</mi><mo>+</mo><mn>18</mn><mo>=</mo><mo>-</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>6</mn><mi>x</mi></mrow></math> hat die Scheitelpunktform   <input mfieldtype="4" name="Name_QFELD_2.1.6.QF7" id="QFELD_2.1.6.QF7" type="text" size="20" maxlength="20" onfocus="handlerFocus(7);" onblur="handlerBlur(7);" onkeyup="handlerChange(7,0);" onpaste="handlerChange(7,0);" oninput="handlerChange(7,0);" onpropertychange="handlerChange(7,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_2.1.6.QF7"/></span>   <br style="margin-bottom: 2em" /> <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_2.1.6.QF8" id="QFELD_2.1.6.QF8" type="text" size="5" maxlength="5" onfocus="handlerFocus(8);" onblur="handlerBlur(8);" onkeyup="handlerChange(8,0);" onpaste="handlerChange(8,0);" oninput="handlerChange(8,0);" onpropertychange="handlerChange(8,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_2.1.6.QF8"/></span>   .<br/>Die Lösungsmenge ist <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="3" name="Name_QFELD_2.1.6.QF9" id="QFELD_2.1.6.QF9" type="text" size="30" maxlength="30" onfocus="handlerFocus(9);" onblur="handlerBlur(9);" onkeyup="handlerChange(9,0);" onpaste="handlerChange(9,0);" oninput="handlerChange(9,0);" onpropertychange="handlerChange(9,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_2.1.6.QF9"/></span>   .<br/> </li> </ol><span class="text-info">Mengen können in der Form <tt><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">{</mo></mrow></math> a;b;c;<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>…</mo><mo stretchy="false">}</mo></mrow></math></tt> eingegeben werden. Die leere Menge kann als <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">{</mo><mo stretchy="false">}</mo></mrow></math> eingegeben werden.</span>   <br style="margin-bottom: 2em" />   <button name="Name_MHint1" class="hintbutton_closed btn btn-default" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>   <div class="hint well" style="display:none" id="MHint1">  Die Umformungen lauten: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>8</mn><mi>x</mi><mo>-</mo><mn>1</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>8</mn><mi>x</mi><mo>+</mo><mn>16</mn><mo>=</mo><mn>15</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>4</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>15</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mn>4</mn><mo>-</mo><msqrt><mrow><mn>15</mn></mrow></msqrt><mo>;</mo><mn>4</mn><mo>+</mo><msqrt><mrow><mn>15</mn></mrow></msqrt><mo stretchy="false">}</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  sowie für die zweite Gleichung <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mo>+</mo><mn>2</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mo>=</mo><mn>0</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>=</mo><mo>-</mo><mn>1</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mo>-</mo><mn>1</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">}</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/>  und für die dritte Gleichung <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>6</mn><mi>x</mi><mo>+</mo><mn>18</mn><mo>=</mo><mo>-</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>6</mn><mi>x</mi><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mn>2</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>12</mn><mi>x</mi><mo>+</mo><mn>18</mn><mo>=</mo><mn>0</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>6</mn><mi>x</mi><mo>+</mo><mn>9</mn><mo>=</mo><mn>0</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow><mo>⇔</mo></mrow></mtd><mtd columnalign="left"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>3</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>0</mn><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow/></mtd><mtd columnalign="left"><mrow/></mtd><mtd columnalign="left"><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mn>3</mn><mo stretchy="false">}</mo><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/></div>  <br style="margin-bottom: 2em" /> </div></div></div><!--   mfeedbackbutton;Exercise;0;2.1.27; //-->      <br style="margin-bottom: 2em" /> <br/><!-- mfeedbackbutton;Seite;0;2.1.5; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Diskriminante%20(Modulform)" target="_blank">Diskriminante</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Gleichung" target="_blank">Gleichung</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Menge%20(Mathematik)" target="_blank">Menge</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Punkt%20(Geometrie)" target="_blank">Punkt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Scheitelpunkt" target="_blank">Scheitelpunkt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Schnittpunkt" target="_blank">Schnittpunkt</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Variable%20(Mathematik)" target="_blank">Variable</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.2.1/xcontent3.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.2.2/modstart.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			CreateQuestionObj("MSPF1",1,"x^2-8*x+16","QFELD_2.1.6.QF1",4,"5;x;5;0",4,0,2);
+CreateQuestionObj("GLD1",2,"15","QFELD_2.1.6.QF2",3,"5",4,0,2);
+CreateQuestionObj("SQRT1",3,"4-sqrt(15),4+sqrt(15)","QFELD_2.1.6.QF3",3,"5",4,0,2);
+CreateQuestionObj("MSPF2",4,"x^2+2*x+1","QFELD_2.1.6.QF4",4,"5;x;5;0",4,0,2);
+CreateQuestionObj("GLD2",5,"-1","QFELD_2.1.6.QF5",3,"5",4,0,2);
+CreateQuestionObj("SQRT2",6,"","QFELD_2.1.6.QF6",3,"5",4,0,2);
+CreateQuestionObj("MSPF3",7,"x^2-6*x+9","QFELD_2.1.6.QF7",4,"5;x;5;0",4,0,2);
+CreateQuestionObj("GLD3",8,"0","QFELD_2.1.6.QF8",3,"5",4,0,2);
+CreateQuestionObj("SQRT3",9,"3,3","QFELD_2.1.6.QF9",3,"5",4,0,2);
+
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM02_Quadratische Gleichungen";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "xcontent4";
+			var fullName = "html/1.2.1/xcontent4.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>

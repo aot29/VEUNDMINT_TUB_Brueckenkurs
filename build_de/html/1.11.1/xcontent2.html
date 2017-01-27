@@ -1,0 +1,339 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 11.1.3 Bemerkungen zu den Rundungsvorgängen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>11.1. Begriffe und Sprechweisen<ul>
+<li>
+<a href="../../html/1.11.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.1.2 Rundung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.1/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">11.1.3 Bemerkungen</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.2. Häufigkeitsverteilungen und Prozentrechnung<ul>
+<li>
+<a href="../../html/1.11.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.2 Prozentrechnung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.3 Zinsrechnung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.4 Stetige Verzinsung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.2/xcontent4.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.2.5 Diagrammarten</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.3. Statistische Maßzahlen<ul>
+<li>
+<a href="../../html/1.11.3/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.3/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.2 Robuste Maßzahlen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.11.3/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">11.3.3 Streuungsmaße</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>11.4. Abschlusstest<ul><li>
+<a href="../../html/1.11.4/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">11.4.1 Abschlusstest Kapitel 11</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.11.1/xcontent1.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.1/modstart.html">11.1.1 Einführung</a></li>
+<li class="subtoc-pill "><a href="../../html/1.11.1/xcontent1.html">11.1.2 Rundung</a></li>
+<li class="subtoc-pill active"><a href="../../html/1.11.1/xcontent2.html">11.1.3 Bemerkungen</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.11.2/modstart.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+        <h4><div class='label label-default'>Kapitel 11 Sprechweisen der Statistik </div></h4><strong>Abschnitt 11.1  Begriffe und Sprechweisen</strong><h1>11.1.3 Bemerkungen zu den Rundungsvorgängen</h1> <!-- mdeclaresiteuxidpost;;VBKM_STOCHASTIK_1_3;; //--> Wie die folgenden Überlegungen und Beispiele zeigen, muss man beim Rechnen mit gerundeten Ergebnissen sehr kritisch sein. Man betrachte die Menge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi><mo>=</mo><mo>ℝ</mo><msub><mi/><mrow><mo>≥</mo><mn>0</mn></mrow></msub></mrow></math> aller nicht negativen rellen Zahlen und führe auf der Menge <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi></mrow></math> die Multiplikation <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>M</mi><mo>×</mo><mi>M</mi><mi>  </mi><mo>→</mo><mi>M</mi><mi>  </mi><mi>  </mi><mo>,</mo><mi>  </mi><mi>  </mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mi>  </mi><mo>⟼</mo><mi>  </mi><mi>a</mi><mo>⊙</mo><mi>b</mi><br/></mrow></mstyle></math></center><br/>  über die Berechnungsvorschrift <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>a</mi><mo>⊙</mo><mi>b</mi><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mtext>round</mtext><mo stretchy="false">(</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>·</mo><mi>a</mi><mo>·</mo><mi>b</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>·</mo><mrow><mo>⌊</mo><msup><mrow><mn>10</mn></mrow><mrow><mn>2</mn></mrow></msup><mo>·</mo><mi>a</mi><mo>·</mo><mi>b</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>⌋</mo></mrow><br/></mrow></mstyle></math></center><br/>  ein. Anschaulich bedeutet dies, dass das Produkt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>⊙</mo><mi>b</mi></mrow></math> berechnet wird, indem zunächst das gewöhnliche Produnkt <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>·</mo><mi>b</mi></mrow></math> berechnet wird und das Ergebnis dann auf zwei Nachkommastellen mathematisch gerundet wird.  <br style="margin-bottom: 2em" /> Das Assoziativgesetz der Multiplikation gilt nicht mehr für die gerundete Multiplikation: Für die Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>=</mo><mn>2,11</mn></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi><mo>=</mo><mn>3,35</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi><mo>=</mo><mn>2,61</mn></mrow></math> gilt beispielsweise <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>a</mi><mo>⊙</mo><mi>b</mi><mi>  </mi><mo>=</mo><mi>  </mi><mn>2,11</mn><mo>⊙</mo><mn>3,35</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>7,07</mn><mi>  </mi><mtext>und</mtext><mi>  </mi><mo stretchy="false">(</mo><mi>a</mi><mo>⊙</mo><mi>b</mi><mo stretchy="false">)</mo><mo>⊙</mo><mi>c</mi><mi>  </mi><mo>=</mo><mi>  </mi><mn>7,07</mn><mo>⊙</mo><mn>2,61</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>18,45</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Setzt man die Klammern um, so erhält man aber <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>b</mi><mo>⊙</mo><mi>c</mi><mi>  </mi><mo>=</mo><mi>  </mi><mn>3,35</mn><mo>⊙</mo><mn>2,61</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>8,74</mn><mi>  </mi><mi>  </mi><mtext>und</mtext><mi>  </mi><mi>  </mi><mi>a</mi><mo>⊙</mo><mo stretchy="false">(</mo><mi>b</mi><mo>⊙</mo><mi>c</mi><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mn>2,11</mn><mo>⊙</mo><mn>8,74</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>18,44</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/><br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    11.1.11           </b> </h5></div><div class="panel-body"> <br/> Da Taschenrechner (und Computer) stets mit gerundeten Ergebnissen rechnen, bedeutet dies, dass das Assoziativgesetz der Multiplikation auf Taschenrechnern nicht uneingeschränkt gültig ist. </div></div></div>   <!-- mfeedbackbutton;Info;0;11.1.11; //-->     <br style="margin-bottom: 2em" /> Ebenso können falsche Ergebnisse durch ungeschicktes Runden entstehen: Dazu seien <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>=</mo><mn>4,98</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>b</mi><mo>=</mo><mn>1,001</mn></mrow></math>. Dann gilt <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>a</mi><mo>·</mo><mi>b</mi><mi>  </mi><mo>=</mo><mi>  </mi><mn>4,98</mn><mo>·</mo><mn>1,001</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>4,98498</mn><mi>  </mi><mtext>also</mtext><mi>  </mi><mi>a</mi><mo>⊙</mo><mi>b</mi><mi>  </mi><mo>=</mo><mi>  </mi><mn>4,98</mn><mo>⊙</mo><mn>1,001</mn><mi>  </mi><mo>=</mo><mi>  </mi><mn>4,98</mn><mi>  </mi><mo>=</mo><mi>  </mi><mi>a</mi><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Weiter gilt <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mi>a</mi><mo>·</mo><msup><mrow><mi>b</mi></mrow><mrow><mn>1000</mn></mrow></msup><mi>  </mi><mo>=</mo><mi>  </mi><mn>4,98</mn><mo>·</mo><mn>1</mn><mo>,</mo><msup><mrow><mn>001</mn></mrow><mrow><mn>1000</mn></mrow></msup><mi>  </mi><mo>=</mo><mi>  </mi><mi>a</mi><mo>·</mo><munder><mrow><munder><mrow><mi>b</mi><mo>·</mo><mo>…</mo><mo>·</mo><mi>b</mi></mrow><mo stretchy="true">⏟</mo></munder></mrow><mrow><mn>1000</mn><mi>  </mi><mtext>Faktoren</mtext></mrow></munder><mo>≈</mo><mn>13,53028118</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Rundet man jetzt nach jeder durchgeführten Multiplikation auf <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> Nachkommastellen, so erhält man wegen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>⊙</mo><mi>b</mi><mo>=</mo><mi>a</mi></mrow></math> das völlig falsche Resultat <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mo stretchy="false">(</mo><mo>…</mo><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>a</mi><mo>⊙</mo><munder><mrow><munder><mrow><mi>b</mi><mo stretchy="false">)</mo><mo>⊙</mo><mi>b</mi><mo stretchy="false">)</mo><mo>…</mo><mo>⊙</mo><mi>b</mi></mrow><mo stretchy="true">⏟</mo></munder></mrow><mrow><mn>1000</mn><mi>  </mi><mtext>Faktoren</mtext></mrow></munder><mo stretchy="false">)</mo><mi>  </mi><mo>=</mo><mi>  </mi><mi>a</mi><mi>  </mi><mo>=</mo><mi>  </mi><mn>4,98</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/><br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    11.1.12           </b> </h5></div><div class="panel-body"> <br/><a id="L_STOCH_RP"> </a> Dies bedeutet für die Praxis, dass man grundsätzlich mit mindestens der doppelten Genauigkeit rechnen muss und erst das Endergebnis auf die vorgeschriebene Genauigkeit runden darf. </div></div></div>   <!-- mfeedbackbutton;Info;0;11.1.12; //-->     <br style="margin-bottom: 2em" /> <br/><!-- mfeedbackbutton;Seite;0;11.1.3; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Assoziativgesetz" target="_blank">Assoziativgesetz</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Menge%20(Mathematik)" target="_blank">Menge</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Stochastik" target="_blank">Stochastik</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.11.1/xcontent1.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.11.2/modstart.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM_STOCHASTIK_1_3";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "xcontent2";
+			var fullName = "html/1.11.1/xcontent2.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>

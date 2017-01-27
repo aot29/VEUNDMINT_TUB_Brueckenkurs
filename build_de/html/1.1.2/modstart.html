@@ -1,0 +1,954 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Onlinebrückenkurs Mathematik Abschnitt 1.2.1 Mit Brüchen rechnen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+			
+			MathJax.Hub.Config({
+			  jax: ["input/TeX","input/MathML", "output/CommonHTML"],
+			  extensions: ["tex2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+			  TeX: {
+			    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"],
+			    Macros: {
+			      RR: '{\\bf R}',
+			      bold: ['{\\bf #1}', 1]
+			    }
+			  },
+			  tex2jax: {
+			    ignoreClass: "tex2jaxignore",
+			    inlineMath: [['\\(','\\)']],
+			    displayMath: [['\\[','\\]']]
+			  },
+			  "CommonHTML": {
+			    scale: 100,
+			    minScaleAdjust: 80,
+			    mtextFontInherit: true,
+			    linebreak: { automatic: false, width: "container" },
+			  },
+			  "fast-preview": {
+			      disabled: true
+			  },
+			  menuSettings: { zoom: "Double-Click", zscale: "200%" }
+				});
+			MathJax.Hub.processSectionDelay = 0;
+			
+		</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><!--
+			inject:css
+		--><!--
+			endinject
+		-->
+</head>
+<body>
+<!--top navbar--><div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarTop"><div class="container-fluid" id="navbarContainer"><div class="row-fluid" id="toolsRow">
+<ul class="nav navbar-nav">
+<li><a id="menuButton" type="button" data-toggle="offcanvas" class="visible-sm visible-xs"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+<li><a href="../../de/index.html" data-toggle="tooltip" id="homebutton"><span class="glyphicon glyphicon-home"></span></a></li>
+<li><a data-toggle="tooltip" id="listebutton" href="../../de/search.html"><span class="glyphicon glyphicon-book"></span></a></li>
+<li><a data-toggle="tooltip" id="databutton" href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span></a></li>
+<li><a data-toggle="tooltip" id="pdfbutton" href="../../../pdf/veundmint_de.pdf"><span class="glyphicon glyphicon-save-file"></span></a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown logged_out_only show_noscorm" id="logged_out_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a><ul class="dropdown-menu">
+<li><a href="../../de/login.html" id="loginButton"><span id="loginbutton_text" data-toggle="i18n" data-i18n="ui-loginbutton"></span></a></li>
+<li><a href="../../de/signup.html"><span id="signup_text" data-toggle="i18n" data-i18n="ui-signupbutton"></span></a></li>
+</ul>
+</li>
+<li class="dropdown logged_in_only show_scorm" id="logged_in_buttons">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Profil <span class="caret"></span></a><ul class="dropdown-menu">
+<li id="li-course-data"><a href="../../de/data.html"><span class="glyphicon glyphicon-dashboard"></span> <span id="databutton_text" data-toggle="i18n" data-i18n="ui-databutton"></span></a></li>
+<li id="li-profile"><a href="../../de/signup.html"><span class="glyphicon glyphicon-list-alt"></span> <span id="ccount_text" data-toggle="i18n" data-i18n="msg-myaccount"></span></a></li>
+<li id="li-logout" class="show_noscorm"><a href="../../de/logout.html"><span class="glyphicon glyphicon-off"></span> <span id="logoutbutton_text" data-toggle="i18n" data-i18n="ui-logoutbutton"></span></a></li>
+</ul>
+</li>
+</ul>
+<div id="languageChooser"></div>
+</div></div></div>
+<!--end top navbar--><div class="row-offcanvas row-offcanvas-left">
+<div id="sidebar" class="sidebar-offcanvas"><div class="col-md-12">
+<!--TOC side bar--><div id="toc" class="panel-group">
+<h3>
+<img src="../../../images/logo.png" style="float:left;margin-right: 4px; width: 60px;">Onlinebrückenkurs Mathematik</h3>
+<div class="panel panel-primary module-panel">
+<div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.1.0.html">1. Elementares Rechnen</a></h4></div>
+<div><div class="panel-body"><ul>
+<li>1.1. Zahlen, Variablen, Terme<ul>
+<li>
+<a href="../../html/1.1.1/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">1.1.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.1.1/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">1.1.2 Variablen und Terme</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.1.1/xcontent2.html" class="glyphicon glyphicon-file status1"><span class="entryText ">1.1.3 Terme umformen</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>1.2. Bruchrechnung<ul>
+<li>
+<a href="../../html/1.1.2/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText selectedEntry">1.2.1 Mit Brüchen rechnen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.1.2/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">1.2.2 Umwandeln von Brüchen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.1.2/xcontent2.html" class="glyphicon glyphicon-file status2"><span class="entryText ">1.2.3 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>1.3. Umformen von Termen<ul>
+<li>
+<a href="../../html/1.1.3/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">1.3.1 Einführung</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.1.3/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">1.3.2 Termumformungen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.1.3/xcontent2.html" class="glyphicon glyphicon-file status2"><span class="entryText ">1.3.3 Aufgaben</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.1.3/xcontent3.html" class="glyphicon glyphicon-file status1"><span class="entryText ">1.3.4 Summen/Produkte</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>1.4. Potenzen und Wurzeln<ul>
+<li>
+<a href="../../html/1.1.4/modstart.html" class="glyphicon glyphicon-file status1"><span class="entryText ">1.4.1 Potenzen und Wurzeln</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.1.4/xcontent1.html" class="glyphicon glyphicon-file status1"><span class="entryText ">1.4.2 Rechnen mit Potenzen</span></a><ul></ul>
+</li>
+<li>
+<a href="../../html/1.1.4/xcontent2.html" class="glyphicon glyphicon-file status2"><span class="entryText ">1.4.3 Aufgaben</span></a><ul></ul>
+</li>
+</ul>
+</li>
+<li>1.5. Abschlusstest<ul><li>
+<a href="../../html/1.1.5/modstart.html" class="glyphicon glyphicon-file status3"><span class="entryText ">1.5.1 Abschlusstest Kapitel 1</span></a><ul></ul>
+</li></ul>
+</li>
+</ul></div></div>
+</div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.2.0.html">2. Gleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.3.0.html">3. Ungleichungen in einer Unbekannten</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.4.0.html">4. Lineare Gleichungssysteme</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.5.0.html">5. Geometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.6.0.html">6. Elementare Funktionen</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.7.0.html">7. Differentialrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.8.0.html">8. Integralrechnung</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.9.0.html">9. Orientierung im zweidimensionalen Koordinatensystem</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.10.0.html">10. Grundlagen der anschaulichen Vektorgeometrie</a></h4></div></div>
+<div class="panel panel-default module-panel"><div class="panel-heading"><h4 class="panel-title"><a href="../../html/sectionx1.11.0.html">11. Sprechweisen der Statistik</a></h4></div></div>
+<!--Legend--><div class="panel panel-default" id="legend"><div class="panel-body">
+<h4><span data-toggle="i18n" data-i18n="legend"></span></h4>
+<ul class="panel">
+<li><span data-toggle="i18n" data-i18n="explanation_subsection"></span></li>
+<li>
+<div class="glyphicon glyphicon-file status1"></div>
+<span data-toggle="i18n" data-i18n="explanation_xcontent"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status2"></div>
+<span data-toggle="i18n" data-i18n="explanation_exercises"></span>
+</li>
+<li>
+<div class="glyphicon glyphicon-file status3"></div>
+<span data-toggle="i18n" data-i18n="explanation_test"></span>
+</li>
+</ul>
+</div></div>
+<!--Social media--><div style="padding-top: 1em;"><ul id="social-media-links">
+<li><a href="https://www.facebook.com/TU.Berlin" title="Facebook" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a></li>
+<li><a href="https://twitter.com/tuberlin?lang=en" title="Twitter" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="https://www.linkedin.com/edu/school?id=11938&amp;trk=edu-cp-title" title="LinkedIn" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a></li>
+<li><a href="https://www.reddit.com/r/tuberlin/" title="Reddit" class="btn btn-social-icon btn-reddit"><span class="fa fa-reddit"></span></a></li>
+</ul></div>
+<!--End Social media-->
+</div>
+<!--End TOC side bar-->
+</div></div>
+<div id="main"><div class="col-md-12">
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.1.1/xcontent2.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="subtoc-pill active"><a href="../../html/1.1.2/modstart.html">1.2.1 Mit Brüchen rechnen</a></li>
+<li class="subtoc-pill "><a href="../../html/1.1.2/xcontent1.html">1.2.2 Umwandeln von Brüchen</a></li>
+<li class="subtoc-pill "><a href="../../html/1.1.2/xcontent2.html">1.2.3 Aufgaben</a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.1.2/xcontent1.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><div class="row" id="pageContents" style="">
+<div id="contentButtons" class="pull-right"></div>
+<a id="M01_Bruchrechnung"></a>        <h4><div class='label label-default'>Kapitel 1 Elementares Rechnen </div></h4><strong>Abschnitt 1.2  Bruchrechnung</strong><h1>1.2.1 Mit Brüchen rechnen</h1> <!-- mdeclaresiteuxidpost;;VBKM01_Bruchrechnung;; //-->  <br style="margin-bottom: 2em" /> Ein Bruch ist eine rationale Zahl der Form <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mstyle displaystyle="true"><mfrac><mrow><mtext>Zähler</mtext></mrow><mrow><mtext>Nenner</mtext></mrow></mfrac></mstyle></mrow></math>, wobei Zähler und Nenner ganze Zahlen sind und der Nenner <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>≠</mo><mn>0</mn></mrow></math> ist.  Beispiele hierfür sind: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mfrac><mrow><mn>5</mn></mrow><mrow><mo>-</mo><mn>10</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mfrac><mrow><mo>-</mo><mn>17</mn></mrow><mrow><mn>12</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>23</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mfrac><mrow><mn>4</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mfrac><mrow><mo>-</mo><mn>2</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mo>…</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Sehr schnell erkennt man, dass ein und dieselbe rationale Zahl beliebig viele äquivalente Darstellungen haben kann. Zum Beispiel gilt: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>12</mn></mrow><mrow><mn>36</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>24</mn></mrow><mrow><mn>72</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mo>-</mo><mn>12</mn></mrow><mrow><mo>-</mo><mn>36</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>9</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>120</mn></mrow><mrow><mn>360</mn></mrow></mfrac><mo>=</mo><mo>…</mo><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Die verschiedenen Darstellungen gehen durch <b>Kürzen</b> bzw. <b>Erweitern</b> ineinander über.                <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    1.2.1           </b> </h5></div><div class="panel-body"> <br/> Brüche werden <b>gekürzt</b><!-- mindexentry;;Kürzen; //--><a class="label" name="ELI_SW13"></a>, indem Zähler und Nenner durch dieselbe ganze Zahl ungleich Null dividiert werden.  <br style="margin-bottom: 2em" /> Brüche werden <b>erweitert</b><!-- mindexentry;;Erweitern; //--><a class="label" name="ELI_SW14"></a>, indem Zähler und Nenner mit derselben ganzen Zahl ungleich Null multipliziert werden. </div></div></div>   <!-- mfeedbackbutton;Info;0;1.2.1; //-->     <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   1.2.2      </b> </h5></div><div class="panel-body"> Drei Freunde möchten sich eine Pizza teilen. Tom isst <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac></mstyle></mrow></math> der Pizza, Tim <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mstyle></mrow></math> der Pizza. Wieviel Pizza ist noch für ihren Freund Sven übrig, der eigentlich immer den meisten Hunger hat?<br/> Der Ergebnis wird mithilfe der Bruchrechnung bestimmt: Zunächst müssen zwei Brüche addiert werden, um festzustellen, wieviel Tim und Tom schon von der Pizza gegessen haben:  <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn><mo>·</mo><mn>3</mn></mrow><mrow><mn>4</mn><mo>·</mo><mn>3</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn><mo>·</mo><mn>4</mn></mrow><mrow><mn>3</mn><mo>·</mo><mn>4</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>12</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>4</mn></mrow><mrow><mn>12</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>7</mn></mrow><mrow><mn>12</mn></mrow></mfrac><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Hier erkennt man schon die beiden wichtigsten Schritte: zunächst müssen die beiden Brüche durch Erweitern auf den sogenannten <b>Hauptnenner</b> gebracht oder man sagt auch <b>gleichnamig</b> gemacht werden. Wenn die Brüche dann denselben Nenner besitzen, können sie addiert werden, indem ihre Zähler addiert und der gemeinsame Nenner übernommen wird. Mit dem Ergebnis, dass Tim und Tom <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mstyle displaystyle="true"><mfrac><mrow><mn>7</mn></mrow><mrow><mn>12</mn></mrow></mfrac></mstyle></mrow></math> der Pizza gegessen haben, kann durch Subtraktion berechnet werden, wie viel für Sven übrig bleibt:  <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mn>1</mn><mo>-</mo><mfrac><mrow><mn>7</mn></mrow><mrow><mn>12</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>12</mn></mrow><mrow><mn>12</mn></mrow></mfrac><mo>-</mo><mfrac><mrow><mn>7</mn></mrow><mrow><mn>12</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>12</mn></mrow></mfrac><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Auch hier werden die Brüche wieder auf den Hauptnenner gebracht und anschließend die Zähler subtrahiert. Die beiden Freunde haben also für den immer hungrigen Sven tatsächlich die meiste Pizza übriggelassen.  </div></div></div>   <!-- mfeedbackbutton;Example;0;1.2.2; //-->     <br style="margin-bottom: 2em" /> In dieser Trainingsaufgabe kann das Kürzen von Zahlen in Zähler und Nenner eingeübt werden:  <br style="margin-bottom: 2em" /> <!-- directroulette-start;VBKM01_FRACTIONTRAINING; //--><div class='dynamic_inset' id='ROULETTECONTAINER_VBKM01_FRACTIONTRAINING'><div id='DROULETTEVBKM01_FRACTIONTRAINING.0'>           <div class="aufgabe" id="ADIV_1.2.3"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 1.2.3 </b> </h5></div><div class="panel-body"> Kürzen Sie soweit möglich: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mstyle displaystyle="true"><mfrac><mrow><mn>6270</mn></mrow><mrow><mn>1235</mn></mrow></mfrac></mstyle></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="4" name="Name_QFELD_1.2.2.QF1" id="QFELD_1.2.2.QF1" type="text" size="23" maxlength="23" onfocus="handlerFocus(1);" onblur="handlerBlur(1);" onkeyup="handlerChange(1,0);" onpaste="handlerChange(1,0);" oninput="handlerChange(1,0);" onpropertychange="handlerChange(1,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.2.2.QF1"/></span>   <br style="margin-bottom: 2em" />  .<br/><button name="Name_MHint1" class="hintbutton_closed btn btn-default" id="MHint1_button" type="button" onclick="toggle_hint('MHint1');">Lösung</button>   <div class="hint well" style="display:none" id="MHint1">  <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>6270</mn></mrow><mrow><mn>1235</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>95</mn><mo>·</mo><mn>66</mn></mrow><mrow><mn>95</mn><mo>·</mo><mn>13</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>66</mn></mrow><mrow><mn>13</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/></div>  </div></div></div><!--   mfeedbackbutton;Exercise;0;1.2.3; //-->    <button type="button" class="btn btn-success roulettebutton" onclick="rouletteClick('VBKM01_FRACTIONTRAINING',0,300);">Neue Aufgabe</button></div></div><!-- directroulette-stop;VBKM01_FRACTIONTRAINING; //-->  <br style="margin-bottom: 2em" /> Schwieriger wird es, wenn Variablen in Zähler und Nenner auftreten. Diese können genau wie Zahlen (aber nicht mit Zahlen) gekürzt werden, beispielsweise ist <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>4</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><msup><mrow><mi>y</mi></mrow><mrow><mn>3</mn></mrow></msup><mo>+</mo><mn>3</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mn>10</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>4</mn><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mi>y</mi><mo>+</mo><mn>3</mn></mrow><mrow><mn>10</mn></mrow></mfrac><br/></mrow></mstyle></math></center><br/>  nach Kürzung durch den Term <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math> Zähler und Nenner. Die folgende Trainingsaufgabe wurde um Variablen erweitert:  <br style="margin-bottom: 2em" /> <!-- directroulette-start;VBKM01_VFRACTIONTRAINING; //--><div class='dynamic_inset' id='ROULETTECONTAINER_VBKM01_VFRACTIONTRAINING'><div id='DROULETTEVBKM01_VFRACTIONTRAINING.0'>           <div class="aufgabe" id="ADIV_1.2.303"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 1.2.303 </b> </h5></div><div class="panel-body"> Kürzen Sie soweit möglich: <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mstyle displaystyle="true"><mfrac><mrow><mn>36</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mn>81</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>81</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup><msup><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></mfrac></mstyle></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="4" name="Name_QFELD_1.2.2.QF301" id="QFELD_1.2.2.QF301" type="text" size="33" maxlength="33" onfocus="handlerFocus(301);" onblur="handlerBlur(301);" onkeyup="handlerChange(301,0);" onpaste="handlerChange(301,0);" oninput="handlerChange(301,0);" onpropertychange="handlerChange(301,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.2.2.QF301"/></span>   <br style="margin-bottom: 2em" />  .<br/><button name="Name_MHint301" class="hintbutton_closed btn btn-default" id="MHint301_button" type="button" onclick="toggle_hint('MHint301');">Lösung</button>   <div class="hint well" style="display:none" id="MHint301">  <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>36</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mn>81</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>81</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup><msup><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></mfrac><mo>=</mo><mfrac><mrow><mo stretchy="false">(</mo><mn>9</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup><mo stretchy="false">)</mo><mo>·</mo><mn>4</mn></mrow><mrow><mo stretchy="false">(</mo><mn>9</mn><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup><mo stretchy="false">)</mo><mo>·</mo><mo stretchy="false">(</mo><mn>9</mn><mo>-</mo><mn>9</mn><msup><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow></msup><mo stretchy="false">)</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>4</mn></mrow><mrow><mn>9</mn><mo>-</mo><mn>9</mn><msup><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow></msup></mrow></mfrac><mo>=</mo><mfrac><mrow><mo>-</mo><mn>4</mn></mrow><mrow><mn>9</mn><msup><mrow><mi>z</mi></mrow><mrow><mn>3</mn></mrow></msup><mo>-</mo><mn>9</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mstyle></math></center><br/></div>  </div></div></div><!--   mfeedbackbutton;Exercise;0;1.2.303; //-->    <button type="button" class="btn btn-success roulettebutton" onclick="rouletteClick('VBKM01_VFRACTIONTRAINING',0,300);">Neue Aufgabe</button></div></div><!-- directroulette-stop;VBKM01_VFRACTIONTRAINING; //-->  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    1.2.603           </b> </h5></div><div class="panel-body"> <br/> Der <b>Hauptnenner</b><!-- mindexentry;;Hauptnenner; //--><a class="label" name="ELI_SW15"></a> von zwei Brüchen ist das kleinste gemeinsame Vielfache (kgV) der beiden Nenner.  <br style="margin-bottom: 2em" /> Das <b>kleinste gemeinsame Vielfache</b><!-- mindexentry;;kgV; //--><a class="label" name="ELI_SW16"></a> (kgV) zweier Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math> ist die kleinste natürliche Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>k</mi></mrow></math> von der sowohl Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> als auch Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math> Teiler sind. <br/>Der <b>größte gemeinsame Teiler</b><!-- mindexentry;;ggT; //--><a class="label" name="ELI_SW17"></a> (ggT) zweier Zahlen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math> ist die größte natürliche Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi></mrow></math>, die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math> als auch Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi>z</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math> teilt.</div></div></div>   <!-- mfeedbackbutton;Info;0;1.2.603; //-->     <br style="margin-bottom: 2em" /> Ist die Bestimmung des kgV bei den folgenden Rechenregeln zu kompliziert, so kann an seiner Stelle auch das einfache Produkt der Nenner benutzt werden:  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    1.2.604           </b> </h5></div><div class="panel-body"> <br/> Brüche werden <b>addiert/subtrahiert</b><!-- mindexentry;;Addition (Bruch); //--><a class="label" name="ELI_SW18"></a>, indem man sie auf den gleichen Nenner bringt und die Zähler anschließend addiert/subtrahiert, d. h. <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac><mo>±</mo><mfrac><mrow><mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>a</mi><mi>d</mi><mo>±</mo><mi>b</mi><mi>c</mi></mrow><mrow><mi>b</mi><mi>d</mi></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mi>b</mi><mi>d</mi><mo>≠</mo><mn>0</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Üblicherweise werden die Brüche auf den Hauptnenner erweitert.  </div></div></div>   <!-- mfeedbackbutton;Info;0;1.2.604; //-->     <br style="margin-bottom: 2em" /> Beispielsweise ist das kleinste gemeinsame Vielfache von <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>6</mn><mo>=</mo><mn>2</mn><mo>·</mo><mn>3</mn></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>15</mn><mo>=</mo><mn>3</mn><mo>·</mo><mn>5</mn></mrow></math> die Zahl <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mo>·</mo><mn>3</mn><mo>·</mo><mn>5</mn><mo>=</mo><mn>30</mn></mrow></math>, das Produkt ist dagegen <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>6</mn><mo>·</mo><mn>15</mn><mo>=</mo><mn>90</mn></mrow></math>. Man kann also <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>15</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>5</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>7</mn></mrow><mrow><mn>30</mn></mrow></mfrac><br/></mrow></mstyle></math></center><br/>  aber auch <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>15</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>15</mn></mrow><mrow><mn>90</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>6</mn></mrow><mrow><mn>90</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>21</mn></mrow><mrow><mn>90</mn></mrow></mfrac><br/></mrow></mstyle></math></center><br/>  rechnen und den letzten Bruch dann noch zu <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>7</mn></mrow><mrow><mn>30</mn></mrow></mfrac></mrow></math> kürzen.  <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   1.2.605      </b> </h5></div><div class="panel-body"> Das kleinste gemeinsame Vielfache für den Hauptnenner ist die kleinste Zahl, die von allen beteiligten Nennern geteilt wird. Falls die Zahlen keine gemeinsamen Faktoren haben, ist es einfach das Produkt der beiden Zahlen: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>5</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>8</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>4</mn></mrow><mrow><mn>15</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>10</mn></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>10</mn></mrow><mrow><mn>60</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>6</mn></mrow><mrow><mn>60</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>16</mn></mrow><mrow><mn>60</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>4</mn></mrow><mrow><mn>15</mn></mrow></mfrac><mi> </mi><mi> </mi><mtext>(auch richtig)</mtext><mo>,</mo><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>4</mn></mrow><mrow><mn>15</mn></mrow></mfrac><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>8</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mo>-</mo><mfrac><mrow><mn>15</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>8</mn><mo>-</mo><mn>15</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mo>-</mo><mfrac><mrow><mn>7</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>9</mn></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>3</mn></mrow><mrow><mn>9</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>9</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>4</mn></mrow><mrow><mn>9</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>2</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>2</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><msup><mrow><mn>2</mn></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><msup><mrow><mn>2</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mrow><mn>2</mn></mrow><mrow><mn>4</mn></mrow></msup></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>5</mn></mrow><mrow><mn>16</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>7</mn></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>21</mn></mrow><mrow><mn>42</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>14</mn></mrow><mrow><mn>42</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>6</mn></mrow><mrow><mn>42</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>41</mn></mrow><mrow><mn>42</mn></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Example;0;1.2.605; //-->     <br style="margin-bottom: 2em" /> Bei der Bildung von Hauptnennern können auch Terme mit Variablen zum Einsatz kommen. Da die Bruchumformungen für alle Werte dieser Variablen richtig sein sollen, müssen diese wie Zahlen ohne gemeinsame Faktoren behandelt werden:  <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   1.2.606      </b> </h5></div><div class="panel-body"> Sind <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> und <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> eine Variablen, so gilt <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>x</mi></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mi>x</mi></mrow><mrow><mn>3</mn><mo>·</mo><mi>x</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>3</mn><mo>·</mo><mi>x</mi></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>3</mn><mo>+</mo><mi>x</mi></mrow><mrow><mn>3</mn><mo>·</mo><mi>x</mi></mrow></mfrac><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mi>x</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>y</mi></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mi>y</mi></mrow><mrow><mi>x</mi><mo>·</mo><mi>y</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mi>x</mi></mrow><mrow><mi>x</mi><mo>·</mo><mi>y</mi></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow><mrow><mi>x</mi><mo>·</mo><mi>y</mi></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>+</mo><mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mi>x</mi><mo>+</mo><mn>2</mn></mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><msup><mrow><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Example;0;1.2.606; //-->     <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_1.2.607"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 1.2.607 </b> </h5></div><div class="panel-body"> Diese Summen sollen über Hauptnenner (oder das Produkt der Nenner) ausgerechnet werden:  <ol type="1"><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>8</mn></mrow></mfrac></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="4" name="Name_QFELD_1.2.2.QF601" id="QFELD_1.2.2.QF601" type="text" size="9" maxlength="9" onfocus="handlerFocus(601);" onblur="handlerBlur(601);" onkeyup="handlerChange(601,0);" onpaste="handlerChange(601,0);" oninput="handlerChange(601,0);" onpropertychange="handlerChange(601,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.2.2.QF601"/></span>   .<br/> </li>  <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>5</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>6</mn></mrow></mfrac></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="4" name="Name_QFELD_1.2.2.QF602" id="QFELD_1.2.2.QF602" type="text" size="11" maxlength="11" onfocus="handlerFocus(602);" onblur="handlerBlur(602);" onkeyup="handlerChange(602,0);" onpaste="handlerChange(602,0);" oninput="handlerChange(602,0);" onpropertychange="handlerChange(602,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.2.2.QF602"/></span>   .<br/> </li>  <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>x</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn><mi>x</mi></mrow></mfrac></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="4" name="Name_QFELD_1.2.2.QF603" id="QFELD_1.2.2.QF603" type="text" size="13" maxlength="13" onfocus="handlerFocus(603);" onblur="handlerBlur(603);" onkeyup="handlerChange(603,0);" onpaste="handlerChange(603,0);" oninput="handlerChange(603,0);" onpropertychange="handlerChange(603,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.2.2.QF603"/></span>   .<br/> </li> </ol><span class="text-info">Bei dieser Aufgabe dürfen keine Rechenoperationen bis auf Multiplikation <tt>*</tt> und den Divisionsstrich <tt>/</tt> eingegeben werden.</span>   <br style="margin-bottom: 2em" />   <button name="Name_MHint601" class="hintbutton_closed btn btn-default" id="MHint601_button" type="button" onclick="toggle_hint('MHint601');">Lösung</button>   <div class="hint well" style="display:none" id="MHint601">  Bilden des Hauptnenners und Zusammenfassen/Kürzen ergibt <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mtable><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>8</mn></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>4</mn></mrow><mrow><mn>8</mn></mrow></mfrac><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>8</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>3</mn></mrow><mrow><mn>8</mn></mrow></mfrac><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>5</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>6</mn></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>10</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>6</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>21</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>7</mn></mrow><mrow><mn>10</mn></mrow></mfrac><mi> </mi><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" columnspan="1"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>x</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn><mi>x</mi></mrow></mfrac></mrow></mtd><mtd columnalign="left"><mrow><mo>=</mo></mrow></mtd><mtd columnalign="left"><mrow><mfrac><mrow><mn>3</mn></mrow><mrow><mn>6</mn><mi>x</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>6</mn><mi>x</mi></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>5</mn></mrow><mrow><mn>6</mn><mi>x</mi></mrow></mfrac><mi> </mi><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mstyle></math></center><br/></div> </div></div></div><!--   mfeedbackbutton;Exercise;0;1.2.607; //-->      <br style="margin-bottom: 2em" />           <div class="aufgabe" id="ADIV_1.2.608"><div class="panel&#10;  panel-warning"><div class="panel-heading"><h5 class="title">  <b>Aufgabe 1.2.608 </b> </h5></div><div class="panel-body"> Bei gleichnamigen Brüchen darf man nur die Zähler addieren bzw. zerlegen, für den Nenner gibt es keine solche Regel. Berechnen Sie zum Nachweis die folgenden Zahlenwerte, indem Sie den Hauptnenner bilden und soweit wie möglich kürzen:  <ol type="1"><li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="7" name="Name_QFELD_1.2.2.QF604" id="QFELD_1.2.2.QF604" type="text" size="10" maxlength="10" onfocus="handlerFocus(604);" onblur="handlerBlur(604);" onkeyup="handlerChange(604,0);" onpaste="handlerChange(604,0);" oninput="handlerChange(604,0);" onpropertychange="handlerChange(604,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.2.2.QF604"/></span>   <br style="margin-bottom: 2em" />  aber <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mo>+</mo><mn>3</mn></mrow></mfrac></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="7" name="Name_QFELD_1.2.2.QF605" id="QFELD_1.2.2.QF605" type="text" size="12" maxlength="12" onfocus="handlerFocus(605);" onblur="handlerBlur(605);" onkeyup="handlerChange(605,0);" onpaste="handlerChange(605,0);" oninput="handlerChange(605,0);" onpropertychange="handlerChange(605,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.2.2.QF605"/></span>   .<br/> </li>  <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn><mo>+</mo><mn>2</mn></mrow><mrow><mn>5</mn><mo>+</mo><mn>6</mn></mrow></mfrac></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="7" name="Name_QFELD_1.2.2.QF606" id="QFELD_1.2.2.QF606" type="text" size="12" maxlength="12" onfocus="handlerFocus(606);" onblur="handlerBlur(606);" onkeyup="handlerChange(606,0);" onpaste="handlerChange(606,0);" oninput="handlerChange(606,0);" onpropertychange="handlerChange(606,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.2.2.QF606"/></span>   <br style="margin-bottom: 2em" />  aber <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>5</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>6</mn></mrow></mfrac></mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi> </mi><mo>=</mo><mi> </mi></mrow></math><input mfieldtype="7" name="Name_QFELD_1.2.2.QF607" id="QFELD_1.2.2.QF607" type="text" size="12" maxlength="12" onfocus="handlerFocus(607);" onblur="handlerBlur(607);" onkeyup="handlerChange(607,0);" onpaste="handlerChange(607,0);" oninput="handlerChange(607,0);" onpropertychange="handlerChange(607,0);" class="QFELD"/><span><span class="glyphicon glyphicon-question-sign" id="QMQFELD_1.2.2.QF607"/></span>   .<br/> </li> </ol><button name="Name_MHint602" class="hintbutton_closed btn btn-default" id="MHint602_button" type="button" onclick="toggle_hint('MHint602');">Lösung</button>   <div class="hint well" style="display:none" id="MHint602">  Summen von Nennern darf man nicht zusammenfassen, auch nicht bei gleichem Zähler, hier ist <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>3</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>5</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mi>  </mi><mi>  </mi><mtext>aber</mtext><mi>  </mi><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mo>+</mo><mn>3</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>5</mn></mrow></mfrac><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Auch das einfache „Auseinandernehmen“ von Bestandteilen der Brüche ist nicht erlaubt, hier ist <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>1</mn><mo>+</mo><mn>2</mn></mrow><mrow><mn>5</mn><mo>+</mo><mn>6</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>3</mn></mrow><mrow><mn>11</mn></mrow></mfrac><mi>  </mi><mi>  </mi><mtext>aber</mtext><mi>  </mi><mi>  </mi><mfrac><mrow><mn>1</mn></mrow><mrow><mn>5</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>6</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>16</mn></mrow><mrow><mn>30</mn></mrow></mfrac><mi>  </mi><mo>=</mo><mi>  </mi><mfrac><mrow><mn>8</mn></mrow><mrow><mn>15</mn></mrow></mfrac><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div> </div></div></div><!--   mfeedbackbutton;Exercise;0;1.2.608; //-->      <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    1.2.609           </b> </h5></div><div class="panel-body"> <br/> Brüche werden <b>multipliziert</b><!-- mindexentry;;Multiplikation (Bruch); //--><a class="label" name="ELI_SW19"></a>, indem Zähler mit Zähler und Nenner mit Nenner multipliziert werden, d. h.  <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac><mo>·</mo><mfrac><mrow><mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>a</mi><mo>·</mo><mi>c</mi></mrow><mrow><mi>b</mi><mo>·</mo><mi>d</mi></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mi>b</mi><mi>d</mi><mo>≠</mo><mn>0</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Info;0;1.2.609; //-->     <br style="margin-bottom: 2em" /> Die Division zweier Brüche wird auf die Multiplikation zurückgeführt:  <br style="margin-bottom: 2em" />            <div class="info">   <div class="inforahmen panel panel-info">   <div class="panel-heading"><h5 class="panel-title">   <b>Info    1.2.610           </b> </h5></div><div class="panel-body"> <br/> Brüche werden <b>dividiert</b><!-- mindexentry;;Division (Bruch); //--><a class="label" name="ELI_SW20"></a>, indem der erste Bruch mit dem Kehrwert des zweiten Bruchs multipliziert wird, d.h. <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac><mo>:</mo><mfrac><mrow><mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac><mo>·</mo><mfrac><mrow><mi>d</mi></mrow><mrow><mi>c</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>a</mi><mo>·</mo><mi>d</mi></mrow><mrow><mi>b</mi><mo>·</mo><mi>c</mi></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>≠</mo><mn>0</mn><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/>  Die Division zweier Brüche kann auch als <b>Doppelbruch</b> geschrieben werden: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac><mo>:</mo><mfrac><mrow><mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow><mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Info;0;1.2.610; //-->     <br style="margin-bottom: 2em" />            <div class="exmp">   <div class="exmprahmen panel panel-default">   <div class="panel-heading"><h5 class="panel-title">   <b>Beispiel   1.2.611      </b> </h5></div><div class="panel-body"> Die Multiplikation bzw. Division zweier Brüche sieht unter Berücksichtigung von eventuellem Kürzen folgendermaßen aus: <br/><br/><center><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mrow><mfrac><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>·</mo><mfrac><mrow><mn>4</mn></mrow><mrow><mn>5</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn><mo>·</mo><mn>4</mn></mrow><mrow><mn>3</mn><mo>·</mo><mn>5</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>8</mn></mrow><mrow><mn>15</mn></mrow></mfrac><mi> </mi><mo>,</mo><mi> </mi><mi> </mi><mfrac><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>:</mo><mfrac><mrow><mn>4</mn></mrow><mrow><mn>5</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>·</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>10</mn></mrow><mrow><mn>12</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>6</mn></mrow></mfrac><mi> </mi><mo>.</mo><br/></mrow></mstyle></math></center><br/></div></div></div>   <!-- mfeedbackbutton;Example;0;1.2.611; //-->     <br style="margin-bottom: 2em" /> <br/><!-- mfeedbackbutton;Seite;0;1.2.1; //--><div class="annotations">
+<span data-toggle="i18n" data-i18n="external_links"></span>: <ul class="annotations">
+<li><a href="https://de.wikipedia.org/wiki/Satz%20(Mathematik)" target="_blank">Satz</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Variable%20(Mathematik)" target="_blank">Variable</a></li>
+</ul>
+</div>
+</div>
+<!--Sub TOC (Tabs or launch button)--><div class="row" id="subtoc-bottom"><div class="col-md-12"><ul class="nav nav-pills">
+<li class="pill-prev"><a id="prev-chapter" href="../../html/1.1.1/xcontent2.html"><span class="glyphicon glyphicon-chevron-left"></span><span data-toggle="i18n" data-i18n="ui-previous-chapter"></span></a></li>
+<li class="pill-next pull-right"><a id="next-chapter" href="../../html/1.1.2/xcontent1.html"><span data-toggle="i18n" data-i18n="ui-next-chapter"></span><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul></div></div>
+<!--End tabs--><!--Page footer--><div class="container-fluid" style="margin: 0px;"><div class="row" style="display: flex; align-items: center; margin-bottom: 2em;" id="footer">
+<div class="col-xs-2"><img src="../../../images/ccbysa80x15.png" border="0" class="pull-left"></div>
+<div class="col-xs-8" style="text-align: center">Onlinebrückenkurs Mathematik</div>
+<div class="col-xs-2"><a href="mailto:admin@ve-und-mint.de" target="_new" class="pull-right">Mail an Admin</a></div>
+</div></div>
+<div class="modal fade ve-import-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm" role="document"><div class="modal-content">
+<div class="modal-header">
+		      	Importiere Nutzerdaten
+					</div>
+<div class="modal-body">
+					...
+					</div>
+</div></div></div>
+<!--End page footer-->
+</div></div>
+</div>
+<!--
+			inject:js
+		--><!--
+			endinject
+		--><script>
+			$.i18n();
+			$.i18n().locale = 'de';
+			$.i18n().load( { 'de' : '../../../i18n/de.json' } ).done( function() {
+
+	      // set the tooltip texts
+	      $('[data-toggle="tooltip"]').each( function(i, el) {
+	          var hint = $.i18n( 'hint-' + $(el).attr( 'id' ) );
+	          $(el).attr( 'title', hint );
+	      })
+
+	      // toggle tooltips
+	      $('[data-toggle="tooltip"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+	      $('[data-toggle="tooltip-navbar"]').tooltip({
+	          placement : 'auto',
+	          html: true
+	      });
+
+	      // Localized texts
+	      $('[data-toggle="i18n"]').each(function(i, el) {
+	      	$(el).html( $.i18n( $(el).attr( 'data-i18n' ) ) );
+	      });
+
+				// also update special pages html (which is produced by js
+				//TODO ns
+				//intersite.updateSpecials();
+
+			});
+
+		</script><script>
+
+			var isTest = false;
+			var requestLogout = false;
+			
+			var nMaxPoints = 0;
+			var nPoints = 0;
+			var testFinished = null;
+			var FVAR = new Array();
+			FVAR.push("CounterDummy");
+			var MVAR = new Array();
+			var SOLUTION_TRUE = 1; var SOLUTION_FALSE = 2; var SOLUTION_NEUTRAL = 3;
+			var QCOLOR_TRUE = "#44FF33"; var QCOLOR_FALSE = "#F0A4A4"; var QCOLOR_NEUTRAL = "#E0E0E0";
+			var objScormApi = null;
+			var viewmodel;
+			var activeinputfieldid = "";
+			var activetooltip = null;
+			var activefieldid = "";
+			var sendcounter = 0;
+
+			var localStoragePresent = false;
+			var SITE_ID = "(unknown)";
+			var SITE_UXID = "(unknown)";
+			var SITE_PULL = 0;
+			var STYLEBLUE = "0";
+			var STYLERED = "1";
+			var STYLEGREEN = "2";
+			var STYLEGREY = "3";
+			var animationSpeed = 250;
+			var timerMillis = 250;
+			var timerActive = false;
+			var timerVar = null;
+			var timerColors = new Array();
+			var timerIterator = 0;
+			
+
+			CreateQuestionObj("AUTOGENERATED",1,"66/13","QFELD_1.2.2.QF1",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",2,"(-22)/5","QFELD_1.2.2.QF2",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",3,"(-11)/37","QFELD_1.2.2.QF3",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",4,"1/11","QFELD_1.2.2.QF4",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",5,"2/49","QFELD_1.2.2.QF5",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",6,"1/17","QFELD_1.2.2.QF6",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",7,"44/45","QFELD_1.2.2.QF7",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",8,"(-3)/14","QFELD_1.2.2.QF8",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",9,"(-44)/3","QFELD_1.2.2.QF9",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",10,"(-89)/91","QFELD_1.2.2.QF10",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",11,"(-15)/8","QFELD_1.2.2.QF11",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",12,"19/15","QFELD_1.2.2.QF12",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",13,"11/8","QFELD_1.2.2.QF13",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",14,"(-33)/56","QFELD_1.2.2.QF14",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",15,"16/21","QFELD_1.2.2.QF15",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",16,"(-43)/80","QFELD_1.2.2.QF16",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",17,"38/97","QFELD_1.2.2.QF17",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",18,"(-73)/21","QFELD_1.2.2.QF18",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",19,"5/2","QFELD_1.2.2.QF19",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",20,"1/(-1)","QFELD_1.2.2.QF20",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",21,"11/92","QFELD_1.2.2.QF21",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",22,"62/75","QFELD_1.2.2.QF22",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",23,"55/49","QFELD_1.2.2.QF23",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",24,"7/2","QFELD_1.2.2.QF24",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",25,"68/55","QFELD_1.2.2.QF25",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",26,"56/81","QFELD_1.2.2.QF26",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",27,"41/6","QFELD_1.2.2.QF27",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",28,"(-98)/75","QFELD_1.2.2.QF28",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",29,"63/2","QFELD_1.2.2.QF29",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",30,"14/45","QFELD_1.2.2.QF30",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",31,"95/3","QFELD_1.2.2.QF31",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",32,"(-69)/68","QFELD_1.2.2.QF32",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",33,"13/5","QFELD_1.2.2.QF33",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",34,"(-4)/7","QFELD_1.2.2.QF34",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",35,"(-21)/26","QFELD_1.2.2.QF35",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",36,"(-43)/6","QFELD_1.2.2.QF36",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",37,"14/25","QFELD_1.2.2.QF37",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",38,"(-25)/12","QFELD_1.2.2.QF38",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",39,"83/61","QFELD_1.2.2.QF39",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",40,"(-89)/30","QFELD_1.2.2.QF40",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",41,"11/12","QFELD_1.2.2.QF41",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",42,"99/13","QFELD_1.2.2.QF42",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",43,"83/3","QFELD_1.2.2.QF43",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",44,"97/20","QFELD_1.2.2.QF44",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",45,"9/64","QFELD_1.2.2.QF45",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",46,"22/25","QFELD_1.2.2.QF46",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",47,"23/17","QFELD_1.2.2.QF47",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",48,"(-37)/47","QFELD_1.2.2.QF48",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",49,"14/15","QFELD_1.2.2.QF49",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",50,"(-14)/3","QFELD_1.2.2.QF50",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",51,"2/7","QFELD_1.2.2.QF51",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",52,"18/55","QFELD_1.2.2.QF52",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",53,"35/51","QFELD_1.2.2.QF53",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",54,"(-5)/49","QFELD_1.2.2.QF54",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",55,"14/15","QFELD_1.2.2.QF55",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",56,"(-1)/11","QFELD_1.2.2.QF56",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",57,"65/56","QFELD_1.2.2.QF57",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",58,"11/1","QFELD_1.2.2.QF58",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",59,"(-1)/18","QFELD_1.2.2.QF59",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",60,"16/39","QFELD_1.2.2.QF60",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",61,"19/21","QFELD_1.2.2.QF61",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",62,"9/13","QFELD_1.2.2.QF62",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",63,"(-45)/74","QFELD_1.2.2.QF63",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",64,"(-23)/14","QFELD_1.2.2.QF64",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",65,"67/23","QFELD_1.2.2.QF65",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",66,"33/85","QFELD_1.2.2.QF66",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",67,"11/71","QFELD_1.2.2.QF67",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",68,"39/44","QFELD_1.2.2.QF68",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",69,"(-4)/25","QFELD_1.2.2.QF69",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",70,"8/63","QFELD_1.2.2.QF70",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",71,"(-19)/39","QFELD_1.2.2.QF71",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",72,"(-27)/11","QFELD_1.2.2.QF72",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",73,"26/3","QFELD_1.2.2.QF73",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",74,"38/33","QFELD_1.2.2.QF74",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",75,"13/5","QFELD_1.2.2.QF75",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",76,"17/21","QFELD_1.2.2.QF76",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",77,"95/22","QFELD_1.2.2.QF77",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",78,"11/39","QFELD_1.2.2.QF78",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",79,"3/2","QFELD_1.2.2.QF79",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",80,"(-26)/29","QFELD_1.2.2.QF80",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",81,"8/21","QFELD_1.2.2.QF81",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",82,"(-74)/57","QFELD_1.2.2.QF82",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",83,"26/7","QFELD_1.2.2.QF83",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",84,"3/2","QFELD_1.2.2.QF84",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",85,"(-23)/29","QFELD_1.2.2.QF85",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",86,"67/83","QFELD_1.2.2.QF86",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",87,"38/47","QFELD_1.2.2.QF87",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",88,"8/1","QFELD_1.2.2.QF88",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",89,"(-75)/83","QFELD_1.2.2.QF89",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",90,"(-47)/36","QFELD_1.2.2.QF90",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",91,"19/20","QFELD_1.2.2.QF91",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",92,"51/19","QFELD_1.2.2.QF92",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",93,"59/79","QFELD_1.2.2.QF93",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",94,"45/14","QFELD_1.2.2.QF94",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",95,"24/23","QFELD_1.2.2.QF95",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",96,"7/89","QFELD_1.2.2.QF96",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",97,"(-5)/42","QFELD_1.2.2.QF97",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",98,"(-32)/55","QFELD_1.2.2.QF98",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",99,"(-1)/1","QFELD_1.2.2.QF99",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",100,"27/83","QFELD_1.2.2.QF100",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",101,"(-1)/3","QFELD_1.2.2.QF101",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",102,"29/91","QFELD_1.2.2.QF102",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",103,"17/12","QFELD_1.2.2.QF103",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",104,"23/28","QFELD_1.2.2.QF104",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",105,"7/96","QFELD_1.2.2.QF105",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",106,"(-48)/67","QFELD_1.2.2.QF106",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",107,"9/22","QFELD_1.2.2.QF107",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",108,"25/1","QFELD_1.2.2.QF108",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",109,"47/90","QFELD_1.2.2.QF109",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",110,"43/50","QFELD_1.2.2.QF110",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",111,"1/24","QFELD_1.2.2.QF111",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",112,"4/33","QFELD_1.2.2.QF112",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",113,"55/74","QFELD_1.2.2.QF113",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",114,"57/37","QFELD_1.2.2.QF114",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",115,"74/55","QFELD_1.2.2.QF115",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",116,"26/17","QFELD_1.2.2.QF116",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",117,"69/79","QFELD_1.2.2.QF117",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",118,"5/8","QFELD_1.2.2.QF118",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",119,"1/(-1)","QFELD_1.2.2.QF119",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",120,"77/43","QFELD_1.2.2.QF120",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",121,"(-38)/91","QFELD_1.2.2.QF121",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",122,"34/45","QFELD_1.2.2.QF122",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",123,"23/13","QFELD_1.2.2.QF123",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",124,"(-3)/1","QFELD_1.2.2.QF124",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",125,"3/26","QFELD_1.2.2.QF125",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",126,"98/99","QFELD_1.2.2.QF126",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",127,"(-14)/5","QFELD_1.2.2.QF127",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",128,"(-5)/21","QFELD_1.2.2.QF128",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",129,"(-2)/91","QFELD_1.2.2.QF129",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",130,"(-21)/10","QFELD_1.2.2.QF130",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",131,"(-39)/11","QFELD_1.2.2.QF131",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",132,"(-8)/19","QFELD_1.2.2.QF132",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",133,"(-82)/43","QFELD_1.2.2.QF133",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",134,"(-40)/3","QFELD_1.2.2.QF134",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",135,"(-13)/10","QFELD_1.2.2.QF135",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",136,"2/93","QFELD_1.2.2.QF136",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",137,"(-9)/4","QFELD_1.2.2.QF137",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",138,"81/50","QFELD_1.2.2.QF138",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",139,"32/55","QFELD_1.2.2.QF139",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",140,"31/22","QFELD_1.2.2.QF140",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",141,"(-80)/41","QFELD_1.2.2.QF141",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",142,"(-67)/32","QFELD_1.2.2.QF142",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",143,"41/68","QFELD_1.2.2.QF143",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",144,"(-17)/46","QFELD_1.2.2.QF144",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",145,"13/18","QFELD_1.2.2.QF145",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",146,"81/70","QFELD_1.2.2.QF146",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",147,"2/5","QFELD_1.2.2.QF147",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",148,"93/58","QFELD_1.2.2.QF148",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",149,"43/21","QFELD_1.2.2.QF149",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",150,"(-67)/50","QFELD_1.2.2.QF150",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",151,"(-35)/12","QFELD_1.2.2.QF151",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",152,"(-7)/75","QFELD_1.2.2.QF152",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",153,"(-27)/79","QFELD_1.2.2.QF153",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",154,"8/9","QFELD_1.2.2.QF154",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",155,"(-1)/8","QFELD_1.2.2.QF155",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",156,"(-88)/59","QFELD_1.2.2.QF156",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",157,"(-37)/28","QFELD_1.2.2.QF157",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",158,"(-8)/69","QFELD_1.2.2.QF158",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",159,"22/5","QFELD_1.2.2.QF159",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",160,"5/76","QFELD_1.2.2.QF160",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",161,"11/9","QFELD_1.2.2.QF161",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",162,"1/46","QFELD_1.2.2.QF162",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",163,"(-20)/47","QFELD_1.2.2.QF163",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",164,"19/35","QFELD_1.2.2.QF164",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",165,"9/2","QFELD_1.2.2.QF165",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",166,"(-21)/16","QFELD_1.2.2.QF166",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",167,"34/13","QFELD_1.2.2.QF167",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",168,"41/92","QFELD_1.2.2.QF168",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",169,"(-7)/18","QFELD_1.2.2.QF169",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",170,"79/17","QFELD_1.2.2.QF170",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",171,"87/8","QFELD_1.2.2.QF171",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",172,"61/29","QFELD_1.2.2.QF172",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",173,"(-45)/37","QFELD_1.2.2.QF173",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",174,"85/64","QFELD_1.2.2.QF174",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",175,"(-85)/62","QFELD_1.2.2.QF175",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",176,"(-10)/17","QFELD_1.2.2.QF176",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",177,"87/41","QFELD_1.2.2.QF177",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",178,"11/23","QFELD_1.2.2.QF178",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",179,"(-57)/85","QFELD_1.2.2.QF179",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",180,"31/17","QFELD_1.2.2.QF180",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",181,"13/73","QFELD_1.2.2.QF181",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",182,"14/97","QFELD_1.2.2.QF182",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",183,"(-7)/3","QFELD_1.2.2.QF183",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",184,"3/(-1)","QFELD_1.2.2.QF184",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",185,"1/1","QFELD_1.2.2.QF185",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",186,"4/27","QFELD_1.2.2.QF186",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",187,"10/9","QFELD_1.2.2.QF187",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",188,"44/51","QFELD_1.2.2.QF188",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",189,"5/47","QFELD_1.2.2.QF189",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",190,"(-49)/41","QFELD_1.2.2.QF190",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",191,"(-4)/83","QFELD_1.2.2.QF191",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",192,"53/99","QFELD_1.2.2.QF192",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",193,"24/25","QFELD_1.2.2.QF193",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",194,"(-40)/41","QFELD_1.2.2.QF194",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",195,"13/88","QFELD_1.2.2.QF195",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",196,"(-6)/35","QFELD_1.2.2.QF196",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",197,"36/59","QFELD_1.2.2.QF197",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",198,"(-1)/6","QFELD_1.2.2.QF198",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",199,"91/59","QFELD_1.2.2.QF199",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",200,"(-95)/14","QFELD_1.2.2.QF200",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",201,"17/58","QFELD_1.2.2.QF201",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",202,"48/29","QFELD_1.2.2.QF202",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",203,"(-47)/40","QFELD_1.2.2.QF203",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",204,"81/44","QFELD_1.2.2.QF204",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",205,"(-41)/61","QFELD_1.2.2.QF205",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",206,"30/1","QFELD_1.2.2.QF206",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",207,"(-23)/93","QFELD_1.2.2.QF207",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",208,"(-81)/31","QFELD_1.2.2.QF208",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",209,"37/34","QFELD_1.2.2.QF209",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",210,"36/79","QFELD_1.2.2.QF210",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",211,"(-61)/73","QFELD_1.2.2.QF211",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",212,"21/4","QFELD_1.2.2.QF212",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",213,"(-17)/41","QFELD_1.2.2.QF213",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",214,"8/5","QFELD_1.2.2.QF214",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",215,"(-11)/35","QFELD_1.2.2.QF215",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",216,"39/83","QFELD_1.2.2.QF216",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",217,"(-22)/15","QFELD_1.2.2.QF217",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",218,"76/63","QFELD_1.2.2.QF218",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",219,"13/76","QFELD_1.2.2.QF219",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",220,"(-38)/31","QFELD_1.2.2.QF220",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",221,"5/11","QFELD_1.2.2.QF221",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",222,"48/41","QFELD_1.2.2.QF222",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",223,"59/3","QFELD_1.2.2.QF223",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",224,"3/2","QFELD_1.2.2.QF224",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",225,"(-75)/23","QFELD_1.2.2.QF225",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",226,"(-41)/42","QFELD_1.2.2.QF226",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",227,"3/8","QFELD_1.2.2.QF227",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",228,"11/7","QFELD_1.2.2.QF228",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",229,"91/94","QFELD_1.2.2.QF229",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",230,"(-14)/27","QFELD_1.2.2.QF230",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",231,"50/79","QFELD_1.2.2.QF231",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",232,"(-93)/98","QFELD_1.2.2.QF232",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",233,"1/18","QFELD_1.2.2.QF233",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",234,"43/19","QFELD_1.2.2.QF234",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",235,"21/31","QFELD_1.2.2.QF235",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",236,"34/87","QFELD_1.2.2.QF236",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",237,"4/7","QFELD_1.2.2.QF237",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",238,"13/77","QFELD_1.2.2.QF238",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",239,"27/28","QFELD_1.2.2.QF239",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",240,"13/6","QFELD_1.2.2.QF240",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",241,"14/25","QFELD_1.2.2.QF241",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",242,"34/45","QFELD_1.2.2.QF242",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",243,"69/55","QFELD_1.2.2.QF243",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",244,"(-20)/79","QFELD_1.2.2.QF244",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",245,"28/27","QFELD_1.2.2.QF245",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",246,"(-35)/23","QFELD_1.2.2.QF246",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",247,"(-11)/60","QFELD_1.2.2.QF247",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",248,"14/13","QFELD_1.2.2.QF248",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",249,"(-64)/89","QFELD_1.2.2.QF249",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",250,"94/75","QFELD_1.2.2.QF250",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",251,"(-13)/16","QFELD_1.2.2.QF251",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",252,"88/41","QFELD_1.2.2.QF252",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",253,"55/16","QFELD_1.2.2.QF253",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",254,"13/16","QFELD_1.2.2.QF254",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",255,"(-6)/5","QFELD_1.2.2.QF255",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",256,"(-38)/83","QFELD_1.2.2.QF256",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",257,"92/53","QFELD_1.2.2.QF257",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",258,"(-21)/46","QFELD_1.2.2.QF258",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",259,"9/19","QFELD_1.2.2.QF259",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",260,"(-3)/28","QFELD_1.2.2.QF260",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",261,"(-17)/40","QFELD_1.2.2.QF261",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",262,"9/1","QFELD_1.2.2.QF262",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",263,"94/67","QFELD_1.2.2.QF263",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",264,"13/54","QFELD_1.2.2.QF264",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",265,"7/1","QFELD_1.2.2.QF265",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",266,"8/3","QFELD_1.2.2.QF266",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",267,"85/63","QFELD_1.2.2.QF267",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",268,"(-37)/8","QFELD_1.2.2.QF268",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",269,"51/64","QFELD_1.2.2.QF269",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",270,"(-7)/6","QFELD_1.2.2.QF270",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",271,"3/1","QFELD_1.2.2.QF271",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",272,"78/73","QFELD_1.2.2.QF272",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",273,"5/6","QFELD_1.2.2.QF273",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",274,"(-56)/51","QFELD_1.2.2.QF274",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",275,"(-4)/11","QFELD_1.2.2.QF275",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",276,"(-23)/14","QFELD_1.2.2.QF276",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",277,"(-49)/8","QFELD_1.2.2.QF277",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",278,"(-73)/23","QFELD_1.2.2.QF278",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",279,"31/22","QFELD_1.2.2.QF279",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",280,"13/27","QFELD_1.2.2.QF280",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",281,"31/52","QFELD_1.2.2.QF281",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",282,"7/10","QFELD_1.2.2.QF282",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",283,"3/13","QFELD_1.2.2.QF283",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",284,"3/50","QFELD_1.2.2.QF284",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",285,"73/31","QFELD_1.2.2.QF285",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",286,"21/37","QFELD_1.2.2.QF286",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",287,"75/79","QFELD_1.2.2.QF287",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",288,"87/50","QFELD_1.2.2.QF288",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",289,"13/43","QFELD_1.2.2.QF289",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",290,"(-63)/29","QFELD_1.2.2.QF290",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",291,"(-72)/79","QFELD_1.2.2.QF291",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",292,"40/17","QFELD_1.2.2.QF292",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",293,"(-13)/24","QFELD_1.2.2.QF293",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",294,"37/81","QFELD_1.2.2.QF294",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",295,"(-5)/11","QFELD_1.2.2.QF295",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",296,"7/3","QFELD_1.2.2.QF296",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",297,"(-17)/74","QFELD_1.2.2.QF297",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",298,"(-11)/6","QFELD_1.2.2.QF298",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",299,"(-27)/16","QFELD_1.2.2.QF299",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",300,"47/85","QFELD_1.2.2.QF300",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",301,"(-4)/(9*z^3-9)","QFELD_1.2.2.QF301",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",302,"(z^3-4)/(3*z^2+4)","QFELD_1.2.2.QF302",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",303,"(4*z+1)/9","QFELD_1.2.2.QF303",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",304,"1/7","QFELD_1.2.2.QF304",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",305,"(-3*z-8)/6","QFELD_1.2.2.QF305",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",306,"(3-3*z)/(3*z^3-2)","QFELD_1.2.2.QF306",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",307,"(-2)/3","QFELD_1.2.2.QF307",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",308,"(z^2-1)/1","QFELD_1.2.2.QF308",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",309,"(-7)/(8*z^3-3)","QFELD_1.2.2.QF309",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",310,"(3*z+4)/7","QFELD_1.2.2.QF310",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",311,"9/(7*z+2)","QFELD_1.2.2.QF311",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",312,"9/8","QFELD_1.2.2.QF312",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",313,"(z-3)/(2*z^3-5)","QFELD_1.2.2.QF313",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",314,"(-1)/9","QFELD_1.2.2.QF314",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",315,"(4*z^2+1)/(8*z+8)","QFELD_1.2.2.QF315",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",316,"(-8)/9","QFELD_1.2.2.QF316",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",317,"(8*z^3-8)/5","QFELD_1.2.2.QF317",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",318,"(1-7*z^3)/2","QFELD_1.2.2.QF318",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",319,"7/5","QFELD_1.2.2.QF319",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",320,"(4*z+9)/3","QFELD_1.2.2.QF320",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",321,"5/(6*z-2)","QFELD_1.2.2.QF321",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",322,"(-1)/(8*z-6)","QFELD_1.2.2.QF322",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",323,"(3*z^2-2)/1","QFELD_1.2.2.QF323",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",324,"(-6)/(3*z^3-4)","QFELD_1.2.2.QF324",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",325,"(-2)/3","QFELD_1.2.2.QF325",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",326,"(-1)/4","QFELD_1.2.2.QF326",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",327,"(z^2-4)/1","QFELD_1.2.2.QF327",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",328,"(6*z^3+4)/(7*z^3+7)","QFELD_1.2.2.QF328",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",329,"6/1","QFELD_1.2.2.QF329",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",330,"9/8","QFELD_1.2.2.QF330",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",331,"1/1","QFELD_1.2.2.QF331",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",332,"(8*z^2-9)/6","QFELD_1.2.2.QF332",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",333,"(-z-5)/1","QFELD_1.2.2.QF333",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",334,"(-3)/(z^3+3)","QFELD_1.2.2.QF334",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",335,"3/(8*z^3+9)","QFELD_1.2.2.QF335",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",336,"(-2*z^3-1)/(2*z-1)","QFELD_1.2.2.QF336",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",337,"(-7*z^2-6)/5","QFELD_1.2.2.QF337",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",338,"(-8)/(5*z^2+3)","QFELD_1.2.2.QF338",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",339,"(-6)/(3*z-2)","QFELD_1.2.2.QF339",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",340,"2/1","QFELD_1.2.2.QF340",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",341,"(4*z^2-8)/(9*z^3-9)","QFELD_1.2.2.QF341",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",342,"(1-3*z^3)/1","QFELD_1.2.2.QF342",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",343,"(-4)/(3*z^2+3)","QFELD_1.2.2.QF343",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",344,"(-7)/(2*z-3)","QFELD_1.2.2.QF344",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",345,"(z^3-5)/(z^2-8)","QFELD_1.2.2.QF345",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",346,"(-6*z-1)/(z^3-6)","QFELD_1.2.2.QF346",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",347,"(-5)/(2*z-1)","QFELD_1.2.2.QF347",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",348,"(5*z^3-6)/(8*z^3-8)","QFELD_1.2.2.QF348",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",349,"(6-z^3)/5","QFELD_1.2.2.QF349",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",350,"(7-5*z^2)/(5*z+3)","QFELD_1.2.2.QF350",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",351,"3/(8*z^2+6)","QFELD_1.2.2.QF351",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",352,"1/1","QFELD_1.2.2.QF352",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",353,"9/(5*z^3+6)","QFELD_1.2.2.QF353",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",354,"(-4)/(2*z-7)","QFELD_1.2.2.QF354",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",355,"(8*z^2-5)/(7*z^3-6)","QFELD_1.2.2.QF355",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",356,"(-6*z^2-8)/(3*z^2-8)","QFELD_1.2.2.QF356",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",357,"(8-3*z^3)/(7*z+8)","QFELD_1.2.2.QF357",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",358,"5/(7*z^2+9)","QFELD_1.2.2.QF358",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",359,"(-z^2-4)/(7*z^3-8)","QFELD_1.2.2.QF359",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",360,"(7*z+9)/1","QFELD_1.2.2.QF360",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",361,"(-z^2-9)/1","QFELD_1.2.2.QF361",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",362,"(2*z+3)/5","QFELD_1.2.2.QF362",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",363,"1/9","QFELD_1.2.2.QF363",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",364,"(2*z^2+5)/(z^3-9)","QFELD_1.2.2.QF364",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",365,"(8*z^2-3)/8","QFELD_1.2.2.QF365",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",366,"(3*z^3-1)/8","QFELD_1.2.2.QF366",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",367,"(z^2+4)/2","QFELD_1.2.2.QF367",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",368,"(-3)/(2*z+4)","QFELD_1.2.2.QF368",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",369,"1/1","QFELD_1.2.2.QF369",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",370,"9/(5*z^2+8)","QFELD_1.2.2.QF370",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",371,"3/(2*z+1)","QFELD_1.2.2.QF371",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",372,"2/(3*z^2-7)","QFELD_1.2.2.QF372",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",373,"1/1","QFELD_1.2.2.QF373",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",374,"(3*z^3-2)/(2*z^3+9)","QFELD_1.2.2.QF374",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",375,"9/(4*z^3-2)","QFELD_1.2.2.QF375",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",376,"(-8)/(2*z^2+5)","QFELD_1.2.2.QF376",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",377,"(-9)/(3*z^3-1)","QFELD_1.2.2.QF377",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",378,"(7-6*z^3)/(2*z^2+8)","QFELD_1.2.2.QF378",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",379,"(2-2*z^3)/(7*z^2+6)","QFELD_1.2.2.QF379",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",380,"8/3","QFELD_1.2.2.QF380",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",381,"(-9*z-2)/6","QFELD_1.2.2.QF381",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",382,"(7-4*z)/(2*z+7)","QFELD_1.2.2.QF382",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",383,"(2*z^3+3)/4","QFELD_1.2.2.QF383",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",384,"1/1","QFELD_1.2.2.QF384",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",385,"(-z^2-2)/1","QFELD_1.2.2.QF385",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",386,"(-2)/(-1)","QFELD_1.2.2.QF386",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",387,"1/6","QFELD_1.2.2.QF387",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",388,"(6*z^2-9)/(2*z^2-4)","QFELD_1.2.2.QF388",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",389,"(-9)/(2*z^2+9)","QFELD_1.2.2.QF389",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",390,"(-3*z-5)/(-1)","QFELD_1.2.2.QF390",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",391,"2/(-1)","QFELD_1.2.2.QF391",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",392,"7/(7*z+8)","QFELD_1.2.2.QF392",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",393,"(4*z^2+3)/9","QFELD_1.2.2.QF393",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",394,"(9-6*z)/(9*z^2+1)","QFELD_1.2.2.QF394",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",395,"(2*z^2-5)/(7*z^2-5)","QFELD_1.2.2.QF395",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",396,"(3*z^3+2)/(7*z+6)","QFELD_1.2.2.QF396",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",397,"(-2)/3","QFELD_1.2.2.QF397",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",398,"2/5","QFELD_1.2.2.QF398",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",399,"(3*z^2+5)/8","QFELD_1.2.2.QF399",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",400,"7/3","QFELD_1.2.2.QF400",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",401,"(-z-8)/6","QFELD_1.2.2.QF401",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",402,"5/(z+1)","QFELD_1.2.2.QF402",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",403,"(3-8*z^2)/9","QFELD_1.2.2.QF403",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",404,"(3-5*z)/(9*z^3-2)","QFELD_1.2.2.QF404",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",405,"4/(3*z+7)","QFELD_1.2.2.QF405",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",406,"9/5","QFELD_1.2.2.QF406",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",407,"7/(4*z^2-1)","QFELD_1.2.2.QF407",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",408,"(-4*z^2-7)/(z^2-7)","QFELD_1.2.2.QF408",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",409,"(-1)/1","QFELD_1.2.2.QF409",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",410,"(9*z^2+5)/(3*z-5)","QFELD_1.2.2.QF410",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",411,"(-4)/(5*z+2)","QFELD_1.2.2.QF411",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",412,"(-1)/4","QFELD_1.2.2.QF412",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",413,"(-5)/(7*z^2+9)","QFELD_1.2.2.QF413",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",414,"(5*z^2-5)/4","QFELD_1.2.2.QF414",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",415,"(-5*z^3-4)/9","QFELD_1.2.2.QF415",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",416,"(6-2*z)/(9*z+1)","QFELD_1.2.2.QF416",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",417,"(4-5*z^2)/1","QFELD_1.2.2.QF417",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",418,"8/(3*z^2+7)","QFELD_1.2.2.QF418",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",419,"(-4)/(3*z^3+8)","QFELD_1.2.2.QF419",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",420,"1/(2*z+4)","QFELD_1.2.2.QF420",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",421,"(4*z-2)/(4*z^3+3)","QFELD_1.2.2.QF421",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",422,"(-3)/4","QFELD_1.2.2.QF422",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",423,"(8*z^3+6)/(5*z-4)","QFELD_1.2.2.QF423",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",424,"1/7","QFELD_1.2.2.QF424",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",425,"8/(5*z+7)","QFELD_1.2.2.QF425",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",426,"(5*z^3-7)/8","QFELD_1.2.2.QF426",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",427,"(z^2+5)/(6*z^2-9)","QFELD_1.2.2.QF427",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",428,"1/(z^2+1)","QFELD_1.2.2.QF428",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",429,"(-3*z^2-8)/8","QFELD_1.2.2.QF429",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",430,"(2-z^3)/2","QFELD_1.2.2.QF430",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",431,"(-5)/1","QFELD_1.2.2.QF431",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",432,"(z^3-2)/9","QFELD_1.2.2.QF432",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",433,"(-9*z^2-5)/(3*z-1)","QFELD_1.2.2.QF433",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",434,"3/(8*z+9)","QFELD_1.2.2.QF434",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",435,"(3-7*z)/8","QFELD_1.2.2.QF435",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",436,"(7*z-1)/3","QFELD_1.2.2.QF436",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",437,"(-1)/(6*z+3)","QFELD_1.2.2.QF437",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",438,"5/(8*z^3+9)","QFELD_1.2.2.QF438",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",439,"5/(7*z^2+8)","QFELD_1.2.2.QF439",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",440,"(9*z^2-2)/7","QFELD_1.2.2.QF440",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",441,"(6*z+1)/(z-8)","QFELD_1.2.2.QF441",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",442,"(6*z^3+8)/1","QFELD_1.2.2.QF442",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",443,"(5*z+6)/(9*z-8)","QFELD_1.2.2.QF443",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",444,"(4-2*z^3)/(6*z^3-7)","QFELD_1.2.2.QF444",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",445,"6/(7*z-5)","QFELD_1.2.2.QF445",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",446,"3/(-1)","QFELD_1.2.2.QF446",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",447,"(5*z^2-1)/1","QFELD_1.2.2.QF447",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",448,"(-8)/(4*z^3+3)","QFELD_1.2.2.QF448",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",449,"(-z^2-1)/(-1)","QFELD_1.2.2.QF449",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",450,"5/(6*z^3+1)","QFELD_1.2.2.QF450",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",451,"(-z-5)/(4*z^2-2)","QFELD_1.2.2.QF451",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",452,"(-2*z^3-4)/(2*z+7)","QFELD_1.2.2.QF452",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",453,"5/2","QFELD_1.2.2.QF453",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",454,"(-6)/(5*z^2+7)","QFELD_1.2.2.QF454",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",455,"4/9","QFELD_1.2.2.QF455",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",456,"(-7)/1","QFELD_1.2.2.QF456",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",457,"2/(-1)","QFELD_1.2.2.QF457",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",458,"1/3","QFELD_1.2.2.QF458",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",459,"9/(7*z+1)","QFELD_1.2.2.QF459",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",460,"(2*z^2+3)/3","QFELD_1.2.2.QF460",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",461,"(-7)/(6*z-5)","QFELD_1.2.2.QF461",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",462,"(-3)/4","QFELD_1.2.2.QF462",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",463,"(-1)/2","QFELD_1.2.2.QF463",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",464,"(6*z^3+8)/5","QFELD_1.2.2.QF464",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",465,"4/(9*z+5)","QFELD_1.2.2.QF465",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",466,"(7*z^3-4)/4","QFELD_1.2.2.QF466",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",467,"(4*z^2-5)/(8*z^2+2)","QFELD_1.2.2.QF467",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",468,"(3*z^2+6)/(z^2+4)","QFELD_1.2.2.QF468",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",469,"(z^3-5)/7","QFELD_1.2.2.QF469",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",470,"(-8)/(z-8)","QFELD_1.2.2.QF470",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",471,"(7-z)/(-1)","QFELD_1.2.2.QF471",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",472,"(8-2*z^3)/(6*z^2+7)","QFELD_1.2.2.QF472",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",473,"(2-6*z^2)/(z^2-7)","QFELD_1.2.2.QF473",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",474,"(-4)/(7*z^3-5)","QFELD_1.2.2.QF474",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",475,"(-4)/(z^2-3)","QFELD_1.2.2.QF475",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",476,"(-5*z-4)/4","QFELD_1.2.2.QF476",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",477,"(-7)/(5*z-3)","QFELD_1.2.2.QF477",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",478,"(-7)/(z^2+2)","QFELD_1.2.2.QF478",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",479,"7/2","QFELD_1.2.2.QF479",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",480,"1/1","QFELD_1.2.2.QF480",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",481,"(7*z^2-9)/(z^2+2)","QFELD_1.2.2.QF481",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",482,"1/4","QFELD_1.2.2.QF482",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",483,"(5*z^3+5)/(4*z^2+4)","QFELD_1.2.2.QF483",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",484,"6/(4*z+3)","QFELD_1.2.2.QF484",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",485,"(2-z^3)/2","QFELD_1.2.2.QF485",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",486,"(-3*z^3-7)/1","QFELD_1.2.2.QF486",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",487,"8/(4*z^2+5)","QFELD_1.2.2.QF487",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",488,"6/(3*z-5)","QFELD_1.2.2.QF488",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",489,"(4*z+9)/9","QFELD_1.2.2.QF489",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",490,"(-3)/(7*z^3-9)","QFELD_1.2.2.QF490",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",491,"(4*z^3-9)/(6*z^3-4)","QFELD_1.2.2.QF491",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",492,"8/9","QFELD_1.2.2.QF492",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",493,"(z^3-8)/(9*z^3-5)","QFELD_1.2.2.QF493",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",494,"4/(z+2)","QFELD_1.2.2.QF494",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",495,"(6*z^3-3)/(z+5)","QFELD_1.2.2.QF495",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",496,"(-7*z^2-2)/8","QFELD_1.2.2.QF496",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",497,"6/7","QFELD_1.2.2.QF497",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",498,"7/2","QFELD_1.2.2.QF498",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",499,"(4*z^3+7)/7","QFELD_1.2.2.QF499",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",500,"(3*z^2-8)/8","QFELD_1.2.2.QF500",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",501,"(2*z^3-3)/(5*z-9)","QFELD_1.2.2.QF501",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",502,"(-7*z-6)/(5*z^3-6)","QFELD_1.2.2.QF502",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",503,"(8*z^2-7)/(9*z^2-5)","QFELD_1.2.2.QF503",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",504,"(-7)/(8*z^3-2)","QFELD_1.2.2.QF504",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",505,"(5*z^2-4)/(8*z-7)","QFELD_1.2.2.QF505",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",506,"(1-z^3)/1","QFELD_1.2.2.QF506",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",507,"(7*z^3+5)/(8*z+1)","QFELD_1.2.2.QF507",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",508,"(-4*z-4)/5","QFELD_1.2.2.QF508",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",509,"(8*z+4)/(8*z^3+7)","QFELD_1.2.2.QF509",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",510,"(-8*z^3-8)/(7*z^3-1)","QFELD_1.2.2.QF510",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",511,"1/1","QFELD_1.2.2.QF511",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",512,"(5*z+4)/(2*z+1)","QFELD_1.2.2.QF512",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",513,"4/9","QFELD_1.2.2.QF513",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",514,"7/3","QFELD_1.2.2.QF514",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",515,"1/(-1)","QFELD_1.2.2.QF515",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",516,"6/(z^2-4)","QFELD_1.2.2.QF516",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",517,"(-5)/3","QFELD_1.2.2.QF517",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",518,"6/1","QFELD_1.2.2.QF518",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",519,"(-4)/9","QFELD_1.2.2.QF519",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",520,"(-6)/(3*z^2-8)","QFELD_1.2.2.QF520",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",521,"(4*z^2+5)/(4*z^3+4)","QFELD_1.2.2.QF521",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",522,"(-6)/(z-1)","QFELD_1.2.2.QF522",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",523,"(-2)/(-1)","QFELD_1.2.2.QF523",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",524,"(5*z^2-4)/8","QFELD_1.2.2.QF524",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",525,"3/5","QFELD_1.2.2.QF525",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",526,"(-2)/3","QFELD_1.2.2.QF526",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",527,"(9-4*z^3)/4","QFELD_1.2.2.QF527",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",528,"(8-9*z^3)/2","QFELD_1.2.2.QF528",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",529,"(-1)/(8*z^3+4)","QFELD_1.2.2.QF529",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",530,"(-3)/(6*z^3-8)","QFELD_1.2.2.QF530",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",531,"(-5)/(z^3-3)","QFELD_1.2.2.QF531",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",532,"1/(-1)","QFELD_1.2.2.QF532",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",533,"(-1)/(5*z^3-4)","QFELD_1.2.2.QF533",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",534,"(-1)/4","QFELD_1.2.2.QF534",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",535,"(4*z-8)/(2*z^2+3)","QFELD_1.2.2.QF535",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",536,"(-8)/(7*z-4)","QFELD_1.2.2.QF536",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",537,"(5*z^2-2)/(6*z^3+8)","QFELD_1.2.2.QF537",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",538,"(-3*z-2)/(7*z^3-1)","QFELD_1.2.2.QF538",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",539,"6/5","QFELD_1.2.2.QF539",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",540,"(6-z)/3","QFELD_1.2.2.QF540",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",541,"4/3","QFELD_1.2.2.QF541",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",542,"(-6)/(4*z^2-9)","QFELD_1.2.2.QF542",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",543,"(5*z+6)/4","QFELD_1.2.2.QF543",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",544,"(-7)/(z^2+4)","QFELD_1.2.2.QF544",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",545,"3/2","QFELD_1.2.2.QF545",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",546,"9/7","QFELD_1.2.2.QF546",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",547,"9/(8*z^2-2)","QFELD_1.2.2.QF547",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",548,"6/5","QFELD_1.2.2.QF548",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",549,"2/1","QFELD_1.2.2.QF549",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",550,"3/8","QFELD_1.2.2.QF550",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",551,"5/(3*z^2+2)","QFELD_1.2.2.QF551",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",552,"3/8","QFELD_1.2.2.QF552",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",553,"7/(7*z^2+1)","QFELD_1.2.2.QF553",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",554,"(-6*z^3-4)/(z-5)","QFELD_1.2.2.QF554",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",555,"1/3","QFELD_1.2.2.QF555",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",556,"1/(5*z+4)","QFELD_1.2.2.QF556",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",557,"(9*z^3+9)/2","QFELD_1.2.2.QF557",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",558,"3/4","QFELD_1.2.2.QF558",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",559,"(-9)/(8*z+6)","QFELD_1.2.2.QF559",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",560,"1/9","QFELD_1.2.2.QF560",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",561,"(-z^2-9)/(7*z^2-5)","QFELD_1.2.2.QF561",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",562,"(-1)/(3*z^3-4)","QFELD_1.2.2.QF562",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",563,"(8-7*z^3)/(7*z+6)","QFELD_1.2.2.QF563",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",564,"(-7)/6","QFELD_1.2.2.QF564",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",565,"(6*z^2+3)/7","QFELD_1.2.2.QF565",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",566,"(-5)/2","QFELD_1.2.2.QF566",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",567,"(8*z^3+6)/(2*z-9)","QFELD_1.2.2.QF567",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",568,"(2*z^3-7)/(z^2+5)","QFELD_1.2.2.QF568",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",569,"(6*z-3)/(5*z^3+4)","QFELD_1.2.2.QF569",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",570,"4/(6*z^2+7)","QFELD_1.2.2.QF570",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",571,"(-5)/(z-1)","QFELD_1.2.2.QF571",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",572,"(2-z^2)/(2*z^3+4)","QFELD_1.2.2.QF572",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",573,"(-z^3-1)/9","QFELD_1.2.2.QF573",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",574,"(-3)/(4*z-3)","QFELD_1.2.2.QF574",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",575,"(-3)/(2*z^2-5)","QFELD_1.2.2.QF575",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",576,"7/(7*z^3+6)","QFELD_1.2.2.QF576",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",577,"(4*z^3-1)/(5*z^3-5)","QFELD_1.2.2.QF577",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",578,"(5-8*z^2)/9","QFELD_1.2.2.QF578",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",579,"(-5)/(6*z^3-9)","QFELD_1.2.2.QF579",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",580,"3/(8*z^2+4)","QFELD_1.2.2.QF580",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",581,"(4*z^2-5)/(2*z^3+1)","QFELD_1.2.2.QF581",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",582,"(-1)/1","QFELD_1.2.2.QF582",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",583,"5/8","QFELD_1.2.2.QF583",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",584,"(3*z^3-3)/8","QFELD_1.2.2.QF584",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",585,"(2*z^3+1)/(8*z^2+2)","QFELD_1.2.2.QF585",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",586,"(7*z^2+6)/(6*z^2-4)","QFELD_1.2.2.QF586",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",587,"1/2","QFELD_1.2.2.QF587",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",588,"(9-z^2)/(7*z^3+9)","QFELD_1.2.2.QF588",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",589,"(-5*z^2-3)/(z+3)","QFELD_1.2.2.QF589",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",590,"(-5)/7","QFELD_1.2.2.QF590",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",591,"(4*z^2-4)/(z^3-7)","QFELD_1.2.2.QF591",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",592,"3/8","QFELD_1.2.2.QF592",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",593,"(9-8*z^2)/(-1)","QFELD_1.2.2.QF593",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",594,"5/(2*z+4)","QFELD_1.2.2.QF594",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",595,"3/1","QFELD_1.2.2.QF595",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",596,"(9*z^2+1)/(-1)","QFELD_1.2.2.QF596",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",597,"8/(-1)","QFELD_1.2.2.QF597",4,"5;;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",598,"(6*z^3+5)/(2*z+9)","QFELD_1.2.2.QF598",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",599,"(6-5*z^3)/(4*z^2+8)","QFELD_1.2.2.QF599",4,"5;z;5;528",4,0,1);
+CreateQuestionObj("AUTOGENERATED",600,"8/3","QFELD_1.2.2.QF600",4,"5;;5;528",4,0,1);
+CreateQuestionObj("HN1",601,"-1/8+1/2","QFELD_1.2.2.QF601",4,"4;;4;16",4,0,1);
+CreateQuestionObj("HN2",602,"1/3+1/5+1/6","QFELD_1.2.2.QF602",4,"4;;4;16",4,0,1);
+CreateQuestionObj("HN3",603,"5/(6*x)","QFELD_1.2.2.QF603",4,"4;x;4;528",4,0,1);
+CreateQuestionObj("GLN1",604,"5/6","QFELD_1.2.2.QF604",7,"5;0;0;exactfraction",4,0,1);
+CreateQuestionObj("GLN2",605,"1/5","QFELD_1.2.2.QF605",7,"5;0;0;exactfraction",4,0,1);
+CreateQuestionObj("GLN3",606,"3/11","QFELD_1.2.2.QF606",7,"5;0;0;exactfraction",4,0,1);
+CreateQuestionObj("GLN4",607,"8/15","QFELD_1.2.2.QF607",7,"5;0;0;exactfraction",4,0,1);
+
+
+			var SITE_ID = "";
+			var SITE_UXID = "VBKM01_Bruchrechnung";
+			var SECTION_ID = "";
+
+			
+			var linkPath = "../..";
+			var imagesPath = "../../images";
+
+			
+			var docName = "modstart";
+			var fullName = "html/1.1.2/modstart.html";
+			var sitejson_load = true;
+			var sitejson = {};
+			</script><script>
+		
+
+			viewmodel = {
+			  // <JSCRIPTVIEWMODEL>
+
+			  ifobs: ko.observable("")
+			}
+
+			ko.bindingHandlers.evalmathjax = {
+			    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+			      var value = valueAccessor(), allBindings = allBindingsAccessor();
+			      var latex = ko.unwrap(value);
+
+			      var i;
+			      latex = applyMVARLatex(latex);
+
+			      if (element.childNodes[0]) {
+			        // var sy = getScrollY();
+			        var mathelement = MathJax.Hub.getAllJax(element)[0];
+			        MathJax.Hub.Queue(["Text",mathelement,latex]);
+			        // setScrollY(sy);
+			      } else {
+			        // while(element.childNodes[0]) { element.removeChild( element.childNodes[0] ); }
+
+			        var s = document.createElement('script');
+			        s.type = "math/tex; mode=display";
+			        try {
+			          s.appendChild(document.createTextNode(latex));
+			          element.appendChild(s);
+			        } catch (e) {
+			          s.text = latex;
+			          element.appendChild(s);
+			        }
+			        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element]);
+			      }
+			  }
+			 };
+
+			ko.applyBindings(viewmodel);
+
+
+			$(document).ready(function () {
+			  veundmint.init();
+			});
+
+			// <JSCRIPTPOSTMODEL>
+		
+		</script>
+</body>
+</html>
