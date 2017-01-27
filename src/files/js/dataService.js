@@ -114,30 +114,34 @@
 		var stats = {};
 		var userSitePoints = 0;
 		stats[siteuxid] = {};
+		stats[siteuxid]['questions'] = {};
 
 		//update site points
 		if (typeof userData.stats[siteuxid] !== 'undefined' && typeof userData.stats[siteuxid].points !== 'undefined') {
 			userSitePoints = userData.stats[siteuxid].points;
 		}
-		if (typeof userData.stats[siteuxid] !== 'undefined' && typeof userData.stats[siteuxid][fvar.id] !== 'undefined' ){
-			userSitePoints -= userData.stats[siteuxid][fvar.id].points;
+		if (typeof userData.stats[siteuxid] !== 'undefined'
+			&& typeof userData.stats[siteuxid]['questions'] !== 'undefined'
+			&& typeof userData.stats[siteuxid]['questions'][fvar.id] !== 'undefined' ){
+			userSitePoints -= userData.stats[siteuxid]['questions'][fvar.id].points;
 		}
 
 		userSitePoints += fvar.points;
 
-		stats[siteuxid][fvar.id] = {
-            id:fvar.id,
-            points: fvar.points,
-            uxid:fvar.uxid,
-            siteuxid: siteuxid,
-            rawinput:fvar.rawinput,
-            maxpoints:fvar.maxpoints,
-            value:fvar.value,
-            state:fvar.state,
-            section:fvar.section,
-            intest:fvar.intest
-          }
-         stats[siteuxid].points = userSitePoints;
+		stats[siteuxid]['questions'][fvar.id] = {
+      id:fvar.id,
+      points: fvar.points,
+      uxid:fvar.uxid,
+      siteuxid: siteuxid,
+      rawinput:fvar.rawinput,
+      maxpoints:fvar.maxpoints,
+      value:fvar.value,
+      state:fvar.state,
+      section:fvar.section,
+      intest:fvar.intest
+    }
+
+  	stats[siteuxid].points = userSitePoints;
 
 		updateUserData({stats: stats});
 
@@ -566,8 +570,9 @@ function importUserData() {
     return {status: 'error', message: 'no localstorage'};
   }
 
-  var oldUserData1 = localStorage.getItem(key1);
-  var oldUserData2 = localStorage.getItem(key2);
+
+  var oldUserData1 = JSON.parse(localStorage.getItem(key1));
+  var oldUserData2 = JSON.parse(localStorage.getItem(key2));
 
   //check the structure
   if (oldUserData1 !== null) {

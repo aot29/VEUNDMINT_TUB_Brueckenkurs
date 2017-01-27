@@ -96,13 +96,15 @@ class UserViewSet(viewsets.ModelViewSet):
 				site_statistic['millis'] = stats[site].get('millis', 0)
 				site_statistic['points'] = stats[site].get('points', 0)
 				site_statistic['site'] = {'site_id': site}
+				site_statistic['questions'] = stats[site].get('questions', {})
 				transformed_statistics.append(site_statistic)
 
-				#for all keys that are in stats (which can either be keys to
-				#sites or points or millis)
-				for key in stats[site]:
-					if key != 'millis' and key != 'points':
-						score = stats[site][key]
+				#for all keys that are in stats.questions
+				questions = stats[site].get('questions', None)
+
+				if questions is not None:
+					for key in questions:
+						score = questions[key]
 
 						transformed_score = {}
 						transformed_score['rawinput'] = score.get('rawinput', '')
@@ -156,9 +158,10 @@ class UserViewSet(viewsets.ModelViewSet):
 
 			if score_site_id not in stats:
 				stats[score_site_id] = {}
+				stats[score_site_id]['questions'] = {}
 
 			if score_question_id not in stats[score_site_id]:
-				stats[score_site_id][score_question_id] = {
+				stats[score_site_id]['questions'][score_question_id] = {
 					'id' : score['question']['question_id'],
 					'points' : score.get('points', 0),
 					#TODO 'uxid': score.get
