@@ -49,9 +49,7 @@
 							<!-- Page tabs -->
 							<xsl:apply-templates select="." mode="tabs-bottom" />
 							<!-- Footer -->
-							<xsl:call-template name="pageFooter">
-								<xsl:with-param name="basePath" select="@basePath" />
-							</xsl:call-template>
+							<xsl:apply-templates mode="pageFooter" select="." />
 						</div>
 					</div>
 				</div><!--/row-offcanvas -->

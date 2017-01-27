@@ -60,6 +60,7 @@ class PageXmlRenderer(AbstractXmlRenderer):
 		xml.set( 'docName', tc.docname )
 		# full name (URL)
 		xml.set( 'fullName', tc.fullname )
+		xml.set('footername', settings.description)
 
 		# title
 		title = etree.Element( 'title' )

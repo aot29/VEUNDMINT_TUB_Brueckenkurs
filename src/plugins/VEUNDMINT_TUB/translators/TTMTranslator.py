@@ -20,7 +20,6 @@
 import os, subprocess, logging, re
 import sys
 from tex2x.Settings import settings
-from tex2x.Settings import Settings
 from tex2x.AbstractTranslator import AbstractTranslator
 from tex2x.System import ve_system as sys
 
