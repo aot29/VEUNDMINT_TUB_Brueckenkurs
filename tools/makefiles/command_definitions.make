@@ -49,7 +49,7 @@ define pdf_cmd_physik
 	cd _tmp/tex && makeindex  -q tree1_physik_bk
 	cd _tmp/tex && pdflatex -interaction nonstopmode -halt-on-error -file-line-error tree1_physik_bk.tex >> convert.log
 	mkdir $(OUTPUT)_$(CURRENT_LANG)/pdf
-	cp _tmp/tex/tree1_physik_bk.pdf $(OUTPUT)_$(CURRENT_LANG)/pdf/
+	cp _tmp/tex/tree1_physik_bk.pdf $(OUTPUT)_$(CURRENT_LANG)/pdf/veundmint_de.pdf
 endef
 
 #

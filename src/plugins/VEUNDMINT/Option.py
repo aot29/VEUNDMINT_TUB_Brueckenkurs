@@ -237,7 +237,7 @@ class Option(object):
 
 		## @var doverbose
 		# Schaltet alle Debugmeldungen auf der Browserkonsole an, =0 -> gehen nur in log-Datei
-		self.doverbose = 0
+		self.doverbose = 1
 
 		## @var docollections
 		# Schaltet Export der collection-Exercises ein (schließt qautoexport und nosols aus)
