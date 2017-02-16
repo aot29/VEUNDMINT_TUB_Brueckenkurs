@@ -1856,6 +1856,7 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 
 \ifttm
 \else
+\newcommand{\Mtikzactivate}{
 \tikzset%
 {
   % Defines a custom style which generates pdf and converts to (low and hi-res quality) png and svg, then deletes the pdf
@@ -1874,7 +1875,7 @@ class="intro">\end{html}}{\begin{html}</div>\end{html}\end{MXContent}}
 \tikzset{png export}
 \tikzsetexternalprefix{}
 % PNGs bei externer Erzeugung in "richtiger" Groesse einbinden
-\pgfkeys{/pgf/images/include external/.code={\includegraphics[scale=0.64]{#1}}}
+\pgfkeys{/pgf/images/include external/.code={\includegraphics[scale=0.64]{"\image.4x.png"}}}}
 \fi
 
 % Spezielle Umgebung fuer Autogenerierung, Bildernamen sind nur innerhalb eines Moduls (einer MSection) eindeutig)
